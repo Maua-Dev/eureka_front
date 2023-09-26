@@ -1,0 +1,27 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --dark-blue: #004587;
+  --blue: #4878a8;
+  --light-blue: #c0cfdf;
+  --mustard: rgba(168, 192, 36, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "omnes-pro", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.appContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+

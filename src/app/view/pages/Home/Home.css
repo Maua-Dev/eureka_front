@@ -1,0 +1,57 @@
+#home {
+  padding: 4rem 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-grow: 1;
+  max-width: 100rem;
+  width: 100%;
+  align-self: center;
+}
+
+#home > div {
+  position: relative;
+  width: 35%;
+  transition: ease-in-out 0.2s;
+}
+
+#home div > select {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  padding: 0.5rem 1.2rem;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+#home select > option {
+  color: var(--dark-blue);
+  background-color: var(--light-blue);
+  font-weight: 700;
+}
+
+#home > div::after {
+  content: "\25BC";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dark-blue);
+  font-weight: 700;
+  font-size: 2rem;
+  pointer-events: none;
+
+}
+
+#home > div:hover {
+    transform: scale(1.01);
+}
+
+
+#home div > select:focus {
+    outline: none;
+}

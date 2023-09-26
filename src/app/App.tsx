@@ -1,11 +1,18 @@
-import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { AppRouter } from "./AppRouter";
+import Footer from "./view/components/Footer/Footer";
+import Header from "./view/components/Header/Header";
 
 function App() {
   return (
     <>
-      <div>
-        <h1>EUREKA</h1>
-      </div>
+      <BrowserRouter>
+        <div className="appContainer">
+          <Header />
+          <AppRouter />
+          <Footer />
+        </div>
+      </BrowserRouter>
     </>
   );
 }
