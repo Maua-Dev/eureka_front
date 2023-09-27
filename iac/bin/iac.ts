@@ -18,5 +18,6 @@ const tags = {
   "owner": "DevCommunity"}
 
 new IacStack(app, stackName, {
-  env: env
+  env: env,
+  tags: tags
 });
