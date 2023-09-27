@@ -6,8 +6,12 @@ import messageIcon from "../../../assets/message_icon.svg";
 import calendarIcon from "../../../assets/calendar_icon.svg";
 import menuIcon from "../../../assets/menu_icon.svg";
 import { Link } from "react-router-dom";
+import NavColumn from "../NavColumn/NavColumn";
+import { useState } from "react";
 
 export default function Header() {
+  const [isNavColumnOpen, setIsNavColumnOpen] = useState<boolean>(false);
+
   return (
     <>
       <header id="header">
@@ -31,27 +35,117 @@ export default function Header() {
       </header>
       <nav id="headerNav">
         <ul>
-          <Link to={""} className="navigator">
-            <li>Meus trabalhos e estandes</li>
-          </Link>
-          <Link to={""} className="navigator">
-            <li>Downloads</li>
-          </Link>
-          <Link to={""} className="navigator">
-            <li>Trabalhos e estandes</li>
-          </Link>
-          <Link to={""} className="navigator">
-            <li>Relatórios</li>
-          </Link>
-          <Link to={""} className="navigator">
-            <li>Evento</li>
-          </Link>
-          <Link to={""} className="navigator">
-            <li>Usuários</li>
-          </Link>
-          <Link to={""} className="navigator">
-            <li>Sistema</li>
-          </Link>
+          <li>
+            <button  className="navigator">
+              Meus trabalhos e estandes
+            </button>
+          </li>
+          <li>
+            <button  className="navigator">
+              Downloads
+            </button>
+          </li>
+          <li
+              onBlur={() => setIsNavColumnOpen(false)}
+            >
+            <button
+              
+              onClick={() => setIsNavColumnOpen(!isNavColumnOpen)}
+              className="navigator"
+            >
+              {" "}
+              Trabalhos e estandes
+            </button>
+            {isNavColumnOpen ? (
+              <NavColumn
+                navOptions={[
+                  "Cadastrar",
+                  "Cadastrar múltiplos",
+                  "Consultar",
+                  "Estandes institucionais"
+                ]}
+              />
+            ) : null}
+          </li>
+          <li>
+            <button  className="navigator">
+              Relatórios
+            </button>
+          </li>
+          <li
+              onBlur={() => setIsNavColumnOpen(false)}
+            >
+            <button
+              
+              onClick={() => setIsNavColumnOpen(!isNavColumnOpen)}
+              className="navigator"
+            >
+              {" "}
+              Evento
+            </button>
+            {isNavColumnOpen ? (
+              <NavColumn
+                navOptions={[
+                  "Autorizar entrada",
+                  "Colaboradores externos",
+                  "Colaboradores internos",
+                  "Crachás",
+                  "Número de estandes",
+                  "Textos para correção"
+                ]}
+              />
+            ) : null}
+          </li>
+          <li
+              onBlur={() => setIsNavColumnOpen(false)}
+            >
+            <button
+              
+              onClick={() => setIsNavColumnOpen(!isNavColumnOpen)}
+              className="navigator"
+            >
+              {" "}
+              Usuários
+            </button>
+            {isNavColumnOpen ? (
+              <NavColumn
+              
+                navOptions={[
+                  "Cadastrar",
+                  "Cadastrar múltiplos",
+                  "Consultar",
+                  "Desativar",
+                ]}
+              />
+            ) : null}
+          </li>
+
+          <li
+              onBlur={() => setIsNavColumnOpen(false)}
+            >
+            <button
+              
+              onClick={() => setIsNavColumnOpen(!isNavColumnOpen)}
+              className="navigator"
+            >
+              {" "}
+              Sistema
+            </button>
+            {isNavColumnOpen ? (
+              <NavColumn
+                navOptions={[
+                  "Alterar ano de visualização",
+                  "Backup de arquivos",
+                  "Controle de estoque",
+                  "Datas",
+                  "Estatísticas",
+                  "Imagens",
+                  "Log de usuários",
+                  "Log de trabalhos",
+                ]}
+              />
+            ) : null}
+          </li>
         </ul>
         <aside>
           <Link className="link" to={""}>

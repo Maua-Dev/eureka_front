@@ -1,0 +1,23 @@
+#navColumn {
+    background-color: var(--dark-blue);
+    position: absolute;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    color: var(--white);
+    font-weight: 700;
+    z-index: 1;
+}
+
+#navColumn > .link {
+    padding: 1rem;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--white);
+}
+
+#navColumn > .link:hover {
+    color: var(--dark-mustard);
+}
+

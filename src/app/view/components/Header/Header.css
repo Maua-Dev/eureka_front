@@ -6,9 +6,6 @@
   justify-content: space-between;
 }
 
-#header > .logo {
-  transition: ease-in-out 0.4s;
-}
 
 #header .logo > img {
   max-width: 100%;
@@ -19,10 +16,6 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-}
-
-#header aside > .link {
-  transition: ease-in-out 0.2s;
 }
 
 #header .link > img {
@@ -47,21 +40,38 @@
 /* FIX DA IRREGULARIDADE DAS IMAGENS */
 
 #headerNav {
-  background-color: var(--blue);
+  background-color: var(--medium-light-blue);
 }
 
 #headerNav > ul {
   display: flex;
   list-style: none;
   justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0.5rem;
 }
 
-#headerNav ul > .navigator {
+#headerNav ul > li {
   width: 15%;
   text-align: center;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.2s;
+  position: relative;
+}
+
+#headerNav li > .navigator {
+  transition: ease-in-out 0.2s;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  border: none;
+  background-color: var(--medium-light-blue);
+  cursor: pointer;
 }
 
 #headerNav aside {
@@ -97,30 +107,25 @@
 
 /* FIX DA IRREGULARIDADE DAS IMAGENS */
 
-#headerNav .navigator > li {
+#headerNav li > .navigator {
   color: var(--white);
   font-weight: 600;
   font-size: 1.5rem;
-  transition: ease-in-out 0.2s;
+  padding: 1rem 0.5rem;
 }
 
-#header > .logo:hover {
-  transform: scale(1.02);
-  opacity: 0.8;
-}
 
 #header aside > .link:hover {
-  transform: scale(1.04);
-  opacity: 0.8;
+  filter: var(--dark-mustard-filter);
 }
 
-#headerNav .navigator > li:hover {
-  transform: scale(1.02);
-  opacity: 0.6;
+#headerNav .navigator:hover{
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
 }
 
 @media screen and (max-width: 1200px) {
-  #headerNav .navigator > li {
+  #headerNav li > .navigator {
     font-size: 1.2rem;
   }
 }
@@ -140,7 +145,7 @@
     height: 54px;
   }
 
-  #headerNav .navigator > li {
+  #headerNav li > .navigator{
     font-size: 1rem;
   }
 }
@@ -160,13 +165,13 @@
     height: 49px;
   }
 
-  #headerNav .navigator > li {
+  #headerNav li > .navigator {
     font-size: 0.8rem;
   }
 }
 
 @media screen and (max-width: 650px) {
-  #headerNav .navigator > li {
+  #headerNav li > .navigator {
     font-size: 0.7rem;
   }
 }
@@ -184,7 +189,7 @@
     justify-content: end;
   }
 
-  #headerNav .navigator > li {
+  #headerNav li > .navigator {
     font-size: 0.8rem;
   }
 

@@ -1,5 +1,5 @@
 #home {
-  padding: 4rem 8rem;
+  padding: 5rem 10rem 4rem 10rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -11,47 +11,63 @@
 
 #home > div {
   position: relative;
-  width: 35%;
-  transition: ease-in-out 0.2s;
+  width: 40%;
 }
 
-#home div > select {
+#home div > button {
   background-color: var(--light-blue);
   color: var(--dark-blue);
   font-weight: 700;
   border-radius: 8px;
   font-size: 1.4rem;
-  padding: 0.5rem 1.2rem;
   appearance: none;
   cursor: pointer;
   border: none;
   width: 100%;
+  transition: ease-in-out 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-#home select > option {
+#home button > img {
+  transition: 0.2s;
+  margin: 0.8rem 1.4rem;
+}
+
+#home button > p {
+  margin: 0.8rem 1.4rem;
+}
+
+#home button > section {
   color: var(--dark-blue);
-  background-color: var(--light-blue);
-  font-weight: 700;
-}
-
-#home > div::after {
-  content: "\25BC";
+  background-color: var(--extra-light-blue);
+  border-radius: 8px;
+  transition: 0.2s;
   position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--dark-blue);
+  width: 100%;
+  top: 100%;
+}
+
+#home section > option {
   font-weight: 700;
-  font-size: 2rem;
-  pointer-events: none;
-
-}
-
-#home > div:hover {
-    transform: scale(1.01);
+  padding: 1.5rem 1.5rem;
+  font-size: 1.4rem;
+  text-align: start;
 }
 
 
-#home div > select:focus {
-    outline: none;
+#home > div:hover select{
+    background-color: var(--dark-mustard);
 }
+
+#home div > button:hover {
+  color: var(--dark-mustard);
+  cursor: pointer;
+}
+
+option:hover {
+  color: var(--dark-mustard);
+  cursor: pointer;
+}
+
