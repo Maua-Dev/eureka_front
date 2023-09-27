@@ -4,6 +4,8 @@
     top: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 99%;
     color: var(--white);
     font-weight: 700;
@@ -12,12 +14,68 @@
 
 #navColumn > .link {
     padding: 1rem;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     text-decoration: none;
     color: var(--white);
+    text-align: center;
 }
 
 #navColumn > .link:hover {
     color: var(--dark-mustard);
+}
+
+@media screen and (max-width: 1200px) {
+    #navColumn > .link {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #navColumn > .link {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) { 
+    #navColumn > .link {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #navColumn > .link {
+        font-size: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #navColumn {
+        width: auto;
+        right: 0;
+        max-width: 10rem;
+    }
+
+    #navColumn > .link {
+        padding: 1rem;
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--white);
+    }
+    
+    #navColumn .link:hover > span{
+        color: var(--dark-mustard);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #navColumn {
+        width: auto;
+        right: 0;
+        max-width: 8rem;
+    }
+
+    #navColumn > .link {
+        font-size: 0.8rem;
+    }
 }
 

@@ -62,11 +62,11 @@
 }
 
 #home div > button:hover {
-  color: var(--dark-mustard);
+  background-color: var(--dark-mustard);
   cursor: pointer;
 }
 
-option:hover {
+#home option:hover {
   color: var(--dark-mustard);
   cursor: pointer;
 }

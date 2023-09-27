@@ -1,5 +1,7 @@
 import "./Header.css";
 import mauaLogo from "../../../assets/maua_logo.png";
+import eurekaLogo from "../../../assets/eureka_logo.png";
+import mauaEurekaLogo from "../../../assets/maua_eureka_logo.png";
 import profileIcon from "../../../assets/profile_icon.svg";
 import questionIcon from "../../../assets/question_icon.svg";
 import messageIcon from "../../../assets/message_icon.svg";
@@ -10,20 +12,52 @@ import NavColumn from "../NavColumn/NavColumn";
 import { useState } from "react";
 
 export default function Header() {
-  const [isNavColumnOpen, setIsNavColumnOpen] = useState<boolean>(false);
+  const [isWorkAndStandsOpenColumn, setIsWorkAndStandsOpenColumn] =
+    useState<boolean>(false);
+  const [isEventColumnOpen, setIsEventColumnOpen] = useState<boolean>(false);
+  const [isUserColumnOpen, setIsUserColumnOpen] = useState<boolean>(false);
+  const [isSystemColumnOpen, setIsSystemColumnOpen] = useState<boolean>(false);
+  const [isMenuColumnOpen, setIsMenuColumnOpen] = useState<boolean>(false);
+  const [isUserDialogOpen, setIsUserDialogOpen] = useState<boolean>(true);
+  const [isQuestionDialogOpen, setIsQuestionDialogOpen] = useState<boolean>(false);
 
   return (
     <>
       <header id="header">
-        <Link className="logo" to={""}>
-          <img src={mauaLogo} alt="Logo do Instituto Mauá de Tecnologia" />
-        </Link>
-        <aside>
-          <Link className="link" to={""}>
-            <img src={profileIcon} alt="Ícone de perfil" />
+        <div>
+          <Link className="logo" to={""}>
+            <img src={mauaLogo} alt="Logo do Instituto Mauá de Tecnologia" />
           </Link>
-          <Link className="link" to={""}>
+
+          <Link className="logo" to={""}>
+            <img src={eurekaLogo} alt="Logo da Eureka 2024" />
+          </Link>
+          <Link className="logo" to={""}>
+            <img
+              src={mauaEurekaLogo}
+              alt="Logo do Instituto Mauá de Tecnologia e Eureka 2024"
+            />
+          </Link>
+        </div>
+        <aside>
+          <Link onClick={() => setIsUserDialogOpen(!isUserDialogOpen)} onBlur={() => setIsUserDialogOpen(false)} className="link" to={""}>
+            <img src={profileIcon} alt="Ícone de perfil" className="profile" />
+            {isUserDialogOpen ? <section>
+              <div>
+                <h1>Isabella Augusta Rodrigues</h1>
+                <p>RA: 22.01190-0</p>
+                <Link className="button" to={""}>Sair</Link>
+              </div>
+            </section> : null}
+          </Link>
+          <Link  onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)} onBlur={() => setIsQuestionDialogOpen(false)} className="link" to={""}>
             <img src={questionIcon} alt="Ícone de interrogação" />
+            {isQuestionDialogOpen ? <section>
+              <div>
+                <Link className="questionTitle" to={""}>Ajuda</Link>
+                <Link  className="questionTitle"  to={""}>Conheça o sistema</Link>
+              </div>
+            </section> : null}
           </Link>
           <Link className="link" to={""}>
             <img src={messageIcon} alt="Ícone de mensagens" />
@@ -36,54 +70,44 @@ export default function Header() {
       <nav id="headerNav">
         <ul>
           <li>
-            <button  className="navigator">
-              Meus trabalhos e estandes
-            </button>
+            <button className="navigator">Meus trabalhos e estandes</button>
           </li>
           <li>
-            <button  className="navigator">
-              Downloads
-            </button>
+            <button className="navigator">Downloads</button>
           </li>
-          <li
-              onBlur={() => setIsNavColumnOpen(false)}
-            >
+          <li onBlur={() => setIsWorkAndStandsOpenColumn(false)}>
             <button
-              
-              onClick={() => setIsNavColumnOpen(!isNavColumnOpen)}
+              onClick={() =>
+                setIsWorkAndStandsOpenColumn(!isWorkAndStandsOpenColumn)
+              }
               className="navigator"
             >
               {" "}
               Trabalhos e estandes
             </button>
-            {isNavColumnOpen ? (
+            {isWorkAndStandsOpenColumn ? (
               <NavColumn
                 navOptions={[
                   "Cadastrar",
                   "Cadastrar múltiplos",
                   "Consultar",
-                  "Estandes institucionais"
+                  "Estandes institucionais",
                 ]}
               />
             ) : null}
           </li>
           <li>
-            <button  className="navigator">
-              Relatórios
-            </button>
+            <button className="navigator">Relatórios</button>
           </li>
-          <li
-              onBlur={() => setIsNavColumnOpen(false)}
-            >
+          <li onBlur={() => setIsEventColumnOpen(false)}>
             <button
-              
-              onClick={() => setIsNavColumnOpen(!isNavColumnOpen)}
+              onClick={() => setIsEventColumnOpen(!isEventColumnOpen)}
               className="navigator"
             >
               {" "}
               Evento
             </button>
-            {isNavColumnOpen ? (
+            {isEventColumnOpen ? (
               <NavColumn
                 navOptions={[
                   "Autorizar entrada",
@@ -91,25 +115,21 @@ export default function Header() {
                   "Colaboradores internos",
                   "Crachás",
                   "Número de estandes",
-                  "Textos para correção"
+                  "Textos para correção",
                 ]}
               />
             ) : null}
           </li>
-          <li
-              onBlur={() => setIsNavColumnOpen(false)}
-            >
+          <li onBlur={() => setIsUserColumnOpen(false)}>
             <button
-              
-              onClick={() => setIsNavColumnOpen(!isNavColumnOpen)}
+              onClick={() => setIsUserColumnOpen(!isUserColumnOpen)}
               className="navigator"
             >
               {" "}
               Usuários
             </button>
-            {isNavColumnOpen ? (
+            {isUserColumnOpen ? (
               <NavColumn
-              
                 navOptions={[
                   "Cadastrar",
                   "Cadastrar múltiplos",
@@ -120,18 +140,15 @@ export default function Header() {
             ) : null}
           </li>
 
-          <li
-              onBlur={() => setIsNavColumnOpen(false)}
-            >
+          <li onBlur={() => setIsSystemColumnOpen(false)}>
             <button
-              
-              onClick={() => setIsNavColumnOpen(!isNavColumnOpen)}
+              onClick={() => setIsSystemColumnOpen(!isSystemColumnOpen)}
               className="navigator"
             >
               {" "}
               Sistema
             </button>
-            {isNavColumnOpen ? (
+            {isSystemColumnOpen ? (
               <NavColumn
                 navOptions={[
                   "Alterar ano de visualização",
@@ -148,21 +165,52 @@ export default function Header() {
           </li>
         </ul>
         <aside>
-          <Link className="link" to={""}>
+          <button onClick={() => setIsUserDialogOpen(!isUserDialogOpen)} onBlur={() => setIsUserDialogOpen(false)} className="link">
             <img src={profileIcon} alt="Ícone de perfil" />
-          </Link>
-          <Link className="link" to={""}>
+            {isUserDialogOpen ? <section>
+              <div>
+                <h1>Isabella Augusta Rodrigues</h1>
+                <p>RA: 22.01190-0</p>
+                <Link className="button" to={""}>Sair</Link>
+              </div>
+            </section> : null}
+          </button>
+          <button onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)} onBlur={() => setIsQuestionDialogOpen(false)}  className="link">
             <img src={questionIcon} alt="Ícone de interrogação" />
-          </Link>
-          <Link className="link" to={""}>
+            {isQuestionDialogOpen ? <section>
+              <div>
+                <Link className="questionTitle" to={""}>Ajuda</Link>
+                <Link  className="questionTitle"  to={""}>Conheça o sistema</Link>
+              </div>
+            </section> : null}
+          </button>
+          <button className="link">
             <img src={messageIcon} alt="Ícone de mensagens" />
-          </Link>
-          <Link className="link" to={""}>
+          </button>
+          <button className="link">
             <img src={calendarIcon} alt="ìcone de calendário" />
-          </Link>
-          <Link className="link" to={""}>
-            <img src={menuIcon} alt="ìcone de calendário" />
-          </Link>
+          </button>
+
+          <button
+            className="link"
+            onClick={() => setIsMenuColumnOpen(!isMenuColumnOpen)}
+            onBlur={() => setIsMenuColumnOpen(false)}
+          >
+            <img src={menuIcon} alt="ìcone de menu" />
+            {isMenuColumnOpen ? (
+              <NavColumn
+                navOptions={[
+                  "Meus trabalhos e estandes",
+                  "Downloads",
+                  "Trabalhos e estandes",
+                  "Relatórios",
+                  "Evento",
+                  "Usuários",
+                  "Sistema",
+                ]}
+              />
+            ) : null}
+          </button>
         </aside>
       </nav>
     </>
