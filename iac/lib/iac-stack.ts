@@ -30,7 +30,7 @@ export class IacStack extends cdk.Stack {
 
     const oac = new cloudfront.CfnOriginAccessControl(this, 'AOC', {
       originAccessControlConfig: {
-        name: 'Portal Interno Front Bucket OAC ' + stage,
+        name: 'Eureka Front Bucket OAC ' + stage,
         originAccessControlOriginType: 's3',
         signingBehavior: 'always',
         signingProtocol: 'sigv4'
@@ -53,7 +53,7 @@ export class IacStack extends cdk.Stack {
       this,
       'CDN',
       {
-        comment: 'Portal Interno Front Distribution ' + stage,
+        comment: 'Eureka Front Distribution ' + stage,
         originConfigs: [
           {
             s3OriginSource: {
