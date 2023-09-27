@@ -324,7 +324,7 @@
   color: var(--dark-blue);
 }
 
-#headerNav div > .questionTitle:hover {
+#header div > .questionTitle:hover {
   color: var(--dark-mustard);
 }
 
