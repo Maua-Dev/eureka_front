@@ -18,7 +18,7 @@ export default function Header() {
   const [isUserColumnOpen, setIsUserColumnOpen] = useState<boolean>(false);
   const [isSystemColumnOpen, setIsSystemColumnOpen] = useState<boolean>(false);
   const [isMenuColumnOpen, setIsMenuColumnOpen] = useState<boolean>(false);
-  const [isUserDialogOpen, setIsUserDialogOpen] = useState<boolean>(true);
+  const [isUserDialogOpen, setIsUserDialogOpen] = useState<boolean>(false);
   const [isQuestionDialogOpen, setIsQuestionDialogOpen] = useState<boolean>(false);
 
   return (

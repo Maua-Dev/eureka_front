@@ -40,7 +40,7 @@
 
 #header .link:nth-child(2) > section {
   right: -30.5px;
-  top: 73px;
+  top: 81px;
 }
 
 #header .link:nth-child(2) > section > div {
@@ -53,7 +53,7 @@
 #header .link > section {
   position: absolute;
   z-index: 1;
-  top: 72px;
+  top: 80px;
   right: -44.5px;
 }
 
@@ -190,7 +190,7 @@
 
 #headerNav button:nth-child(2) > section {
   right: -30.5px;
-  top: 66px;
+  top: 74px;
   right: 143.5px;
 }
 
@@ -204,7 +204,7 @@
 #headerNav button > section {
   position: absolute;
   z-index: 1;
-  top: 66px;
+  top: 74px;
   right: 176.5px;
 }
 
@@ -328,7 +328,7 @@
   color: var(--dark-mustard);
 }
 
-#header div > .questionTitle:hover {
+#headerNav div > .questionTitle:hover {
   color: var(--dark-mustard);
 }
 
@@ -367,7 +367,7 @@
 
   #header .link:nth-child(2) > section {
     right: -25.5px;
-    top: 62px;
+    top: 70px;
   }
 
   #header .link:nth-child(2) > section > div {
@@ -381,7 +381,7 @@
   }
 
   #header .link > section {
-    top: 61px;
+    top: 70px;
     right: -41px;
   }
 
@@ -445,7 +445,7 @@
 
   #header .link:nth-child(2) > section {
     right: -18px;
-    top: 55px;
+    top: 63px;
   }
 
   #header .link:nth-child(2) > section > div {
@@ -459,7 +459,7 @@
   }
 
   #header .link > section {
-    top: 54px;
+    top: 62px;
     right: -28.5px;
   }
 
@@ -572,7 +572,7 @@
 
   #headerNav button:nth-child(2) > section {
     right: -30.5px;
-    top: 61px;
+    top: 69px;
     right: 136px;
   }
 
@@ -583,7 +583,7 @@
   }
 
   #headerNav button > section {
-    top: 61px;
+    top: 69px;
     right: 164px;
   }
 
@@ -643,7 +643,7 @@
   }
 
   #headerNav button:nth-child(2) > section {
-    top: 51px;
+    top: 59px;
     right: 105px;
   }
 
@@ -654,7 +654,7 @@
   }
 
   #headerNav button > section {
-    top: 51px;
+    top: 59px;
     right: 147.5px;
   }
 
