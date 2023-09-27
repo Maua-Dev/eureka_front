@@ -11,6 +11,11 @@ const env = {
 }
 
 const stackName = process.env.STACK_NAME || 'EurekaStackDev'
+const tags = {
+  "project": "Eureka",
+  "stage": "DEV",
+  "stack": "FRONT",
+  "owner": "DevCommunity"}
 
 new IacStack(app, stackName, {
   env: env
