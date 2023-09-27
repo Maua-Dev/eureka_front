@@ -14,25 +14,80 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 2rem;
 }
 
 #footer section > div {
   display: flex;
   align-items: center;
   height: fit-content;
-  width: 100%;
 
   font-weight: 600;
   font-size: 1.2rem;
   gap: 1rem;
 }
 
+#footer div > .icon {
+  position: relative;
+}
+
+#footer .icon > img {
+  max-width: 100%;
+  height: 64px;
+}
+
+#footer .icon > div {
+  position: absolute;
+  background-color: var(--medium-light-blue);
+  padding: 0.8rem;
+  border-radius: 1rem;
+  width: 470px;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  bottom: 140%;
+}
+
+#footer div > header {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.6rem;
+}
+
+#footer div > textarea {
+  border-radius: 1rem;
+  appearance: none;
+  border: none;
+  background-color: var(--extra-light-blue);
+  width: 100%;
+  padding: 2rem 2.3rem;
+  flex-grow: 1;
+  display: flex;
+  font-size: 2.3rem;
+  color: var(--medium-light-blue);
+  height: 100%;
+  outline: none;
+}
+
+#footer div > textarea::placeholder {
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: var(--medium-light-blue);
+}
+
+#footer div > textarea::-webkit-scrollbar {
+  display: none;
+}
+
 #footer div > .email {
-  box-shadow: inset 0 0 0 0 var(--blue);
   color: var(--white);
   text-decoration: none;
-  margin: 0 -0.25rem;
-  padding: 0 0.25rem;
 }
 
 #footer section > nav {
@@ -49,13 +104,11 @@
   font-weight: 600;
 }
 
-
 #footer aside > div {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
-
 
 #footer .link:nth-child(1) > img {
   max-width: 100%;
@@ -67,7 +120,210 @@
   height: 4rem;
 }
 
-#footer .icon:hover {
+#footer .icon > .social {
+  max-width: 100%;
+  height: 40px;
+}
+
+#footer .icon:hover img {
   filter: var(--dark-mustard-filter);
 }
 
+@media screen and (max-width: 1200px) {
+  #footer .icon > div {
+    padding: 0.8rem;
+    width: 400px;
+    height: 410px;
+    gap: 0.8rem;
+  }
+  
+  #footer div > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 1.4rem;
+  }
+  
+  #footer div > textarea {
+    padding: 2rem 2.3rem;
+    font-size: 2.1rem;
+  }
+  
+  #footer div > textarea::placeholder {
+    font-size: 2.1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #footer .icon > img {
+    height: 3rem;
+  }
+
+  #footer section > div {
+    font-size: 1rem;
+  }
+
+  #footer .link:nth-child(1) > img {
+    height: 1.5rem;
+  }
+
+  #footer .link:nth-child(2) > img {
+    height: 3rem;
+  }
+
+  #footer .icon > .social {
+    height: 2rem;
+  }
+
+  #footer .icon > div {
+    padding: 0.8rem;
+    width: 380px;
+    height: 370px;
+    gap: 0.8rem;
+  }
+  
+  #footer div > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  #footer div > textarea {
+    padding: 2rem 2.3rem;
+    font-size: 2rem;
+  }
+  
+  #footer div > textarea::placeholder {
+    font-size: 2.1rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #footer .icon > div {
+    padding: 0.8rem;
+    width: 300px;
+    height: 310px;
+    gap: 0.8rem;
+  }
+  
+  #footer div > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 1rem;
+  }
+  
+  #footer div > textarea {
+    padding: 1.5rem 1.8rem;
+    font-size: 1.8rem;
+  }
+  
+  #footer div > textarea::placeholder {
+    font-size: 1.9rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #footer div > p {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 500px) {
+  #footer .icon > img {
+    height: 2.5rem;
+  }
+  #footer .icon > .social {
+    height: 1.5rem;
+  }
+
+  #footer .link:nth-child(1) > img {
+    height: 1rem;
+  }
+
+  #footer .link:nth-child(2) > img {
+    height: 2.5rem;
+  }
+
+  #footer section > nav {
+    gap: 0.5rem;
+  }
+
+  #footer .icon > div {
+    padding: 0.8rem;
+    width: 250px;
+    height: 260px;
+    gap: 0.8rem;
+  }
+  
+  #footer div > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 0.8rem;
+  }
+  
+  #footer div > textarea {
+    padding: 1.5rem 1.8rem;
+    font-size: 1.6rem;
+  }
+  
+  #footer div > textarea::placeholder {
+    font-size: 1.7rem;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+
+  #footer .icon > div {
+    padding: 0.8rem;
+    width: 180px;
+    height: 190px;
+    gap: 0.8rem;
+  }
+  
+  #footer div > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 0.6rem;
+  }
+  
+  #footer div > textarea {
+    padding: 1.2rem 1rem;
+    font-size: 1.4rem;
+  }
+  
+  #footer div > textarea::placeholder {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  #footer > section {
+    gap: 1.5rem;
+  }
+
+  #footer .icon > div {
+    padding: 0.8rem;
+    width: 150px;
+    height: 160px;
+    gap: 0.8rem;
+  }
+  
+  #footer div > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 0.4rem;
+  }
+  
+  #footer div > textarea {
+    padding: 1.2rem 0.6rem;
+    font-size: 1.2rem;
+  }
+  
+  #footer div > textarea::placeholder {
+    font-size: 1.1rem;
+  }
+
+}

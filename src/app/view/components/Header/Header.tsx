@@ -40,8 +40,8 @@ export default function Header() {
           </Link>
         </div>
         <aside>
-          <Link onClick={() => setIsUserDialogOpen(!isUserDialogOpen)} onBlur={() => setIsUserDialogOpen(false)} className="link" to={""}>
-            <img src={profileIcon} alt="Ícone de perfil" className="profile" />
+          <Link  onBlur={() => setIsUserDialogOpen(false)} className="link" to={""}>
+            <img onClick={() => setIsUserDialogOpen(!isUserDialogOpen)} src={profileIcon} alt="Ícone de perfil" className="profile" />
             {isUserDialogOpen ? <section>
               <div>
                 <h1>Isabella Augusta Rodrigues</h1>
@@ -50,8 +50,8 @@ export default function Header() {
               </div>
             </section> : null}
           </Link>
-          <Link  onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)} onBlur={() => setIsQuestionDialogOpen(false)} className="link" to={""}>
-            <img src={questionIcon} alt="Ícone de interrogação" />
+          <Link   onBlur={() => setIsQuestionDialogOpen(false)} className="link" to={""}>
+            <img onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)} src={questionIcon} alt="Ícone de interrogação" />
             {isQuestionDialogOpen ? <section>
               <div>
                 <Link className="questionTitle" to={""}>Ajuda</Link>

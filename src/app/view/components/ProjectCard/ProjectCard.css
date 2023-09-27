@@ -7,6 +7,8 @@
   text-decoration: none;
   color: var(--black);
   transition: ease-in-out 0.2s;
+  align-items: center;
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
 }
 
 #card > div {
@@ -22,16 +24,84 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 0.5rem 0;
+  width: calc(100% - 100px);
+  max-width: 40rem;
 }
 
 #card aside > h1 {
   font-weight: 600;
+  font-size: 1.7rem;
 }
 
 #card aside > p {
   font-weight: 500;
+  font-size: 1.1rem;
 }
 
 #card:hover {
   background-color: var(--dark-mustard);
+}
+
+@media screen and (max-width: 1200px) {
+  #card aside > h1 {
+    font-size: 1.5rem;
+  }
+  
+  #card aside > p {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {}
+
+@media screen and (max-width: 800px) {
+  #card > div {
+    height: 90px;
+    width: 90px;
+  }
+  
+  #card > aside {
+    width: calc(100% - 90px);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #card aside > h1 {
+    font-size: 1.3rem;
+  }
+  
+  #card aside > p {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #card > div {
+    height: 80px;
+    width: 80px;
+  }
+  
+  #card > aside {
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #card aside > h1 {
+    font-size: 1rem;
+  }
+  
+  #card aside > p {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #card aside > h1 {
+    font-size: 0.8rem;
+  }
+  
+  #card aside > p {
+    font-size: 0.5rem;
+  }
 }
