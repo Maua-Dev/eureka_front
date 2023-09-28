@@ -21,6 +21,9 @@ export default function Header() {
   const [isUserDialogOpen, setIsUserDialogOpen] = useState<boolean>(false);
   const [isQuestionDialogOpen, setIsQuestionDialogOpen] =
     useState<boolean>(false);
+  const [isUserMobileDialogOpen, setIsUserMobileDialogOpen] = useState<boolean>(false);
+  const [isQuestionMobileDialogOpen, setIsQuestionMobileDialogOpen] =
+    useState<boolean>(false);
 
   const refWorkAndStandsColumn = useRef<HTMLLIElement>(null);
   const refEventColumn = useRef<HTMLLIElement>(null);
@@ -29,6 +32,8 @@ export default function Header() {
   const refMenuColumn = useRef<HTMLButtonElement>(null);
   const refUserDialog = useRef<HTMLAnchorElement>(null);
   const refQuestionDialog = useRef<HTMLAnchorElement>(null);
+  const refUserMobileDialog = useRef<HTMLAnchorElement>(null);
+  const refQuestionMobileDialog = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
@@ -57,6 +62,17 @@ export default function Header() {
       }
       if (!refQuestionDialog.current!.contains(e.target as Node)) {
         setIsQuestionDialogOpen(false);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (!refUserMobileDialog.current!.contains(e.target as Node)) {
+        setIsUserMobileDialogOpen(false);
+      }
+      if (!refQuestionMobileDialog.current!.contains(e.target as Node)) {
+        setIsQuestionMobileDialogOpen(false);
       }
     });
   }, []);
@@ -224,11 +240,11 @@ export default function Header() {
           <Link
             to={""}
             
-            ref={refUserDialog}
+            ref={refUserMobileDialog}
             className="link"
           >
-            <img onClick={() => setIsUserDialogOpen(!isUserDialogOpen)} src={profileIcon} alt="Ícone de perfil" />
-            {isUserDialogOpen ? (
+            <img onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)} src={profileIcon} alt="Ícone de perfil" />
+            {isUserMobileDialogOpen ? (
               <section>
                 <div>
                   <h1>Isabella Augusta Rodrigues</h1>
@@ -243,11 +259,11 @@ export default function Header() {
           <Link
           to={""}
            
-            ref={refQuestionDialog}
+            ref={refQuestionMobileDialog}
             className="link"
           >
-            <img  onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)} src={questionIcon} alt="Ícone de interrogação" />
-            {isQuestionDialogOpen ? (
+            <img  onClick={() => setIsQuestionMobileDialogOpen(!isQuestionMobileDialogOpen)} src={questionIcon} alt="Ícone de interrogação" />
+            {isQuestionMobileDialogOpen ? (
               <section>
                 <div>
                   <Link className="questionTitle" to={""}>
