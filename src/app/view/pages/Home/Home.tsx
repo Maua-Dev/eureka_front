@@ -35,22 +35,20 @@ export default function Home() {
               alt="Ícone de flecha"
             />
             {isDropdownOpen ? <section>
-              <option
-                value="advisor"
+              <div
                 onClick={(event) => {
                   setDropdownText(event.currentTarget.innerHTML);
                 }}
               >
                 Professor orientador
-              </option>
-              <option
-                value="responsible"
+              </div>
+              <div
                 onClick={(event) => {
                   setDropdownText(event.currentTarget.innerHTML);
                 }}
               >
                 Professor responsável
-              </option>
+              </div>
             </section> : null}
             
           </button>

@@ -50,7 +50,7 @@
   top: 100%;
 }
 
-#home section > option {
+#home section > div {
   font-weight: 700;
   padding: 1.5rem 1.5rem;
   font-size: 1.4rem;
@@ -67,7 +67,7 @@
   cursor: pointer;
 }
 
-#home option:hover {
+#home div:hover {
   color: var(--dark-mustard);
   cursor: pointer;
 }
@@ -81,7 +81,7 @@
     font-size: 1.2rem;
   }
 
-  #home section > option {
+  #home section > div {
     font-size: 1.2rem;
   }
 
@@ -99,7 +99,7 @@
     font-size: 1.1rem;
   }
 
-  #home section > option {
+  #home section > div {
     font-size: 1.1rem;
   }
 
@@ -148,7 +148,7 @@
     font-size: 0.9rem;
   }
 
-  #home section > option {
+  #home section > div {
     font-size: 0.9rem;
   }
 
