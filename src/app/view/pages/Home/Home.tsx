@@ -34,9 +34,8 @@ export default function Home() {
               style={isDropdownOpen ? { transform: "scale(1, -1)" } : {}}
               alt="Ícone de flecha"
             />
-            <section>
+            {isDropdownOpen ? <section>
               <option
-                style={{ display: isDropdownOpen ? "block" : "none" }}
                 value="advisor"
                 onClick={(event) => {
                   setDropdownText(event.currentTarget.innerHTML);
@@ -45,7 +44,6 @@ export default function Home() {
                 Professor orientador
               </option>
               <option
-                style={{ display: isDropdownOpen ? "block" : "none" }}
                 value="responsible"
                 onClick={(event) => {
                   setDropdownText(event.currentTarget.innerHTML);
@@ -53,7 +51,8 @@ export default function Home() {
               >
                 Professor responsável
               </option>
-            </section>
+            </section> : null}
+            
           </button>
         </div>
         <ProjectCard
