@@ -1,5 +1,4 @@
 #navColumn {
-    background-color: var(--dark-blue);
     position: absolute;
     top: 100%;
     display: flex;
@@ -10,6 +9,12 @@
     color: var(--white);
     font-weight: 700;
     z-index: 1;
+}
+
+#navColumn .floatingColumn {
+    position: relative;
+    right: 50%;
+    bottom: 1.8rem;
 }
 
 #navColumn > .link {

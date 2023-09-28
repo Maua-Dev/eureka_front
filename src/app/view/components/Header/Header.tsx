@@ -21,7 +21,8 @@ export default function Header() {
   const [isUserDialogOpen, setIsUserDialogOpen] = useState<boolean>(false);
   const [isQuestionDialogOpen, setIsQuestionDialogOpen] =
     useState<boolean>(false);
-  const [isUserMobileDialogOpen, setIsUserMobileDialogOpen] = useState<boolean>(false);
+  const [isUserMobileDialogOpen, setIsUserMobileDialogOpen] =
+    useState<boolean>(false);
   const [isQuestionMobileDialogOpen, setIsQuestionMobileDialogOpen] =
     useState<boolean>(false);
 
@@ -159,17 +160,19 @@ export default function Header() {
             >
               Trabalhos e estandes
             </button>
-            {isWorkAndStandsColumnOpen ? (
-              <NavColumn
-                navOptions={[
-                  "Cadastrar",
-                  "Cadastrar múltiplos",
-                  "Consultar",
-                  "Estandes institucionais",
-                ]}
-              />
-            ) : null}
-          </li>
+
+            <NavColumn
+            backgroundColor="var(--dark-blue)"
+              isMobile={false}
+              isColumnOpen={isWorkAndStandsColumnOpen}
+              navOptions={[
+                "Cadastrar",
+                "Cadastrar múltiplos",
+                "Consultar",
+                "Estandes institucionais",
+              ]}
+            />
+          </li> 
           <li>
             <button className="navigator">Relatórios</button>
           </li>
@@ -180,18 +183,19 @@ export default function Header() {
             >
               Evento
             </button>
-            {isEventColumnOpen ? (
-              <NavColumn
-                navOptions={[
-                  "Autorizar entrada",
-                  "Colaboradores externos",
-                  "Colaboradores internos",
-                  "Crachás",
-                  "Número de estandes",
-                  "Textos para correção",
-                ]}
-              />
-            ) : null}
+            <NavColumn
+            backgroundColor="var(--dark-blue)"
+              isColumnOpen={isEventColumnOpen}
+              isMobile={false}
+              navOptions={[
+                "Autorizar entrada",
+                "Colaboradores externos",
+                "Colaboradores internos",
+                "Crachás",
+                "Número de estandes",
+                "Textos para correção",
+              ]}
+            />
           </li>
           <li ref={refUserColumn}>
             <button
@@ -200,16 +204,17 @@ export default function Header() {
             >
               Usuários
             </button>
-            {isUserColumnOpen ? (
-              <NavColumn
-                navOptions={[
-                  "Cadastrar",
-                  "Cadastrar múltiplos",
-                  "Consultar",
-                  "Desativar",
-                ]}
-              />
-            ) : null}
+            <NavColumn
+            backgroundColor="var(--dark-blue)"
+              isColumnOpen={isUserColumnOpen}
+              isMobile={false}
+              navOptions={[
+                "Cadastrar",
+                "Cadastrar múltiplos",
+                "Consultar",
+                "Desativar",
+              ]}
+            />
           </li>
 
           <li ref={refSystemColumn}>
@@ -220,30 +225,30 @@ export default function Header() {
               {" "}
               Sistema
             </button>
-            {isSystemColumnOpen ? (
-              <NavColumn
-                navOptions={[
-                  "Alterar ano de visualização",
-                  "Backup de arquivos",
-                  "Controle de estoque",
-                  "Datas",
-                  "Estatísticas",
-                  "Imagens",
-                  "Log de usuários",
-                  "Log de trabalhos",
-                ]}
-              />
-            ) : null}
+            <NavColumn
+            backgroundColor="var(--dark-blue)"
+              isColumnOpen={isSystemColumnOpen}
+              isMobile={false}
+              navOptions={[
+                "Alterar ano de visualização",
+                "Backup de arquivos",
+                "Controle de estoque",
+                "Datas",
+                "Estatísticas",
+                "Imagens",
+                "Log de usuários",
+                "Log de trabalhos",
+              ]}
+            />
           </li>
         </ul>
         <aside>
-          <Link
-            to={""}
-            
-            ref={refUserMobileDialog}
-            className="link"
-          >
-            <img onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)} src={profileIcon} alt="Ícone de perfil" />
+          <Link to={""} ref={refUserMobileDialog} className="link">
+            <img
+              onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)}
+              src={profileIcon}
+              alt="Ícone de perfil"
+            />
             {isUserMobileDialogOpen ? (
               <section>
                 <div>
@@ -256,13 +261,14 @@ export default function Header() {
               </section>
             ) : null}
           </Link>
-          <Link
-          to={""}
-           
-            ref={refQuestionMobileDialog}
-            className="link"
-          >
-            <img  onClick={() => setIsQuestionMobileDialogOpen(!isQuestionMobileDialogOpen)} src={questionIcon} alt="Ícone de interrogação" />
+          <Link to={""} ref={refQuestionMobileDialog} className="link">
+            <img
+              onClick={() =>
+                setIsQuestionMobileDialogOpen(!isQuestionMobileDialogOpen)
+              }
+              src={questionIcon}
+              alt="Ícone de interrogação"
+            />
             {isQuestionMobileDialogOpen ? (
               <section>
                 <div>
@@ -283,24 +289,26 @@ export default function Header() {
             <img src={calendarIcon} alt="ìcone de calendário" />
           </button>
 
-          <button
-            className="link"
-            ref={refMenuColumn}
-          >
-            <img onClick={() => setIsMenuColumnOpen(!isMenuColumnOpen)} src={menuIcon} alt="ìcone de menu" />
-            {isMenuColumnOpen ? (
-              <NavColumn
-                navOptions={[
-                  "Meus trabalhos e estandes",
-                  "Downloads",
-                  "Trabalhos e estandes",
-                  "Relatórios",
-                  "Evento",
-                  "Usuários",
-                  "Sistema",
-                ]}
-              />
-            ) : null}
+          <button className="link" ref={refMenuColumn}>
+            <img
+              onClick={() => setIsMenuColumnOpen(!isMenuColumnOpen)}
+              src={menuIcon}
+              alt="ìcone de menu"
+            />
+            <NavColumn
+            backgroundColor="var(--dark-blue)"
+              isColumnOpen={isMenuColumnOpen}
+              isMobile={true}
+              navOptions={[
+                "Meus trabalhos e estandes",
+                "Downloads",
+                "Trabalhos e estandes",
+                "Relatórios",
+                "Evento",
+                "Usuários",
+                "Sistema",
+              ]}
+            />
           </button>
         </aside>
       </nav>
