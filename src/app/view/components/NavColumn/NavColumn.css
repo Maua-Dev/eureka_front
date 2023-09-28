@@ -12,9 +12,9 @@
 }
 
 #navColumn .floatingColumn {
-    position: relative;
-    right: 50%;
-    bottom: 1.8rem;
+    position: absolute;
+    top: 30%;
+    left: 0%;
 }
 
 #navColumn > .link {
