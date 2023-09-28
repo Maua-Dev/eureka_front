@@ -188,20 +188,20 @@
   height: 41px;
 }
 
-#headerNav button:nth-child(2) > section {
+#headerNav .link:nth-child(2) > section {
   right: -30.5px;
   top: 74px;
   right: 143.5px;
 }
 
-#headerNav button:nth-child(2) > section > div {
+#headerNav .link:nth-child(2) > section > div {
   padding: 2rem 0rem;
   display: flex;
   gap: 1rem;
   width: 200px;
 }
 
-#headerNav button > section {
+#headerNav .link > section {
   position: absolute;
   z-index: 1;
   top: 74px;
@@ -571,19 +571,19 @@
     height: 33px;
   }
 
-  #headerNav button:nth-child(2) > section {
+  #headerNav .link:nth-child(2) > section {
     right: -30.5px;
     top: 69px;
     right: 136px;
   }
 
-  #headerNav button:nth-child(2) > section > div {
+  #headerNav .link:nth-child(2) > section > div {
     padding: 1.5rem 0rem;
     gap: 0.8rem;
     width: 180px;
   }
 
-  #headerNav button > section {
+  #headerNav .link > section {
     top: 69px;
     right: 164px;
   }
@@ -643,18 +643,18 @@
     height: 24px;
   }
 
-  #headerNav button:nth-child(2) > section {
+  #headerNav .link:nth-child(2) > section {
     top: 59px;
     right: 105px;
   }
 
-  #headerNav button:nth-child(2) > section > div {
+  #headerNav .link:nth-child(2) > section > div {
     padding: 1.5rem 0rem;
     gap: 0.8rem;
     width: 150px;
   }
 
-  #headerNav button > section {
+  #headerNav .link > section {
     top: 59px;
     right: 147.5px;
   }

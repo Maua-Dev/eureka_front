@@ -2,7 +2,7 @@ import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import workingImage from "../../../assets/working_image.jpg";
 import arrowIcon from "../../../assets/arrow_icon.png";
 import "./Home.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -10,13 +10,23 @@ export default function Home() {
     "Visualizar trabalhos como"
   );
 
+  const refDropdown = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (!refDropdown.current!.contains(e.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    });
+  }, []);
+
   return (
     <>
       <main id="home">
         <div>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            onBlur={() => setIsDropdownOpen(false)}
+            ref={refDropdown}
           >
             <p>{dropdownText}</p>
             <img
