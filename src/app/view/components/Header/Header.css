@@ -505,17 +505,16 @@
     display: none;
   }
 
-  #header div > .logo {
-    display: none;
+  #header .logo > img {
+    height: 1.8rem;
   }
 
-  #header div > .logo:nth-child(3) {
-    display: block;
+  #header div > .logo:nth-child(2) {
+    margin-top: 0.1rem;
   }
 
-  #header .logo:nth-child(3) img {
-    max-width: 100%;
-    height: 2.8rem;
+  #header .logo:nth-child(2) img {
+    height: 2.4rem;
   }
 
   #headerNav aside {
@@ -618,8 +617,12 @@
 }
 
 @media screen and (max-width: 400px) {
-  #header .logo:nth-child(3) img {
-    max-width: 100%;
+  #header .logo > img {
+    height: 1.6rem;
+  }
+
+
+  #header .logo:nth-child(2) img {
     height: 2.2rem;
   }
 

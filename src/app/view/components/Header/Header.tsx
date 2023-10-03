@@ -1,7 +1,6 @@
 import "./Header.css";
 import mauaLogo from "../../../assets/maua_logo.png";
 import eurekaLogo from "../../../assets/eureka_logo.png";
-import mauaEurekaLogo from "../../../assets/maua_eureka_logo.png";
 import profileIcon from "../../../assets/profile_icon.svg";
 import questionIcon from "../../../assets/question_icon.svg";
 import messageIcon from "../../../assets/message_icon.svg";
@@ -88,12 +87,6 @@ export default function Header() {
 
           <Link className="logo" to={""}>
             <img src={eurekaLogo} alt="Logo da Eureka 2024" />
-          </Link>
-          <Link className="logo" to={""}>
-            <img
-              src={mauaEurekaLogo}
-              alt="Logo do Instituto Mauá de Tecnologia e Eureka 2024"
-            />
           </Link>
         </div>
         <aside>
