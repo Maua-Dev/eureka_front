@@ -9,7 +9,7 @@
 #header > div:nth-child(1) {
   display: flex;
   gap: 2rem;
-  
+  margin-top: 0.8rem;
 }
 
 #header div > .logo:nth-child(2) {
@@ -415,7 +415,15 @@
 
 @media screen and (max-width: 800px) {
   #header div {
+    gap: 1rem;
+  }
+
+  #header div:nth-child(1) {
     display: flex;
+    gap: 1.1rem;
+  }
+
+  header div {
     gap: 1rem;
   }
 
@@ -624,7 +632,7 @@
 
 
   #header .logo:nth-child(2) img {
-    height: 2.2rem;
+    height: 2rem;
   }
 
   #headerNav .link > img {
