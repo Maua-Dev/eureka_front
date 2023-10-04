@@ -42,6 +42,12 @@
   background-color: var(--dark-mustard);
 }
 
+@media screen and (max-width: 1381px) {
+  #card {
+    border-radius: 0.8rem;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   #card aside > h1 {
     font-size: 1.5rem;
@@ -51,9 +57,6 @@
     font-size: 0.9rem;
   }
 
-  #card {
-    border-radius: 0.9rem;
-  }
 }
 
 @media screen and (max-width: 1024px) {}
