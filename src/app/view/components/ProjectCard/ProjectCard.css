@@ -1,6 +1,6 @@
 #card {
   background-color: var(--mustard);
-  border-radius: 2rem;
+  border-radius: 1rem;
   display: flex;
   gap: 1rem;
   padding: 1.2rem;
@@ -50,6 +50,10 @@
   #card aside > p {
     font-size: 0.9rem;
   }
+
+  #card {
+    border-radius: 0.9rem;
+  }
 }
 
 @media screen and (max-width: 1024px) {}
@@ -62,6 +66,10 @@
   
   #card > aside {
     width: calc(100% - 90px);
+  }
+
+  #card {
+    border-radius: 0.8rem;
   }
 }
 
@@ -84,6 +92,10 @@
   #card > aside {
     width: calc(100% - 80px);
   }
+
+  #card {
+    border-radius: 0.7rem;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -103,5 +115,9 @@
   
   #card aside > p {
     font-size: 0.5rem;
+  }
+
+  #card {
+    border-radius: 0.6rem;
   }
 }
