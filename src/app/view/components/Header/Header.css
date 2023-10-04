@@ -6,9 +6,10 @@
   justify-content: space-between;
 }
 
-#header > div {
+#header > div:nth-child(1) {
   display: flex;
   gap: 2rem;
+  
 }
 
 #header div > .logo:nth-child(2) {
@@ -120,13 +121,13 @@
 
 #header .link > img {
   width: 100%;
-  height: 60px;
+  height: 50px;
 }
 
 /* FIX DA IRREGULARIDADE DAS IMAGENS */
 
 #header aside > .link:nth-child(1) {
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 #header aside > .link:nth-child(4) {
@@ -134,7 +135,7 @@
 }
 
 #header .link:nth-child(4) > img {
-  height: 64px;
+  height: 54px;
 }
 
 /* FIX DA IRREGULARIDADE DAS IMAGENS */
