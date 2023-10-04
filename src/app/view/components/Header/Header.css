@@ -333,7 +333,7 @@
   color: var(--dark-mustard);
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1382px) {
   #headerNav li > .navigator {
     font-size: 1.2rem;
   }
@@ -572,7 +572,6 @@
     max-width: 100%;
     height: 2.5rem;
   }
-  
 
   #headerNav .link > img {
     height: 36px;
