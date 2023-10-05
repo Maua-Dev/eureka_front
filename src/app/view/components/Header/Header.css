@@ -40,8 +40,8 @@
 }
 
 #header .link:nth-child(2) > section {
-  right: -30.5px;
-  top: 81px;
+  right: -34.5px;
+  top: 71px;
 }
 
 #header .link:nth-child(2) > section > div {
@@ -54,8 +54,8 @@
 #header .link > section {
   position: absolute;
   z-index: 1;
-  top: 80px;
-  right: -44.5px;
+  top: 70px;
+  right: -49.5px;
 }
 
 #header section > div {
@@ -368,8 +368,8 @@
   }
 
   #header .link:nth-child(2) > section {
-    right: -25.5px;
-    top: 70px;
+    right: -24.5px;
+    top: 71px;
   }
 
   #header .link:nth-child(2) > section > div {
@@ -467,7 +467,7 @@
   }
 
   #header .link:nth-child(2) > section {
-    right: -18px;
+    right: -17px;
     top: 63px;
   }
 
@@ -540,6 +540,17 @@
     height: 2.4rem;
   }
 
+  #headerNav .link:nth-child(2) > section {
+    right: -30.5px;
+    top: 72px;
+    right: 143.5px;
+  }
+
+  #headerNav .link > section {
+    top: 72px;
+    right: 176px;
+  }
+
   #headerNav aside {
     display: flex;
     gap: 0.8rem;
@@ -594,9 +605,14 @@
   }
 
   #headerNav .link:nth-child(2) > section {
-    right: -30.5px;
-    top: 69px;
-    right: 136px;
+    right: -30px;
+    top: 66px;
+    right: 137px;
+  }
+
+  #headerNav .link > section {
+    top: 66px;
+    right: 164px;
   }
 
   #headerNav .link:nth-child(2) > section > div {
@@ -605,10 +621,7 @@
     width: 180px;
   }
 
-  #headerNav .link > section {
-    top: 69px;
-    right: 164px;
-  }
+  
 
   #headerNav section > div {
     padding: 1rem 1rem;
@@ -670,8 +683,13 @@
   }
 
   #headerNav .link:nth-child(2) > section {
-    top: 59px;
-    right: 105px;
+    top: 55px;
+    right: 106px;
+  }
+
+  #headerNav .link > section {
+    top: 56px;
+    right: 148px;
   }
 
   #headerNav .link:nth-child(2) > section > div {
@@ -680,10 +698,7 @@
     width: 150px;
   }
 
-  #headerNav .link > section {
-    top: 59px;
-    right: 147.5px;
-  }
+  
 
   #headerNav section > div {
     padding: 1rem 1rem;
