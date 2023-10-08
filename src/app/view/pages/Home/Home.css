@@ -38,7 +38,12 @@
 
 #home button > p {
   margin: 0.8rem 1.4rem;
+  width: 100%;
+    display: flex;
+    align-items: flex-start;
 }
+
+
 
 #home button > section {
   color: var(--dark-blue);
@@ -145,14 +150,32 @@
 
 @media screen and (max-width: 400px) {
   #home div > button {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+  }
+
+#home button > p {
+  margin: 0.8rem 0rem  0.8rem 1rem
+}
+
+  #home button > img {
+    margin: 0.8rem 0.8rem;
   }
 
   #home section > div {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }
 
   #home button > img {
     height: 1rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  #home div > button {
+    font-size: 1rem;
+  }
+
+  #home section > div {
+    font-size: 1rem;
   }
 }
