@@ -7,6 +7,7 @@ interface NavColumnProps {
   isMobile: boolean;
   isColumnOpen: boolean;
   backgroundColor: string;
+  columnWidth?: string;
 }
 
 export default function NavColumn({
@@ -14,6 +15,7 @@ export default function NavColumn({
   isMobile,
   isColumnOpen,
   backgroundColor,
+  columnWidth
 }: NavColumnProps) {
   const [isWorkAndStandsColumnOpen, setIsWorkAndStandsColumnOpen] =
     useState<boolean>(false);
@@ -104,7 +106,7 @@ export default function NavColumn({
   return (
     <>
       {isColumnOpen ? (
-        <div id="navColumn" style={{ backgroundColor: backgroundColor }}>
+        <div id="navColumn" style={{ backgroundColor: backgroundColor,  width: columnWidth == undefined ? "100%" : columnWidth }}>
           {isMobile
             ? navOptions.map((e, index) => {
                 return (
@@ -125,6 +127,7 @@ export default function NavColumn({
                     </Link>
                     <div className="floatingColumn">
                       <NavColumn
+                      columnWidth={"150px"}
                       backgroundColor="var(--medium-light-blue)"
                         isMobile={false}
                         isColumnOpen={
