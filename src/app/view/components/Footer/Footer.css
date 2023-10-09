@@ -28,6 +28,11 @@
   gap: 1rem;
 }
 
+#footer section > nav {
+  display: flex;
+  gap: 1rem;
+}
+
 #footer section > span {
   font-size: 1rem;
 }
@@ -298,8 +303,14 @@
 }
 
 @media screen and (max-width: 500px) {
+
+  
   #footer > section {
     gap: 0.8rem;
+  }
+
+  #footer section > section {
+    gap: 0rem;
   }
 
   #footer section > span {
@@ -341,6 +352,10 @@
     gap: 0.8rem;
   }
 
+  #footer section > nav {
+    gap: 0.4rem;
+  }
+
   #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
@@ -373,6 +388,8 @@
   #footer section > div {
     gap: 0.6rem;
   }
+
+  
 
   #footer .icon > aside {
     padding: 0.8rem;
@@ -412,13 +429,7 @@
     border-radius: 0.5rem;
   }
 
-  #footer section > section:nth-child(1) {
-    margin-right: 0;
-  }
-
-  #footer section > section:nth-child(2) {
-    margin-left: 0;
-  }
+  
 
   #footer .icon > aside {
     padding: 0.8rem;
@@ -443,12 +454,28 @@
   }
 }
 
-@media screen and (max-width: 345px) {
-  #footer .icon > aside{
-    left: -300%;
+@media screen and (max-width: 330px) {
+  #footer .icon > img {
+    height: 24px;
   }
 
-  #footer aside > .baloon:after {
-    margin-left: -10px;
+  #footer .link > img {
+    height: 24px;
+  }
+
+  #footer section > span {
+    font-size: 0.4rem;
   }
 }
+
+@media screen and (max-width: 280px) {
+  #footer section > section:nth-child(1) {
+    margin-right: 0;
+  }
+  
+  #footer section > section:nth-child(2) {
+    margin-left: 0;
+  }
+}
+
+
