@@ -31,23 +31,25 @@ export default function Footer() {
         <section>
           <span>Home e contato: </span>
           <nav>
-          <Link className="icon" to={""}>
-            <img src={houseIcon} alt="Ícone de casa" />
-          </Link>
-          <Link ref={refContactDialog} className="icon" to={""}>
-            <img
-              onClick={() => setIsContactDialogOpen(!isContactDialogOpen)}
-              src={letterIcon}
-              alt="Ícone de carta"
-            />
-            {isContactDialogOpen ? (
-              <div>
-                <header>Contato - eureka@maua.br</header>
-                <textarea placeholder="Digite algo" />
-              </div>
-            ) : null}
-          </Link>
-          <p className="email">eureka@maua.br</p>
+            <Link className="icon" to={""}>
+              <img src={houseIcon} alt="Ícone de casa" />
+            </Link>
+            <Link ref={refContactDialog} className="icon" to={""}>
+              <img
+                onClick={() => setIsContactDialogOpen(!isContactDialogOpen)}
+                src={letterIcon}
+                alt="Ícone de carta"
+              />
+              {isContactDialogOpen ? (
+                <aside>
+                  <div className="baloon">
+                    <header>Contato - eureka@maua.br</header>
+                    <textarea placeholder="Digite algo" />
+                  </div>
+                </aside>
+              ) : null}
+            </Link>
+            <p className="email">eureka@maua.br</p>
           </nav>
         </section>
 

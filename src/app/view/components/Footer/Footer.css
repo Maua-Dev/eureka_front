@@ -32,7 +32,7 @@
   font-size: 1rem;
 }
 
-#footer nav > .email{
+#footer nav > .email {
   margin-bottom: 0.3rem;
   margin-left: 0.3rem;
 }
@@ -46,20 +46,40 @@
   height: 50px;
 }
 
-#footer .icon > div {
+#footer .icon > aside {
   position: absolute;
   background-color: var(--medium-light-blue);
   padding: 0.8rem;
   border-radius: 1rem;
   width: 440px;
   height: 440px;
+  bottom: 150%;
+}
+
+#footer aside > .baloon {
+  position: relative;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  bottom: 140%;
+  height: 100%;
 }
 
-#footer div > header {
+#footer aside > .baloon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-bottom-color: var(--medium-light-blue);
+  border-top: 0;
+  bottom: -25px;
+  left: 50%;
+  margin-left: -50%;
+  transform: rotate(180deg);
+}
+
+#footer .baloon > header {
   background-color: var(--dark-blue);
   color: var(--white);
   border-radius: 1rem;
@@ -70,32 +90,30 @@
   font-size: 1.6rem;
 }
 
-#footer div > textarea {
+#footer .baloon > textarea {
   border-radius: 1rem;
   appearance: none;
   border: none;
   background-color: var(--extra-light-blue);
   width: 100%;
   padding: 2rem 2.3rem;
-  flex-grow: 1;
   display: flex;
   font-size: 2.3rem;
   color: var(--medium-light-blue);
-  height: 100%;
   resize: none;
   outline: none;
+  height: 100%;
 }
 
-#footer div > textarea::placeholder {
+#footer .baloon > textarea::placeholder {
   font-size: 2.3rem;
   font-weight: 600;
   color: var(--medium-light-blue);
 }
 
-#footer div > textarea::-webkit-scrollbar {
+#footer .baloon > textarea::-webkit-scrollbar {
   display: none;
 }
-
 
 #footer section > nav {
   display: flex;
@@ -107,59 +125,55 @@
   gap: 1.2rem;
 }
 
-
 #footer .link > img {
   max-width: 100%;
   height: 50px;
 }
-
-
 
 #footer .icon:hover img {
   filter: var(--dark-mustard-filter);
 }
 
 @media screen and (max-width: 1200px) {
-  #footer .icon > div {
+  #footer .icon > aside {
     padding: 0.8rem;
     width: 400px;
     height: 410px;
     gap: 0.8rem;
   }
 
-  #footer div > header {
+  #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
     font-size: 1.4rem;
   }
 
-  #footer div > textarea {
+  #footer .baloon > textarea {
     padding: 2rem 2.3rem;
     font-size: 2.1rem;
   }
 
-  #footer div > textarea::placeholder {
+  #footer .baloon > textarea::placeholder {
     font-size: 2.1rem;
   }
 }
 
 @media screen and (max-width: 1024px) {
-
-  #footer nav > .email{
+  #footer nav > .email {
     display: none;
   }
-  #footer nav > .email{
+  #footer nav > .email {
     display: none;
   }
   #footer section > div {
     font-size: 1rem;
   }
 
-  #footer div > header {
+  #footer .baloon > header {
     border-radius: 0.8rem;
   }
-  
-  #footer div > textarea {
+
+  #footer .baloon > textarea {
     border-radius: 0.8rem;
   }
 
@@ -167,23 +181,23 @@
     height: 3rem;
   }
 
-  #footer div > header {
+  #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
     font-size: 1.2rem;
   }
 
-  #footer div > textarea {
+  #footer .baloon > textarea {
     padding: 2rem 2.3rem;
     font-size: 2rem;
   }
 
-  #footer div > textarea::placeholder {
+  #footer .baloon > textarea::placeholder {
     font-size: 2.1rem;
   }
 }
 
-@media screen and (max-width: 850px){
+@media screen and (max-width: 850px) {
   #footer .icon > img {
     height: 45px;
   }
@@ -191,42 +205,51 @@
   #footer .link > img {
     height: 45px;
   }
+
+  #footer .icon > aside {
+    bottom: 150%;
+    left: -3px;
+  }
+  
+  #footer aside > .baloon:after {
+    bottom: -25px;
+    left: 50%;
+    margin-left: -50%;
+  }
 }
 
 @media screen and (max-width: 800px) {
-  
-
-  #footer .icon > div {
+  #footer .icon > aside {
     padding: 0.8rem;
     width: 350px;
     height: 360px;
     gap: 0.8rem;
   }
 
-  #footer section > span{
+  #footer section > span {
     font-size: 1rem;
   }
 
-  #footer div > header {
-    border-radius: 0.7rem;
-  }
-  
-  #footer div > textarea {
+  #footer .baloon > header {
     border-radius: 0.7rem;
   }
 
-  #footer div > header {
+  #footer .baloon > textarea {
+    border-radius: 0.7rem;
+  }
+
+  #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
     font-size: 1rem;
   }
 
-  #footer div > textarea {
+  #footer .baloon > textarea {
     padding: 1.5rem 1.8rem;
     font-size: 1.8rem;
   }
 
-  #footer div > textarea::placeholder {
+  #footer .baloon > textarea::placeholder {
     font-size: 1.9rem;
   }
 }
@@ -235,7 +258,7 @@
   #footer > section {
     justify-content: center;
   }
-  
+
   #footer section > section:nth-child(1) {
     margin-right: auto;
   }
@@ -253,7 +276,6 @@
   #footer section > span {
     font-size: 0.8rem;
   }
-  
 }
 
 @media screen and (max-width: 600px) {
@@ -266,14 +288,22 @@
   }
 
   #footer {
-    padding: 1.5rem
+    padding: 1.5rem;
+  }
+
+  #footer .icon > aside {
+    bottom: 150%;
+    left: -5px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  #footer > section
-  {
+  #footer > section {
     gap: 0.8rem;
+  }
+
+  #footer section > span {
+    font-size: 0.6rem;
   }
   #footer section > div {
     gap: 0.8rem;
@@ -287,11 +317,11 @@
     height: 30px;
   }
 
-  #footer div > header {
+  #footer .baloon > header {
     border-radius: 0.6rem;
   }
-  
-  #footer div > textarea {
+
+  #footer .baloon > textarea {
     border-radius: 0.6rem;
   }
 
@@ -299,37 +329,39 @@
     gap: 0.5rem;
   }
 
-  #footer .icon > div {
+  #footer .icon > aside {
+    bottom: 150%;
+    left: -12px;
+  }
+
+  #footer .icon > aside {
     padding: 0.8rem;
     width: 280px;
     height: 300px;
     gap: 0.8rem;
   }
 
-  #footer div > header {
+  #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
     font-size: 0.9rem;
   }
 
-  #footer div > textarea {
+  #footer .baloon > textarea {
     padding: 1.5rem 1.2rem;
     font-size: 1.6rem;
   }
 
-  #footer div > textarea::placeholder {
+  #footer .baloon > textarea::placeholder {
     font-size: 1.7rem;
   }
 }
 
-
 @media screen and (max-width: 400px) {
-  
-
   #footer {
-    padding: 1.2rem
+    padding: 1.2rem;
   }
-  
+
   #footer .icon > img {
     height: 30px;
   }
@@ -338,48 +370,51 @@
     height: 30px;
   }
 
-#footer section > span {
-  font-size: 0.6rem;
-}
-  
-
   #footer section > div {
     gap: 0.6rem;
   }
 
-  #footer .icon > div {
+  #footer .icon > aside {
     padding: 0.8rem;
     width: 250px;
     height: 260px;
     gap: 0.8rem;
   }
 
-  #footer div > header {
+  #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
   }
 
-  #footer div > textarea {
+  #footer .baloon > textarea {
     padding: 1.2rem 1rem;
     font-size: 1.4rem;
   }
 
-  #footer div > textarea::placeholder {
+  #footer .baloon > textarea::placeholder {
     font-size: 1.3rem;
   }
 }
 
 @media screen and (max-width: 350px) {
-  #footer > section
-  {
+
+  #footer .icon > aside{
+    left: -300%;
+  }
+
+  #footer aside > .baloon:after {
+    margin-left: -10px;
+  }
+
+  #footer > section {
     gap: 0.5rem;
   }
-  
-  #footer div > header {
+
+  #footer .baloon > header {
     border-radius: 0.5rem;
   }
-  
-  #footer div > textarea {
+
+  #footer .baloon > textarea {
     border-radius: 0.5rem;
   }
 
@@ -391,25 +426,25 @@
     margin-left: 0;
   }
 
-  #footer .icon > div {
+  #footer .icon > aside {
     padding: 0.8rem;
     width: 200px;
     height: 220px;
     gap: 0.8rem;
   }
 
-  #footer div > header {
+  #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
     font-size: 0.7rem;
   }
 
-  #footer div > textarea {
+  #footer .baloon > textarea {
     padding: 1.2rem 0.7rem;
     font-size: 1.2rem;
   }
 
-  #footer div > textarea::placeholder {
+  #footer .baloon > textarea::placeholder {
     font-size: 1.1rem;
   }
 }
