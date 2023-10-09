@@ -215,7 +215,7 @@
     bottom: 150%;
     left: -3px;
   }
-  
+
   #footer aside > .baloon:after {
     bottom: -25px;
     left: 50%;
@@ -303,8 +303,6 @@
 }
 
 @media screen and (max-width: 500px) {
-
-  
   #footer > section {
     gap: 0.8rem;
   }
@@ -341,7 +339,7 @@
   }
 
   #footer .icon > aside {
-    bottom: 150%;
+    bottom: 160%;
     left: -12px;
   }
 
@@ -389,8 +387,6 @@
     gap: 0.6rem;
   }
 
-  
-
   #footer .icon > aside {
     padding: 0.8rem;
     width: 250px;
@@ -414,9 +410,6 @@
 }
 
 @media screen and (max-width: 350px) {
-
-  
-
   #footer > section {
     gap: 0.5rem;
   }
@@ -428,8 +421,6 @@
   #footer .baloon > textarea {
     border-radius: 0.5rem;
   }
-
-  
 
   #footer .icon > aside {
     padding: 0.8rem;
@@ -466,16 +457,27 @@
   #footer section > span {
     font-size: 0.4rem;
   }
+
+  #footer .icon > aside {
+    left: -62%;
+    bottom: 170%;
+  }
+ 
 }
 
-@media screen and (max-width: 280px) {
+@media screen and (max-width: 276px) {
   #footer section > section:nth-child(1) {
     margin-right: 0;
   }
-  
+
   #footer section > section:nth-child(2) {
     margin-left: 0;
   }
+
+  #footer .icon > aside {
+    left: -383%;
+  }
+  #footer aside > .baloon:after {
+    margin-left: -10px;
+  }
 }
-
-
