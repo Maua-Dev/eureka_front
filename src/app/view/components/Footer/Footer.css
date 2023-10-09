@@ -398,13 +398,7 @@
 
 @media screen and (max-width: 350px) {
 
-  #footer .icon > aside{
-    left: -300%;
-  }
-
-  #footer aside > .baloon:after {
-    margin-left: -10px;
-  }
+  
 
   #footer > section {
     gap: 0.5rem;
@@ -446,5 +440,15 @@
 
   #footer .baloon > textarea::placeholder {
     font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 345px) {
+  #footer .icon > aside{
+    left: -300%;
+  }
+
+  #footer aside > .baloon:after {
+    margin-left: -10px;
   }
 }
