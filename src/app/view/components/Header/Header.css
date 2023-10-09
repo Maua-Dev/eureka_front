@@ -40,7 +40,7 @@
 }
 
 #header .link:nth-child(2) > section {
-  right: -34.5px;
+  right: -36px;
   top: 71px;
 }
 
@@ -55,7 +55,7 @@
   position: absolute;
   z-index: 1;
   top: 70px;
-  right: -49.5px;
+  right: -50px;
 }
 
 #header section > div {
