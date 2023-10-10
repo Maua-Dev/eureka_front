@@ -11,7 +11,7 @@
 
 #home > div {
   position: relative;
-  width: 34rem;
+  width: 30rem;
 }
 
 #home div > button {
@@ -19,7 +19,7 @@
   color: var(--dark-blue);
   font-weight: 700;
   border-radius: 8px;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   appearance: none;
   cursor: pointer;
   border: none;
@@ -43,8 +43,6 @@
     align-items: flex-start;
 }
 
-
-
 #home button > section {
   color: var(--dark-blue);
   background-color: var(--extra-light-blue);
@@ -58,7 +56,7 @@
 #home section > div {
   font-weight: 700;
   padding: 1.5rem 1.5rem;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   text-align: start;
 }
 
