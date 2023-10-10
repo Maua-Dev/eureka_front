@@ -17,10 +17,21 @@
   justify-content: space-between;
   width: 100%;
   gap: 2rem;
-  flex-wrap: wrap;
+}
+
+#footer section > .mobileRight {
+  display: none;
 }
 
 #footer section > section {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  font-weight: 600;
+  gap: 1rem;
+}
+
+#footer div > section {
   display: flex;
   align-items: start;
   flex-direction: column;
@@ -259,17 +270,24 @@
   }
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 753px) {
   #footer > section {
-    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
   }
 
-  #footer section > section:nth-child(1) {
-    margin-right: auto;
+
+  #footer section > .mobileRight {
+    display: block;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 1rem;
   }
 
-  #footer section > section:nth-child(2) {
-    margin-left: auto;
+  #footer section > .desktopRight {
+    display: none;
   }
 }
 
@@ -311,6 +329,10 @@
     gap: 0rem;
   }
 
+  #footer div > section {
+    gap: 0rem;
+  }
+
   #footer section > span {
     font-size: 0.6rem;
   }
@@ -335,6 +357,10 @@
   }
 
   #footer section > section {
+    gap: 0.5rem;
+  }
+
+  #footer div > section {
     gap: 0.5rem;
   }
 
@@ -462,7 +488,6 @@
     left: -62%;
     bottom: 170%;
   }
- 
 }
 
 @media screen and (max-width: 276px) {
@@ -471,6 +496,14 @@
   }
 
   #footer section > section:nth-child(2) {
+    margin-left: 0;
+  }
+
+  #footer div > section:nth-child(1) {
+    margin-right: 0;
+  }
+
+  #footer div > section:nth-child(2) {
     margin-left: 0;
   }
 
