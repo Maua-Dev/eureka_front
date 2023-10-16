@@ -19,11 +19,12 @@ export default function Footer() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!refContactDialog.current!.contains(e.target as Node)) {
+      if (refContactDialog.current && !refContactDialog.current.contains(e.target as Node)) {
         setIsContactDialogOpen(false);
       }
     });
-  }, []);
+  }, [refContactDialog]);
+
 
   return (
     <footer id="footer">

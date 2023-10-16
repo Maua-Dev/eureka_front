@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!refDropdown.current!.contains(e.target as Node)) {
+      if (refDropdown.current && !refDropdown.current.contains(e.target as Node)) {
         setIsDropdownOpen(false);
       }
     });

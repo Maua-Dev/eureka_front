@@ -1,10 +1,12 @@
 import "./Project.css";
 import arrowBackIcon from "../../../assets/arrow_back_icon.svg";
+import checkIcon from "../../../assets/check_icon.svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function Project() {
   const students = [
-    "Isabella Augusta Rodrigues RodriguesRodriguesRodriguesRodrigues",
+    "Isabella Augusta Rodrigues Rodrigues",
     "Isabella Augusta Rodrigues Rodrigues",
     "Isabella Augusta Rodrigues Rodrigues",
     "Isabella Augusta Rodrigues Rodrigues",
@@ -12,6 +14,12 @@ export default function Project() {
     "Isabella Augusta Rodrigues Rodrigues",
   ];
 
+  const [isWorkPotencialYesSelected, setisWorkPotencialYesSelected] =
+    useState(false);
+    const [isWorkPotencialYesHovered, setisWorkPotencialYesHovered] =
+    useState(false);
+  const [isWorkPotencialNoSelected, setisWorkPotencialNoSelected] =
+    useState(false);
 
   return (
     <main id="project">
@@ -64,11 +72,38 @@ export default function Project() {
             <div>
               <div className="yes">
                 <p>Sim</p>
-                <input type="checkbox" />
+                <div
+                  className="checkbox"
+                  onClick={() => {
+                    setisWorkPotencialYesSelected(!isWorkPotencialYesSelected);
+                    setisWorkPotencialNoSelected(false);
+                  }}
+                  onMouseEnter={() => {
+                      setisWorkPotencialYesHovered(true);
+                      console.log("TESTE");
+                  }}
+                  onMouseLeave={() => {
+                      setisWorkPotencialYesHovered(false);
+                  }}
+                >
+                  {isWorkPotencialYesSelected || isWorkPotencialYesHovered ? (
+                    <img src={checkIcon} alt="Ícone de check" />
+                  ) : null}
+                </div>
               </div>
               <div className="no">
                 <p>Não</p>
-                <input type="checkbox" />
+                <div
+                  className="checkbox"
+                  onClick={() => {
+                    setisWorkPotencialNoSelected(!isWorkPotencialNoSelected);
+                    setisWorkPotencialYesSelected(false);
+                  }}
+                >
+                  {isWorkPotencialNoSelected ? (
+                    <img src={checkIcon} alt="Ícone de check" />
+                  ) : null}
+                </div>
               </div>
               <button>Atualizar potencial do trabalho</button>
             </div>

@@ -37,19 +37,19 @@ export default function Header() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!refWorkAndStandsColumn.current!.contains(e.target as Node)) {
+      if (refWorkAndStandsColumn.current && !refWorkAndStandsColumn.current.contains(e.target as Node)) {
         setIsWorkAndStandsColumnOpen(false);
       }
-      if (!refUserColumn.current!.contains(e.target as Node)) {
+      if (refUserColumn.current && !refUserColumn.current.contains(e.target as Node)) {
         setIsUserColumnOpen(false);
       }
-      if (!refSystemColumn.current!.contains(e.target as Node)) {
+      if (refSystemColumn.current && !refSystemColumn.current.contains(e.target as Node)) {
         setIsSystemColumnOpen(false);
       }
-      if (!refEventColumn.current!.contains(e.target as Node)) {
+      if (refEventColumn.current && !refEventColumn.current.contains(e.target as Node)) {
         setIsEventColumnOpen(false);
       }
-      if (!refMenuColumn.current!.contains(e.target as Node)) {
+      if (refMenuColumn.current && !refMenuColumn.current.contains(e.target as Node)) {
         setIsMenuColumnOpen(false);
       }
     });
@@ -57,10 +57,10 @@ export default function Header() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!refUserDialog.current!.contains(e.target as Node)) {
+      if (refUserDialog.current && !refUserDialog.current.contains(e.target as Node)) {
         setIsUserDialogOpen(false);
       }
-      if (!refQuestionDialog.current!.contains(e.target as Node)) {
+      if (refQuestionDialog.current && !refQuestionDialog.current.contains(e.target as Node)) {
         setIsQuestionDialogOpen(false);
       }
     });
@@ -68,10 +68,10 @@ export default function Header() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!refUserMobileDialog.current!.contains(e.target as Node)) {
+      if (refUserMobileDialog.current && !refUserMobileDialog.current.contains(e.target as Node)) {
         setIsUserMobileDialogOpen(false);
       }
-      if (!refQuestionMobileDialog.current!.contains(e.target as Node)) {
+      if (refQuestionMobileDialog.current && !refQuestionMobileDialog.current.contains(e.target as Node)) {
         setIsQuestionMobileDialogOpen(false);
       }
     });

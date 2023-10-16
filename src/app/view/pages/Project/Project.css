@@ -27,6 +27,7 @@
     border-radius: 0.8rem;
     display: flex;
     padding: 1rem 2rem;
+    gap: 2em;
 }
 
 #project h2 {
@@ -58,13 +59,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 0.5rem;
 }
 
 #project .supervisor > input {
     width: 100%;
     border: 3px solid var(--dark-blue);
     border-radius: 0.2rem;
-    
 }
 
 #project .supervisor > button {
@@ -74,12 +75,17 @@
     color: var(--white);
     font-weight: 600;
     border: none;
+    cursor: pointer;
+    margin-top: 0.5rem
 }
 
 #project .centerMain > .supervisor {
     display: flex;
     flex-direction: column;
     align-items: start;
+    justify-content: space-between;
+        
+
 }
 
 #project .mainHeaderCard > .rightMain {
@@ -88,22 +94,74 @@
 }
 
 #project .rightMain > .studentsNames {
+    margin-top: 0.5rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
+    height: fit-content;
+    justify-content: space-between;
 }
 
 #project .studentsNames > span {
     word-wrap: break-word;
-    width: 50%;
-    display: inline-flex;
-    align-items: center;
+    width: 48%;
 }
 
 
-#project .card {
+#project .card > footer {
+    margin: 1rem 4rem; 
+    display: flex;
+    justify-content: space-between;
+}
 
+#project footer > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#project footer > .potencial {
+    display: flex;
+    flex-direction: column;
+}
+
+#project .potencial > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#project .potencial > div > button {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+    border: none;
+    cursor: pointer;
+}
+
+#project div > .yes, .no{
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--dark-blue);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#project .checkbox {
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: var(--extra-light-blue);
+    border: solid 3px var(--dark-blue);
+    border-radius: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width: 900px) {

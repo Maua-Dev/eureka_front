@@ -32,19 +32,19 @@ export default function NavColumn({
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      if (!refWorkAndStandsColumn.current!.contains(e.target as Node)) {
+      if (refWorkAndStandsColumn.current && !refWorkAndStandsColumn.current.contains(e.target as Node)) {
         setIsWorkAndStandsColumnOpen(false);
       }
-      if (!refUserColumn.current!.contains(e.target as Node)) {
+      if (refUserColumn.current && !refUserColumn.current.contains(e.target as Node)) {
         setIsUserColumnOpen(false);
       }
-      if (!refSystemColumn.current!.contains(e.target as Node)) {
+      if (refSystemColumn.current && !refSystemColumn.current.contains(e.target as Node)) {
         setIsSystemColumnOpen(false);
       }
-      if (!refEventColumn.current!.contains(e.target as Node)) {
+      if (refEventColumn.current && !refEventColumn.current.contains(e.target as Node)) {
         setIsEventColumnOpen(false);
       }
-      if (!refMenuColumn.current!.contains(e.target as Node)) {
+      if (refMenuColumn.current && !refMenuColumn.current.contains(e.target as Node)) {
         setIsMenuColumnOpen(false);
       }
     });
