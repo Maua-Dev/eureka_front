@@ -13,7 +13,7 @@ export default function ProjectCard({
   teacherAdvisor,
 }: ProjectCardProps) {
   return (
-    <Link id="card" to={''}>
+    <Link id="card" to={'/project'}>
       <div
         style={{
           backgroundImage: `url(${image})`, backgroundSize: 'cover'

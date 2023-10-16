@@ -81,7 +81,7 @@ export default function Header() {
     <>
       <header id="header">
         <div>
-          <Link className="logo" to={""}>
+          <Link className="logo" to={""} >
             <img src={mauaLogo} alt="Logo do Instituto Mauá de Tecnologia" />
           </Link>
 
@@ -90,7 +90,7 @@ export default function Header() {
           </Link>
         </div>
         <aside>
-          <Link ref={refUserDialog} className="link" to={""}>
+          <Link ref={refUserDialog} className="link" to={""} onClick={ (event) => event.preventDefault() }>
             <img
               onClick={() => setIsUserDialogOpen(!isUserDialogOpen)}
               src={profileIcon}
@@ -109,7 +109,7 @@ export default function Header() {
               </section>
             ) : null}
           </Link>
-          <Link ref={refQuestionDialog} className="link" to={""}>
+          <Link ref={refQuestionDialog} className="link" to={""} onClick={ (event) => event.preventDefault() }>
             <img
               onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)}
               src={questionIcon}
@@ -118,20 +118,20 @@ export default function Header() {
             {isQuestionDialogOpen ? (
               <section>
                 <div>
-                  <Link className="questionTitle" to={""}>
+                  <Link className="questionTitle" to={""} onClick={ (event) => event.preventDefault() }>
                     Ajuda
                   </Link>
-                  <Link className="questionTitle" to={""}>
+                  <Link className="questionTitle" to={""} onClick={ (event) => event.preventDefault() }>
                     Conheça o sistema
                   </Link>
                 </div>
               </section>
             ) : null}
           </Link>
-          <Link className="link" to={""}>
+          <Link className="link" to={""} onClick={ (event) => event.preventDefault() }>
             <img src={messageIcon} alt="Ícone de mensagens" />
           </Link>
-          <Link className="link" to={""}>
+          <Link className="link" to={""} onClick={ (event) => event.preventDefault() }>
             <img src={calendarIcon} alt="ìcone de calendário" />
           </Link>
         </aside>
@@ -236,7 +236,7 @@ export default function Header() {
           </li>
         </ul>
         <aside>
-          <Link to={""} ref={refUserMobileDialog} className="link">
+          <Link to={""} ref={refUserMobileDialog} className="link" onClick={ (event) => event.preventDefault() }>
             <img
               onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)}
               src={profileIcon}
@@ -247,14 +247,14 @@ export default function Header() {
                 <div>
                   <h1>Isabella Augusta Rodrigues</h1>
                   <p>RA: 22.01190-0</p>
-                  <Link className="button" to={""}>
+                  <Link className="button" to={""} onClick={ (event) => event.preventDefault() }>
                     Sair
                   </Link>
                 </div>
               </section>
             ) : null}
           </Link>
-          <Link to={""} ref={refQuestionMobileDialog} className="link">
+          <Link to={""} ref={refQuestionMobileDialog} className="link" onClick={ (event) => event.preventDefault() }>
             <img
               onClick={() =>
                 setIsQuestionMobileDialogOpen(!isQuestionMobileDialogOpen)
@@ -265,10 +265,10 @@ export default function Header() {
             {isQuestionMobileDialogOpen ? (
               <section>
                 <div>
-                  <Link className="questionTitle" to={""}>
+                  <Link className="questionTitle" to={""} onClick={ (event) => event.preventDefault() }>
                     Ajuda
                   </Link>
-                  <Link className="questionTitle" to={""}>
+                  <Link className="questionTitle" to={""} onClick={ (event) => event.preventDefault() }>
                     Conheça o sistema
                   </Link>
                 </div>

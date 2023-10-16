@@ -1,0 +1,113 @@
+#project {
+  padding: 2rem 10rem 4rem 10rem;
+}
+
+#project > .card {
+    background-color: var(--extra-light-blue);
+    border-radius: 0.8rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+#project .card > header {
+    background-color: var(--dark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1.5rem;
+    border-radius: 0.8rem;
+}
+
+#project .card > .mainHeaderCard {
+    background-color: var(--white);
+    margin: 1rem;
+    border-radius: 0.8rem;
+    display: flex;
+    padding: 1rem 2rem;
+}
+
+#project h2 {
+    font-size: 1.1rem;
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+#project span {
+    font-size: 1.1rem;
+    color: var(--dark-blue);
+    font-weight: 500;
+}
+
+
+#project > a {
+    background-color: var(--dark-blue);
+    width: fit-content;
+    padding: 0.2rem;
+    border-radius: 0.4rem;
+}
+
+#project .mainHeaderCard > .leftMain {
+    width: 20%;
+}
+
+#project .mainHeaderCard > .centerMain {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#project .supervisor > input {
+    width: 100%;
+    border: 3px solid var(--dark-blue);
+    border-radius: 0.2rem;
+    
+}
+
+#project .supervisor > button {
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+    background-color: var(--dark-blue); 
+    color: var(--white);
+    font-weight: 600;
+    border: none;
+}
+
+#project .centerMain > .supervisor {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+#project .mainHeaderCard > .rightMain {
+    width: 60%;
+    
+}
+
+#project .rightMain > .studentsNames {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+#project .studentsNames > span {
+    word-wrap: break-word;
+    width: 50%;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+#project .card {
+
+}
+
+@media screen and (max-width: 900px) {
+  #project {
+    padding: 2rem 2rem 4rem 2rem;
+  }
+}

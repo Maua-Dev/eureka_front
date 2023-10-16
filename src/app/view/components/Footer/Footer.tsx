@@ -31,10 +31,10 @@ export default function Footer() {
         <section>
           <span>Home e contato: </span>
           <nav>
-            <Link className="icon" to={""}>
+            <Link className="icon" to={""} onClick={ (event) => event.preventDefault() }>
               <img src={houseIcon} alt="Ícone de casa" />
             </Link>
-            <Link ref={refContactDialog} className="icon" to={""}>
+            <Link ref={refContactDialog} className="icon" to={""} onClick={ (event) => event.preventDefault() }>
               <img
                 onClick={() => setIsContactDialogOpen(!isContactDialogOpen)}
                 src={letterIcon}

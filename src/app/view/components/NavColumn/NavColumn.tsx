@@ -112,13 +112,14 @@ export default function NavColumn({
                 return (
                   <>
                     <Link
-                      onClick={() =>
+                      onClick={(event) => {
+                        event.preventDefault();
                         changeMobileStateOptions.map((e, i) => {
                           e != null ? e(false) : {};
                           if (i == index) {
                             e != null ? e!(!mobileStateOptions![index]) : {};
                           }
-                        })
+                        })}
                       }
                       className="link"
                       to={""}
@@ -143,7 +144,7 @@ export default function NavColumn({
               })
             : navOptions.map((e) => {
                 return (
-                  <Link className="link" to={""}>
+                  <Link className="link" to={""} onClick={ (event) => event.preventDefault() }>
                     <span>{e}</span>
                   </Link>
                 );
