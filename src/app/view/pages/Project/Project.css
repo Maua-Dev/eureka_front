@@ -401,10 +401,6 @@
     width: 1.4rem;
     height: 1.4rem;
   }
-  #project .checkbox > img {
-    pointer-events: none;
-    width: 0.6rem;
-  }
 }
 
 @media screen and (max-width: 700px) {
@@ -471,10 +467,12 @@
     width: 1.3rem;
     height: 1.3rem;
   }
+
   #project .checkbox > img {
     pointer-events: none;
-    width: 0.5rem;
+    width: 0.7rem;
   }
+
 
   #project .card > footer {
     padding: 0rem 2rem 1rem 2rem;
@@ -541,10 +539,7 @@
     width: 1.2rem;
     height: 1.2rem;
   }
-  #project .checkbox > img {
-    pointer-events: none;
-    width: 0.4rem;
-  }
+
 
   #project .card > footer {
     padding: 0rem 1rem 1rem 1rem;
@@ -571,6 +566,11 @@
   #project footer > .potencial {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  #project .checkbox > img {
+    pointer-events: none;
+    width: 0.6rem;
   }
 }
 
