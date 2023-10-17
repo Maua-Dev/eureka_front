@@ -11,7 +11,7 @@
   box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
 }
 
-#card > div {
+#card > .image {
   height: 100px;
   width: 100px;
   background: no-repeat;
@@ -52,7 +52,7 @@
 @media screen and (max-width: 1024px) {}
 
 @media screen and (max-width: 800px) {
-  #card > div {
+  #card > .image {
     height: 90px;
     width: 90px;
   }
@@ -77,7 +77,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  #card > div {
+  #card > .image {
     height: 80px;
     width: 80px;
   }

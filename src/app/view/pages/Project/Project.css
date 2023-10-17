@@ -204,6 +204,12 @@
 
 #project .potencial > div > button:hover {
   background-color: var(--dark-mustard);
+  color: var(--dark-blue);
+}
+
+#project .cosupervisor>button:hover {
+  background-color: var(--dark-mustard);
+  color: var(--dark-blue);
 }
 
 #project .supervisor > button:hover {

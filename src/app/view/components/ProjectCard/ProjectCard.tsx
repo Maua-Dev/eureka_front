@@ -14,7 +14,9 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Link id="card" to={'/project'}>
-      <div
+      
+        
+      <div className="image"
         style={{
           backgroundImage: `url(${image})`, backgroundSize: 'cover'
         }}
