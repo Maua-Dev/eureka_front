@@ -80,7 +80,8 @@
 
 #header div > p {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--medium-light-blue);
   margin-bottom: 2.5rem;
 }
 
@@ -232,7 +233,8 @@
 
 #headerNav div > p {
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--medium-light-blue);
   margin-bottom: 2rem;
   margin-top: 6.5rem;
 }
@@ -296,7 +298,7 @@
 
 #headerNav li > .navigator {
   color: var(--white);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.3rem;
   padding: 0.2rem 1rem;
 }
@@ -653,7 +655,7 @@
 
   #headerNav div > .button {
     padding: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.1rem;
   }
 
@@ -687,7 +689,7 @@
 
   #headerNav div > .button {
     padding: 0.6rem;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 0.9rem;
   }
 

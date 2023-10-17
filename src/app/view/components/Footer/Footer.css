@@ -27,7 +27,7 @@
   display: flex;
   align-items: start;
   flex-direction: column;
-  font-weight: 600;
+  font-weight: 700;
   gap: 1rem;
 }
 
@@ -35,7 +35,7 @@
   display: flex;
   align-items: start;
   flex-direction: column;
-  font-weight: 600;
+  font-weight: 700;
   gap: 1rem;
 }
 
@@ -123,7 +123,7 @@
 
 #footer .baloon > textarea::placeholder {
   font-size: 2.3rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--medium-light-blue);
 }
 
