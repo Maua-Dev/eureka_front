@@ -357,9 +357,14 @@
     font-size: 0.8rem;
   }
 
+  #project .cosupervisor > input {
+    border: 2px solid var(--dark-blue);
+  }
+
   #project .checkbox {
     width: 1.6rem;
     height: 1.6rem;
+    border: 2px solid var(--dark-blue);
   }
   #project .checkbox > img {
     pointer-events: none;
@@ -473,7 +478,7 @@
 
   #project .card > footer {
     padding: 0rem 2rem 1rem 2rem;
-}
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -543,16 +548,14 @@
 
   #project .card > footer {
     padding: 0rem 1rem 1rem 1rem;
-}
+  }
 }
 
 @media screen and (max-width: 500px) {
   #project .card > header {
     padding: 0.8rem 1.2rem;
     font-size: 0.8rem;
-
   }
-
 
   #project .mainHeaderCard > .students {
     grid-column: 1 / 5;
@@ -560,7 +563,11 @@
   }
 }
 
-@media screen and (max-width: 414px){
+@media screen and (max-width: 414px) {
+  #project .card > footer {
+    gap: 0.4rem;
+  }
+
   #project footer > .potencial {
     margin-left: auto;
     margin-right: auto;
