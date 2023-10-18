@@ -167,6 +167,10 @@
   justify-content: space-between;
 }
 
+#project .infos  > .number {
+  justify-self: center;
+}
+
 #project .infos > div {
   display: flex;
   flex-direction: column;

@@ -49,6 +49,7 @@
   border-radius: 8px;
   transition: 0.2s;
   position: absolute;
+  z-index: 1;
   width: 100%;
   top: 100%;
 }
