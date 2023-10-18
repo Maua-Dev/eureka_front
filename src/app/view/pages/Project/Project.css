@@ -275,7 +275,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 3.6rem;
+  height: 5rem;
   padding: 0.2rem;
 }
 
@@ -286,13 +286,13 @@
 }
 
 #project .grid p {
-  font-size: 10px;
+  font-size: 0.8rem;
   color: var(--dark-blue);
   font-weight: 600;
 }
 
 #project .grid a {
-  font-size: 10px;
+  font-size: 0.8rem;
   color: var(--dark-blue);
   font-weight: 600;
 }
@@ -361,10 +361,10 @@
     font-size: 0.8rem;
   }
   #project .grid p {
-    font-size: 8px;
+    font-size: 0.7rem;
   }
   #project .grid a {
-    font-size: 8px;
+    font-size: 0.7rem;
   }
   #project .column > div {
     font-size: 1.1rem;
@@ -414,10 +414,10 @@
     font-size: 0.7rem;
   }
   #project .grid p {
-    font-size: 8px;
+    font-size: 0.6rem;
   }
   #project .grid a {
-    font-size: 8px;
+    font-size: 0.6rem;
   }
   #project .column > div {
     font-size: 1rem;
@@ -458,10 +458,10 @@
     font-size: 0.6rem;
   }
   #project .grid p {
-    font-size: 8px;
+    font-size: 0.5rem;
   }
   #project .grid a {
-    font-size: 8px;
+    font-size: 0.5rem;
   }
   #project .column > div {
     font-size: 0.9rem;
@@ -568,10 +568,10 @@
     font-size: 0.7rem;
   }
   #project .grid p {
-    font-size: 10px;
+    font-size: 0.7rem;
   }
   #project .grid a {
-    font-size: 10px;
+    font-size: 0.7rem;
   }
   #project .column > div {
     font-size: 1rem;
@@ -660,10 +660,10 @@
     font-size: 0.6rem;
   }
   #project .grid p {
-    font-size: 8px;
+    font-size: 0.6rem;
   }
   #project .grid a {
-    font-size: 8px;
+    font-size: 0.6rem;
   }
   #project .column > div {
     font-size: 0.9rem;
@@ -727,12 +727,21 @@
     font-size: 0.5rem;
   }
   #project .grid p {
-    font-size: 6px;
+    font-size: 0.5rem;
   }
   #project .grid a {
-    font-size: 6px;
+    font-size: 0.5rem;
   }
   #project .column > div {
     font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  #project .grid p {
+    font-size: 0.4rem;
+  }
+  #project .grid a {
+    font-size: 0.4rem;
   }
 }
