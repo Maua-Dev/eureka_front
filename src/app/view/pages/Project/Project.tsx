@@ -348,7 +348,7 @@ export default function Project() {
               <div style={{ gridColumn: "3 / 4", gridRow: "5 / 6" }}></div>
               <div style={{ gridColumn: "4 / 5", gridRow: "5 / 6" }}></div>
               <div style={{ gridColumn: "1 / 2", gridRow: "6 / 7" }}>
-                <h3>Testeira</h3>
+                <h3>Autorização de entrada</h3>
               </div>
               <div style={{ gridColumn: "2 / 5", gridRow: "6 / 7" }}>
                 <p>Até 24/10/2023</p>
