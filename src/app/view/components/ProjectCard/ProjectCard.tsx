@@ -16,7 +16,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Link id="card" to={"/project"}>
-      <div className="popup">
+      {/* <div className="popup">
         <div className="circle ">
           <div className="bubble">
             <h1>Nova entrega em: </h1>
@@ -28,7 +28,7 @@ export default function ProjectCard({
           </div>
         </div>
         <span>Novo!</span>
-      </div>
+      </div> */}
 
       <div
         className="image"
