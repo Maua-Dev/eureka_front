@@ -61,13 +61,15 @@ export default function Project() {
             <h2>Código: </h2>
             <span>DSG</span>
           </div>
-          <div className="period">
-            <h2>Período: </h2>
-            <span>D</span>
-          </div>
-          <div className="number">
-            <h2>Número: </h2>
-            <span>01</span>
+          <div className="infos">
+            <div className="period">
+              <h2>Período: </h2>
+              <span>D</span>
+            </div>
+            <div className="number">
+              <h2>Número: </h2>
+              <span>01</span>
+            </div>
           </div>
           <div className="potencial">
             <h2>O trabalho tem potencial para empreendimento: </h2>
