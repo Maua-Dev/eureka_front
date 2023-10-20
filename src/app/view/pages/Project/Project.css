@@ -95,7 +95,6 @@
   margin-bottom: 3px;
 }
 
-
 #project .cosupervisor > button {
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
@@ -140,6 +139,9 @@
 #project .studentsNames > span {
   word-wrap: break-word;
   width: 48%;
+  margin-right: 2px;
+  margin-left: 2px;
+  text-align: center;
 }
 
 #project .card > footer {
@@ -167,7 +169,7 @@
   justify-content: space-between;
 }
 
-#project .infos  > .number {
+#project .infos > .number {
   justify-self: center;
 }
 
@@ -493,14 +495,14 @@
     padding: 1rem 1rem 4rem 1rem;
   }
   #project h2 {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   #project span {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   #project div > .yes,
   .no {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   #project .cosupervisor > input {
     font-size: 0.6rem;
@@ -517,6 +519,11 @@
     flex-direction: column;
     gap: 0.6rem;
     padding-bottom: 2rem;
+    align-items: center;
+  }
+
+  #project .mainHeaderCard > div {
+    align-items: center;
   }
 
   #project .students > .studentsNames {
@@ -527,10 +534,12 @@
     align-items: center;
     height: fit-content;
     justify-content: start;
+    max-width: 80%;
   }
 
   #project .mainHeaderCard > .cosupervisor {
     max-width: 50%;
+    align-items: center;
   }
 
   #project .mainHeaderCard > .students {
@@ -546,7 +555,7 @@
   #project .studentsNames > span {
     word-wrap: break-word;
     width: 48%;
-}
+  }
 
   #project .cosupervisor > button {
     margin-top: 0.3rem;
@@ -600,20 +609,9 @@
 }
 
 @media screen and (max-width: 600px) {
-
   #project a > .icon {
     height: 1.3rem;
     width: 1.5rem;
-  }
-  #project h2 {
-    font-size: 0.5rem;
-  }
-  #project span {
-    font-size: 0.5rem;
-  }
-  #project div > .yes,
-  .no {
-    font-size: 0.5rem;
   }
   #project .cosupervisor > input {
     font-size: 0.5rem;
@@ -667,6 +665,10 @@
     font-size: 1.1rem;
   }
 
+  #project .card > .mainHeaderCard {
+    padding: 0.5rem 0.2rem 2rem 0.2rem;
+  }
+
   #project .mainHeaderCard > .students {
     grid-column: 1 / 5;
     grid-row: 3 / 4;
@@ -712,6 +714,7 @@
   }
   #project footer > .potencial {
     align-items: center;
+    text-align: center;
   }
 
   #project .card > footer {
@@ -730,6 +733,10 @@
   #project .checkbox > img {
     pointer-events: none;
     width: 0.6rem;
+  }
+
+  #project .students > .studentsNames {
+    max-width: 100%;
   }
 }
 
