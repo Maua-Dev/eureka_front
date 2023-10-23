@@ -25,17 +25,16 @@ export default function Footer() {
     });
   }, [refContactDialog]);
 
-
   return (
     <footer id="footer">
       <section>
         <section>
           <span>Home e contato: </span>
           <nav>
-            <Link className="icon" to={""} onClick={ (event) => event.preventDefault() }>
+            <Link className="icon" to={""} onClick={(event) => event.preventDefault()}>
               <img src={houseIcon} alt="Ícone de casa" />
             </Link>
-            <Link ref={refContactDialog} className="icon" to={""} onClick={ (event) => event.preventDefault() }>
+            <Link ref={refContactDialog} className="icon" to={""} onClick={(event) => event.preventDefault()}>
               <img
                 onClick={() => setIsContactDialogOpen(!isContactDialogOpen)}
                 src={letterIcon}
@@ -115,69 +114,69 @@ export default function Footer() {
             </Link>
           </nav>
         </section>
-      <div className="mobileRight">
-      <section>
-          <span>Siga-nos: </span>
-          <nav>
-            <Link
-              className="icon"
-              to={"https://www.facebook.com/InstitutoMaua"}
-            >
-              <img
-                className="social"
-                src={facebookIcon}
-                alt="Ícone do Facebook"
-              />
-            </Link>
-            <Link className="icon" to={"https://www.instagram.com/infomaua/"}>
-              <img
-                className="social"
-                src={instagramIcon}
-                alt="Ícone do Instagram"
-              />
-            </Link>
-            <Link className="icon" to={"https://www.youtube.com/infomaua"}>
-              <img
-                className="social"
-                src={youtubeIcon}
-                alt="Ícone do Youtube"
-              />
-            </Link>
-            <Link
-              className="icon"
-              to={
-                "https://blog.maua.br/?_ga=2.107994242.1414937596.1695719404-557492636.1682549809&_gac=1.53077722.1695732254.CjwKCAjwgsqoBhBNEiwAwe5w0yR8bwZ0v2Dd6deTiy168V5dkN9HsX1jlRARvEG7AbvunbEC-a-4uRoCmHIQAvD_BwE&_gl=1*841yo3*_ga*NTU3NDkyNjM2LjE2ODI1NDk4MDk.*_ga_Q0DH4GG89H*MTY5NTc1OTg1MS43My4xLjE2OTU3NTk4OTIuMTkuMC4w"
-              }
-            >
-              <img className="social" src={blogIcon} alt="Ícone do Blog" />
-            </Link>
-            <Link
-              className="icon"
-              to={"https://www.flickr.com/photos/infomaua"}
-            >
-              <img className="social" src={flickrIcon} alt="Ícone do Flickr" />
-            </Link>
-            <Link className="icon" to={"https://twitter.com/InfoMaua"}>
-              <img
-                className="social"
-                src={twitterIcon}
-                alt="Ícone do Twitter"
-              />
-            </Link>
-          </nav>
-        </section>
-        <section>
-          <span>Desenvolvido por:</span>
-          <nav className="dev">
-            <Link className="link" to={"https://labdesign.maua.br"}>
-              <img src={labDesignLogo} alt="Logo da LabDesign" />
-            </Link>
-            <Link className="link" to={"https://devmaua.com"}>
-              <img src={devLogo} alt="Logo da Dev. Community Mauá" />
-            </Link>
-          </nav>
-        </section>
-      </div>
+        <div className="mobileRight">
+          <section>
+            <span>Siga-nos: </span>
+            <nav>
+              <Link
+                className="icon"
+                to={"https://www.facebook.com/InstitutoMaua"}
+              >
+                <img
+                  className="social"
+                  src={facebookIcon}
+                  alt="Ícone do Facebook"
+                />
+              </Link>
+              <Link className="icon" to={"https://www.instagram.com/infomaua/"}>
+                <img
+                  className="social"
+                  src={instagramIcon}
+                  alt="Ícone do Instagram"
+                />
+              </Link>
+              <Link className="icon" to={"https://www.youtube.com/infomaua"}>
+                <img
+                  className="social"
+                  src={youtubeIcon}
+                  alt="Ícone do Youtube"
+                />
+              </Link>
+              <Link
+                className="icon"
+                to={
+                  "https://blog.maua.br/?_ga=2.107994242.1414937596.1695719404-557492636.1682549809&_gac=1.53077722.1695732254.CjwKCAjwgsqoBhBNEiwAwe5w0yR8bwZ0v2Dd6deTiy168V5dkN9HsX1jlRARvEG7AbvunbEC-a-4uRoCmHIQAvD_BwE&_gl=1*841yo3*_ga*NTU3NDkyNjM2LjE2ODI1NDk4MDk.*_ga_Q0DH4GG89H*MTY5NTc1OTg1MS43My4xLjE2OTU3NTk4OTIuMTkuMC4w"
+                }
+              >
+                <img className="social" src={blogIcon} alt="Ícone do Blog" />
+              </Link>
+              <Link
+                className="icon"
+                to={"https://www.flickr.com/photos/infomaua"}
+              >
+                <img className="social" src={flickrIcon} alt="Ícone do Flickr" />
+              </Link>
+              <Link className="icon" to={"https://twitter.com/InfoMaua"}>
+                <img
+                  className="social"
+                  src={twitterIcon}
+                  alt="Ícone do Twitter"
+                />
+              </Link>
+            </nav>
+          </section>
+          <section>
+            <span>Desenvolvido por:</span>
+            <nav className="dev">
+              <Link className="link" to={"https://labdesign.maua.br"}>
+                <img src={labDesignLogo} alt="Logo da LabDesign" />
+              </Link>
+              <Link className="link" to={"https://devmaua.com"}>
+                <img src={devLogo} alt="Logo da Dev. Community Mauá" />
+              </Link>
+            </nav>
+          </section>
+        </div>
       </section>
     </footer>
   );

@@ -90,7 +90,7 @@ export default function Header() {
           </Link>
         </div>
         <aside>
-          <Link ref={refUserDialog} className="link" to={""} onClick={ (event) => event.preventDefault() }>
+          <Link ref={refUserDialog} className="link" to={""} onClick={(event) => event.preventDefault()}>
             <img
               onClick={() => setIsUserDialogOpen(!isUserDialogOpen)}
               src={profileIcon}
@@ -109,7 +109,7 @@ export default function Header() {
               </section>
             ) : null}
           </Link>
-          <Link ref={refQuestionDialog} className="link" to={""} onClick={ (event) => event.preventDefault() }>
+          <Link ref={refQuestionDialog} className="link" to={""} onClick={(event) => event.preventDefault()}>
             <img
               onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)}
               src={questionIcon}
@@ -118,20 +118,20 @@ export default function Header() {
             {isQuestionDialogOpen ? (
               <section>
                 <div>
-                  <Link className="questionTitle" to={""} onClick={ (event) => event.preventDefault() }>
+                  <Link className="questionTitle" to={""} onClick={(event) => event.preventDefault()}>
                     Ajuda
                   </Link>
-                  <Link className="questionTitle" to={""} onClick={ (event) => event.preventDefault() }>
+                  <Link className="questionTitle" to={""} onClick={(event) => event.preventDefault()}>
                     Conheça o sistema
                   </Link>
                 </div>
               </section>
             ) : null}
           </Link>
-          <Link className="link" to={""} onClick={ (event) => event.preventDefault() }>
+          <Link className="link" to={""} onClick={(event) => event.preventDefault()}>
             <img src={messageIcon} alt="Ícone de mensagens" />
           </Link>
-          <Link className="link" to={""} onClick={ (event) => event.preventDefault() }>
+          <Link className="link" to={""} onClick={(event) => event.preventDefault()}>
             <img src={calendarIcon} alt="ìcone de calendário" />
           </Link>
         </aside>
@@ -155,7 +155,7 @@ export default function Header() {
             </button>
 
             <NavColumn
-            backgroundColor="var(--dark-blue)"
+              backgroundColor="var(--dark-blue)"
               isMobile={false}
               isColumnOpen={isWorkAndStandsColumnOpen}
               navOptions={[
@@ -165,7 +165,7 @@ export default function Header() {
                 "Estandes institucionais",
               ]}
             />
-          </li> 
+          </li>
           <li>
             <button className="navigator">Relatórios</button>
           </li>
@@ -177,7 +177,7 @@ export default function Header() {
               Evento
             </button>
             <NavColumn
-            backgroundColor="var(--dark-blue)"
+              backgroundColor="var(--dark-blue)"
               isColumnOpen={isEventColumnOpen}
               isMobile={false}
               navOptions={[
@@ -198,7 +198,7 @@ export default function Header() {
               Usuários
             </button>
             <NavColumn
-            backgroundColor="var(--dark-blue)"
+              backgroundColor="var(--dark-blue)"
               isColumnOpen={isUserColumnOpen}
               isMobile={false}
               navOptions={[
@@ -219,7 +219,7 @@ export default function Header() {
               Sistema
             </button>
             <NavColumn
-            backgroundColor="var(--dark-blue)"
+              backgroundColor="var(--dark-blue)"
               isColumnOpen={isSystemColumnOpen}
               isMobile={false}
               navOptions={[
@@ -236,7 +236,7 @@ export default function Header() {
           </li>
         </ul>
         <aside>
-          <Link to={""} ref={refUserMobileDialog} className="link" onClick={ (event) => event.preventDefault() }>
+          <Link to={""} ref={refUserMobileDialog} className="link" onClick={(event) => event.preventDefault()}>
             <img
               onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)}
               src={profileIcon}
@@ -247,14 +247,14 @@ export default function Header() {
                 <div>
                   <h1>Isabella Augusta Rodrigues</h1>
                   <p>RA: 22.01190-0</p>
-                  <Link className="button" to={""} onClick={ (event) => event.preventDefault() }>
+                  <Link className="button" to={""} onClick={(event) => event.preventDefault()}>
                     Sair
                   </Link>
                 </div>
               </section>
             ) : null}
           </Link>
-          <Link to={""} ref={refQuestionMobileDialog} className="link" onClick={ (event) => event.preventDefault() }>
+          <Link to={""} ref={refQuestionMobileDialog} className="link" onClick={(event) => event.preventDefault()}>
             <img
               onClick={() =>
                 setIsQuestionMobileDialogOpen(!isQuestionMobileDialogOpen)
@@ -265,10 +265,10 @@ export default function Header() {
             {isQuestionMobileDialogOpen ? (
               <section>
                 <div>
-                  <Link className="questionTitle" to={""} onClick={ (event) => event.preventDefault() }>
+                  <Link className="questionTitle" to={""} onClick={(event) => event.preventDefault()}>
                     Ajuda
                   </Link>
-                  <Link className="questionTitle" to={""} onClick={ (event) => event.preventDefault() }>
+                  <Link className="questionTitle" to={""} onClick={(event) => event.preventDefault()}>
                     Conheça o sistema
                   </Link>
                 </div>
@@ -289,7 +289,7 @@ export default function Header() {
               alt="ìcone de menu"
             />
             <NavColumn
-            backgroundColor="var(--dark-blue)"
+              backgroundColor="var(--dark-blue)"
               isColumnOpen={isMenuColumnOpen}
               isMobile={true}
               navOptions={[

@@ -3,7 +3,7 @@ import "./NavColumn.css";
 import { useEffect, useRef, useState } from "react";
 
 interface NavColumnProps {
-  navOptions: Array<String>;
+  navOptions: Array<string>;
   isMobile: boolean;
   isColumnOpen: boolean;
   backgroundColor: string;
@@ -106,49 +106,50 @@ export default function NavColumn({
   return (
     <>
       {isColumnOpen ? (
-        <div id="navColumn" style={{ backgroundColor: backgroundColor,  width: columnWidth == undefined ? "100%" : columnWidth }}>
+        <div id="navColumn" style={{ backgroundColor: backgroundColor, width: columnWidth == undefined ? "100%" : columnWidth }}>
           {isMobile
             ? navOptions.map((e, index) => {
-                return (
-                  <>
-                    <Link
-                      onClick={(event) => {
-                        event.preventDefault();
-                        changeMobileStateOptions.map((e, i) => {
-                          e != null ? e(false) : {};
-                          if (i == index) {
-                            e != null ? e!(!mobileStateOptions![index]) : {};
-                          }
-                        })}
-                      }
-                      className="link"
-                      to={""}
-                    >
-                      <span>{e}</span>
-                    </Link>
-                    <div className="floatingColumn">
-                      <NavColumn
-                      columnWidth={"150px"}
-                      backgroundColor="var(--medium-light-blue)"
-                        isMobile={false}
-                        isColumnOpen={
-                          mobileStateOptions[index] != null
-                            ? mobileStateOptions![index]
-                            : false
+              return (
+                <>
+                  <Link
+                    onClick={(event) => {
+                      event.preventDefault();
+                      changeMobileStateOptions.map((e, i) => {
+                        e != null ? e(false) : {};
+                        if (i == index) {
+                          e != null ? e!(!mobileStateOptions![index]) : {};
                         }
-                        navOptions={mobileNavOptions[index]}
-                      />
-                    </div>
-                  </>
-                );
-              })
-            : navOptions.map((e) => {
-                return (
-                  <Link className="link" to={""} onClick={ (event) => event.preventDefault() }>
+                      });
+                    }
+                    }
+                    className="link"
+                    to={""}
+                  >
                     <span>{e}</span>
                   </Link>
-                );
-              })}
+                  <div className="floatingColumn">
+                    <NavColumn
+                      columnWidth={"150px"}
+                      backgroundColor="var(--medium-light-blue)"
+                      isMobile={false}
+                      isColumnOpen={
+                        mobileStateOptions[index] != null
+                          ? mobileStateOptions![index]
+                          : false
+                      }
+                      navOptions={mobileNavOptions[index]}
+                    />
+                  </div>
+                </>
+              );
+            })
+            : navOptions.map((e) => {
+              return (
+                <Link className="link" to={""} onClick={(event) => event.preventDefault()}>
+                  <span>{e}</span>
+                </Link>
+              );
+            })}
         </div>
       ) : null}
     </>

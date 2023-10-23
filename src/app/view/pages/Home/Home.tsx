@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const [dropdownText, setDropdownText] = useState<String>(
+  const [dropdownText, setDropdownText] = useState<string>(
     "Visualizar trabalhos como"
   );
 
@@ -50,7 +50,7 @@ export default function Home() {
                 Professor responsável
               </div>
             </section> : null}
-            
+
           </button>
         </div>
         <ProjectCard
