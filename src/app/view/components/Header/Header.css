@@ -1,0 +1,710 @@
+#header {
+  background-color: var(--dark-blue);
+  padding: 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#header > div:nth-child(1) {
+  display: flex;
+  gap: 2rem;
+  margin-top: 0.8rem;
+}
+
+#header div > .logo:nth-child(2) {
+  margin-top: 0.2rem;
+}
+
+#header div > .logo:nth-child(3) {
+  display: none;
+}
+
+#header .logo > img {
+  max-width: 100%;
+  height: 3rem;
+}
+
+#header .logo:nth-child(2) img {
+  height: 4rem;
+}
+
+#header > aside {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#header aside > .link {
+  position: relative;
+}
+
+#header .link:nth-child(2) > section {
+  right: -36px;
+  top: 71px;
+}
+
+#header .link:nth-child(2) > section > div {
+  padding: 2.5rem 1rem;
+  display: flex;
+  gap: 1rem;
+  width: 230px;
+}
+
+#header .link > section {
+  position: absolute;
+  z-index: 1;
+  top: 70px;
+  right: -50px;
+}
+
+#header section > div {
+  position: relative;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem;
+  flex-direction: column;
+  width: 260px;
+  background-color: var(--extra-light-blue);
+  color: var(--dark-blue);
+  text-align: center;
+}
+
+#header div > h1 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+#header div > p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--medium-light-blue);
+  margin-bottom: 2.5rem;
+}
+
+#header div > .button {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  text-decoration: none;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  width: 100%;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+#header div > .questionTitle {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--dark-blue);
+  font-size: 1.4rem;
+}
+
+#header section > div:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-bottom-color: var(--extra-light-blue);
+  border-top: 0;
+  margin-left: 40px;
+  margin-top: -13px;
+}
+
+#header .link > img {
+  width: 100%;
+  height: 50px;
+}
+
+/* FIX DA IRREGULARIDADE DAS IMAGENS */
+
+#header aside > .link:nth-child(1) {
+  margin-top: 2px;
+}
+
+#header aside > .link:nth-child(4) {
+  margin-bottom: 4px;
+}
+
+#header .link:nth-child(4) > img {
+  height: 54px;
+}
+
+/* FIX DA IRREGULARIDADE DAS IMAGENS */
+
+#headerNav {
+  background-color: var(--medium-light-blue);
+}
+
+#headerNav > ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+
+#headerNav ul > li {
+  width: 15%;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.2s;
+  position: relative;
+}
+
+#headerNav li > .navigator {
+  transition: ease-in-out 0.2s;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  border: none;
+  background-color: var(--medium-light-blue);
+  cursor: pointer;
+}
+
+#headerNav aside {
+  display: none;
+  padding: 0.5rem;
+}
+
+#headerNav div > h1 {
+  position: absolute;
+}
+
+#headerNav .link > img {
+  max-width: 100%;
+  height: 41px;
+}
+
+#headerNav .link:nth-child(2) > section {
+  right: -30.5px;
+  top: 74px;
+  right: 143.5px;
+}
+
+#headerNav .link:nth-child(2) > section > div {
+  padding: 2rem 0rem;
+  display: flex;
+  gap: 1rem;
+  width: 200px;
+}
+
+#headerNav .link > section {
+  position: absolute;
+  z-index: 1;
+  top: 74px;
+  right: 176.5px;
+}
+
+#headerNav section > div {
+  position: relative;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem;
+  flex-direction: column;
+  width: 240px;
+  background-color: var(--extra-light-blue);
+  color: var(--dark-blue);
+  text-align: center;
+}
+
+#headerNav div > h1 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  margin-top: 1.5rem;
+}
+
+#headerNav div > p {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--medium-light-blue);
+  margin-bottom: 2rem;
+  margin-top: 6.5rem;
+}
+
+#headerNav div > .button {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  width: 100%;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+#headerNav div > .questionTitle {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--dark-blue);
+  font-size: 1.2rem;
+}
+
+#headerNav section > div:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-bottom-color: var(--extra-light-blue);
+  border-top: 0;
+  margin-left: 40px;
+  margin-top: -13px;
+}
+
+/* FIX DA IRREGULARIDADE DAS IMAGENS */
+
+#headerNav aside > .link:nth-child(1) {
+  margin-top: 1px;
+}
+
+#headerNav aside > .link:nth-child(4) {
+  margin-bottom: 4px;
+}
+
+#headerNav .link:nth-child(4) > img {
+  max-width: 100%;
+  height: 45px;
+}
+
+#headerNav .link:nth-child(5) > img {
+  max-width: 100%;
+  height: 38px;
+}
+
+/* FIX DA IRREGULARIDADE DAS IMAGENS */
+
+#headerNav li > .navigator {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.3rem;
+  padding: 0.2rem 1rem;
+}
+
+#header .link > img:hover {
+  filter: var(--dark-mustard-filter);
+}
+
+#headerNav .link > img:hover {
+  filter: var(--dark-mustard-filter);
+  cursor: pointer;
+}
+
+#headerNav .navigator:hover {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+}
+
+#headerNav div > .button:hover {
+  background-color: var(--dark-mustard);
+  color: var(--dark-blue);
+}
+
+#header div > .button:hover {
+  background-color: var(--dark-mustard);
+  color: var(--dark-blue);
+}
+
+#header div > .questionTitle:hover {
+  color: var(--dark-mustard);
+}
+
+#headerNav div > .questionTitle:hover {
+  color: var(--dark-mustard);
+}
+
+@media screen and (max-width: 1382px) {
+  #headerNav li > .navigator {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  
+  #header .logo > img {
+    max-width: 100%;
+    height: 3rem;
+  }
+
+  #header div > .logo:nth-child(2) {
+    margin-top: 0.2rem;
+  }
+
+  #header .logo:nth-child(2) img {
+    height: 4rem;
+  }
+
+  #header .link > img {
+    max-width: 100%;
+    height: 50px;
+  }
+
+  #header .link:nth-child(4) > img {
+    height: 54px;
+  }
+
+  #headerNav li > .navigator {
+    font-size: 1rem;
+  }
+
+  #header .link:nth-child(2) > section {
+    right: -24.5px;
+    top: 71px;
+  }
+
+  #header .link:nth-child(2) > section > div {
+    padding: 2.5rem 1rem;
+    gap: 1rem;
+    width: 210px;
+  }
+
+  #header section:nth-child(2) > div:after {
+    margin-top: -12px;
+  }
+
+  #header .link > section {
+    top: 70px;
+    right: -41px;
+  }
+
+  #header section > div {
+    width: 240px;
+  }
+
+  #header div > h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    margin-top: 1.8rem;
+  }
+
+  #header div > p {
+    font-size: 1rem;
+    margin-bottom: 2.3rem;
+  }
+
+  #header div > .button {
+    padding: 0.8rem;
+    font-size: 1.3rem;
+  }
+
+  #header div > .questionTitle {
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #headerNav li > .navigator {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #headerNav li > .navigator {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #header div {
+    gap: 1rem;
+  }
+
+  #header div:nth-child(1) {
+    display: flex;
+    gap: 1.1rem;
+  }
+
+  #header > aside {
+    gap: 1.2rem;
+  }
+
+  header div {
+    gap: 1rem;
+  }
+
+  #header .logo > img {
+    max-width: 100%;
+    height: 2rem;
+  }
+
+  #header div > .logo:nth-child(2) {
+    margin-top: 0.1rem;
+  }
+
+  #header .logo:nth-child(2) img {
+    height: 2.6rem;
+  }
+
+  #header .link > img {
+    max-width: 100%;
+    height: 45px;
+  }
+
+  #header .link:nth-child(4) > img {
+    height: 49px;
+  }
+
+  #headerNav li > .navigator {
+    font-size: 0.8rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  #header .link:nth-child(2) > section {
+    right: -17px;
+    top: 63px;
+  }
+
+  #header .link:nth-child(2) > section > div {
+    padding: 2.4rem 0.9rem;
+    gap: 0.9rem;
+    width: 190px;
+  }
+
+  #header section:nth-child(2) > div:after {
+    margin-top: -10px;
+  }
+
+  #header .link > section {
+    top: 62px;
+    right: -28.5px;
+  }
+
+  #header section > div {
+    width: 210px;
+  }
+
+  #header div > h1 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    margin-top: 1.2rem;
+  }
+
+  #header div > p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  #header div > .button {
+    padding: 0.7rem;
+    font-size: 1.3rem;
+  }
+
+  #header div > .questionTitle {
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #headerNav li > .navigator {
+    font-size: 0.7rem;
+    padding: 0.6rem 0.6rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #headerNav {
+    position: relative;
+  }
+
+  #headerNav div > .button {
+    border-radius: 0.8rem;
+  }
+
+  #header > aside {
+    display: none;
+  }
+
+  #header .logo > img {
+    height: 1.8rem;
+  }
+
+  #header div > .logo:nth-child(2) {
+    margin-top: 0.1rem;
+  }
+
+  #header .logo:nth-child(2) img {
+    height: 2.4rem;
+  }
+
+  #headerNav .link:nth-child(2) > section {
+    right: -30.5px;
+    top: 72px;
+    right: 143.5px;
+  }
+
+  #headerNav .link > section {
+    top: 72px;
+    right: 176px;
+  }
+
+  #headerNav aside {
+    display: flex;
+    gap: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+
+  #headerNav aside > .link {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  #headerNav li > .navigator {
+    font-size: 0.8rem;
+  }
+
+  #headerNav ul {
+    display: none;
+  }
+
+  #header {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  
+  #header .logo > img {
+    height: 1.6rem;
+  }
+
+
+  #header .logo:nth-child(2) img {
+    height: 2rem;
+  }
+
+  #header .logo:nth-child(3) img {
+    max-width: 100%;
+    height: 2.5rem;
+  }
+
+  
+  #headerNav .link > img {
+    height: 30px;
+  }
+
+  #headerNav aside > .link:nth-child(1) {
+    margin-top: 2px;
+  }
+
+  #headerNav aside > .link:nth-child(4) {
+    margin-bottom: 3px;
+  }
+
+  #headerNav .link:nth-child(4) > img {
+    height: 32px;
+  }
+
+  #headerNav .link:nth-child(5) > img {
+    height: 24px;
+  }
+
+  #headerNav .link:nth-child(2) > section {
+    top: 55px;
+    right: 106px;
+  }
+
+  #headerNav .link > section {
+    top: 56px;
+    right: 148px;
+  }
+
+  #headerNav section > div {
+    padding: 1rem 1rem;
+    width: 220px;
+  }
+
+  #headerNav div > h1 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    margin-top: 1.5rem;
+  }
+
+  #headerNav div > p {
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+    margin-top: 6.2rem;
+  }
+
+  #headerNav div > .button {
+    padding: 0.8rem;
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+
+  #headerNav div > .questionTitle {
+    font-size: 1rem;
+  }
+
+  #headerNav .link:nth-child(2) > section > div {
+    padding: 1.5rem 0rem;
+    gap: 0.8rem;
+    width: 150px;
+  }
+
+  #headerNav section > div {
+    padding: 1rem 1rem;
+    width: 150px;
+  }
+
+  #headerNav div > h1 {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    margin-top: 1.2rem;
+  }
+
+  #headerNav div > p {
+    font-size: 0.7rem;
+    margin-bottom: 1.8rem;
+    margin-top: 5.8rem;
+  }
+
+  #headerNav div > .button {
+    padding: 0.6rem;
+    font-weight: 800;
+    font-size: 0.9rem;
+  }
+
+  #headerNav div > .questionTitle {
+    font-size: 0.8rem;
+  }
+
+  #headerNav section > div:after {
+    margin-left: 20px;
+    margin-top: -10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  
+
+  
+}

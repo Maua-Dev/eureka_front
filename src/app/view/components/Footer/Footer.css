@@ -1,0 +1,516 @@
+#footer {
+  background-color: var(--dark-blue);
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  gap: 1rem;
+  color: var(--white);
+}
+
+#footer > section {
+  max-width: 100rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+}
+
+#footer section > .mobileRight {
+  display: none;
+}
+
+#footer section > section {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  font-weight: 700;
+  gap: 1rem;
+}
+
+#footer div > section {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  font-weight: 700;
+  gap: 1rem;
+}
+
+#footer section > nav {
+  display: flex;
+  gap: 1rem;
+}
+
+#footer section > span {
+  font-size: 1rem;
+}
+
+#footer nav > .email {
+  margin-bottom: 0.3rem;
+  margin-left: 0.3rem;
+}
+
+#footer nav > .icon {
+  position: relative;
+}
+
+#footer .icon > img {
+  max-width: 100%;
+  height: 50px;
+}
+
+#footer .icon > aside {
+  position: absolute;
+  background-color: var(--medium-light-blue);
+  padding: 0.8rem;
+  border-radius: 1rem;
+  width: 440px;
+  height: 440px;
+  bottom: 150%;
+}
+
+#footer aside > .baloon {
+  position: relative;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+#footer aside > .baloon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-bottom-color: var(--medium-light-blue);
+  border-top: 0;
+  bottom: -25px;
+  left: 50%;
+  margin-left: -50%;
+  transform: rotate(180deg);
+}
+
+#footer .baloon > header {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.6rem;
+}
+
+#footer .baloon > textarea {
+  border-radius: 1rem;
+  appearance: none;
+  border: none;
+  background-color: var(--extra-light-blue);
+  width: 100%;
+  padding: 2rem 2.3rem;
+  display: flex;
+  font-size: 2.3rem;
+  color: var(--medium-light-blue);
+  resize: none;
+  outline: none;
+  height: 100%;
+}
+
+#footer .baloon > textarea::placeholder {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--medium-light-blue);
+}
+
+#footer .baloon > textarea::-webkit-scrollbar {
+  display: none;
+}
+
+#footer section > nav {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+#footer section > .dev {
+  gap: 1.2rem;
+}
+
+#footer .link > img {
+  max-width: 100%;
+  height: 50px;
+}
+
+#footer .icon:hover img {
+  filter: var(--dark-mustard-filter);
+}
+
+@media screen and (max-width: 1200px) {
+  #footer .icon > aside {
+    padding: 0.8rem;
+    width: 400px;
+    height: 410px;
+    gap: 0.8rem;
+  }
+
+  #footer .baloon > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 1.4rem;
+  }
+
+  #footer .baloon > textarea {
+    padding: 2rem 2.3rem;
+    font-size: 2.1rem;
+  }
+
+  #footer .baloon > textarea::placeholder {
+    font-size: 2.1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #footer nav > .email {
+    display: none;
+  }
+  #footer nav > .email {
+    display: none;
+  }
+  #footer section > div {
+    font-size: 1rem;
+  }
+
+  #footer .baloon > header {
+    border-radius: 0.8rem;
+  }
+
+  #footer .baloon > textarea {
+    border-radius: 0.8rem;
+  }
+
+  #footer .link > img {
+    height: 3rem;
+  }
+
+  #footer .baloon > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 1.2rem;
+  }
+
+  #footer .baloon > textarea {
+    padding: 2rem 2.3rem;
+    font-size: 2rem;
+  }
+
+  #footer .baloon > textarea::placeholder {
+    font-size: 2.1rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #footer .icon > img {
+    height: 45px;
+  }
+
+  #footer .link > img {
+    height: 45px;
+  }
+
+  #footer .icon > aside {
+    bottom: 150%;
+    left: -3px;
+  }
+
+  #footer aside > .baloon:after {
+    bottom: -25px;
+    left: 50%;
+    margin-left: -50%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #footer .icon > aside {
+    padding: 0.8rem;
+    width: 350px;
+    height: 360px;
+    gap: 0.8rem;
+  }
+
+  #footer section > span {
+    font-size: 1rem;
+  }
+
+  #footer .baloon > header {
+    border-radius: 0.7rem;
+  }
+
+  #footer .baloon > textarea {
+    border-radius: 0.7rem;
+  }
+
+  #footer .baloon > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 1rem;
+  }
+
+  #footer .baloon > textarea {
+    padding: 1.5rem 1.8rem;
+    font-size: 1.8rem;
+  }
+
+  #footer .baloon > textarea::placeholder {
+    font-size: 1.9rem;
+  }
+}
+
+@media screen and (max-width: 753px) {
+  #footer > section {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+  }
+
+
+  #footer section > .mobileRight {
+    display: block;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #footer section > .desktopRight {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #footer div > p {
+    display: none;
+  }
+
+  #footer section > span {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #footer .icon > img {
+    height: 41px;
+  }
+
+  #footer .link > img {
+    height: 41px;
+  }
+
+  #footer {
+    padding: 1.5rem;
+  }
+
+  #footer .icon > aside {
+    bottom: 150%;
+    left: -5px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #footer > section {
+    gap: 0.8rem;
+  }
+
+  #footer section > section {
+    gap: 0rem;
+  }
+
+  #footer div > section {
+    gap: 0rem;
+  }
+
+  #footer section > span {
+    font-size: 0.6rem;
+  }
+  #footer section > div {
+    gap: 0.8rem;
+  }
+
+  #footer .icon > img {
+    height: 30px;
+  }
+
+  #footer .link > img {
+    height: 30px;
+  }
+
+  #footer .baloon > header {
+    border-radius: 0.6rem;
+  }
+
+  #footer .baloon > textarea {
+    border-radius: 0.6rem;
+  }
+
+  #footer section > section {
+    gap: 0.5rem;
+  }
+
+  #footer div > section {
+    gap: 0.5rem;
+  }
+
+  #footer .icon > aside {
+    bottom: 160%;
+    left: -12px;
+  }
+
+  #footer .icon > aside {
+    padding: 0.8rem;
+    width: 280px;
+    height: 300px;
+    gap: 0.8rem;
+  }
+
+  #footer section > nav {
+    gap: 0.4rem;
+  }
+
+  #footer .baloon > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 0.9rem;
+  }
+
+  #footer .baloon > textarea {
+    padding: 1.5rem 1.2rem;
+    font-size: 1.6rem;
+  }
+
+  #footer .baloon > textarea::placeholder {
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #footer {
+    padding: 1.2rem;
+  }
+
+  #footer .icon > img {
+    height: 30px;
+  }
+
+  #footer .link > img {
+    height: 30px;
+  }
+
+  #footer section > div {
+    gap: 0.6rem;
+  }
+
+  #footer .icon > aside {
+    padding: 0.8rem;
+    width: 250px;
+    height: 260px;
+    gap: 0.8rem;
+  }
+
+  #footer .baloon > header {
+    padding: 1rem;
+    gap: 2rem;
+  }
+
+  #footer .baloon > textarea {
+    padding: 1.2rem 1rem;
+    font-size: 1.4rem;
+  }
+
+  #footer .baloon > textarea::placeholder {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  #footer > section {
+    gap: 0.5rem;
+  }
+
+  #footer .baloon > header {
+    border-radius: 0.5rem;
+  }
+
+  #footer .baloon > textarea {
+    border-radius: 0.5rem;
+  }
+
+  #footer .icon > aside {
+    padding: 0.8rem;
+    width: 200px;
+    height: 220px;
+    gap: 0.8rem;
+  }
+
+  #footer .baloon > header {
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 0.7rem;
+  }
+
+  #footer .baloon > textarea {
+    padding: 1.2rem 0.7rem;
+    font-size: 1.2rem;
+  }
+
+  #footer .baloon > textarea::placeholder {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  #footer .icon > img {
+    height: 24px;
+  }
+
+  #footer .link > img {
+    height: 24px;
+  }
+
+  #footer section > span {
+    font-size: 0.4rem;
+  }
+
+  #footer .icon > aside {
+    left: -62%;
+    bottom: 170%;
+  }
+}
+
+@media screen and (max-width: 276px) {
+  #footer section > section:nth-child(1) {
+    margin-right: 0;
+  }
+
+  #footer section > section:nth-child(2) {
+    margin-left: 0;
+  }
+
+  #footer div > section:nth-child(1) {
+    margin-right: 0;
+  }
+
+  #footer div > section:nth-child(2) {
+    margin-left: 0;
+  }
+
+  #footer .icon > aside {
+    left: -383%;
+  }
+  #footer aside > .baloon:after {
+    margin-left: -10px;
+  }
+}
