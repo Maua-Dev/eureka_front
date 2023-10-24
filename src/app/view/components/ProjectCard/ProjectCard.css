@@ -64,10 +64,18 @@
 
 #card .deliveries>h1 {
   font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+}
+
+#card .deliveries>span {
+  font-size: 0.8rem;
 }
 
 #card .delivery>span {
   font-size: 1rem;
+  font-weight: 500;
+  color: var(--dark-blue);
 }
 
 #card aside>h1 {

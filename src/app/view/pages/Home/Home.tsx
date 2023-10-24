@@ -57,7 +57,7 @@ export default function Home() {
           image={workingImage}
           teacherAdvisor="Ana Paula"
           title="DSG - Design universal aplicado em embalagem de protetor solar"
-          newDeliveries={["Dados do trabalho", "Pôster de imagem", "Dados do trabalho", "Pôster de imagem",]}
+          newDeliveries={["Dados do trabalho", "Pôster de imagem", "Dados do trabalho", "Pôster de imagem"]}
         />
         <ProjectCard
           image={workingImage}

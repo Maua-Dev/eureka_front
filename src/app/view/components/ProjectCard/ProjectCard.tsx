@@ -32,10 +32,12 @@ export default function ProjectCard({
         <div className="deliveries">
           <h1>Nova entrega em:</h1>
           {newDeliveries.map((delivery, index) => (
-            <div key={index} className="delivery">
-              <span >{delivery}</span>
-            </div>
+            index <= 3 ?
+              <div key={index} className="delivery">
+                <span >{delivery}</span>
+              </div> : null
           ))}
+          {newDeliveries.length > 4 ? <span>...</span> : null}
         </div>
         : null}
     </Link>
