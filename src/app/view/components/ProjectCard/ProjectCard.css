@@ -133,6 +133,11 @@
   #card .deliveries {
     display: none;
   }
+
+  #card .circle {
+    background-color: var(--red);
+    right: 5%;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -158,6 +163,9 @@
   #card aside>p {
     font-size: 1.2rem;
   }
+
+
+
 }
 
 @media screen and (max-width: 600px) {
@@ -186,6 +194,13 @@
 
   #card aside>p {
     font-size: 1rem;
+  }
+
+  #card .circle {
+    right: 8%;
+    top: -3%;
+    width: 0.8rem;
+    height: 0.8rem;
   }
 }
 
