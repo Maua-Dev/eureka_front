@@ -50,8 +50,8 @@ export default function Project() {
           <div className="students">
             <h2>Alunos: </h2>
             <div className="studentsNames">
-              {students.map((nome, index) => (
-                <span key={index}>{nome}</span>
+              {students.map((name, index) => (
+                <span key={index}>{name}</span>
               ))}
             </div>
           </div>

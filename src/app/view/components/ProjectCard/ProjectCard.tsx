@@ -16,20 +16,6 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Link id="card" to={"/project"}>
-      {/* <div className="popup">
-        <div className="circle ">
-          <div className="bubble">
-            <h1>Nova entrega em: </h1>
-            <ul>
-              {newDeliveries?.map((delivery, index) => (
-                <li key={index}>{delivery}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <span>Novo!</span>
-      </div> */}
-
       <div
         className="image"
         style={{
@@ -41,6 +27,17 @@ export default function ProjectCard({
         <h1>{title}</h1>
         <p>Prof.ª orientador: {teacherAdvisor}</p>
       </aside>
+      {newDeliveries != null ? <div className="circle"></div> : null}
+      {newDeliveries != null ?
+        <div className="deliveries">
+          <h1>Nova entrega em:</h1>
+          {newDeliveries.map((delivery, index) => (
+            <div key={index} className="delivery">
+              <span >{delivery}</span>
+            </div>
+          ))}
+        </div>
+        : null}
     </Link>
   );
 }
