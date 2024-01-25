@@ -1,7 +1,7 @@
 export enum RESPONSIBLE {
-    STUDENT = "STUDENT",
-    ADVISOR = "ADVISOR",
-    RESPONSIBLE = "RESPONSIBLE"
+    STUDENT,
+    ADVISOR,
+    RESPONSIBLE
 }
 
 export function toEnum(value: string): RESPONSIBLE {
