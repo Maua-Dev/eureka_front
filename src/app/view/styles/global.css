@@ -1,39 +1,26 @@
-:root {
-  --white: #fff;
-  --black: #000;
-  --dark-blue: #004587;
-  --blue: #4878a8;
-  --red: #D20000;
-  --green: #3D5306;
-  --medium-light-blue: #84a4c4;
-  --light-blue: #c0cfdf;
-  --extra-light-blue: #e2e9f1;
-  --mustard: rgba(168, 192, 36, 0.4);
-  --dark-mustard: #a8c024;
-  --dark-mustard-filter: brightness(0) saturate(100%) invert(72%) sepia(100%)
-    saturate(376%) hue-rotate(17deg) brightness(87%) contrast(87%);
-}
-
 * {
+
+  /* reset css */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-  font-family: "omnes-pro", sans-serif;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+
+  font-family: "omnes-pro", sans-serif;
+
 }
 
-.appContainer {
+.app_container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
 }
 
+/* main breakpoints used in project */
 @media screen and (max-width: 1200px) {}
 
 @media screen and (max-width: 1024px) {}

@@ -10,7 +10,7 @@
   color: var(--white);
 }
 
-#footer > section {
+#footer .footer__content {
   max-width: 100rem;
   display: flex;
   align-items: center;
@@ -19,11 +19,11 @@
   gap: 2rem;
 }
 
-#footer section > .mobileRight {
+#footer .footer__div--mobile {
   display: none;
 }
 
-#footer section > section {
+#footer .container {
   display: flex;
   align-items: start;
   flex-direction: column;
@@ -31,38 +31,36 @@
   gap: 1rem;
 }
 
-#footer div > section {
-  display: flex;
-  align-items: start;
-  flex-direction: column;
-  font-weight: 700;
-  gap: 1rem;
-}
-
-#footer section > nav {
-  display: flex;
-  gap: 1rem;
-}
-
-#footer section > span {
+#footer .container__text {
   font-size: 1rem;
 }
 
-#footer nav > .email {
+#footer .container__nav {
+  display: flex;
+  gap: 0.6rem;
+  display: flex;
+  align-items: center;
+}
+
+#footer .container__nav--spaced {
+  gap: 1.2rem;
+}
+
+#footer .nav__text {
   margin-bottom: 0.3rem;
   margin-left: 0.3rem;
 }
 
-#footer nav > .icon {
+#footer .square {
   position: relative;
 }
 
-#footer .icon > img {
+#footer .square__img {
   max-width: 100%;
   height: 50px;
 }
 
-#footer .icon > aside {
+#footer .baloon {
   position: absolute;
   background-color: var(--medium-light-blue);
   padding: 0.8rem;
@@ -72,7 +70,7 @@
   bottom: 150%;
 }
 
-#footer aside > .baloon {
+#footer .baloon__content {
   position: relative;
   border-radius: 1rem;
   display: flex;
@@ -81,7 +79,7 @@
   height: 100%;
 }
 
-#footer aside > .baloon:after {
+#footer .baloon__content:after {
   content: "";
   position: absolute;
   width: 0;
@@ -95,7 +93,7 @@
   transform: rotate(180deg);
 }
 
-#footer .baloon > header {
+#footer .baloon__header {
   background-color: var(--dark-blue);
   color: var(--white);
   border-radius: 1rem;
@@ -106,7 +104,7 @@
   font-size: 1.6rem;
 }
 
-#footer .baloon > textarea {
+#footer .baloon__textarea {
   border-radius: 1rem;
   appearance: none;
   border: none;
@@ -121,164 +119,139 @@
   height: 100%;
 }
 
-#footer .baloon > textarea::placeholder {
+#footer .baloon__textarea::placeholder {
   font-size: 2.3rem;
   font-weight: 700;
   color: var(--medium-light-blue);
 }
 
-#footer .baloon > textarea::-webkit-scrollbar {
+#footer .baloon__textarea::-webkit-scrollbar {
   display: none;
 }
 
-#footer section > nav {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-}
-
-#footer section > .dev {
-  gap: 1.2rem;
-}
-
-#footer .link > img {
+#footer .logo__img {
   max-width: 100%;
   height: 50px;
 }
 
-#footer .icon:hover img {
+#footer .square:hover .img--hover {
   filter: var(--dark-mustard-filter);
 }
 
 @media screen and (max-width: 1200px) {
-  #footer .icon > aside {
+  #footer .baloon {
     padding: 0.8rem;
     width: 400px;
     height: 410px;
     gap: 0.8rem;
   }
 
-  #footer .baloon > header {
+  #footer .baloon__header {
     padding: 1rem;
     gap: 2rem;
     font-size: 1.4rem;
   }
 
-  #footer .baloon > textarea {
+  #footer .baloon__textarea {
     padding: 2rem 2.3rem;
     font-size: 2.1rem;
   }
 
-  #footer .baloon > textarea::placeholder {
+  #footer .baloon__textarea::placeholder {
     font-size: 2.1rem;
   }
 }
 
 @media screen and (max-width: 1024px) {
-  #footer nav > .email {
-    display: none;
-  }
-  #footer nav > .email {
-    display: none;
-  }
-  #footer section > div {
+  #footer .footer__div--mobile {
     font-size: 1rem;
   }
 
-  #footer .baloon > header {
+  #footer .nav__text {
+    display: none;
+  }
+
+  #footer .baloon__header {
     border-radius: 0.8rem;
-  }
-
-  #footer .baloon > textarea {
-    border-radius: 0.8rem;
-  }
-
-  #footer .link > img {
-    height: 3rem;
-  }
-
-  #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
     font-size: 1.2rem;
   }
 
-  #footer .baloon > textarea {
+  #footer .baloon__textarea {
+    border-radius: 0.8rem;
     padding: 2rem 2.3rem;
     font-size: 2rem;
   }
 
-  #footer .baloon > textarea::placeholder {
+  #footer .baloon__textarea::placeholder {
     font-size: 2.1rem;
+  }
+
+  #footer .logo__img {
+    height: 3rem;
   }
 }
 
 @media screen and (max-width: 850px) {
-  #footer .icon > img {
+  #footer .square__img {
     height: 45px;
   }
 
-  #footer .link > img {
-    height: 45px;
-  }
-
-  #footer .icon > aside {
+  #footer .baloon {
     bottom: 150%;
     left: -3px;
   }
 
-  #footer aside > .baloon:after {
+  #footer .baloon__content:after {
     bottom: -25px;
     left: 50%;
     margin-left: -50%;
   }
+
+  #footer .logo__img {
+    height: 45px;
+  }
 }
 
 @media screen and (max-width: 800px) {
-  #footer .icon > aside {
+  #footer .container__text {
+    font-size: 1rem;
+  }
+
+  #footer .baloon {
     padding: 0.8rem;
     width: 350px;
     height: 360px;
     gap: 0.8rem;
   }
 
-  #footer section > span {
-    font-size: 1rem;
-  }
-
-  #footer .baloon > header {
+  #footer .baloon__header {
     border-radius: 0.7rem;
-  }
-
-  #footer .baloon > textarea {
-    border-radius: 0.7rem;
-  }
-
-  #footer .baloon > header {
     padding: 1rem;
     gap: 2rem;
     font-size: 1rem;
   }
 
-  #footer .baloon > textarea {
+  #footer .baloon__textarea {
     padding: 1.5rem 1.8rem;
     font-size: 1.8rem;
+    border-radius: 0.7rem;
   }
 
-  #footer .baloon > textarea::placeholder {
+  #footer .baloon__textarea::placeholder {
     font-size: 1.9rem;
   }
 }
 
 @media screen and (max-width: 753px) {
-  #footer > section {
+  #footer>.footer__content {
     display: flex;
     flex-direction: row;
     align-items: start;
   }
 
-
-  #footer section > .mobileRight {
+  #footer .footer__div--mobile {
     display: block;
     display: flex;
     align-items: start;
@@ -286,113 +259,96 @@
     gap: 1rem;
   }
 
-  #footer section > .desktopRight {
+  #footer .container--desktop {
     display: none;
   }
 }
 
 @media screen and (max-width: 650px) {
-  #footer div > p {
-    display: none;
-  }
-
-  #footer section > span {
+  #footer .container__text {
     font-size: 0.8rem;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #footer .icon > img {
-    height: 41px;
-  }
-
-  #footer .link > img {
-    height: 41px;
-  }
-
   #footer {
     padding: 1.5rem;
   }
 
-  #footer .icon > aside {
+  #footer .square__img {
+    height: 41px;
+  }
+
+  #footer .baloon {
     bottom: 150%;
     left: -5px;
+  }
+
+  #footer .logo__img {
+    height: 41px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  #footer > section {
+  #footer .footer__content {
     gap: 0.8rem;
   }
 
-  #footer section > section {
-    gap: 0rem;
+  #footer .footer__div--mobile {
+    gap: 0.8rem;
   }
 
-  #footer div > section {
-    gap: 0rem;
+  #footer .container {
+    gap: 0.5rem;
   }
 
-  #footer section > span {
+  #footer .container__nav {
+    gap: 0.4rem;
+  }
+
+  #footer .container__nav--spaced {
+    gap: 1.2rem;
+  }
+
+  #footer .container__text {
     font-size: 0.6rem;
   }
-  #footer section > div {
-    gap: 0.8rem;
-  }
 
-  #footer .icon > img {
+  #footer .square__img {
     height: 30px;
   }
 
-  #footer .link > img {
-    height: 30px;
-  }
-
-  #footer .baloon > header {
+  #footer .baloon__header {
     border-radius: 0.6rem;
   }
 
-  #footer .baloon > textarea {
-    border-radius: 0.6rem;
-  }
-
-  #footer section > section {
-    gap: 0.5rem;
-  }
-
-  #footer div > section {
-    gap: 0.5rem;
-  }
-
-  #footer .icon > aside {
+  #footer .baloon {
     bottom: 160%;
     left: -12px;
-  }
-
-  #footer .icon > aside {
     padding: 0.8rem;
     width: 280px;
     height: 300px;
     gap: 0.8rem;
   }
 
-  #footer section > nav {
-    gap: 0.4rem;
-  }
-
-  #footer .baloon > header {
+  #footer .baloon__header {
     padding: 1rem;
     gap: 2rem;
     font-size: 0.9rem;
   }
 
-  #footer .baloon > textarea {
+  #footer .baloon__textarea {
     padding: 1.5rem 1.2rem;
     font-size: 1.6rem;
+    border-radius: 0.6rem;
   }
 
-  #footer .baloon > textarea::placeholder {
+  #footer .baloon__textarea::placeholder {
     font-size: 1.7rem;
+  }
+
+  #footer .logo__img {
+    height: 30px;
   }
 }
 
@@ -401,116 +357,99 @@
     padding: 1.2rem;
   }
 
-  #footer .icon > img {
+  #footer .square__img {
     height: 30px;
   }
 
-  #footer .link > img {
-    height: 30px;
-  }
-
-  #footer section > div {
+  #footer .footer__div--mobile {
     gap: 0.6rem;
   }
 
-  #footer .icon > aside {
+  #footer .baloon {
     padding: 0.8rem;
     width: 250px;
     height: 260px;
     gap: 0.8rem;
   }
 
-  #footer .baloon > header {
+  #footer .baloon__header {
     padding: 1rem;
     gap: 2rem;
   }
 
-  #footer .baloon > textarea {
+  #footer .baloon__textarea {
     padding: 1.2rem 1rem;
     font-size: 1.4rem;
   }
 
-  #footer .baloon > textarea::placeholder {
+  #footer .baloon__textarea::placeholder {
     font-size: 1.3rem;
+  }
+
+  #footer .logo__img {
+    height: 30px;
   }
 }
 
 @media screen and (max-width: 350px) {
-  #footer > section {
+  #footer .footer__content {
     gap: 0.5rem;
   }
 
-  #footer .baloon > header {
+  #footer .baloon__textarea {
     border-radius: 0.5rem;
   }
 
-  #footer .baloon > textarea {
-    border-radius: 0.5rem;
-  }
-
-  #footer .icon > aside {
+  #footer .baloon {
     padding: 0.8rem;
     width: 200px;
     height: 220px;
     gap: 0.8rem;
   }
 
-  #footer .baloon > header {
+  #footer .baloon__header {
     padding: 1rem;
     gap: 2rem;
     font-size: 0.7rem;
+    border-radius: 0.5rem;
+
   }
 
-  #footer .baloon > textarea {
+  #footer .baloon__textarea {
     padding: 1.2rem 0.7rem;
     font-size: 1.2rem;
   }
 
-  #footer .baloon > textarea::placeholder {
+  #footer .baloon__textarea::placeholder {
     font-size: 1.1rem;
   }
 }
 
 @media screen and (max-width: 330px) {
-  #footer .icon > img {
-    height: 24px;
-  }
-
-  #footer .link > img {
-    height: 24px;
-  }
-
-  #footer section > span {
+  #footer .container__text {
     font-size: 0.4rem;
   }
 
-  #footer .icon > aside {
+  #footer .square__img {
+    height: 24px;
+  }
+
+  #footer .baloon {
     left: -62%;
     bottom: 170%;
+  }
+
+  #footer .logo__img {
+    height: 24px;
   }
 }
 
 @media screen and (max-width: 276px) {
-  #footer section > section:nth-child(1) {
-    margin-right: 0;
-  }
-
-  #footer section > section:nth-child(2) {
-    margin-left: 0;
-  }
-
-  #footer div > section:nth-child(1) {
-    margin-right: 0;
-  }
-
-  #footer div > section:nth-child(2) {
-    margin-left: 0;
-  }
-
-  #footer .icon > aside {
+  #footer .baloon {
     left: -383%;
   }
-  #footer aside > .baloon:after {
+
+  #footer .baloon__content:after {
     margin-left: -10px;
   }
 }

@@ -1,54 +1,23 @@
 import { Link } from "react-router-dom";
 import "./NavColumn.css";
-import { useEffect, useRef, useState } from "react";
-
+import { useState } from "react";
+import Dialog from "../Dialog/Dialog";
 interface NavColumnProps {
   navOptions: Array<string>;
   isMobile: boolean;
-  isColumnOpen: boolean;
-  backgroundColor: string;
-  columnWidth?: string;
 }
 
 export default function NavColumn({
   navOptions,
   isMobile,
-  isColumnOpen,
-  backgroundColor,
-  columnWidth
 }: NavColumnProps) {
+
   const [isWorkAndStandsColumnOpen, setIsWorkAndStandsColumnOpen] =
     useState<boolean>(false);
   const [isEventColumnOpen, setIsEventColumnOpen] = useState<boolean>(false);
   const [isUserColumnOpen, setIsUserColumnOpen] = useState<boolean>(false);
   const [isSystemColumnOpen, setIsSystemColumnOpen] = useState<boolean>(false);
   const [isMenuColumnOpen, setIsMenuColumnOpen] = useState<boolean>(false);
-
-  const refWorkAndStandsColumn = useRef<HTMLLIElement>(null);
-  const refEventColumn = useRef<HTMLLIElement>(null);
-  const refUserColumn = useRef<HTMLLIElement>(null);
-  const refSystemColumn = useRef<HTMLLIElement>(null);
-  const refMenuColumn = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (refWorkAndStandsColumn.current && !refWorkAndStandsColumn.current.contains(e.target as Node)) {
-        setIsWorkAndStandsColumnOpen(false);
-      }
-      if (refUserColumn.current && !refUserColumn.current.contains(e.target as Node)) {
-        setIsUserColumnOpen(false);
-      }
-      if (refSystemColumn.current && !refSystemColumn.current.contains(e.target as Node)) {
-        setIsSystemColumnOpen(false);
-      }
-      if (refEventColumn.current && !refEventColumn.current.contains(e.target as Node)) {
-        setIsEventColumnOpen(false);
-      }
-      if (refMenuColumn.current && !refMenuColumn.current.contains(e.target as Node)) {
-        setIsMenuColumnOpen(false);
-      }
-    });
-  }, []);
 
   const mobileNavOptions = [
     [],
@@ -93,10 +62,10 @@ export default function NavColumn({
   ];
 
   const changeMobileStateOptions = [
-    null,
-    null,
+    undefined,
+    undefined,
     setIsWorkAndStandsColumnOpen,
-    null,
+    undefined,
     setIsEventColumnOpen,
     setIsUserColumnOpen,
     setIsSystemColumnOpen,
@@ -104,54 +73,43 @@ export default function NavColumn({
   ];
 
   return (
-    <>
-      {isColumnOpen ? (
-        <div id="navColumn" style={{ backgroundColor: backgroundColor, width: columnWidth == undefined ? "100%" : columnWidth }}>
-          {isMobile
-            ? navOptions.map((e, index) => {
-              return (
-                <>
-                  <Link
-                    onClick={(event) => {
-                      event.preventDefault();
-                      changeMobileStateOptions.map((e, i) => {
-                        e != null ? e(false) : {};
-                        if (i == index) {
-                          e != null ? e!(!mobileStateOptions![index]) : {};
-                        }
-                      });
-                    }
-                    }
-                    className="link"
-                    to={""}
-                  >
-                    <span>{e}</span>
-                  </Link>
-                  <div className="floatingColumn">
-                    <NavColumn
-                      columnWidth={"150px"}
-                      backgroundColor="var(--medium-light-blue)"
-                      isMobile={false}
-                      isColumnOpen={
-                        mobileStateOptions[index] != null
-                          ? mobileStateOptions![index]
-                          : false
-                      }
-                      navOptions={mobileNavOptions[index]}
-                    />
-                  </div>
-                </>
-              );
-            })
-            : navOptions.map((e) => {
-              return (
-                <Link className="link" to={""} onClick={(event) => event.preventDefault()}>
-                  <span>{e}</span>
-                </Link>
-              );
-            })}
-        </div>
-      ) : null}
-    </>
+    <div id="nav_column">
+      {isMobile
+        ? navOptions.map((e, navOptionIndex) => {
+          return (
+            <Dialog key={navOptionIndex} setOpen={changeMobileStateOptions[navOptionIndex]} className="option">
+              <div onClick={(event) => {
+                event.preventDefault();
+                changeMobileStateOptions.map((changeState, changeStateIndex) => {
+                  if (changeStateIndex == navOptionIndex) {
+                    changeState != null && changeState!(!mobileStateOptions![navOptionIndex]);
+                  }
+                });
+              }}
+                className="option__button"
+              >
+                <span className="option__title">{e}</span>
+              </div>
+              {mobileStateOptions[navOptionIndex] &&
+                <div className="nav_column--secondary">
+                  {mobileNavOptions[navOptionIndex].map((e, index) => {
+                    return (
+                      <Link key={index} className="option option--secondary" to={""} onClick={(event) => event.preventDefault()}>
+                        <span className="option__title">{e}</span>
+                      </Link>
+                    );
+                  })}
+                </div>}
+            </Dialog>
+          );
+        })
+        : navOptions.map((e, index) => {
+          return (
+            <Link key={index} className="option" to={""} onClick={(event) => event.preventDefault()}>
+              <span className="option__title">{e}</span>
+            </Link>
+          );
+        })}
+    </div >
   );
 }

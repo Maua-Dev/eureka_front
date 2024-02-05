@@ -8,7 +8,8 @@ import calendarIcon from "../../../assets/calendar_icon.svg";
 import menuIcon from "../../../assets/menu_icon.svg";
 import { Link } from "react-router-dom";
 import NavColumn from "../NavColumn/NavColumn";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import Dialog from "../Dialog/Dialog";
 
 export default function Header() {
   const [isWorkAndStandsColumnOpen, setIsWorkAndStandsColumnOpen] =
@@ -25,160 +26,99 @@ export default function Header() {
   const [isQuestionMobileDialogOpen, setIsQuestionMobileDialogOpen] =
     useState<boolean>(false);
 
-  const refWorkAndStandsColumn = useRef<HTMLLIElement>(null);
-  const refEventColumn = useRef<HTMLLIElement>(null);
-  const refUserColumn = useRef<HTMLLIElement>(null);
-  const refSystemColumn = useRef<HTMLLIElement>(null);
-  const refMenuColumn = useRef<HTMLButtonElement>(null);
-  const refUserDialog = useRef<HTMLAnchorElement>(null);
-  const refQuestionDialog = useRef<HTMLAnchorElement>(null);
-  const refUserMobileDialog = useRef<HTMLAnchorElement>(null);
-  const refQuestionMobileDialog = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (refWorkAndStandsColumn.current && !refWorkAndStandsColumn.current.contains(e.target as Node)) {
-        setIsWorkAndStandsColumnOpen(false);
-      }
-      if (refUserColumn.current && !refUserColumn.current.contains(e.target as Node)) {
-        setIsUserColumnOpen(false);
-      }
-      if (refSystemColumn.current && !refSystemColumn.current.contains(e.target as Node)) {
-        setIsSystemColumnOpen(false);
-      }
-      if (refEventColumn.current && !refEventColumn.current.contains(e.target as Node)) {
-        setIsEventColumnOpen(false);
-      }
-      if (refMenuColumn.current && !refMenuColumn.current.contains(e.target as Node)) {
-        setIsMenuColumnOpen(false);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (refUserDialog.current && !refUserDialog.current.contains(e.target as Node)) {
-        setIsUserDialogOpen(false);
-      }
-      if (refQuestionDialog.current && !refQuestionDialog.current.contains(e.target as Node)) {
-        setIsQuestionDialogOpen(false);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (refUserMobileDialog.current && !refUserMobileDialog.current.contains(e.target as Node)) {
-        setIsUserMobileDialogOpen(false);
-      }
-      if (refQuestionMobileDialog.current && !refQuestionMobileDialog.current.contains(e.target as Node)) {
-        setIsQuestionMobileDialogOpen(false);
-      }
-    });
-  }, []);
-
   return (
-    <>
-      <header id="header">
-        <div>
+    <header id="header">
+      <div className="header--top">
+        <div className="container--left">
           <Link className="logo" to={""} >
-            <img src={mauaLogo} alt="Logo do Instituto Mauá de Tecnologia" />
+            <img className="logo__img" src={mauaLogo} alt="Logo do Instituto Mauá de Tecnologia" />
           </Link>
-
-          <Link className="logo" to={""}>
-            <img src={eurekaLogo} alt="Logo da Eureka 2024" />
+          <Link className="logo logo--margin" to={""}>
+            <img className="logo__img logo__img--bigger" src={eurekaLogo} alt="Logo da Eureka 2024" />
           </Link>
         </div>
-        <aside>
-          <Link ref={refUserDialog} className="link" to={""} onClick={(event) => event.preventDefault()}>
+        <aside className="container--right">
+          <Dialog setOpen={setIsUserDialogOpen} className="square square--user">
             <img
+              className="square__img"
               onClick={() => setIsUserDialogOpen(!isUserDialogOpen)}
               src={profileIcon}
               alt="Ícone de perfil"
-              className="profile"
             />
-            {isUserDialogOpen ? (
-              <section>
-                <div>
-                  <h1>Isabella Augusta Rodrigues</h1>
-                  <p>RA: 22.01190-0</p>
-                  <Link className="button" to={""}>
-                    Sair
-                  </Link>
-                </div>
-              </section>
-            ) : null}
-          </Link>
-          <Link ref={refQuestionDialog} className="link" to={""} onClick={(event) => event.preventDefault()}>
+            {isUserDialogOpen && <section className="baloon baloon--user">
+              <div className="baloon__content">
+                <h1 className="baloon__title baloon__title--margin">Isabella Augusta Rodrigues</h1>
+                <p className="baloon__text">RA: 22.01190-0</p>
+                <Link className="baloon__btn" to={""}>
+                  Sair
+                </Link>
+              </div>
+            </section>}
+          </Dialog>
+          <Dialog setOpen={setIsQuestionDialogOpen} className="square" to={""}>
             <img
+              className="square__img"
               onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)}
               src={questionIcon}
               alt="Ícone de interrogação"
             />
-            {isQuestionDialogOpen ? (
-              <section>
-                <div>
-                  <Link className="questionTitle" to={""} onClick={(event) => event.preventDefault()}>
-                    Ajuda
-                  </Link>
-                  <Link className="questionTitle" to={""} onClick={(event) => event.preventDefault()}>
-                    Conheça o sistema
-                  </Link>
-                </div>
-              </section>
-            ) : null}
+            {isQuestionDialogOpen && <section className="baloon baloon--question">
+              <div className="baloon__content baloon__content--question">
+                <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
+                  Ajuda
+                </Link>
+                <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
+                  Conheça o sistema
+                </Link>
+              </div>
+            </section>}
+          </Dialog>
+          <Link className="square" to={""} onClick={(event) => event.preventDefault()}>
+            <img className="square__img" src={messageIcon} alt="Ícone de mensagens" />
           </Link>
-          <Link className="link" to={""} onClick={(event) => event.preventDefault()}>
-            <img src={messageIcon} alt="Ícone de mensagens" />
-          </Link>
-          <Link className="link" to={""} onClick={(event) => event.preventDefault()}>
-            <img src={calendarIcon} alt="ìcone de calendário" />
+          <Link className="square square--calendar" to={""} onClick={(event) => event.preventDefault()}>
+            <img className="square__img square__img--calendar" src={calendarIcon} alt="ìcone de calendário" />
           </Link>
         </aside>
-      </header>
-      <nav id="headerNav">
-        <ul>
-          <li>
-            <button className="navigator">Meus trabalhos e estandes</button>
+      </div>
+      <nav className="header--botton">
+        <ul className="nav">
+          <li className="nav__item">
+            <div className="nav__btn">Meus trabalhos e estandes</div>
           </li>
-          <li>
-            <button className="navigator">Downloads</button>
+          <li className="nav__item">
+            <div className="nav__btn">Downloads</div>
           </li>
-          <li ref={refWorkAndStandsColumn}>
-            <button
+          <Dialog setOpen={setIsWorkAndStandsColumnOpen} className="nav__item">
+            <div
               onClick={() =>
                 setIsWorkAndStandsColumnOpen(!isWorkAndStandsColumnOpen)
               }
-              className="navigator"
+              className="nav__btn"
             >
               Trabalhos e estandes
-            </button>
-
-            <NavColumn
-              backgroundColor="var(--dark-blue)"
+            </div>
+            {isWorkAndStandsColumnOpen && <NavColumn
               isMobile={false}
-              isColumnOpen={isWorkAndStandsColumnOpen}
               navOptions={[
                 "Cadastrar",
                 "Cadastrar múltiplos",
                 "Consultar",
                 "Estandes institucionais",
               ]}
-            />
+            />}
+          </Dialog>
+          <li className="nav__item">
+            <div className="nav__btn">Relatórios</div>
           </li>
-          <li>
-            <button className="navigator">Relatórios</button>
-          </li>
-          <li ref={refEventColumn}>
-            <button
+          <Dialog setOpen={setIsEventColumnOpen} className="nav__item">
+            <div
               onClick={() => setIsEventColumnOpen(!isEventColumnOpen)}
-              className="navigator"
+              className="nav__btn"
             >
               Evento
-            </button>
-            <NavColumn
-              backgroundColor="var(--dark-blue)"
-              isColumnOpen={isEventColumnOpen}
+            </div>
+            {isEventColumnOpen && <NavColumn
               isMobile={false}
               navOptions={[
                 "Autorizar entrada",
@@ -188,18 +128,16 @@ export default function Header() {
                 "Número de estandes",
                 "Textos para correção",
               ]}
-            />
-          </li>
-          <li ref={refUserColumn}>
-            <button
+            />}
+          </Dialog>
+          <Dialog setOpen={setIsUserColumnOpen} className="nav__item">
+            <div
               onClick={() => setIsUserColumnOpen(!isUserColumnOpen)}
-              className="navigator"
+              className="nav__btn"
             >
               Usuários
-            </button>
-            <NavColumn
-              backgroundColor="var(--dark-blue)"
-              isColumnOpen={isUserColumnOpen}
+            </div>
+            {isUserColumnOpen && <NavColumn
               isMobile={false}
               navOptions={[
                 "Cadastrar",
@@ -207,20 +145,17 @@ export default function Header() {
                 "Consultar",
                 "Desativar",
               ]}
-            />
-          </li>
-
-          <li ref={refSystemColumn}>
-            <button
+            />}
+          </Dialog>
+          <Dialog setOpen={setIsSystemColumnOpen} className="nav__item">
+            <div
               onClick={() => setIsSystemColumnOpen(!isSystemColumnOpen)}
-              className="navigator"
+              className="nav__btn"
             >
               {" "}
               Sistema
-            </button>
-            <NavColumn
-              backgroundColor="var(--dark-blue)"
-              isColumnOpen={isSystemColumnOpen}
+            </div>
+            {isSystemColumnOpen && <NavColumn
               isMobile={false}
               navOptions={[
                 "Alterar ano de visualização",
@@ -232,65 +167,61 @@ export default function Header() {
                 "Log de usuários",
                 "Log de trabalhos",
               ]}
-            />
-          </li>
+            />}
+          </Dialog>
         </ul>
-        <aside>
-          <Link to={""} ref={refUserMobileDialog} className="link" onClick={(event) => event.preventDefault()}>
+        <aside className="squares">
+          <Dialog setOpen={setIsUserMobileDialogOpen} className="square square--user">
             <img
+              className="square__img"
               onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)}
               src={profileIcon}
               alt="Ícone de perfil"
             />
-            {isUserMobileDialogOpen ? (
-              <section>
-                <div>
-                  <h1>Isabella Augusta Rodrigues</h1>
-                  <p>RA: 22.01190-0</p>
-                  <Link className="button" to={""} onClick={(event) => event.preventDefault()}>
-                    Sair
-                  </Link>
-                </div>
-              </section>
-            ) : null}
-          </Link>
-          <Link to={""} ref={refQuestionMobileDialog} className="link" onClick={(event) => event.preventDefault()}>
+            {isUserMobileDialogOpen && <section className="baloon baloon--user">
+              <div className="baloon__content">
+                <h1 className="baloon__title baloon__title--margin">Isabella Augusta Rodrigues</h1>
+                <p className="baloon__text">RA: 22.01190-0</p>
+                <Link className="baloon__btn" to={""} onClick={(event) => event.preventDefault()}>
+                  Sair
+                </Link>
+              </div>
+            </section>}
+          </Dialog>
+          <Dialog setOpen={setIsQuestionMobileDialogOpen} className="square" >
             <img
+              className="square__img"
               onClick={() =>
                 setIsQuestionMobileDialogOpen(!isQuestionMobileDialogOpen)
               }
               src={questionIcon}
               alt="Ícone de interrogação"
             />
-            {isQuestionMobileDialogOpen ? (
-              <section>
-                <div>
-                  <Link className="questionTitle" to={""} onClick={(event) => event.preventDefault()}>
-                    Ajuda
-                  </Link>
-                  <Link className="questionTitle" to={""} onClick={(event) => event.preventDefault()}>
-                    Conheça o sistema
-                  </Link>
-                </div>
-              </section>
-            ) : null}
+            {isQuestionMobileDialogOpen && <section className="baloon baloon--question">
+              <div className="baloon__content baloon__content--question">
+                <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
+                  Ajuda
+                </Link>
+                <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
+                  Conheça o sistema
+                </Link>
+              </div>
+            </section>}
+          </Dialog>
+          <Link to={""} className="square" onClick={(event) => event.preventDefault()}>
+            <img className="square__img" src={messageIcon} alt="Ícone de mensagens" />
           </Link>
-          <button className="link">
-            <img src={messageIcon} alt="Ícone de mensagens" />
-          </button>
-          <button className="link">
-            <img src={calendarIcon} alt="ìcone de calendário" />
-          </button>
-
-          <button className="link" ref={refMenuColumn}>
+          <Link to={""} className="square square--calendar" onClick={(event) => event.preventDefault()}>
+            <img className="square__img square__img--calendar" src={calendarIcon} alt="ìcone de calendário" />
+          </Link>
+          <Dialog className="menu" setOpen={setIsMenuColumnOpen}>
             <img
+              className="menu__img"
               onClick={() => setIsMenuColumnOpen(!isMenuColumnOpen)}
               src={menuIcon}
               alt="ìcone de menu"
             />
-            <NavColumn
-              backgroundColor="var(--dark-blue)"
-              isColumnOpen={isMenuColumnOpen}
+            {isMenuColumnOpen && <NavColumn
               isMobile={true}
               navOptions={[
                 "Meus trabalhos e estandes",
@@ -301,10 +232,10 @@ export default function Header() {
                 "Usuários",
                 "Sistema",
               ]}
-            />
-          </button>
+            />}
+          </Dialog>
         </aside>
       </nav>
-    </>
+    </header>
   );
 }

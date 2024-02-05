@@ -2,7 +2,8 @@ import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import workingImage from "../../../assets/working_image.jpg";
 import arrowIcon from "../../../assets/arrow_icon.png";
 import "./Home.css";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import Dialog from "../../components/Dialog/Dialog";
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -10,48 +11,43 @@ export default function Home() {
     "Visualizar trabalhos como"
   );
 
-  const refDropdown = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (refDropdown.current && !refDropdown.current.contains(e.target as Node)) {
-        setIsDropdownOpen(false);
-      }
-    });
-  }, []);
-
   return (
     <>
       <main id="home">
-        <div>
-          <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            ref={refDropdown}
-          >
-            <p>{dropdownText}</p>
-            <img
-              src={arrowIcon}
-              style={isDropdownOpen ? { transform: "scale(1, -1)" } : {}}
-              alt="Ícone de flecha"
-            />
-            {isDropdownOpen ? <section>
-              <div
-                onClick={(event) => {
-                  setDropdownText(event.currentTarget.innerHTML);
-                }}
-              >
-                Professor orientador
-              </div>
-              <div
-                onClick={(event) => {
-                  setDropdownText(event.currentTarget.innerHTML);
-                }}
-              >
-                Professor responsável
-              </div>
-            </section> : null}
+        <div className="container">
+          <Dialog setOpen={setIsDropdownOpen} className="dropdown">
+            <button
+              className="dropdown__button"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <p className="dropdown__text">{dropdownText}</p>
+              <img
+                className="dropdown__icon"
+                src={arrowIcon}
+                style={isDropdownOpen ? { transform: "scale(1, -1)" } : {}}
+                alt="Ícone de flecha"
+              />
+              {isDropdownOpen && <section className="dropdown__options">
+                <div
+                  className="option"
+                  onClick={(event) => {
+                    setDropdownText(event.currentTarget.innerHTML);
+                  }}
+                >
+                  Professor orientador
+                </div>
+                <div
+                  className="option"
+                  onClick={(event) => {
+                    setDropdownText(event.currentTarget.innerHTML);
+                  }}
+                >
+                  Professor responsável
+                </div>
+              </section>}
 
-          </button>
+            </button>
+          </Dialog>
         </div>
         <ProjectCard
           image={workingImage}
@@ -69,7 +65,7 @@ export default function Home() {
           teacherAdvisor="Ana Paula"
           title="DSG - Design universal aplicado em embalagem de protetor solar"
         />
-      </main>
+      </main >
     </>
   );
 }

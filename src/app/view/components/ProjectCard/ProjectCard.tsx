@@ -14,32 +14,35 @@ export default function ProjectCard({
   teacherAdvisor,
   newDeliveries,
 }: ProjectCardProps) {
+
+  const hasNewDeliveries = newDeliveries != null;
+
   return (
-    <Link id="card" to={"/project"}>
+    <Link id="project_card" to={"/project"}>
       <div
-        className="image"
+        className="project_card__img"
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
         }}
       />
-      <aside>
-        <h1>{title}</h1>
-        <p>Prof.ª orientador: {teacherAdvisor}</p>
+      <aside className="infos">
+        <h1 className="infos__title">{title}</h1>
+        <p className="infos__teacher">Prof.ª orientador: {teacherAdvisor}</p>
       </aside>
-      {newDeliveries != null ? <div className="circle"></div> : null}
-      {newDeliveries != null ?
+      {hasNewDeliveries && <div className="circle"></div>}
+      {hasNewDeliveries &&
         <div className="deliveries">
-          <h1>Nova entrega em:</h1>
+          <h1 className="deliveries__text">Nova entrega em:</h1>
           {newDeliveries.map((delivery, index) => (
-            index <= 3 ?
-              <div key={index} className="delivery">
-                <span >{delivery}</span>
-              </div> : null
+            index <= 3 &&
+            <div key={index} className="delivery">
+              <span className="deliveries__text deliveries__text--lighter">{delivery}</span>
+            </div>
           ))}
-          {newDeliveries.length > 4 ? <span>...</span> : null}
+          {newDeliveries.length > 4 && <span className="deliveries__text deliveries__text--lighter">...</span>}
         </div>
-        : null}
+      }
     </Link>
   );
 }
