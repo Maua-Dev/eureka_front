@@ -1,7 +1,14 @@
 import { RESPONSIBLE } from "../enums/responsible_enum";
 import { EntityError } from "../helpers/errors/domain_error";
 
-export type TaskProps = {
+type TaskProps = {
+    taskId: number;
+    title: string;
+    deliveryDate: Date;
+    responsible: RESPONSIBLE;
+}
+
+type TaskJsonProps = {
     task_id: number;
     title: string;
     delivery_date: Date;
@@ -9,26 +16,26 @@ export type TaskProps = {
 }
 
 export class Task {
-    private _task_id: number;
+    private _taskId: number;
     private _title: string;
-    private _delivery_date: Date;
+    private _deliveryDate: Date;
     private _responsible: RESPONSIBLE;
 
     constructor(props: TaskProps) {
-            if(!Task.validateTaskId(props.task_id)){
-                throw new EntityError("task_id");
+            if(!Task.validateTaskId(props.taskId)){
+                throw new EntityError("taskId");
             }
-            this._task_id = props.task_id;
+            this._taskId = props.taskId;
 
             if(!Task.validateTitle(props.title)){
                 throw new EntityError("title");
             }
             this._title = props.title;
             
-            if(!Task.validateDeliveryDate(props.delivery_date)){
-                throw new EntityError("delivery_date");
+            if(!Task.validateDeliveryDate(props.deliveryDate)){
+                throw new EntityError("deliveryDate");
             }
-            this._delivery_date = props.delivery_date;
+            this._deliveryDate = props.deliveryDate;
 
             if(!Task.validateResponsible(props.responsible)){
                 throw new EntityError("responsible");
@@ -36,12 +43,12 @@ export class Task {
             this._responsible = props.responsible;
         }
 
-    get task_id() : number {
-        return this._task_id;
+    get taskId() : number {
+        return this._taskId;
     }
 
-    set task_id(task_id: number) {
-        this._task_id = task_id;
+    set taskId(taskId: number) {
+        this._taskId = taskId;
     }
 
     get title() : string {
@@ -52,12 +59,12 @@ export class Task {
         this._title = title;
     }
 
-    get delivery_date() : Date {
-        return this._delivery_date;
+    get deliveryDate() : Date {
+        return this._deliveryDate;
     }
 
-    set delivery_date(delivery_date: Date) {
-        this._delivery_date = delivery_date;
+    set deliveryDate(deliveryDate: Date) {
+        this._deliveryDate = deliveryDate;
     }
 
     get responsible() : RESPONSIBLE {
@@ -68,28 +75,28 @@ export class Task {
         this._responsible = responsible;
     }
 
-    toJson() : TaskProps {
+    toJson() : TaskJsonProps {
         return {
-            "task_id": this._task_id,
+            "task_id": this._taskId,
             "title": this._title,
-            "delivery_date": this._delivery_date,
+            "delivery_date": this._deliveryDate,
             "responsible": this._responsible
         };
     }
 
-    fromJson(json: TaskProps): Task {
+    fromJson(json: TaskJsonProps): Task {
         return new Task(
             {
-                task_id: json.task_id,
+                taskId: json.task_id,
                 title: json.title,
-                delivery_date: json.delivery_date,
+                deliveryDate: json.delivery_date,
                 responsible: json.responsible
             }
         );
     }
 
-    static validateTaskId(task_id: number) : boolean{
-        if(task_id == null){
+    static validateTaskId(taskId: number) : boolean{
+        if(taskId == null){
             return false;
         }
         return true;
@@ -102,8 +109,8 @@ export class Task {
         return true;
     }
 
-    static validateDeliveryDate(delivery_date: Date) : boolean{
-        if(delivery_date == null){
+    static validateDeliveryDate(deliveryDate: Date) : boolean{
+        if(deliveryDate == null){
             return false;
         }
         return true;
