@@ -1,6 +1,6 @@
 import "./Project.css";
-import arrowBackIcon from "../../../assets/arrow_back_icon.svg";
-import checkIcon from "../../../assets/check_icon.svg";
+import arrowBackIcon from "../../../assets/arrow-back-icon.svg";
+import checkIcon from "../../../assets/check-icon.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 

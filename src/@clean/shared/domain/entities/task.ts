@@ -1,5 +1,5 @@
-import { RESPONSIBLE } from "../enums/responsible_enum";
-import { EntityError } from "../helpers/errors/domain_error";
+import { RESPONSIBLE } from "../enums/responsible-enum";
+import { EntityError } from "../helpers/errors/domain-errors";
 
 type TaskProps = {
     taskId: number;

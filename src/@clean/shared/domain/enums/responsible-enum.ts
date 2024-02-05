@@ -4,7 +4,7 @@ export enum RESPONSIBLE {
     RESPONSIBLE
 }
 
-export function toEnum(value: string): RESPONSIBLE {
+export function responsibleToEnum(value: string): RESPONSIBLE {
     switch (value) {
         case "STUDENT":
             return RESPONSIBLE.STUDENT;

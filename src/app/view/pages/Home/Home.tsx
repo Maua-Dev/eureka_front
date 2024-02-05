@@ -1,6 +1,6 @@
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
-import workingImage from "../../../assets/working_image.jpg";
-import arrowIcon from "../../../assets/arrow_icon.png";
+import workingImage from "../../../assets/working-image.jpg";
+import arrowIcon from "../../../assets/arrow-icon.png";
 import "./Home.css";
 import { useState } from "react";
 import Dialog from "../../components/Dialog/Dialog";

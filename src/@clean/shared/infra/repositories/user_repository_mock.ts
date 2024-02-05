@@ -3,41 +3,39 @@ import { IUserRepository } from "./../../../../@clean/modules/user/domain/reposi
 import { User } from "../../domain/entities/user";
 import { STATE } from "../../domain/enums/state_enum";
 import { decorate, injectable } from "inversify";
-import { NoItemsFoundError } from "../../domain/helpers/errors/domain_error";
-
+import { NoItemsFoundError } from "../../domain/helpers/errors/domain-errors";
 
 export class UserRepositoryMock implements IUserRepository {
-
 
     private users: User[] = [
         new User({
             id: 1,
-            name: 'Toledo',
-            email: 'rodrigo.devcommunity@gmail.com',
+            name: "Toledo",
+            email: "rodrigo.devcommunity@gmail.com",
             state: STATE.PENDING
         }),
         new User({
             id: 2,
-            name: 'Zeeba',
-            email: 'zeeba.devcommunity@gmail.com',
+            name: "Zeeba",
+            email: "zeeba.devcommunity@gmail.com",
             state: STATE.PENDING
         }),
         new User({
             id: 3,
-            name: 'Enricao',
-            email: 'enrico.devcommunity@gmail.com',
+            name: "Enricao",
+            email: "enrico.devcommunity@gmail.com",
             state: STATE.PENDING
         }),
         new User({
             id: 4,
-            name: 'Ludjas',
-            email: 'luigi.devcommunity@gmail.com',
+            name: "Ludjas",
+            email: "luigi.devcommunity@gmail.com",
             state: STATE.PENDING
         }),
         new User({
             id: 5,
-            name: 'Coordenas',
-            email: 'coordenas.devcommunity@gmail.com',
+            name: "Coordenas",
+            email: "coordenas.devcommunity@gmail.com",
             state: STATE.PENDING
         }),
     ];
