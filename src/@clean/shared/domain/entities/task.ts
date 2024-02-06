@@ -1,25 +1,25 @@
-import { RESPONSIBLE } from "../enums/responsible-enum";
+import { ROLE, roleToEnum } from "../enums/role-enum";
 import { EntityError } from "../helpers/errors/domain-errors";
 
 type TaskProps = {
     taskId: number;
     title: string;
     deliveryDate: Date;
-    responsible: RESPONSIBLE;
+    responsible: ROLE;
 }
 
-type TaskJsonProps = {
+export type TaskJsonProps = {
     task_id: number;
     title: string;
-    delivery_date: Date;
-    responsible: RESPONSIBLE;
+    delivery_date: string;
+    responsible: string;
 }
 
 export class Task {
     private _taskId: number;
     private _title: string;
     private _deliveryDate: Date;
-    private _responsible: RESPONSIBLE;
+    private _responsible: ROLE;
 
     constructor(props: TaskProps) {
             if(!Task.validateTaskId(props.taskId)){
@@ -48,6 +48,9 @@ export class Task {
     }
 
     set taskId(taskId: number) {
+        if(!Task.validateTaskId(taskId)){
+            throw new EntityError("taskId");
+        }
         this._taskId = taskId;
     }
 
@@ -56,6 +59,9 @@ export class Task {
     }
 
     set title(title: string) {
+        if(!Task.validateTitle(title)){
+            throw new EntityError("title");
+        }
         this._title = title;
     }
 
@@ -64,14 +70,20 @@ export class Task {
     }
 
     set deliveryDate(deliveryDate: Date) {
+        if(!Task.validateDeliveryDate(deliveryDate)){
+            throw new EntityError("deliveryDate");
+        }
         this._deliveryDate = deliveryDate;
     }
 
-    get responsible() : RESPONSIBLE {
+    get responsible() : ROLE {
         return this._responsible;
     }
 
-    set responsible(responsible: RESPONSIBLE) {
+    set responsible(responsible: ROLE) {
+        if(!Task.validateResponsible(responsible)){
+            throw new EntityError("responsible");
+        }
         this._responsible = responsible;
     }
 
@@ -79,18 +91,18 @@ export class Task {
         return {
             "task_id": this._taskId,
             "title": this._title,
-            "delivery_date": this._deliveryDate,
-            "responsible": this._responsible
+            "delivery_date": this._deliveryDate.toISOString(),
+            "responsible": ROLE[this._responsible].toString()
         };
     }
 
-    fromJson(json: TaskJsonProps): Task {
+    static fromJson(json: TaskJsonProps): Task {
         return new Task(
             {
                 taskId: json.task_id,
                 title: json.title,
-                deliveryDate: json.delivery_date,
-                responsible: json.responsible
+                deliveryDate: new Date(json.delivery_date),
+                responsible: roleToEnum(json.responsible) 
             }
         );
     }
@@ -99,11 +111,17 @@ export class Task {
         if(taskId == null){
             return false;
         }
+        else if(taskId <= 0){
+            return false;
+        }
         return true;
     }
 
     static validateTitle(title: string) : boolean{
         if(title == null){
+            return false;
+        }
+        else if(title.trim() == ""){
             return false;
         }
         return true;
@@ -116,7 +134,7 @@ export class Task {
         return true;
     }
 
-    static validateResponsible(responsible: RESPONSIBLE) : boolean{
+    static validateResponsible(responsible: ROLE) : boolean{
         if(responsible == null){
             return false;
         }

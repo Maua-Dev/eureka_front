@@ -1,13 +1,13 @@
 import { Task } from "../../@clean/shared/domain/entities/task";
+import { stringToDate } from "../utils/date-formatter";
 import { TaskModel } from "../models/task-model";
-import { formatDate, formatString } from "../utils/date-formatter";
 
 export class TaskAdapter {
     static fromModel(model: TaskModel): Task {
         return new Task({
           taskId: model.taskId,
           title: model.title,
-          deliveryDate: formatString(model.deliveryDate),
+          deliveryDate: stringToDate(model.deliveryDate),
           responsible: model.responsible,
         });
       }
@@ -16,7 +16,7 @@ export class TaskAdapter {
         return new TaskModel({
           taskId: entity.taskId,
           title: entity.title,
-          deliveryDate: formatDate(entity.deliveryDate),
+          deliveryDate: entity.deliveryDate.toLocaleDateString(),
           responsible: entity.responsible,
         });
       }
