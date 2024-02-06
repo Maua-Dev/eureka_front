@@ -1,11 +1,11 @@
 import "./Header.css";
-import mauaLogo from "../../../assets/maua-logo.png";
-import eurekaLogo from "../../../assets/eureka-logo.png";
-import profileIcon from "../../../assets/profile-icon.svg";
-import questionIcon from "../../../assets/question-icon.svg";
-import messageIcon from "../../../assets/message-icon.svg";
-import calendarIcon from "../../../assets/calendar-icon.svg";
-import menuIcon from "../../../assets/menu-icon.svg";
+import mauaLogo from "../../../assets/logos/maua-logo.png";
+import eurekaLogo from "../../../assets/logos/eureka-logo.png";
+import profileIcon from "../../../assets/icons/profile-icon.svg";
+import questionIcon from "../../../assets/icons/question-icon.svg";
+import messageIcon from "../../../assets/icons/message-icon.svg";
+import calendarIcon from "../../../assets/icons/calendar-icon.svg";
+import menuIcon from "../../../assets/icons/menu-icon.svg";
 import { Link } from "react-router-dom";
 import NavColumn from "../NavColumn/NavColumn";
 import { useState } from "react";
