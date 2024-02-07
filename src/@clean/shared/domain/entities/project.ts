@@ -8,7 +8,7 @@ type ProjectProps = {
     qualification: string,
     code: string,
     shift: SHIFT,
-    standNumber: number,
+    standNumber: string,
     isEntrepreneurship: boolean,
     professors: User[],
     students: User[]
@@ -20,7 +20,7 @@ export type ProjectJsonProps = {
     qualification: string,
     code: string,
     shift: string,
-    stand_number: number,
+    stand_number: string,
     is_entrepreneurship: boolean,
     professors: UserJsonProps[],
     students: UserJsonProps[]
@@ -32,7 +32,7 @@ export class Project {
     private _qualification: string;
     private _code: string;
     private _shift: SHIFT;
-    private _standNumber: number;
+    private _standNumber: string;
     private _isEntrepreneurship: boolean;
     private _professors: User[];
     private _students: User[];
@@ -139,11 +139,11 @@ export class Project {
         this._shift = shift;
     }
 
-    get standNumber() : number {
+    get standNumber() : string {
         return this._standNumber;
     }
 
-    set standNumber(standNumber: number) {
+    set standNumber(standNumber: string) {
         if(!Project.validateStandNumber(standNumber)){
             throw new EntityError("standNumber");
         }
@@ -263,11 +263,8 @@ export class Project {
         return true;
     }
 
-    static validateStandNumber(standNumber: number): boolean {
+    static validateStandNumber(standNumber: string): boolean {
         if(standNumber == null) {
-            return false;
-        }
-        else if(standNumber < 0){
             return false;
         }
 
