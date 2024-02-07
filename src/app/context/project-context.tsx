@@ -66,7 +66,7 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
             const projectToCreate = ProjectAdapter.fromModel(projectModelToCreate);
             const createdProject = await createProjectUsecase.execute(projectToCreate);
             const createdProjectModel = ProjectAdapter.toModel(createdProject);
-            setProjects([...projects, createdProjectModel]);
+            setProjects([createdProjectModel]);
         } catch (err) {
             console.log(err);
             showBoundary(err);
@@ -77,7 +77,7 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
         try {
             const projectsCaught = await getProjectsByRoleUsecase.execute(projectId);
             const projectModel = projectsCaught.map(project => ProjectAdapter.toModel(project));
-            setProjects([...projects, ...projectModel]);
+            setProjects([...projectModel]);
         } catch (err) {
             console.log(err);
             showBoundary(err);
