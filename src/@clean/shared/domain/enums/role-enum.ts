@@ -1,3 +1,5 @@
+import { EnumError } from "../helpers/errors/domain-errors";
+
 export enum ROLE {
     STUDENT,
     ADVISOR,
@@ -13,6 +15,6 @@ export function roleToEnum(value: string): ROLE {
         case "RESPONSIBLE":
             return ROLE.RESPONSIBLE;
         default:
-            throw new Error("Invalid value");
+            throw new EnumError(value);
     }
 }

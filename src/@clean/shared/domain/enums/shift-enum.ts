@@ -1,3 +1,5 @@
+import { EnumError } from "../helpers/errors/domain-errors";
+
 export enum SHIFT {
     DAYTIME,
     NIGHTTIME
@@ -10,6 +12,6 @@ export function shiftToEnum(value: string): SHIFT {
         case "NOTURNO":
             return SHIFT.NIGHTTIME;
         default:
-            throw new Error("Invalid value");
+            throw new EnumError(value);
     }
 }

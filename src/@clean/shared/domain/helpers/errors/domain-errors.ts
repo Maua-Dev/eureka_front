@@ -9,3 +9,9 @@ export class NoItemsFoundError extends Error {
         super("No items found for this " + message);
     }
 }
+
+export class EnumError extends Error {
+    constructor(message: string) {
+        super("The " + message + " is not valid");
+    }
+}
