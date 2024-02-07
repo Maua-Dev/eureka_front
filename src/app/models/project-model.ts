@@ -35,4 +35,18 @@ export class ProjectModel {
         this.professors = props.professors;
         this.students = props.students;
     }
+
+    static empty(): ProjectModel {
+        return new ProjectModel({
+            projectId: 0,
+            title: "",
+            qualification: "",
+            code: "",
+            shift: SHIFT.DAYTIME,
+            standNumber: 0,
+            isEntrepreneurship: false,
+            professors: [],
+            students: []
+        });
+    }
 }

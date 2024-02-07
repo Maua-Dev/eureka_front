@@ -19,4 +19,13 @@ export class TaskModel {
         this.deliveryDate = props.deliveryDate;
         this.responsible = props.responsible;
     }
+
+    static empty(): TaskModel {
+        return new TaskModel({
+            taskId: 0,
+            title: "",
+            deliveryDate: "",
+            responsible: ROLE.STUDENT
+        });
+    }
 }

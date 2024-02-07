@@ -27,4 +27,14 @@ export class DeliveryModel {
         this.date = props.date;
         this.content = props.content;
     }
+
+    static empty(): DeliveryModel {
+        return new DeliveryModel({
+            deliveryId: 0,
+            task: TaskModel.empty(),
+            user: UserModel.empty(),
+            date: new Date(),
+            content: {}
+        });
+    }
 }

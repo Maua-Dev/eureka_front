@@ -19,4 +19,13 @@ export class UserModel {
         this.email = props.email;
         this.role = props.role;
     }
+
+    static empty(): UserModel {
+        return new UserModel({
+            userId: 0,
+            name: "",
+            email: "",
+            role: ROLE.STUDENT
+        });
+    }
 }
