@@ -28,7 +28,7 @@ export default function ProjectCard({
       />
       <aside className="infos">
         <h1 className="infos__title">{title}</h1>
-        <p className="infos__teacher">Prof.ª orientador: {teacherAdvisor}</p>
+        <p className="infos__teacher">Prof. orientador: {teacherAdvisor}</p>
       </aside>
       {hasNewDeliveries && <div className="circle"></div>}
       {hasNewDeliveries &&
