@@ -1,8 +1,11 @@
 .circular_loading {
-    width: 20px;
-    height: 20px;
-    border: 5px solid var(--white);
-    border-bottom-color: var(--dark-blue);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--dark-blue);
+    border-bottom-color: var(--light-blue);
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;

@@ -8,6 +8,7 @@ import { shiftToAcronym } from "../../../../@clean/shared/domain/enums/shift-enu
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import { ProjectModel } from "../../../models/project-model";
 import ProjectSkeleton from "./ProjectSkeleton";
+import CircularLoading from "../../components/CircularLoading/CircularLoading";
 
 export default function Project() {
   const [isWorkPotencialYesHovered, setisWorkPotencialYesHovered] =
@@ -17,6 +18,7 @@ export default function Project() {
   const [isEntrepreneurship, setIsEntrepreneurship] = useState(false);
   const [project, setProject] = useState(ProjectModel.empty());
   const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
+  const [isPotencialUpdateLoading, setIsPotencialUpdateLoading] = useState(false);
 
   const { id } = useParams();
   const projectId = parseInt(id!);
@@ -39,6 +41,7 @@ export default function Project() {
 
   return (
     <main className="project">
+      {isPotencialUpdateLoading && <CircularLoading />}
       <Link className="return" to={"/"}>
         <img className="return__icon" src={arrowBackIcon} alt="Ícone de flecha" />
       </Link>
@@ -132,7 +135,13 @@ export default function Project() {
                     )}
                   </div>
                 </div>
-                <button onClick={() => updateProject(projectId, undefined, undefined, undefined, undefined, undefined, isEntrepreneurship)} className="main__btn">Atualizar potencial do trabalho</button>
+                <button onClick={() => {
+                  setIsPotencialUpdateLoading(true);
+                  updateProject(projectId, undefined, undefined, undefined, undefined, undefined, isEntrepreneurship);
+                  setIsPotencialUpdateLoading(false);
+                }} className="main__btn">
+                  <p className="btn__text">Atualizar potencial do trabalho</p>
+                </button>
               </div>
             </div>
           </footer>
