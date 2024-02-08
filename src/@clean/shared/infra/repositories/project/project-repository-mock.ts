@@ -28,6 +28,7 @@ export class ProjectRepositoryMock implements IProjectRepository {
 
     async getProject(projectId: number): Promise<Project> {
         const json = ProjectJson.projectJson.find(project => project.project_id === projectId);
+
         if(json == null){
             throw new NoItemsFoundError("projectId: " + projectId);	
         }
@@ -54,6 +55,7 @@ export class ProjectRepositoryMock implements IProjectRepository {
             }
         }
     );
+    
     if(existingProject == null){
         throw new NoItemsFoundError("projectId: " + projectId);
     }
