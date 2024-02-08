@@ -12,6 +12,7 @@ import { useContext, useState } from "react";
 import Dialog from "../Dialog/Dialog";
 import { AuthContext } from "../../../context/auth-context";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function Header() {
   const [isWorkAndStandsColumnOpen, setIsWorkAndStandsColumnOpen] =
@@ -43,23 +44,25 @@ export default function Header() {
           </Link>
         </div>
         <aside className="container--right">
-          <Dialog setOpen={setIsUserDialogOpen} className="square square--user">
-            <img
-              className="square__img"
-              onClick={() => setIsUserDialogOpen(!isUserDialogOpen)}
-              src={profileIcon}
-              alt="Ícone de perfil"
-            />
-            {isUserDialogOpen && <section className="baloon baloon--user">
-              <div className="baloon__content">
-                <h1 className="baloon__title baloon__title--margin">{user.name}</h1>
-                {user.role == ROLE.STUDENT && <p className="baloon__text">RA: {ra}</p>}
-                <Link className="baloon__btn" to={""}>
-                  Sair
-                </Link>
-              </div>
-            </section>}
-          </Dialog>
+          <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
+            <Dialog setOpen={setIsUserDialogOpen} className="square square--user">
+              <img
+                className="square__img"
+                onClick={() => setIsUserDialogOpen(!isUserDialogOpen)}
+                src={profileIcon}
+                alt="Ícone de perfil"
+              />
+              {isUserDialogOpen && <section className="baloon baloon--user">
+                <div className="baloon__content">
+                  {user.name != undefined ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
+                  {user.role == ROLE.STUDENT && (ra != undefined ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
+                  <Link className="baloon__btn" to={""}>
+                    Sair
+                  </Link>
+                </div>
+              </section>}
+            </Dialog>
+          </SkeletonTheme>
           <Dialog setOpen={setIsQuestionDialogOpen} className="square" to={""}>
             <img
               className="square__img"
@@ -176,23 +179,25 @@ export default function Header() {
           </Dialog>
         </ul>
         <aside className="squares">
-          <Dialog setOpen={setIsUserMobileDialogOpen} className="square square--user">
-            <img
-              className="square__img"
-              onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)}
-              src={profileIcon}
-              alt="Ícone de perfil"
-            />
-            {isUserMobileDialogOpen && <section className="baloon baloon--user">
-              <div className="baloon__content">
-                <h1 className="baloon__title baloon__title--margin">Isabella Augusta Rodrigues</h1>
-                <p className="baloon__text">RA: 22.01190-0</p>
-                <Link className="baloon__btn" to={""} onClick={(event) => event.preventDefault()}>
-                  Sair
-                </Link>
-              </div>
-            </section>}
-          </Dialog>
+          <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
+            <Dialog setOpen={setIsUserMobileDialogOpen} className="square square--user">
+              <img
+                className="square__img"
+                onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)}
+                src={profileIcon}
+                alt="Ícone de perfil"
+              />
+              {isUserMobileDialogOpen && <section className="baloon baloon--user">
+                <div className="baloon__content">
+                  {user.name != undefined ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
+                  {user.role == ROLE.STUDENT && (ra != undefined ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
+                  <Link className="baloon__btn" to={""} onClick={(event) => event.preventDefault()}>
+                    Sair
+                  </Link>
+                </div>
+              </section>}
+            </Dialog>
+          </SkeletonTheme>
           <Dialog setOpen={setIsQuestionMobileDialogOpen} className="square" >
             <img
               className="square__img"

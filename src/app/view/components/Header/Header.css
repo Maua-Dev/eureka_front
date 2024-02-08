@@ -95,6 +95,10 @@
   color: var(--dark-blue);
 }
 
+#header .baloon__title--skeleton {
+  width: 90%;
+}
+
 #header .baloon__title--margin {
   margin-bottom: 1rem;
   margin-top: 2rem;
@@ -105,6 +109,10 @@
   font-weight: 700;
   color: var(--medium-light-blue);
   margin-bottom: 2.5rem;
+}
+
+.baloon__text--skeleton {
+  width: 80%;
 }
 
 #header .baloon__btn {
