@@ -42,26 +42,57 @@ export class UserJson {
         {
             "user_id": 7,
             "name": "MARIA DE FATIMA SILVA",
-            "email": "maria.fatima@maua.br",
+            "email": "21.01444-2@maua.br",
             "role": "STUDENT"
         },
         {
             "user_id": 8,
             "name": "GABRIEL SIQUEIRA NUNES",
-            "email": "gabriel.siqueira@maua.br",
+            "email": "21.01075-7@maua.br",
             "role": "STUDENT"
         },
         {
             "user_id": 9,
             "name": "FERNANDO HENRIQUE LIMA",
-            "email": "fernando.lima@maua.br",
+            "email": "19.00331-5@maua.br",
             "role": "STUDENT"
         },
         {
             "user_id": 10,
             "name": "Enrico Mota Santarelli",
-            "email": "enrico.santarelli@maua.br",
+            "email": "22.00370-3@maua.br",
             "role": "STUDENT"
         },
+        {
+            "user_id": 11,
+            "name": "Fabiola Santiago Bernabeu",
+            "email": "18.34212-4@maua.br",
+            "role": "STUDENT"
+        },
+        {
+            "user_id": 12,
+            "name": "Lázaro Ramos Tadeu",
+            "email": "19.02341-2@maua.br",
+            "role": "STUDENT"
+        },
+        {
+            "user_id": 13,
+            "name": "Denis Pimentinha Nunes",
+            "email": "21.42102-1@maua.br",
+            "role": "STUDENT"
+        },
+        {
+            "user_id": 14,
+            "name": "Larissa Teixeira Tavares",
+            "email": "21.12345-3@maua.br",
+            "role": "STUDENT"
+        },
+        {
+            "user_id": 15,
+            "name": "Alessandro Burgonovo",
+            "email": "22.22223-2@maua.br",
+            "role": "STUDENT"
+        },
+
     ];
 }

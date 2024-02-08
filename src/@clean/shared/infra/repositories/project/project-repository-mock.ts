@@ -41,30 +41,16 @@ export class ProjectRepositoryMock implements IProjectRepository {
         ProjectJson.projectJson.forEach(project => {
             if(project.project_id === projectId){
                 existingProject = Project.fromJson(project);
-                if(newTitle){
-                    project.title = newTitle;
-                }
-                if(newQualification){
-                    project.qualification = newQualification;
-                }
-                if(newCode){
-                    project.code = newCode;
-                }
-                if(newShift){
-                    project.shift = SHIFT[newShift].toString();
-                }
-                if(newStandNumber){
-                    project.stand_number = newStandNumber;
-                }
-                if(newIsEntrepreneurship){
-                    project.is_entrepreneurship = newIsEntrepreneurship;
-                }
-                if(newProfessors){
-                    project.professors = newProfessors.map(professor => professor.toJson());
-                }
-                if(newStudents){
-                    project.students = newStudents.map(student => student.toJson());
-                }
+                
+                if(newTitle !== undefined) project.title = newTitle;      
+                if(newQualification !== undefined) project.qualification = newQualification;         
+                if(newCode !== undefined) project.code = newCode;           
+                if(newShift !== undefined) project.shift = SHIFT[newShift].toString();            
+                if(newStandNumber !== undefined) project.stand_number = newStandNumber;             
+                if(newIsEntrepreneurship !== undefined) project.is_entrepreneurship = newIsEntrepreneurship;                
+                if(newProfessors !== undefined) project.professors = newProfessors.map(professor => professor.toJson());           
+                if(newStudents !== undefined) project.students = newStudents.map(student => student.toJson());
+                
             }
         }
     );

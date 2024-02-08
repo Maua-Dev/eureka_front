@@ -19,7 +19,7 @@ export default function Dialog({ setOpen, children, to, className }: DialogProps
                 setOpen && setOpen(false);
             }
         });
-    });
+    }, []);
 
     return (
         <Link className={className} ref={ref} to={to ?? ""} onClick={(event) => event.preventDefault()}>

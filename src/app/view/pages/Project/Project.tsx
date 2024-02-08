@@ -1,46 +1,57 @@
 import "./Project.css";
 import arrowBackIcon from "../../../assets/icons/arrow-back-icon.svg";
 import checkIcon from "../../../assets/icons/check-icon.svg";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { ProjectContext } from "../../../context/project-context";
+import { shiftToAcronym } from "../../../../@clean/shared/domain/enums/shift-enum";
+import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
+import { ProjectModel } from "../../../models/project-model";
+import ProjectSkeleton from "./ProjectSkeleton";
 
 export default function Project() {
-  const students = [
-    "João José Augusto",
-    "Isabella Augusta Rodrigues Rodrigues",
-    "Isabella Augusta Rodrigues Rodrigues",
-    "Isabella Augusta Rodrigues Rodrigues",
-    "Isabella Augusta Rodrigues Rodrigues",
-    "Isabella Augusta Rodrigues Rodrigues",
-  ];
-
-  const [isWorkPotencialYesSelected, setisWorkPotencialYesSelected] =
-    useState(false);
   const [isWorkPotencialYesHovered, setisWorkPotencialYesHovered] =
-    useState(false);
-  const [isWorkPotencialNoSelected, setisWorkPotencialNoSelected] =
     useState(false);
   const [isWorkPotencialNoHovered, setisWorkPotencialNoHovered] =
     useState(false);
+  const [isEntrepreneurship, setIsEntrepreneurship] = useState(false);
+  const [project, setProject] = useState(ProjectModel.empty());
+
+  const { id } = useParams();
+  const projectId = parseInt(id!);
+  const { getProject, updateProject } = useContext(ProjectContext);
+
+  useEffect(() => {
+    async function fetch() {
+      const projectCaught = await getProject(projectId);
+      if (projectCaught) {
+        setProject(projectCaught);
+        setIsEntrepreneurship(projectCaught.isEntrepreneurship);
+      }
+    }
+
+    fetch();
+  }, []);
 
   return (
-    <main id="project">
+    <main className="project">
       <Link className="return" to={"/"}>
         <img className="return__icon" src={arrowBackIcon} alt="Ícone de flecha" />
       </Link>
       <section className="card card--margin">
         <header className="card__header">
-          DDSGD01 - DESIGN UNIVERSAL APLICADO EM EMBALAGEM DE PROTETOR SOLAR -
-          TESTE
+          <h1 className="header__title header__title--upper">
+            {`${project.code}${shiftToAcronym(project.shift)}${project.standNumber} - ${project.title}`}
+          </h1>
         </header>
         <div className="card__main">
           <div className="subject">
             <h2 className="main__title">Habilitação: </h2>
-            <span className="main__text">Design</span>
+            <span className="main__text">{project.qualification}</span>
           </div>
           <div className="supervisor">
             <h2 className="main__title">Orientador: </h2>
-            <span className="main__text">Ana Paula Scabello Mello</span>
+            <span className="main__text">{project.professors.find((professor) => professor.role === ROLE.ADVISOR)?.name}</span>
           </div>
           <div className="cosupervisor">
             <h2 className="main__title main__title--cosupervisor">Coorientador: </h2>
@@ -50,8 +61,8 @@ export default function Project() {
           <div className="students">
             <h2 className="main__title main__title--students">Alunos: </h2>
             <div className="students__name">
-              {students.map((name, index) => (
-                <span className="main__text main__text--students" key={index}>{name}</span>
+              {project?.students.map((user, index) => (
+                <span className="main__text main__text--students" key={index}>{user.name}</span>
               ))}
             </div>
           </div>
@@ -59,16 +70,16 @@ export default function Project() {
         <footer className="card__footer">
           <div className="code">
             <h2 className="main__title">Código: </h2>
-            <span className="main__text">DSG</span>
+            <span className="main__text">{project.code}</span>
           </div>
           <div className="infos">
             <div className="infos__period">
               <h2 className="main__title">Período: </h2>
-              <span className="main__text">D</span>
+              <span className="main__text">{shiftToAcronym(project.shift)}</span>
             </div>
             <div className="infos__number">
               <h2 className="main__title">Número: </h2>
-              <span className="main__text">01</span>
+              <span className="main__text">{project.standNumber}</span>
             </div>
           </div>
           <div className="potencial">
@@ -79,19 +90,18 @@ export default function Project() {
                 <div
                   className="option__checkbox"
                   onClick={() => {
-                    setisWorkPotencialYesSelected(!isWorkPotencialYesSelected);
-                    setisWorkPotencialNoSelected(false);
                     setisWorkPotencialYesHovered(false);
+                    setIsEntrepreneurship(true);
                   }}
                   onMouseEnter={() => setisWorkPotencialYesHovered(true)}
                   onMouseLeave={() => setisWorkPotencialYesHovered(false)}
                   style={{
-                    backgroundColor: isWorkPotencialYesSelected
+                    backgroundColor: isEntrepreneurship
                       ? "var(--dark-mustard)"
                       : "var(--extra-light-blue)",
                   }}
                 >
-                  {(isWorkPotencialYesSelected || isWorkPotencialYesHovered) && (
+                  {(isEntrepreneurship || isWorkPotencialYesHovered) && (
                     <img className="option__icon" src={checkIcon} alt="Ícone de check" />
                   )}
                 </div>
@@ -101,31 +111,30 @@ export default function Project() {
                 <div
                   className="option__checkbox"
                   onClick={() => {
-                    setisWorkPotencialNoSelected(!isWorkPotencialNoSelected);
-                    setisWorkPotencialYesSelected(false);
                     setisWorkPotencialNoHovered(false);
+                    setIsEntrepreneurship(false);
                   }}
                   onMouseEnter={() => setisWorkPotencialNoHovered(true)}
                   onMouseLeave={() => setisWorkPotencialNoHovered(false)}
                   style={{
-                    backgroundColor: isWorkPotencialNoSelected
+                    backgroundColor: !isEntrepreneurship
                       ? "var(--dark-mustard)"
                       : "var(--extra-light-blue)",
                   }}
                 >
-                  {(isWorkPotencialNoSelected || isWorkPotencialNoHovered) && (
+                  {(!isEntrepreneurship || isWorkPotencialNoHovered) && (
                     <img className="option__icon" src={checkIcon} alt="Ícone de check" />
                   )}
                 </div>
               </div>
-              <button className="main__btn">Atualizar potencial do trabalho</button>
+              <button onClick={() => updateProject(projectId, undefined, undefined, undefined, undefined, undefined, isEntrepreneurship)} className="main__btn">Atualizar potencial do trabalho</button>
             </div>
           </div>
         </footer>
       </section>
       <article className="deliveries">
         <section className="card card--width">
-          <header className="card__header">Informações do trabalho</header>
+          <header className="card__header"><h1 className="header__title">Informações do trabalho</h1></header>
           <div className="grid">
             <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
               <h3 className="grid__title">Alunos</h3>
@@ -274,7 +283,7 @@ export default function Project() {
         </section>
         <aside className="deliveries--right">
           <section className="card">
-            <header className="card__header">Montagem do evento</header>
+            <header className="card__header"><h1 className="header__title">Montagem do evento</h1></header>
             <div className="grid">
               <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
                 <h3 className="grid__title">Alunos</h3>
@@ -366,7 +375,7 @@ export default function Project() {
             </div>
           </section>
           <section className="card card--grow">
-            <header className="card__header">Próximas entregas</header>
+            <header className="card__header"><h1 className="header__title">Próximas entregas</h1></header>
             <div className="card__column">
               <div className="column__element">
                 <h1 className="column__title">17/09/2023 - entrega Mini-Imagem</h1>
@@ -381,6 +390,8 @@ export default function Project() {
           </section>
         </aside>
       </article>
+      <ProjectSkeleton />
+
     </main >
   );
 }

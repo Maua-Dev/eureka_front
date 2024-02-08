@@ -15,3 +15,7 @@ export function shiftToEnum(value: string): SHIFT {
             throw new EnumError(value);
     }
 }
+
+export function shiftToAcronym(value: SHIFT): string {
+    return SHIFT[value].toString().charAt(0);
+}

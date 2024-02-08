@@ -26,6 +26,18 @@ export type ProjectJsonProps = {
     students: UserJsonProps[]
 }
 
+export type ProjectRequestBodyProps = {
+    project_id: number,
+    title?: string,
+    qualification?: string,
+    code?: string,
+    shift?: string,
+    stand_number?: string,
+    is_entrepreneurship?: boolean,
+    professors?: UserJsonProps[],
+    students?: UserJsonProps[]
+}
+
 export class Project {
     private _projectId: number;
     private _title: string;

@@ -1,24 +1,26 @@
 import { Link } from "react-router-dom";
 import "./ProjectCard.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface ProjectCardProps {
   image: string;
   title: string;
-  teacherAdvisor: string;
+  advisor: string;
   newDeliveries?: string[];
+  projectId: number;
 }
 
 export default function ProjectCard({
   image,
   title,
-  teacherAdvisor,
+  advisor,
   newDeliveries,
+  projectId
 }: ProjectCardProps) {
-
   const hasNewDeliveries = newDeliveries != null;
 
   return (
-    <Link id="project_card" to={"/project"}>
+    <Link className="project_card project_card--hover" to={`/project/${projectId}`}>
       <div
         className="project_card__img"
         style={{
@@ -28,7 +30,7 @@ export default function ProjectCard({
       />
       <aside className="infos">
         <h1 className="infos__title">{title}</h1>
-        <p className="infos__teacher">Prof. orientador: {teacherAdvisor}</p>
+        <p className="infos__teacher">Prof. orientador: {advisor}</p>
       </aside>
       {hasNewDeliveries && <div className="circle"></div>}
       {hasNewDeliveries &&

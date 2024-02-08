@@ -8,8 +8,10 @@ import calendarIcon from "../../../assets/icons/calendar-icon.svg";
 import menuIcon from "../../../assets/icons/menu-icon.svg";
 import { Link } from "react-router-dom";
 import NavColumn from "../NavColumn/NavColumn";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Dialog from "../Dialog/Dialog";
+import { AuthContext } from "../../../context/auth-context";
+import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 
 export default function Header() {
   const [isWorkAndStandsColumnOpen, setIsWorkAndStandsColumnOpen] =
@@ -25,6 +27,9 @@ export default function Header() {
     useState<boolean>(false);
   const [isQuestionMobileDialogOpen, setIsQuestionMobileDialogOpen] =
     useState<boolean>(false);
+
+  const { user } = useContext(AuthContext);
+  const ra = user.email.slice(0, 10);
 
   return (
     <header id="header">
@@ -47,8 +52,8 @@ export default function Header() {
             />
             {isUserDialogOpen && <section className="baloon baloon--user">
               <div className="baloon__content">
-                <h1 className="baloon__title baloon__title--margin">Isabella Augusta Rodrigues</h1>
-                <p className="baloon__text">RA: 22.01190-0</p>
+                <h1 className="baloon__title baloon__title--margin">{user.name}</h1>
+                {user.role == ROLE.STUDENT && <p className="baloon__text">RA: {ra}</p>}
                 <Link className="baloon__btn" to={""}>
                   Sair
                 </Link>

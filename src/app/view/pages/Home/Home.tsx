@@ -2,29 +2,42 @@ import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import workingImage from "../../../assets/working-image.jpg";
 import arrowIcon from "../../../assets/icons/arrow-icon.svg";
 import "./Home.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Dialog from "../../components/Dialog/Dialog";
 import { ProjectContext } from "../../../context/project-context";
 import { AuthContext } from "../../../context/auth-context";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
-import { stringCapitalize } from "../../../utils/string-formatter";
+import { ProjectModel } from "../../../models/project-model";
+import ProjectCardSkeleton from "../../components/ProjectCard/ProjectCardSkeleton";
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [dropdownText, setDropdownText] = useState<string>(
     "Visualizar trabalhos como"
   );
+  const [projectsList, setProjectsList] = useState<ProjectModel[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { projects, getProjectsByRole } = useContext(ProjectContext);
+  const { getProjectsByRole } = useContext(ProjectContext);
   const { user } = useContext(AuthContext);
 
-  useState(() => {
-    getProjectsByRole(user!.userId);
-  });
+  useEffect(() => {
+    setIsLoading(true);
+
+    async function fetch() {
+      const projectsListCaught = await getProjectsByRole(user!.userId);
+      if (projectsListCaught) {
+        setProjectsList(projectsListCaught);
+      }
+    }
+
+    fetch();
+    setIsLoading(false);
+  }, []);
 
   return (
     <main id="home">
-      <div className="container">
+      {user.role != ROLE.STUDENT && <div className="container">
         <Dialog setOpen={setIsDropdownOpen} className="dropdown">
           <button
             className="dropdown__button"
@@ -58,29 +71,24 @@ export default function Home() {
 
           </button>
         </Dialog>
-      </div>
-      {projects.map((project) => {
-        return (
-          <ProjectCard
-            key={project.projectId}
-            image={workingImage}
-            teacherAdvisor={stringCapitalize(project.professors.filter((professor) => professor.role === ROLE.ADVISOR)[0].name)}
-            title={project.title}
-            newDeliveries={["Dados do trabalho", "Pôster de imagem", "Dados do trabalho", "Pôster de imagem"]}
-          />
-        );
+      </div>}
+      {isLoading ? Array(3).fill(0).map((_, index) => <ProjectCardSkeleton key={index} />)
+        : projectsList.map((project) => {
+          const advisor = project.professors.find((professor) => professor.role === ROLE.ADVISOR)!.name;
+          return (
+            <>
+              <ProjectCard
+                key={project.projectId}
+                projectId={project.projectId}
+                image={workingImage}
+                advisor={advisor}
+                title={project.title}
+                newDeliveries={["Dados do trabalho", "Pôster de imagem", "Dados do trabalho", "Pôster de imagem"]}
+              />
+            </>
+          );
+        })}
 
-      })}
-      <ProjectCard
-        image={workingImage}
-        teacherAdvisor="Ana Paula"
-        title="DSG - Design universal aplicado em embalagem de protetor solar"
-      />
-      <ProjectCard
-        image={workingImage}
-        teacherAdvisor="Ana Paula"
-        title="DSG - Design universal aplicado em embalagem de protetor solar"
-      />
     </main >
   );
 }

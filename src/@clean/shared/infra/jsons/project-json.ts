@@ -32,7 +32,10 @@ export class ProjectJson {
                 UserJson.userJson[3]
             ],
             "students": [
-                UserJson.userJson[9]
+                UserJson.userJson[9],
+                UserJson.userJson[10],
+                UserJson.userJson[11],
+                UserJson.userJson[12]
             ]
         },
         {

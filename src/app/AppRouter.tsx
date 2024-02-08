@@ -6,7 +6,9 @@ export function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/project" element={<Project />}/>
+      <Route path="/project" >
+        <Route path=":id" element={<Project />} />
+      </Route>
     </Routes>
   );
 }

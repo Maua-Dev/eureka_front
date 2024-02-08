@@ -17,7 +17,7 @@ function App() {
             <ProjectProvider>
               <div className="app_container">
                 <Header />
-                <AppRouter />
+                  <AppRouter />
                 <Footer />
               </div>
             </ProjectProvider>

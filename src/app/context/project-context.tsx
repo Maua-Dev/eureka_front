@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { ProjectModel } from "../models/project-model";
 import { UserModel } from "../models/user-model";
 import { SHIFT } from "../../@clean/shared/domain/enums/shift-enum";
@@ -12,11 +12,10 @@ import { UserAdapter } from "../adapters/user-adapter";
 import { GetProjectsByRoleUsecase } from "../../@clean/modules/project/usecases/get-projects-by-role-usecase";
 
 type ProjectContextType = {
-    project: ProjectModel;
-    projects: ProjectModel[];
-    createProject(project: ProjectModel): Promise<void>;
-    getProjectsByRole(userId: number): Promise<void>;
-    getProject(projectId: number): Promise<void>;
+    projectsList: ProjectModel[];
+    createProject(project: ProjectModel): Promise<ProjectModel | undefined>;
+    getProjectsByRole(userId: number): Promise<ProjectModel[] | undefined>;
+    getProject(projectId: number): Promise<ProjectModel | undefined>;
     updateProject(projectId: number, newTitle?: string,
         newQualification?: string,
         newCode?: string,
@@ -24,16 +23,15 @@ type ProjectContextType = {
         newStandNumber?: string,
         newIsEntrepreneurship?: boolean,
         newProfessors?: UserModel[],
-        newStudents?: UserModel[]): Promise<void>;
+        newStudents?: UserModel[]): Promise<ProjectModel | undefined>;
 }
 
 const defaultContext: ProjectContextType = {
-    project: ProjectModel.empty(),
-    projects: [],
-    createProject: async () => { },
-    getProjectsByRole: async () => { },
-    getProject: async () => { },
-    updateProject: async () => { }
+    projectsList: [],
+    createProject: async () => ProjectModel.empty(),
+    getProjectsByRole: async () => [],
+    getProject: async () => ProjectModel.empty(),
+    updateProject: async () => ProjectModel.empty()
 };
 
 export const ProjectContext = createContext(defaultContext);
@@ -55,8 +53,7 @@ const updateProjectUsecase = containerProject.get<UpdateProjectUsecase>(
 );
 
 export const ProjectProvider = ({ children }: { children: React.ReactNode }) => {
-    const [project, setProject] = useState<ProjectModel>(ProjectModel.empty());
-    const [projects, setProjects] = useState<ProjectModel[]>([]);
+    let projectsList: ProjectModel[] = [];
 
     // used to show the error boundary (error threatment)
     const { showBoundary } = useErrorBoundary();
@@ -66,9 +63,10 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
             const projectToCreate = ProjectAdapter.fromModel(projectModelToCreate);
             const createdProject = await createProjectUsecase.execute(projectToCreate);
             const createdProjectModel = ProjectAdapter.toModel(createdProject);
-            setProjects([createdProjectModel]);
+            projectsList.push(createdProjectModel);
+            return createdProjectModel;
         } catch (err) {
-            console.log(err);
+            console.error(err);
             showBoundary(err);
         }
     };
@@ -76,21 +74,22 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
     const getProjectsByRole = async (projectId: number) => {
         try {
             const projectsCaught = await getProjectsByRoleUsecase.execute(projectId);
-            const projectModel = projectsCaught.map(project => ProjectAdapter.toModel(project));
-            setProjects([...projectModel]);
+            const projectsModel = projectsCaught.map(project => ProjectAdapter.toModel(project));
+            projectsList = projectsModel;
+            return projectsList;
         } catch (err) {
-            console.log(err);
+            console.error(err);
             showBoundary(err);
         }
     };
 
     const getProject = async (projectId: number) => {
         try {
-            const project = await getProjectUsecase.execute(projectId);
-            const projectModel = ProjectAdapter.toModel(project);
-            setProject(projectModel);
+            const projectCaught = await getProjectUsecase.execute(projectId);
+            const projectModel = ProjectAdapter.toModel(projectCaught);
+            return projectModel;
         } catch (err) {
-            console.log(err);
+            console.error(err);
             showBoundary(err);
         }
     };
@@ -99,17 +98,19 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
         try {
             const newProfessors = newProfessorsModel?.map(professorModel => UserAdapter.fromModel(professorModel));
             const newStudents = newStudentsModel?.map(newStudentModel => UserAdapter.fromModel(newStudentModel));
-            const updatedProject = await updateProjectUsecase.execute(projectId, newTitle, newQualification, newCode, newShift, newStandNumber, newIsEntrepreneurship, newProfessors, newStudents);
-            const updateProjectModel = ProjectAdapter.toModel(updatedProject);
-            setProjects(projects.map(projectModel => projectModel.projectId === projectId ? updateProjectModel : projectModel));
+            console.log(newIsEntrepreneurship);
+            const projectUpdated = await updateProjectUsecase.execute(projectId, newTitle, newQualification, newCode, newShift, newStandNumber, newIsEntrepreneurship, newProfessors, newStudents);
+            console.log(projectUpdated.isEntrepreneurship);
+            const projectModelUpdated = ProjectAdapter.toModel(projectUpdated);
+            return projectModelUpdated;
         } catch (err) {
-            console.log(err);
+            console.error(err);
             showBoundary(err);
         }
     };
 
     return (
-        <ProjectContext.Provider value={{ projects, project, createProject, getProjectsByRole, getProject, updateProject }}>
+        <ProjectContext.Provider value={{ projectsList, createProject, getProjectsByRole, getProject, updateProject }}>
             {children}
         </ProjectContext.Provider>
     );

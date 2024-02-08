@@ -1,5 +1,6 @@
 import { User } from "../../@clean/shared/domain/entities/user";
 import { UserModel } from "../models/user-model";
+import { stringCapitalize } from "../utils/string-formatter";
 
 export class UserAdapter {
     static fromModel(model: UserModel): User{
@@ -14,7 +15,7 @@ export class UserAdapter {
     static toModel(entity : User) : UserModel{
         return new UserModel({
             userId: entity.userId,
-            name: entity.name,
+            name: stringCapitalize(entity.name),
             email: entity.email,
             role: entity.role
         });

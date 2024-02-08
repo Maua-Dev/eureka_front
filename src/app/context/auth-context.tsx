@@ -1,6 +1,8 @@
 import { createContext } from "react";
 import { UserModel } from "../models/user-model";
-import { ROLE } from "../../@clean/shared/domain/enums/role-enum";
+import { UserAdapter } from "../adapters/user-adapter";
+import { UserJson } from "../../@clean/shared/infra/jsons/user-json";
+import { User } from "../../@clean/shared/domain/entities/user";
 
 type AuthContextType = {
     user: UserModel;
@@ -13,14 +15,7 @@ const defaultContext: AuthContextType = {
 export const AuthContext = createContext(defaultContext);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const user = new UserModel(
-        {
-            userId: 10,
-            name: "Enrico Mota Santarelli",
-            email: "enrico.santarelli@maua.br",
-            role: ROLE.STUDENT,
-        }
-    );
+    const user = UserAdapter.toModel(User.fromJson(UserJson.userJson[9]));
 
     return (
         <AuthContext.Provider value={{ user }}>
