@@ -18,7 +18,7 @@ export default function Project() {
   const [isEntrepreneurship, setIsEntrepreneurship] = useState(false);
   const [project, setProject] = useState(ProjectModel.empty());
   const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
-  const [isPotencialUpdateLoading, setIsPotencialUpdateLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { id } = useParams();
   const projectId = parseInt(id!);
@@ -41,7 +41,7 @@ export default function Project() {
 
   return (
     <main className="project">
-      {isPotencialUpdateLoading && <CircularLoading />}
+      {isLoading && <CircularLoading />}
       <Link className="return" to={"/"}>
         <img className="return__icon" src={arrowBackIcon} alt="Ícone de flecha" />
       </Link>
@@ -136,9 +136,9 @@ export default function Project() {
                   </div>
                 </div>
                 <button onClick={() => {
-                  setIsPotencialUpdateLoading(true);
+                  setIsLoading(true);
                   updateProject(projectId, undefined, undefined, undefined, undefined, undefined, isEntrepreneurship);
-                  setIsPotencialUpdateLoading(false);
+                  setIsLoading(false);
                 }} className="main__btn">
                   <p className="btn__text">Atualizar potencial do trabalho</p>
                 </button>
