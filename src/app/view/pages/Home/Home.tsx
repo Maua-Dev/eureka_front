@@ -72,23 +72,20 @@ export default function Home() {
           </button>
         </Dialog>
       </div>}
-      {isLoading ? Array(3).fill(0).map((_, index) => <ProjectCardSkeleton key={index} />)
+      {isLoading ? Array(user.role == ROLE.STUDENT ? 1 : 3).fill(0).map((_, index) => <ProjectCardSkeleton key={index} />)
         : projectsList.map((project) => {
           const advisor = project.professors.find((professor) => professor.role === ROLE.ADVISOR)!.name;
           return (
-            <>
-              <ProjectCard
-                key={project.projectId}
-                projectId={project.projectId}
-                image={workingImage}
-                advisor={advisor}
-                title={project.title}
-                newDeliveries={["Dados do trabalho", "Pôster de imagem", "Dados do trabalho", "Pôster de imagem"]}
-              />
-            </>
+            <ProjectCard
+              key={project.projectId}
+              projectId={project.projectId}
+              image={workingImage}
+              advisor={advisor}
+              title={project.title}
+              newDeliveries={["Dados do trabalho", "Pôster de imagem", "Dados do trabalho", "Pôster de imagem"]}
+            />
           );
         })}
-
     </main >
   );
 }

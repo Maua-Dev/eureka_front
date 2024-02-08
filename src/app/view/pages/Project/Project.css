@@ -2,8 +2,13 @@
   padding: 3rem 2.5rem 4rem 2.5rem;
 }
 
-.project--skeleton {
-  opacity: 0;
+.project .center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project .project--skeleton {
   pointer-events: none;
 }
 
@@ -50,7 +55,16 @@
   background-color: var(--dark-blue);
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: center;
+  padding: 1.2rem 2rem;
+  border-radius: 0.8rem;
+  text-align: center;
+}
+
+.project .card__header--skeleton {
+  background-color: var(--dark-blue);
+  width: 100%;
   padding: 1.2rem 2rem;
   border-radius: 0.8rem;
   text-align: center;
@@ -60,6 +74,13 @@
   color: var(--white);
   font-weight: 700;
   font-size: 1.5rem;
+}
+
+.project .header__title--skeleton {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.5rem;
+  width: 50%;
 }
 
 .project .header__title--upper {
@@ -99,6 +120,14 @@
   justify-content: start;
 }
 
+.project .cosupervisor--skeleton {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .project .students {
   grid-column: 3 / 4;
   grid-row: 1 / 3;
@@ -125,6 +154,13 @@
   font-weight: 600;
 }
 
+.project .main__input--skeleton {
+  width: 100%;
+  border: none;
+  color: var(--dark-blue);
+  font-weight: 600;
+}
+
 .project .main__title {
   font-size: 1.1rem;
   color: var(--dark-blue);
@@ -141,17 +177,34 @@
   font-weight: 600;
 }
 
+.project .main__text--skeleton {
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  background-color: var(--blue);
+}
+
 .project .main__btn {
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
   background-color: var(--dark-blue);
   color: var(--white);
   font-size: 1rem;
-
   font-weight: 700;
   border: none;
   cursor: pointer;
   transition: ease-in-out 0.2s;
+}
+
+.main__btn--skeleton {
+  align-self: flex-start;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
 }
 
 .project .main__btn--margin {
@@ -215,6 +268,7 @@
 
 .project .options {
   display: flex;
+  align-items: center;
   width: 100%;
   gap: 1rem;
 }
@@ -238,6 +292,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.project .option__checkbox--skeleton {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 0.2rem;
 }
 
 .project .option__icon {
@@ -277,16 +337,29 @@
   padding: 0.2rem;
 }
 
+.project .grid__element--skeleton {
+  display: flex;
+  align-items: normal;
+}
+
 .project .grid__title {
   font-size: 0.9rem;
   color: var(--dark-blue);
   font-weight: 700;
 }
 
+.project .grid__title--skeleton {
+  width: 80%
+}
+
 .project .grid__text {
   font-size: 0.8rem;
   color: var(--dark-blue);
   font-weight: 600;
+}
+
+.project .grid__text--skeleton {
+  width: 80%
 }
 
 .project .grid__link {
@@ -315,9 +388,25 @@
   text-align: center;
 }
 
+.project .column__element--center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project .column__element--skeleton {
+  align-items: normal;
+  display: block;
+}
+
 .project .column__title {
   font-weight: 600;
   font-size: 1.1rem;
+}
+
+.project .column_title--skeleton {
+  width: 80%;
 }
 
 .project .return:hover {
@@ -341,15 +430,21 @@
 
   .project .main__text {
     font-size: 1rem;
+  }
 
+  .project .main__text--skeleton {
+    font-size: 1rem;
   }
 
   .project .main__input {
     font-size: 1rem;
-
   }
 
   .project .main__btn {
+    font-size: 0.9rem;
+  }
+
+  .project .main__btn--skeleton {
     font-size: 0.9rem;
   }
 
@@ -364,6 +459,11 @@
   }
 
   .project .option__checkbox {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
+  .project .option__checkbox--skeleton {
     width: 1.7rem;
     height: 1.7rem;
   }
@@ -408,6 +508,10 @@
     font-size: 0.8rem;
   }
 
+  .project .main__btn--skeleton {
+    font-size: 0.8rem;
+  }
+
   .project .option {
     font-size: 0.9rem;
     gap: 0.4rem;
@@ -422,6 +526,11 @@
     width: 1.6rem;
     height: 1.6rem;
     border: 2px solid var(--dark-blue);
+  }
+
+  .project .option__checkbox--skeleton {
+    width: 1.6rem;
+    height: 1.6rem;
   }
 
   .project .grid__title {
@@ -472,12 +581,21 @@
     font-size: 0.6rem;
   }
 
+  .project .main__btn--skeleton {
+    font-size: 0.6rem;
+  }
+
   .project .option {
     font-size: 0.7rem;
     gap: 0.3rem;
   }
 
   .project .option__checkbox {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .project .option__checkbox--skeleton {
     width: 1.4rem;
     height: 1.4rem;
   }
@@ -524,8 +642,18 @@
     align-items: center;
   }
 
+  .project .subject--skeleton {
+    align-items: normal;
+    width: 50%;
+  }
+
   .project .supervisor {
     align-items: center;
+  }
+
+  .project .supervisor--skeleton {
+    align-items: normal;
+    width: 50%;
   }
 
   .project .cosupervisor {
@@ -538,6 +666,11 @@
     grid-row: 3 / 4;
     margin-left: 0rem;
     align-items: center;
+  }
+
+  .project .students--skeleton {
+    align-items: normal;
+    width: 100%;
   }
 
   .project .students__name {
@@ -555,8 +688,17 @@
     font-size: 0.7rem;
   }
 
+  .project .main__title--skeleton {
+    align-self: center;
+  }
+
   .project .main__text {
     font-size: 0.7rem;
+  }
+
+  .project .main__text--skeleton {
+    font-size: 0.7rem;
+    width: 50%;
   }
 
   .project .main__text--students {
@@ -568,6 +710,25 @@
     font-size: 0.6rem;
   }
 
+  .project .main__input--center {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project .students--center {
+    flex-direction: column;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project .main__input--skeleton {
+    width: 50%;
+  }
+
   .project .option {
     font-size: 0.7rem;
   }
@@ -576,7 +737,16 @@
     margin-top: 0.3rem;
   }
 
+  .project .main__btn--skeleton {
+    align-self: center;
+  }
+
   .project .option__checkbox {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .project .option__checkbox--skeleton {
     width: 1.3rem;
     height: 1.3rem;
   }
@@ -663,6 +833,10 @@
     font-size: 0.4rem;
   }
 
+  .project .main__btn--skeleton {
+    font-size: 0.4rem;
+  }
+
   .project .main__btn--margin {
     margin-top: 0.2rem;
   }
@@ -676,6 +850,11 @@
     width: 1.2rem;
     height: 1.2rem;
   }
+
+  .project .option__checkbox--skeleton {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -685,6 +864,10 @@
 
   .project .header__title {
     font-size: 1.1rem;
+  }
+
+  .project .header__title--skeleton {
+    width: 100%;
   }
 
   .project .card__main {
@@ -730,6 +913,16 @@
     align-items: center;
   }
 
+  .project .code--skeleton {
+    margin-right: 2rem;
+    align-items: normal;
+  }
+
+  .project .students--skeleton {
+    align-items: normal;
+    width: 80%;
+  }
+
   .project .students__name {
     max-width: 100%;
   }
@@ -747,8 +940,17 @@
     align-items: center;
   }
 
+  .project .infos__number--skeleton {
+    margin-left: 2rem;
+    align-items: normal;
+  }
+
   .project .infos__period {
     align-items: center;
+  }
+
+  .project .infos__period--skeleton {
+    align-items: normal;
   }
 
   .project .potencial {

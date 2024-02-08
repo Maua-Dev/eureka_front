@@ -3,7 +3,7 @@ import "./ProjectCard.css";
 
 export default function ProjectCardSkeleton() {
     return (
-        <SkeletonTheme baseColor="var(--mustard)" >
+        <SkeletonTheme baseColor="var(--mustard)" duration={2} highlightColor="var(--dark-mustard)">
             <div className="project_card">
                 <Skeleton className="project_card__img--skeleton" />
                 <aside className="infos">

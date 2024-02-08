@@ -1,336 +1,338 @@
-import Skeleton from "react-loading-skeleton";
-import "./Project.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function ProjectSkeleton() {
     return (
-        <div>
+        <div className="project--skeleton">
             <section className="card card--margin">
-                <header className="card__header">
-                    <Skeleton className="header__title header__title--upper" />
-                    DDSGD01 - DESIGN UNIVERSAL APLICADO EM EMBALAGEM DE PROTETOR SOLAR - TESTE
-                </header>
-                <div className="card__main">
-                    <div className="subject">
-                        <h2 className="main__title">Habilitação: </h2>
-                        <span className="main__text">Design</span>
-                    </div>
-                    <div className="supervisor">
-                        <h2 className="main__title">Orientador: </h2>
-                        <span className="main__text">Ana Paula Scabello Mello</span>
-                    </div>
-                    <div className="cosupervisor">
-                        <h2 className="main__title main__title--cosupervisor">Coorientador: </h2>
-                        <input type="text" className="main__input" />
-                        <button className="main__btn main__btn--margin">Salvar</button>
-                    </div>
-                    <div className="students">
-                        <h2 className="main__title main__title--students">Alunos: </h2>
-                        <div className="students__name">
-                            {["João José Augusto",
-                                "Isabella Augusta Rodrigues Rodrigues",
-                                "Isabella Augusta Rodrigues Rodrigues",
-                                "Isabella Augusta Rodrigues Rodrigues",
-                                "Isabella Augusta Rodrigues Rodrigues",
-                                "Isabella Augusta Rodrigues Rodrigues"].map((name, index) => (
-                                    <span className="main__text main__text--students" key={index}>{name}</span>
-                                ))}
+                <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--dark-blue)">
+                    <header className="card__header--skeleton">
+                        <Skeleton className="header__title--skeleton header__title--upper" />
+                    </header>
+                </SkeletonTheme>
+                <SkeletonTheme baseColor="var(--gray)" duration={2} highlightColor="var(--white)">
+                    <div className="card__main">
+                        <div className="subject subject--skeleton">
+                            <h2 className="main__title main__title--skeleton">Habilitação: </h2>
+                            <Skeleton className="main__text"></Skeleton>
+                        </div>
+                        <div className="supervisor supervisor--skeleton">
+                            <h2 className="main__title main__title--skeleton">Orientador: </h2>
+                            <Skeleton className="main__text"></Skeleton>
+                        </div>
+                        <div className=" cosupervisor--skeleton">
+                            <h2 className="main__title main__title--cosupervisor main__title--skeleton">Coorientador: </h2>
+                            <Skeleton containerClassName="main__input--center" className="main__input--skeleton react-loading-skeleton" />
+                            <button className="main__btn--skeleton main__btn--margin">Salvar</button>
+                        </div>
+                        <div className="students students--skeleton">
+                            <h2 className="main__title main__title--students main__title--skeleton">Alunos: </h2>
+                            <Skeleton containerClassName="students--center" count={3} className="students__name">
+                            </Skeleton>
                         </div>
                     </div>
-                </div>
-                <footer className="card__footer">
-                    <div className="code">
-                        <h2 className="main__title">Código: </h2>
-                        <span className="main__text">DSG</span>
-                    </div>
-                    <div className="infos">
-                        <div className="infos__period">
-                            <h2 className="main__title">Período: </h2>
-                            <span className="main__text">D</span>
+                </SkeletonTheme>
+                <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--light-blue)">
+                    <footer className="card__footer">
+                        <div className="code code--skeleton">
+                            <h2 className="main__title">Código: </h2>
+                            <Skeleton containerClassName="center" className="main__text--skeleton"></Skeleton>
                         </div>
-                        <div className="infos__number">
-                            <h2 className="main__title">Número: </h2>
-                            <span className="main__text">01</span>
-                        </div>
-                    </div>
-                    <div className="potencial">
-                        <h2 className="main__title">O trabalho tem potencial para empreendimento: </h2>
-                        <div className="options">
-                            <div className="option">
-                                <p className="option__title">Sim</p>
-                                <div
-                                    className="option__checkbox"
-                                >
-                                </div>
+                        <div className="infos">
+                            <div className="infos__period infos__period--skeleton">
+                                <h2 className="main__title">Período: </h2>
+                                <Skeleton containerClassName="center" className="main__text--skeleton"></Skeleton>
                             </div>
-                            <div className="option">
-                                <p className="option__title">Não</p>
-                                <div
-                                >
-                                </div>
+                            <div className="infos__number infos__number--skeleton">
+                                <h2 className="main__title">Número: </h2>
+                                <Skeleton containerClassName="center" className="main__text--skeleton"></Skeleton>
                             </div>
-                            <button className="main__btn">Atualizar potencial do trabalho</button>
                         </div>
-                    </div>
-                </footer>
+                        <div className="potencial">
+                            <h2 className="main__title">O trabalho tem potencial para empreendimento: </h2>
+                            <div className="options">
+                                <div className="option">
+                                    <p className="option__title">Sim</p>
+                                    <Skeleton className="option__checkbox--skeleton"></Skeleton>
+                                </div>
+                                <div className="option">
+                                    <p className="option__title">Não</p>
+                                    <Skeleton className="option__checkbox--skeleton"></Skeleton>
+                                </div>
+                                <button className="main__btn">Atualizar potencial do trabalho</button>
+                            </div>
+                        </div>
+                    </footer>
+                </SkeletonTheme>
             </section>
             <article className="deliveries">
                 <section className="card card--width">
-                    <header className="card__header"><h1 className="header__title">Informações do trabalho</h1></header>
-                    <div className="grid">
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
-                            <h3 className="grid__title">Alunos</h3>
+                    <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--dark-blue)">
+                        <header className="card__header--skeleton">
+                            <Skeleton className="header__title--skeleton header__title--upper" />
+                        </header>
+                    </SkeletonTheme>
+                    <SkeletonTheme baseColor="var(--gray)" duration={2} highlightColor="var(--white)">
+                        <div className="grid">
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 4", gridRow: "1 / 2" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "4 / 5", gridRow: "1 / 2" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "2 / 3" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 4", gridRow: "2 / 3" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton" style={{ color: "var(--green)" }}>
+                                </Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "4 / 5", gridRow: "2 / 3" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton" style={{ color: "var(--green)" }}>
+                                </Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "3 / 4" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "3 / 4" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton" style={{ color: "var(--red)" }}>
+                                </Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "4 / 5" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "4 / 5" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "4 / 5" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "5 / 6" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "5 / 6" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "5 / 6" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "6 / 7" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "6 / 7" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "6 / 7" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "7 / 8" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "7 / 8" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "7 / 8" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "8 / 9" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "8 / 9" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "8 / 9" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "9 / 10" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "9 / 10" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "9 / 10" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "10 / 11" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 5", gridRow: "10 / 11" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "11 / 12" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "11 / 12" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "11 / 12" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "12 / 13" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "12 / 13" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 5", gridRow: "12 / 13" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "13 / 14" }}>
+                                <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                            </div>
+                            <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 5", gridRow: "13 / 14" }}>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                            </div>
                         </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "1 / 2" }}>
-                            <h3 className="grid__title">Orientador</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "1 / 2" }}>
-                            <h3 className="grid__title">Responsável</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "2 / 3" }}>
-                            <h3 className="grid__title">Dados do trabalho</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }}>
-                            <p className="grid__text">Até 15/05/2023</p>
-                            <p className="grid__text">Enviado por Isabella Augusta Rodrigues em 20/06/2023</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "2 / 3" }}>
-                            <p className="grid__text">Até 22/05/2023</p>
-                            <p className="grid__text" style={{ color: "var(--green)" }}>
-                                Aprovado por Ana Paula Scabello Mello em 19/05/2023
-                            </p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "2 / 3" }}>
-                            <p className="grid__text">Até 08/06/2023</p>
-                            <p className="grid__text" style={{ color: "var(--green)" }}>
-                                Aprovado por Ana Paula Scabello Mello em 19/05/2023
-                            </p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "3 / 4" }}>
-                            <h3 className="grid__title">Pôster Imagem</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}>
-                            <p className="grid__text">Até 17/09/2023</p>
-                            <p className="grid__text">Reenviado por Isabella Augusta Rodrigues em 20/06/2023</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "3 / 4" }}>
-                            <p className="grid__text">Até 20/08/2023</p>
-                            <p className="grid__text" style={{ color: "var(--red)" }}>
-                                Reprovado por Ana Paula Scabello Mello em 19/05/2023
-                            </p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "4 / 5" }}>
-                            <h3 className="grid__title">Mini Capa</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "4 / 5" }}>
-                            <p className="grid__text">Até 17/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "4 / 5" }}>
-                            <p className="grid__text">Até 20/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "5 / 6" }}>
-                            <h3 className="grid__title">Vídeo-teaser</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "5 / 6" }}>
-                            <p className="grid__text">Até 17/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "5 / 6" }}>
-                            <p className="grid__text">Até 20/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "6 / 7" }}>
-                            <h3 className="grid__title">Fotos do Trabalho</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "6 / 7" }}>
-                            <p className="grid__text">Até 17/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "6 / 7" }}>
-                            <p className="grid__text">Até 20/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "7 / 8" }}>
-                            <h3 className="grid__title">Pôster Técnico (PDF)</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "7 / 8" }}>
-                            <p className="grid__text">Até 27/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "7 / 8" }}>
-                            <p className="grid__text">Até 20/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "8 / 9" }}>
-                            <h3 className="grid__title">Modelo de Negócios</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "8 / 9" }}>
-                            <p className="grid__text">Até 27/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "8 / 9" }}>
-                            <p className="grid__text">Até 01/10/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "9 / 10" }}>
-                            <h3 className="grid__title">Resumo / Abstcract</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "9 / 10" }}>
-                            <p className="grid__text">Até 27/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "9 / 10" }}>
-                            <p className="grid__text">Até 20/09/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "10 / 11" }}>
-                            <h3 className="grid__title">Vídeo do trabalho (30min)</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: "10 / 11" }}>
-                            <p className="grid__text">Até 28/12/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "11 / 12" }}>
-                            <h3 className="grid__title">Trabalho de conclusão do curso (TCC)</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "11 / 12" }}>
-                            <p className="grid__text">Até 28/12/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "11 / 12" }}>
-                            <p className="grid__text">Até 30/12/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "12 / 13" }}>
-                            <h3 className="grid__title">Autorização de divulgação do TCC</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "12 / 13" }}>
-                            <p className="grid__text">Até 28/12/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "12 / 13" }}>
-                            <p className="grid__text">Até 30/12/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "13 / 14" }}>
-                            <h3 className="grid__title">Banca de Avaliação</h3>
-                        </div>
-                        <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: "13 / 14" }}>
-                            <p className="grid__text">Até 28/12/2023</p>
-                            <p className="grid__text">Não enviado</p>
-                        </div>
-                    </div>
+                    </SkeletonTheme>
                 </section>
                 <aside className="deliveries--right">
                     <section className="card">
-                        <header className="card__header"><h1 className="header__title">Montagem do evento</h1></header>
-                        <div className="grid">
-                            <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
-                                <h3 className="grid__title">Alunos</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "1 / 2" }}>
-                                <h3 className="grid__title">Orientador</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "1 / 2" }}>
-                                <h3 className="grid__title">Responsável</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "2 / 3" }}>
-                                <h3 className="grid__title">Recursos de estande</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }}>
-                                <p className="grid__text">Até 26/08/2023</p>
-                                <p className="grid__text">Enviado por Isabella Augusta Rodrigues em 19/06/2023</p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "2 / 3" }}>
-                                <p className="grid__text">Até 31/08/2023</p>
-                                <p className="grid__text" style={{ color: "var(--green)" }}>
-                                    Aprovado por Ana Paula Scabello Mello em 19/05/2023
-                                </p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "2 / 3" }}>
-                                <p className="grid__text">Até 06/09/2023</p>
-                                <p className="grid__text" style={{ color: "var(--green)" }}>
-                                    Aprovado por Ana Paula Scabello Mello em 19/05/2023
-                                </p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "3 / 4" }}>
-                                <h3 className="grid__title">Questionário</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}>
-                                <p className="grid__text">Até 26/08/2023</p>
-                                <p className="grid__text">Enviado por Isabella Augusta Rodrigues em 19/06/2023</p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "3 / 4" }}>
-                                <p className="grid__text">Até 31/08/2023</p>
-                                <p className="grid__text" style={{ color: "var(--green)" }}>
-                                    Aprovado por Ana Paula Scabello Mello em 19/05/2023
-                                </p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "3 / 4" }}>
-                                <p className="grid__text">Até 06/09/2023</p>
-                                <p className="grid__text" style={{ color: "var(--green)" }}>
-                                    Aprovado por Ana Paula Scabello Mello em 19/05/2023
-                                </p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "4 / 5" }}>
-                                <h3 className="grid__title">Layout do estande</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "4 / 5" }}>
-                                <p className="grid__text">Até 26/08/2023</p>
-                                <p className="grid__text">Enviado por Isabella Augusta Rodrigues em 19/06/2023</p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "4 / 5" }}>
-                                <p className="grid__text">Até 31/08/2023</p>
-                                <p className="grid__text">Não enviado</p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "4 / 5" }}>
-                                <p className="grid__text">Até 06/09/2023</p>
-                                <p className="grid__text">Não enviado</p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "5 / 6" }}>
-                                <h3 className="grid__title">Testeira</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "5 / 6" }}>
-                                <p className="grid__text">Até 17/09/2023</p>
-                                <p className="grid__text">Não enviado</p>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "5 / 6" }}></div>
-                            <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "5 / 6" }}></div>
-                            <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "6 / 7" }}>
-                                <h3 className="grid__title">Autorização de entrada</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: "6 / 7" }}>
-                                <p className="grid__text">Até 24/10/2023</p>
-                                <p className="grid__text">Opcional</p>
-                                <div className="grid__link">
-                                    Consultar solicitações
+                        <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--dark-blue)">
+                            <header className="card__header--skeleton">
+                                <Skeleton className="header__title--skeleton header__title--upper" />
+                            </header>
+                        </SkeletonTheme>
+                        <SkeletonTheme baseColor="var(--gray)" duration={2} highlightColor="var(--white)">
+                            <div className="grid">
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 4", gridRow: "1 / 2" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "4 / 5", gridRow: "1 / 2" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "2 / 3" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 4", gridRow: "2 / 3" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton" style={{ color: "var(--green)" }}>
+                                    </Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "4 / 5", gridRow: "2 / 3" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton" style={{ color: "var(--green)" }}>
+                                    </Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "3 / 4" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 4", gridRow: "3 / 4" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton" style={{ color: "var(--green)" }}>
+                                    </Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "4 / 5", gridRow: "3 / 4" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton" style={{ color: "var(--green)" }}>
+                                    </Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "4 / 5" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "4 / 5" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 4", gridRow: "4 / 5" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "4 / 5", gridRow: "4 / 5" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "5 / 6" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "5 / 6" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "3 / 4", gridRow: "5 / 6" }}></div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "4 / 5", gridRow: "5 / 6" }}></div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "6 / 7" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 5", gridRow: "6 / 7" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
+                                    <div className="grid__link">
+                                    </div>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "1 / 2", gridRow: "7 / 8" }}>
+                                    <Skeleton className="grid__title grid__title--skeleton"></Skeleton>
+                                </div>
+                                <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 5", gridRow: "7 / 8" }}>
+                                    <Skeleton className="grid__text grid__text--skeleton"></Skeleton>
                                 </div>
                             </div>
-                            <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "7 / 8" }}>
-                                <h3 className="grid__title">Certificado</h3>
-                            </div>
-                            <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: "7 / 8" }}>
-                                <p className="grid__text">Nenhum certificado disponível</p>
-                            </div>
-                        </div>
+                        </SkeletonTheme>
                     </section>
                     <section className="card card--grow">
-                        <header className="card__header"><h1 className="header__title">Próximas entregas</h1></header>
-                        <div className="card__column">
-                            <div className="column__element">
-                                <h1 className="column__title">17/09/2023 - entrega Mini-Imagem</h1>
+                        <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--dark-blue)">
+                            <header className="card__header--skeleton">
+                                <Skeleton className="header__title--skeleton header__title--upper" />
+                            </header>
+                        </SkeletonTheme>
+                        <SkeletonTheme baseColor="var(--gray)" duration={2} highlightColor="var(--white)">
+                            <div className="card__column">
+                                <div className="column__element column__element--skeleton">
+                                    <Skeleton containerClassName="column__element--center" className="column__title column_title--skeleton"></Skeleton>
+                                </div>
+                                <div className="column__element column__element--skeleton">
+                                    <Skeleton containerClassName="column__element--center" className="column__title column_title--skeleton"></Skeleton>
+                                </div>
+                                <div className="column__element column__element--skeleton">
+                                    <Skeleton containerClassName="column__element--center" className="column__title column_title--skeleton"></Skeleton>
+                                </div>
                             </div>
-                            <div className="column__element">
-                                <h1 className="column__title">17/09/2023 - entrega Vídeo Teaser</h1>
-                            </div>
-                            <div className="column__element">
-                                <h1 className="column__title">17/09/2023 - entrega Fotos do Trabalho</h1>
-                            </div>
-                        </div>
+                        </SkeletonTheme>
                     </section>
                 </aside>
             </article>
         </div >
+
     );
-}
+}    
