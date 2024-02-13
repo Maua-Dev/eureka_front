@@ -7,6 +7,8 @@ import "./view/styles/variables.css";
 import { ProjectProvider } from "./context/project-context";
 import { AuthProvider } from "./context/auth-context";
 import { ErrorBoundary } from "react-error-boundary";
+import { TaskProvider } from "./context/task-context";
+import { DeliveryProvider } from "./context/delivery-context";
 
 function App() {
   return (
@@ -14,13 +16,17 @@ function App() {
       <BrowserRouter>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <AuthProvider>
-            <ProjectProvider>
-              <div className="app_container">
-                <Header />
-                  <AppRouter />
-                <Footer />
-              </div>
-            </ProjectProvider>
+            <DeliveryProvider>
+              <TaskProvider>
+                <ProjectProvider>
+                  <div className="app_container">
+                    <Header />
+                    <AppRouter />
+                    <Footer />
+                  </div>
+                </ProjectProvider>
+              </TaskProvider>
+            </DeliveryProvider>
           </AuthProvider>
         </ErrorBoundary>
       </BrowserRouter>

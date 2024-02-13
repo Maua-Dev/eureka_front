@@ -98,9 +98,7 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
         try {
             const newProfessors = newProfessorsModel?.map(professorModel => UserAdapter.fromModel(professorModel));
             const newStudents = newStudentsModel?.map(newStudentModel => UserAdapter.fromModel(newStudentModel));
-            console.log(newIsEntrepreneurship);
             const projectUpdated = await updateProjectUsecase.execute(projectId, newTitle, newQualification, newCode, newShift, newStandNumber, newIsEntrepreneurship, newProfessors, newStudents);
-            console.log(projectUpdated.isEntrepreneurship);
             const projectModelUpdated = ProjectAdapter.toModel(projectUpdated);
             return projectModelUpdated;
         } catch (err) {
