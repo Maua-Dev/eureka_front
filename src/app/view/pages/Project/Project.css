@@ -12,17 +12,6 @@
   pointer-events: none;
 }
 
-.project .return {
-  background-color: var(--dark-blue);
-  width: fit-content;
-  padding: 0.3rem;
-  border-radius: 0.5rem;
-  transition: ease-in-out 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .project .return__icon {
   max-width: 100%;
   height: 1.8rem;
@@ -185,7 +174,6 @@
 }
 
 .project .main__btn {
-  position: relative;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
   background-color: var(--dark-blue);
@@ -195,6 +183,11 @@
   border: none;
   cursor: pointer;
   transition: ease-in-out 0.2s;
+  min-width: 120px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .main__btn--skeleton {
@@ -411,7 +404,7 @@
 }
 
 .project .return:hover {
-  background-color: var(--dark-mustard);
+  filter: var(--dark-mustard-filter);
 }
 
 .project .main__btn:hover {

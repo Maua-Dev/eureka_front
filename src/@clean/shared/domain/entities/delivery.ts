@@ -1,5 +1,5 @@
 import { EntityError } from "../helpers/errors/domain-errors";
-import { Task } from "./task";
+import { Task, TaskJsonProps } from "./task";
 import { User, UserJsonProps } from "./user";
 
 type DeliveryProps = {
@@ -8,17 +8,17 @@ type DeliveryProps = {
     user: User;
     date: Date;
     content: {
-        [key: string]: string;
+        [key: string]: unknown;
     }
 }
 
 export type DeliveryJsonProps = {
     delivery_id: number;
-    task: Task;
+    task: TaskJsonProps;
     user: UserJsonProps;
     date: string;
     content: {
-        [key: string]: string;
+        [key: string]: unknown;
     }
 }
 
@@ -28,7 +28,7 @@ export class Delivery {
     private _user: User;
     private _date: Date;
     private _content: {
-        [key: string]: string;
+        [key: string]: unknown;
     };
 
     constructor(props: DeliveryProps) {
@@ -103,7 +103,7 @@ export class Delivery {
     }
 
     get content() : {
-        [key: string]: string;
+        [key: string]: unknown;
     } {
         return this._content;
     }
@@ -120,7 +120,7 @@ export class Delivery {
     toJson() : DeliveryJsonProps {
         return {
             "delivery_id": this._deliveryId,
-            "task": this._task,
+            "task": this._task.toJson(),
             "user": this._user.toJson(),
             "date": this._date.toISOString(),
             "content": this._content
@@ -130,7 +130,7 @@ export class Delivery {
     static fromJson(json: DeliveryJsonProps): Delivery {
         return new Delivery({
             deliveryId: json.delivery_id,
-            task: json.task,
+            task: Task.fromJson(json.task),
             user: User.fromJson(json.user),
             date: new Date(json.date),
             content: json.content
@@ -169,7 +169,7 @@ export class Delivery {
     }
 
     static validateContent(content: {
-        [key: string]: string;
+        [key: string]: unknown;
     }) : boolean {
         if(content == null){
             return false;

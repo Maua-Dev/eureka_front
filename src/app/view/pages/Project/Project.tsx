@@ -2,13 +2,17 @@ import "./Project.css";
 import arrowBackIcon from "../../../assets/icons/arrow-back-icon.svg";
 import checkIcon from "../../../assets/icons/check-icon.svg";
 import { Link, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProjectContext } from "../../../context/project-context";
 import { shiftToAcronym } from "../../../../@clean/shared/domain/enums/shift-enum";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import { ProjectModel } from "../../../models/project-model";
 import ProjectSkeleton from "./ProjectSkeleton";
 import CircularLoading from "../../components/CircularLoading/CircularLoading";
+import { TaskModel } from "../../../models/task-model";
+import { TaskContext } from "../../../context/task-context";
+import { DeliveryContext } from "../../../context/delivery-context";
+import { DeliveryModel } from "../../../models/delivery-model";
 
 export default function Project() {
   const [isWorkPotencialYesHovered, setisWorkPotencialYesHovered] =
@@ -17,25 +21,46 @@ export default function Project() {
     useState(false);
   const [isEntrepreneurship, setIsEntrepreneurship] = useState(false);
   const [project, setProject] = useState(ProjectModel.empty());
+  const [tasksList, setTasksList] = useState<TaskModel[]>([]);
+  const [deliveriesList, setDeliveriesList] = useState<DeliveryModel[]>([]);
   const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const { id } = useParams();
   const projectId = parseInt(id!);
   const { getProject, updateProject } = useContext(ProjectContext);
+  const { getAllTasks } = useContext(TaskContext);
+  const { getDeliveries } = useContext(DeliveryContext);
+
+  const taskTitles = ["Dados do trabalho", "Pôster Imagem", "Mini Capa", "Vídeo Teaser", "Fotos do Trabalho", "Pôster Técnico (PDF)", "Modelo de Negócios", "Resumo/Abstract", "Vídeo do Trabalho (30min)", "Trabalho de Conclusão de Curso (TCC)", "Autorização de divulgação do TCC", "Banca de Avaliação"];
+
+  async function fetchGetProject() {
+    const projectCaught = await getProject(projectId);
+    if (projectCaught) {
+      setProject(projectCaught);
+      setIsEntrepreneurship(projectCaught.isEntrepreneurship);
+    }
+  }
+
+  async function fetchGetAllTasks() {
+    const tasksCaught = await getAllTasks();
+    if (tasksCaught) {
+      setTasksList(tasksCaught);
+    }
+  }
+
+  async function fetchGetDeliveries() {
+    const deliveriesCaught = await getDeliveries(projectId);
+    if (deliveriesCaught) {
+      setDeliveriesList(deliveriesCaught);
+    }
+  }
 
   useEffect(() => {
     setIsSkeletonLoading(true);
-
-    async function fetch() {
-      const projectCaught = await getProject(projectId);
-      if (projectCaught) {
-        setProject(projectCaught);
-        setIsEntrepreneurship(projectCaught.isEntrepreneurship);
-      }
-    }
-
-    fetch();
+    fetchGetProject();
+    fetchGetAllTasks();
+    fetchGetDeliveries();
     setIsSkeletonLoading(false);
   }, []);
 
@@ -159,141 +184,70 @@ export default function Project() {
                 <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "1 / 2" }}>
                   <h3 className="grid__title">Responsável</h3>
                 </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "2 / 3" }}>
-                  <h3 className="grid__title">Dados do trabalho</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }}>
-                  <p className="grid__text">Até 15/05/2023</p>
-                  <p className="grid__text">Enviado por Isabella Augusta Rodrigues em 20/06/2023</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "2 / 3" }}>
-                  <p className="grid__text">Até 22/05/2023</p>
-                  <p className="grid__text" style={{ color: "var(--green)" }}>
-                    Aprovado por Ana Paula Scabello Mello em 19/05/2023
-                  </p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "2 / 3" }}>
-                  <p className="grid__text">Até 08/06/2023</p>
-                  <p className="grid__text" style={{ color: "var(--green)" }}>
-                    Aprovado por Ana Paula Scabello Mello em 19/05/2023
-                  </p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "3 / 4" }}>
-                  <h3 className="grid__title">Pôster Imagem</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}>
-                  <p className="grid__text">Até 17/09/2023</p>
-                  <p className="grid__text">Reenviado por Isabella Augusta Rodrigues em 20/06/2023</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "3 / 4" }}>
-                  <p className="grid__text">Até 20/08/2023</p>
-                  <p className="grid__text" style={{ color: "var(--red)" }}>
-                    Reprovado por Ana Paula Scabello Mello em 19/05/2023
-                  </p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "4 / 5" }}>
-                  <h3 className="grid__title">Mini Capa</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "4 / 5" }}>
-                  <p className="grid__text">Até 17/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "4 / 5" }}>
-                  <p className="grid__text">Até 20/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "5 / 6" }}>
-                  <h3 className="grid__title">Vídeo-teaser</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "5 / 6" }}>
-                  <p className="grid__text">Até 17/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "5 / 6" }}>
-                  <p className="grid__text">Até 20/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "6 / 7" }}>
-                  <h3 className="grid__title">Fotos do Trabalho</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "6 / 7" }}>
-                  <p className="grid__text">Até 17/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "6 / 7" }}>
-                  <p className="grid__text">Até 20/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "7 / 8" }}>
-                  <h3 className="grid__title">Pôster Técnico (PDF)</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "7 / 8" }}>
-                  <p className="grid__text">Até 27/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "7 / 8" }}>
-                  <p className="grid__text">Até 20/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "8 / 9" }}>
-                  <h3 className="grid__title">Modelo de Negócios</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "8 / 9" }}>
-                  <p className="grid__text">Até 27/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "8 / 9" }}>
-                  <p className="grid__text">Até 01/10/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "9 / 10" }}>
-                  <h3 className="grid__title">Resumo / Abstcract</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "9 / 10" }}>
-                  <p className="grid__text">Até 27/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "9 / 10" }}>
-                  <p className="grid__text">Até 20/09/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "10 / 11" }}>
-                  <h3 className="grid__title">Vídeo do trabalho (30min)</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: "10 / 11" }}>
-                  <p className="grid__text">Até 28/12/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "11 / 12" }}>
-                  <h3 className="grid__title">Trabalho de conclusão do curso (TCC)</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "11 / 12" }}>
-                  <p className="grid__text">Até 28/12/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "11 / 12" }}>
-                  <p className="grid__text">Até 30/12/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "12 / 13" }}>
-                  <h3 className="grid__title">Autorização de divulgação do TCC</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "12 / 13" }}>
-                  <p className="grid__text">Até 28/12/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: "12 / 13" }}>
-                  <p className="grid__text">Até 30/12/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "13 / 14" }}>
-                  <h3 className="grid__title">Banca de Avaliação</h3>
-                </div>
-                <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: "13 / 14" }}>
-                  <p className="grid__text">Até 28/12/2023</p>
-                  <p className="grid__text">Não enviado</p>
-                </div>
-              </div>
+                {taskTitles.map((title, index) => {
+                  // mount the tasks list grid
+                  const tasks = tasksList.filter((task) => task.title === title);
+                  const deliveries = deliveriesList.filter((delivery) => delivery.task.title === title);
+                  const studentDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.STUDENT)[0];
+                  const advisorDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.ADVISOR)[0];
+                  const responsibleDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.RESPONSIBLE)[0];
+
+                  const contentColor = (content: string) => {
+                    switch (content?.toLowerCase()) {
+                      case "aprovado":
+                        return "var(--green)";
+                      case "reprovado":
+                        return "var(--red)";
+                      default:
+                        return "var(--blue)";
+                    }
+                  };
+
+                  return (
+                    <React.Fragment key={index}>
+                      <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: `${index + 2} / ${index + 3}` }}>
+                        <h3 className="grid__title">{title}</h3>
+                      </div>
+                      {
+                        tasks.length == 1 ?
+                          <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
+                            <p className="grid__text">Até {tasks[0].deliveryDate}</p>
+                            <p className="grid__text" style={{ color: contentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                          </div>
+                          :
+                          tasks.length == 2 ?
+                            <>
+                              <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
+                                <p className="grid__text">Até {tasks[0].deliveryDate}</p>
+                                <p className="grid__text" style={{ color: contentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                              </div>
+                              <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
+                                <p className="grid__text">Até {tasks[1].deliveryDate}</p>
+                                <p className="grid__text" style={{ color: contentColor(advisorDelivery?.content["content"]) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                              </div>
+                            </>
+                            :
+                            tasks.length == 3 ?
+                              <>
+                                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
+                                  <p className="grid__text">Até {tasks[0].deliveryDate}</p>
+                                  <p className="grid__text" style={{ color: contentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                </div>
+                                <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: `${index + 2} / ${index + 3}` }}>
+                                  <p className="grid__text">Até {tasks[1].deliveryDate}</p>
+                                  <p className="grid__text" style={{ color: contentColor(advisorDelivery?.content["content"]) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                </div>
+                                <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
+                                  <p className="grid__text">Até {tasks[2].deliveryDate}</p>
+                                  <p className="grid__text" style={{ color: contentColor(responsibleDelivery?.content["content"]) }}>{responsibleDelivery?.content["content"] != undefined ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}` : "Não enviado"} </p>
+                                </div>
+                              </>
+                              : null
+                      }
+                    </React.Fragment>
+                  );
+                })}
+              </div >
             </section>
             <aside className="deliveries--right">
               <section className="card">
