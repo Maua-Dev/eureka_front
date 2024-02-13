@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { TaskModel } from "../models/task-model";
 import { GetAllTasksUsecase } from "../../@clean/modules/task/usecases/get-all-tasks-usecase";
-import { RegistryTask, containerTask } from "../../@clean/shared/infra/containers/container_task";
+import { RegistryTask, containerTask } from "../../@clean/shared/infra/containers/container-task";
 import { TaskAdapter } from "../adapters/task-adapter";
 import { useErrorBoundary } from "react-error-boundary";
 

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { DeliveryModel } from "../models/delivery-model";
-import { RegistryDelivery, containerDelivery } from "../../@clean/shared/infra/containers/container_delivery";
+import { RegistryDelivery, containerDelivery } from "../../@clean/shared/infra/containers/container-delivery";
 import { GetDeliveriesUsecase } from "../../@clean/modules/delivery/usecases/get-deliveries-usecase";
 import { useErrorBoundary } from "react-error-boundary";
 import { DeliveryAdapter } from "../adapters/delivery-adapter";

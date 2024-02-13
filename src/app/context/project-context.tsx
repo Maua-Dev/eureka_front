@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { ProjectModel } from "../models/project-model";
 import { UserModel } from "../models/user-model";
 import { SHIFT } from "../../@clean/shared/domain/enums/shift-enum";
-import { RegistryProject, containerProject } from "../../@clean/shared/infra/containers/container_project";
+import { RegistryProject, containerProject } from "../../@clean/shared/infra/containers/container-project";
 import { CreateProjectUsecase } from "../../@clean/modules/project/usecases/create-project-usecase";
 import { GetProjectUsecase } from "../../@clean/modules/project/usecases/get-project-usecase";
 import { UpdateProjectUsecase } from "../../@clean/modules/project/usecases/update-project-usecase";
