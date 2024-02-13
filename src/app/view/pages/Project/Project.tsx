@@ -89,7 +89,7 @@ export default function Project() {
             <div className="cosupervisor">
               <h2 className="main__title main__title--cosupervisor">Coorientador: </h2>
               <input type="text" className="main__input" />
-              <button className="main__btn main__btn--margin">Salvar</button>
+              <button className="main__btn main__btn--margin main__btn--smaller"><p className="btn__text">Salvar</p></button>
             </div>
             <div className="students">
               <h2 className="main__title main__title--students">Alunos: </h2>

@@ -190,6 +190,10 @@
   position: relative;
 }
 
+.project .main__btn--smaller {
+  min-width: 0;
+}
+
 .main__btn--skeleton {
   align-self: flex-start;
   padding: 0.2rem 0.5rem;

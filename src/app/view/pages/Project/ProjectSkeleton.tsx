@@ -22,7 +22,7 @@ export default function ProjectSkeleton() {
                         <div className=" cosupervisor--skeleton">
                             <h2 className="main__title main__title--cosupervisor main__title--skeleton">Coorientador: </h2>
                             <Skeleton containerClassName="main__input--center" className="main__input--skeleton react-loading-skeleton" />
-                            <button className="main__btn--skeleton main__btn--margin">Salvar</button>
+                            <button className="main__btn--skeleton main__btn--margin main__btn--smaller"><p className="btn__text">Salvar</p></button>
                         </div>
                         <div className="students students--skeleton">
                             <h2 className="main__title main__title--students main__title--skeleton">Alunos: </h2>
