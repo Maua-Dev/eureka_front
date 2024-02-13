@@ -10,6 +10,10 @@ import { ErrorBoundary } from "react-error-boundary";
 import { TaskProvider } from "./context/task-context";
 import { DeliveryProvider } from "./context/delivery-context";
 
+export type States = {
+  [key: string]: boolean;
+}
+
 function App() {
   return (
     <>

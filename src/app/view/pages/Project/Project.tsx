@@ -14,6 +14,7 @@ import { DeliveryContext } from "../../../context/delivery-context";
 import { DeliveryModel } from "../../../models/delivery-model";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import { taskTitles } from "../../../utils/task-titles";
+import Card from "../../components/Card/Card";
 
 export default function Project() {
   const [project, setProject] = useState(ProjectModel.empty());
@@ -69,12 +70,7 @@ export default function Project() {
       <ReturnButton />
       {isLoading && <CircularLoading />}
       {isSkeletonLoading ? <ProjectSkeleton /> :
-        <><section className="card card--margin">
-          <header className="card__header">
-            <h1 className="header__title header__title--upper">
-              {`${project.code}${shiftToAcronym(project.shift)}${project.standNumber} - ${project.title}`}
-            </h1>
-          </header>
+        <><Card cardClassName="card--margin" headerTitleClassName="header__title--upper" headerTitle={`${project.code}${shiftToAcronym(project.shift)}${project.standNumber} - ${project.title}`}>
           <div className="card__main">
             <div className="subject">
               <h2 className="main__title">Habilitação: </h2>
@@ -168,10 +164,9 @@ export default function Project() {
               </div>
             </div>
           </footer>
-        </section>
+        </Card>
           <article className="deliveries">
-            <section className="card card--width">
-              <header className="card__header"><h1 className="header__title">Informações do trabalho</h1></header>
+            <Card headerTitle="Informações do trabalho" cardClassName="card--width">
               <div className="grid">
                 <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
                   <h3 className="grid__title">Alunos</h3>
@@ -246,10 +241,9 @@ export default function Project() {
                   );
                 })}
               </div >
-            </section>
+            </Card>
             <aside className="deliveries--right">
-              <section className="card">
-                <header className="card__header"><h1 className="header__title">Montagem do evento</h1></header>
+              <Card headerTitle="Montagem do evento">
                 <div className="grid">
                   <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
                     <h3 className="grid__title">Alunos</h3>
@@ -339,9 +333,8 @@ export default function Project() {
                     <p className="grid__text">Nenhum certificado disponível</p>
                   </div>
                 </div>
-              </section>
-              <section className="card card--grow">
-                <header className="card__header"><h1 className="header__title">Próximas entregas</h1></header>
+              </Card>
+              <Card cardClassName="card--grow" headerTitle="Próximas entregas">
                 <div className="card__column">
                   <div className="column__element">
                     <h1 className="column__title">17/09/2023 - entrega Mini-Imagem</h1>
@@ -353,7 +346,7 @@ export default function Project() {
                     <h1 className="column__title">17/09/2023 - entrega Fotos do Trabalho</h1>
                   </div>
                 </div>
-              </section>
+              </Card>
             </aside>
           </article> </>}
     </main >

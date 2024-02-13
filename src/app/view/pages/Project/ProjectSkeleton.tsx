@@ -1,15 +1,11 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import CardSkeleton from "../../components/Card/CardSkeleton";
 
 // Skeleton for the project page
 export default function ProjectSkeleton() {
     return (
         <div className="project--skeleton">
-            <section className="card card--margin">
-                <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--dark-blue)">
-                    <header className="card__header--skeleton">
-                        <Skeleton className="header__title--skeleton header__title--upper" />
-                    </header>
-                </SkeletonTheme>
+            <CardSkeleton cardClassName="card--margin" headerTitleClassName="header__title--upper">
                 <SkeletonTheme baseColor="var(--gray)" duration={2} highlightColor="var(--white)">
                     <div className="card__main">
                         <div className="subject subject--skeleton">
@@ -64,14 +60,9 @@ export default function ProjectSkeleton() {
                         </div>
                     </footer>
                 </SkeletonTheme>
-            </section>
+            </CardSkeleton>
             <article className="deliveries">
-                <section className="card card--width">
-                    <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--dark-blue)">
-                        <header className="card__header--skeleton">
-                            <Skeleton className="header__title--skeleton header__title--upper" />
-                        </header>
-                    </SkeletonTheme>
+                <CardSkeleton cardClassName="card--width">
                     <SkeletonTheme baseColor="var(--gray)" duration={2} highlightColor="var(--white)">
                         <div className="grid">
                             <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
@@ -216,14 +207,9 @@ export default function ProjectSkeleton() {
                             </div>
                         </div>
                     </SkeletonTheme>
-                </section>
+                </CardSkeleton>
                 <aside className="deliveries--right">
-                    <section className="card">
-                        <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--dark-blue)">
-                            <header className="card__header--skeleton">
-                                <Skeleton className="header__title--skeleton header__title--upper" />
-                            </header>
-                        </SkeletonTheme>
+                    <CardSkeleton>
                         <SkeletonTheme baseColor="var(--gray)" duration={2} highlightColor="var(--white)">
                             <div className="grid">
                                 <div className="grid__element grid__element--skeleton" style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
@@ -310,13 +296,8 @@ export default function ProjectSkeleton() {
                                 </div>
                             </div>
                         </SkeletonTheme>
-                    </section>
-                    <section className="card card--grow">
-                        <SkeletonTheme baseColor="var(--blue)" duration={2} highlightColor="var(--dark-blue)">
-                            <header className="card__header--skeleton">
-                                <Skeleton className="header__title--skeleton header__title--upper" />
-                            </header>
-                        </SkeletonTheme>
+                    </CardSkeleton>
+                    <CardSkeleton cardClassName="card--grow">
                         <SkeletonTheme baseColor="var(--gray)" duration={2} highlightColor="var(--white)">
                             <div className="card__column">
                                 <div className="column__element column__element--skeleton">
@@ -330,7 +311,7 @@ export default function ProjectSkeleton() {
                                 </div>
                             </div>
                         </SkeletonTheme>
-                    </section>
+                    </CardSkeleton>
                 </aside>
             </article>
         </div >
