@@ -192,14 +192,14 @@ export default function Project() {
                   const advisorDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.ADVISOR)[0];
                   const responsibleDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.RESPONSIBLE)[0];
 
-                  const contentColor = (content: string) => {
+                  const getContentColor = (content: string) => {
                     switch (content?.toLowerCase()) {
                       case "aprovado":
                         return "var(--green)";
                       case "reprovado":
                         return "var(--red)";
                       default:
-                        return "var(--blue)";
+                        return "var(--dark-blue)";
                     }
                   };
 
@@ -212,18 +212,18 @@ export default function Project() {
                         tasks.length == 1 ?
                           <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                             <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                            <p className="grid__text" style={{ color: contentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                            <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                           </div>
                           :
                           tasks.length == 2 ?
                             <>
                               <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
                                 <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                                <p className="grid__text" style={{ color: contentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                               </div>
                               <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                                 <p className="grid__text">Até {tasks[1].deliveryDate}</p>
-                                <p className="grid__text" style={{ color: contentColor(advisorDelivery?.content["content"]) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                <p className="grid__text" style={{ color: getContentColor(advisorDelivery?.content["content"]) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                               </div>
                             </>
                             :
@@ -231,15 +231,15 @@ export default function Project() {
                               <>
                                 <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: contentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                  <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                                 </div>
                                 <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[1].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: contentColor(advisorDelivery?.content["content"]) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                  <p className="grid__text" style={{ color: getContentColor(advisorDelivery?.content["content"]) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                                 </div>
                                 <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[2].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: contentColor(responsibleDelivery?.content["content"]) }}>{responsibleDelivery?.content["content"] != undefined ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}` : "Não enviado"} </p>
+                                  <p className="grid__text" style={{ color: getContentColor(responsibleDelivery?.content["content"]) }}>{responsibleDelivery?.content["content"] != undefined ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}` : "Não enviado"} </p>
                                 </div>
                               </>
                               : null
