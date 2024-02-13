@@ -1,5 +1,7 @@
+import { TaskJsonProps } from "../../domain/entities/task";
+
 export class TaskJson {
-    static taskJson = [
+    static taskJson : TaskJsonProps[] = [
         {
             "task_id": 1,
             "title": "Dados do trabalho",

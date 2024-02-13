@@ -1,3 +1,4 @@
+import { Task } from "../../../shared/domain/entities/task";
 import { ITaskRepository } from "../domain/repositories/task-repository-interface";
 
 export class GetAllTasksUsecase {
@@ -6,7 +7,7 @@ export class GetAllTasksUsecase {
     constructor(taskRepository : ITaskRepository) {
         this._taskRepository = taskRepository;
     }
-    async execute() {
+    async execute(): Promise<Task[]> {
         return await this._taskRepository.getAllTasks();
     }
 }

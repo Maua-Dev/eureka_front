@@ -1,4 +1,5 @@
 import { ROLE, roleToEnum } from "../enums/role-enum";
+import { stringToLocaleDate } from "../helpers/errors/date-formatter";
 import { EntityError } from "../helpers/errors/domain-errors";
 
 type TaskProps = {
@@ -101,7 +102,7 @@ export class Task {
             {
                 taskId: json.task_id,
                 title: json.title,
-                deliveryDate: new Date(json.delivery_date),
+                deliveryDate: stringToLocaleDate(json.delivery_date),
                 responsible: roleToEnum(json.responsible) 
             }
         );
