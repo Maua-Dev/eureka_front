@@ -1,6 +1,7 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "./ProjectCard.css";
 
+// Skeleton for the project card
 export default function ProjectCardSkeleton() {
     return (
         <SkeletonTheme baseColor="var(--mustard)" duration={2} highlightColor="var(--dark-mustard)">

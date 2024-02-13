@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./ProjectCard.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
-interface ProjectCardProps {
+type ProjectCardProps = {
   image: string;
   title: string;
   advisor: string;

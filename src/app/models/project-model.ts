@@ -7,7 +7,7 @@ type ProjectModelProps = {
     qualification: string,
     code: string,
     shift: SHIFT,
-    standNumber: number,
+    standNumber: string,
     isEntrepreneurship: boolean,
     professors: UserModel[],
     students: UserModel[]
@@ -19,7 +19,7 @@ export class ProjectModel {
     qualification: string;
     code: string;
     shift: SHIFT;
-    standNumber: number;
+    standNumber: string;
     isEntrepreneurship: boolean;
     professors: UserModel[];
     students: UserModel[];
@@ -43,7 +43,7 @@ export class ProjectModel {
             qualification: "",
             code: "",
             shift: SHIFT.DAYTIME,
-            standNumber: 0,
+            standNumber: "",
             isEntrepreneurship: false,
             professors: [],
             students: []

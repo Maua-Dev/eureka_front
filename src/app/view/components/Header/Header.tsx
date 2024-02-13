@@ -13,22 +13,45 @@ import Dialog from "../Dialog/Dialog";
 import { AuthContext } from "../../../context/auth-context";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { navOptions } from "../../../utils/nav-options";
+import { States } from "../../../utils/states-type";
+
+const initialNavStates: States = {
+  isWorkAndStandsColumnOpen: false,
+  isEventColumnOpen: false,
+  isUserColumnOpen: false,
+  isSystemColumnOpen: false,
+  isMenuColumnOpen: false,
+};
+
+const initialDialogStates: States = {
+  isUserDialogOpen: false,
+  isQuestionDialogOpen: false,
+  isUserMobileDialogOpen: false,
+  isQuestionMobileDialogOpen: false,
+};
 
 export default function Header() {
-  const [isWorkAndStandsColumnOpen, setIsWorkAndStandsColumnOpen] =
-    useState<boolean>(false);
-  const [isEventColumnOpen, setIsEventColumnOpen] = useState<boolean>(false);
-  const [isUserColumnOpen, setIsUserColumnOpen] = useState<boolean>(false);
-  const [isSystemColumnOpen, setIsSystemColumnOpen] = useState<boolean>(false);
-  const [isMenuColumnOpen, setIsMenuColumnOpen] = useState<boolean>(false);
-  const [isUserDialogOpen, setIsUserDialogOpen] = useState<boolean>(false);
-  const [isQuestionDialogOpen, setIsQuestionDialogOpen] =
-    useState<boolean>(false);
-  const [isUserMobileDialogOpen, setIsUserMobileDialogOpen] =
-    useState<boolean>(false);
-  const [isQuestionMobileDialogOpen, setIsQuestionMobileDialogOpen] =
-    useState<boolean>(false);
 
+  /* nav columns states */
+  const [navStates, setNavStates] = useState<States>(initialNavStates);
+  const handleNavStates = (key: string, state?: boolean) => {
+    setNavStates((prevState) => ({
+      ...prevState,
+      [key]: state === undefined ? !prevState[key] : state
+    }));
+  };
+
+  /* dialog states */
+  const [dialogStates, setDialogStates] = useState<States>(initialDialogStates);
+  const handleDialogStates = (key: string, state?: boolean) => {
+    setDialogStates((prevState) => ({
+      ...prevState,
+      [key]: state === undefined ? !prevState[key] : state
+    }));
+  };
+
+  /* get user and ra from auth context */
   const { user } = useContext(AuthContext);
   const ra = user.email.slice(0, 10);
 
@@ -45,17 +68,17 @@ export default function Header() {
         </div>
         <aside className="container--right">
           <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
-            <Dialog setOpen={setIsUserDialogOpen} className="square square--user">
+            <Dialog setOpen={() => handleDialogStates("isUserDialogOpen", false)} className="square square--user">
               <img
                 className="square__img"
-                onClick={() => setIsUserDialogOpen(!isUserDialogOpen)}
+                onClick={() => handleDialogStates("isUserDialogOpen")}
                 src={profileIcon}
                 alt="Ícone de perfil"
               />
-              {isUserDialogOpen && <section className="baloon baloon--user">
+              {dialogStates["isUserDialogOpen"] && <section className="baloon baloon--user">
                 <div className="baloon__content">
-                  {user.name != undefined ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
-                  {user.role == ROLE.STUDENT && (ra != undefined ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
+                  {user.name !== undefined ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
+                  {user.role === ROLE.STUDENT && (ra !== undefined ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
                   <Link className="baloon__btn" to={""}>
                     Sair
                   </Link>
@@ -63,14 +86,14 @@ export default function Header() {
               </section>}
             </Dialog>
           </SkeletonTheme>
-          <Dialog setOpen={setIsQuestionDialogOpen} className="square" to={""}>
+          <Dialog setOpen={() => handleDialogStates("isQuestionDialogOpen", false)} className="square" to={""}>
             <img
               className="square__img"
-              onClick={() => setIsQuestionDialogOpen(!isQuestionDialogOpen)}
+              onClick={() => handleDialogStates("isQuestionDialogOpen")}
               src={questionIcon}
               alt="Ícone de interrogação"
             />
-            {isQuestionDialogOpen && <section className="baloon baloon--question">
+            {dialogStates["isQuestionDialogOpen"] && <section className="baloon baloon--question">
               <div className="baloon__content baloon__content--question">
                 <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
                   Ajuda
@@ -91,103 +114,33 @@ export default function Header() {
       </div>
       <nav className="header--botton">
         <ul className="nav">
-          <li className="nav__item">
-            <div className="nav__btn">Meus trabalhos e estandes</div>
-          </li>
-          <li className="nav__item">
-            <div className="nav__btn">Downloads</div>
-          </li>
-          <Dialog setOpen={setIsWorkAndStandsColumnOpen} className="nav__item">
-            <div
-              onClick={() =>
-                setIsWorkAndStandsColumnOpen(!isWorkAndStandsColumnOpen)
-              }
-              className="nav__btn"
-            >
-              Trabalhos e estandes
-            </div>
-            {isWorkAndStandsColumnOpen && <NavColumn
-              isMobile={false}
-              navOptions={[
-                "Cadastrar",
-                "Cadastrar múltiplos",
-                "Consultar",
-                "Estandes institucionais",
-              ]}
-            />}
-          </Dialog>
-          <li className="nav__item">
-            <div className="nav__btn">Relatórios</div>
-          </li>
-          <Dialog setOpen={setIsEventColumnOpen} className="nav__item">
-            <div
-              onClick={() => setIsEventColumnOpen(!isEventColumnOpen)}
-              className="nav__btn"
-            >
-              Evento
-            </div>
-            {isEventColumnOpen && <NavColumn
-              isMobile={false}
-              navOptions={[
-                "Autorizar entrada",
-                "Colaboradores externos",
-                "Colaboradores internos",
-                "Crachás",
-                "Número de estandes",
-                "Textos para correção",
-              ]}
-            />}
-          </Dialog>
-          <Dialog setOpen={setIsUserColumnOpen} className="nav__item">
-            <div
-              onClick={() => setIsUserColumnOpen(!isUserColumnOpen)}
-              className="nav__btn"
-            >
-              Usuários
-            </div>
-            {isUserColumnOpen && <NavColumn
-              isMobile={false}
-              navOptions={[
-                "Cadastrar",
-                "Cadastrar múltiplos",
-                "Consultar",
-                "Desativar",
-              ]}
-            />}
-          </Dialog>
-          <Dialog setOpen={setIsSystemColumnOpen} className="nav__item">
-            <div
-              onClick={() => setIsSystemColumnOpen(!isSystemColumnOpen)}
-              className="nav__btn"
-            >
-              {" "}
-              Sistema
-            </div>
-            {isSystemColumnOpen && <NavColumn
-              isMobile={false}
-              navOptions={[
-                "Alterar ano de visualização",
-                "Backup de arquivos",
-                "Controle de estoque",
-                "Datas",
-                "Estatísticas",
-                "Imagens",
-                "Log de usuários",
-                "Log de trabalhos",
-              ]}
-            />}
-          </Dialog>
+          {navOptions.map((navOption, index) => {
+            /* construct the nav row  */
+            return (
+              <Dialog key={index} setOpen={() => handleNavStates(navOption.stateKey!, false)} className="nav__item">
+                <div
+                  onClick={() => handleNavStates(navOption.stateKey!)}
+                  className="nav__btn"
+                >
+                  {navOption.primaryOption}
+                </div>
+                {navStates[navOption.stateKey!] && <NavColumn
+                  navColumnOptions={navOption.secondaryOptions}
+                />}
+              </Dialog>
+            );
+          })}
         </ul>
         <aside className="squares">
           <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
-            <Dialog setOpen={setIsUserMobileDialogOpen} className="square square--user">
+            <Dialog setOpen={() => handleDialogStates("isUserMobileDialogOpen", false)} className="square square--user">
               <img
                 className="square__img"
-                onClick={() => setIsUserMobileDialogOpen(!isUserMobileDialogOpen)}
+                onClick={() => handleDialogStates("isUserMobileDialogOpen")}
                 src={profileIcon}
                 alt="Ícone de perfil"
               />
-              {isUserMobileDialogOpen && <section className="baloon baloon--user">
+              {dialogStates["isUserMobileDialogOpen"] && <section className="baloon baloon--user">
                 <div className="baloon__content">
                   {user.name != undefined ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
                   {user.role == ROLE.STUDENT && (ra != undefined ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
@@ -198,16 +151,16 @@ export default function Header() {
               </section>}
             </Dialog>
           </SkeletonTheme>
-          <Dialog setOpen={setIsQuestionMobileDialogOpen} className="square" >
+          <Dialog setOpen={() => handleDialogStates("isQuestionMobileDialogOpen", false)} className="square" >
             <img
               className="square__img"
-              onClick={() =>
-                setIsQuestionMobileDialogOpen(!isQuestionMobileDialogOpen)
+              onClick={
+                () => handleDialogStates("isQuestionMobileDialogOpen")
               }
               src={questionIcon}
               alt="Ícone de interrogação"
             />
-            {isQuestionMobileDialogOpen && <section className="baloon baloon--question">
+            {dialogStates["isQuestionMobileDialogOpen"] && <section className="baloon baloon--question">
               <div className="baloon__content baloon__content--question">
                 <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
                   Ajuda
@@ -224,28 +177,17 @@ export default function Header() {
           <Link to={""} className="square square--calendar" onClick={(event) => event.preventDefault()}>
             <img className="square__img square__img--calendar" src={calendarIcon} alt="ìcone de calendário" />
           </Link>
-          <Dialog className="menu" setOpen={setIsMenuColumnOpen}>
+          <Dialog className="menu" setOpen={() => handleNavStates("isMenuColumnOpen", false)}>
             <img
               className="menu__img"
-              onClick={() => setIsMenuColumnOpen(!isMenuColumnOpen)}
+              onClick={() => handleNavStates("isMenuColumnOpen")}
               src={menuIcon}
               alt="ìcone de menu"
             />
-            {isMenuColumnOpen && <NavColumn
-              isMobile={true}
-              navOptions={[
-                "Meus trabalhos e estandes",
-                "Downloads",
-                "Trabalhos e estandes",
-                "Relatórios",
-                "Evento",
-                "Usuários",
-                "Sistema",
-              ]}
-            />}
+            {navStates["isMenuColumnOpen"] && <NavColumn />}
           </Dialog>
         </aside>
       </nav>
-    </header>
+    </header >
   );
 }

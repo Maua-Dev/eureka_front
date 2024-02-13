@@ -7,7 +7,7 @@ type DeliveryModelProps = {
     user: UserModel;
     date: Date;
     content: {
-        [key: string]: string;
+        [key: string]: unknown;
     }
 }
 
@@ -17,7 +17,7 @@ export class DeliveryModel {
     user: UserModel;
     date: Date;
     content: {
-        [key: string]: string;
+        [key: string]: unknown;
     };
 
     constructor(props: DeliveryModelProps){

@@ -11,29 +11,31 @@ import { ProjectModel } from "../../../models/project-model";
 import ProjectCardSkeleton from "../../components/ProjectCard/ProjectCardSkeleton";
 
 export default function Home() {
+  const [projectsList, setProjectsList] = useState<ProjectModel[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [dropdownText, setDropdownText] = useState<string>(
     "Visualizar trabalhos como"
   );
-  const [projectsList, setProjectsList] = useState<ProjectModel[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { getProjectsByRole } = useContext(ProjectContext);
-  const { user } = useContext(AuthContext);
 
+  async function fetchGetProjectsByRole() {
+    const projectsListCaught = await getProjectsByRole(user!.userId);
+    if (projectsListCaught) {
+      setProjectsList(projectsListCaught);
+    }
+  }
+
+  /* fetch api and handle loading states */
   useEffect(() => {
     setIsLoading(true);
-
-    async function fetch() {
-      const projectsListCaught = await getProjectsByRole(user!.userId);
-      if (projectsListCaught) {
-        setProjectsList(projectsListCaught);
-      }
-    }
-
-    fetch();
+    fetchGetProjectsByRole();
     setIsLoading(false);
   }, []);
+
+  /* get user from auth context */
+  const { user } = useContext(AuthContext);
 
   return (
     <main id="home">

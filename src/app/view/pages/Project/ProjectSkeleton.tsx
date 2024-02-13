@@ -1,5 +1,6 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
+// Skeleton for the project page
 export default function ProjectSkeleton() {
     return (
         <div className="project--skeleton">

@@ -1,5 +1,4 @@
 import "./Project.css";
-import arrowBackIcon from "../../../assets/icons/arrow-back-icon.svg";
 import checkIcon from "../../../assets/icons/check-icon.svg";
 import { Link, useParams } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
@@ -13,26 +12,27 @@ import { TaskModel } from "../../../models/task-model";
 import { TaskContext } from "../../../context/task-context";
 import { DeliveryContext } from "../../../context/delivery-context";
 import { DeliveryModel } from "../../../models/delivery-model";
+import ReturnButton from "../../components/ReturnButton/ReturnButton";
+import { taskTitles } from "../../../utils/task-titles";
 
 export default function Project() {
-  const [isWorkPotencialYesHovered, setisWorkPotencialYesHovered] =
-    useState(false);
-  const [isWorkPotencialNoHovered, setisWorkPotencialNoHovered] =
-    useState(false);
-  const [isEntrepreneurship, setIsEntrepreneurship] = useState(false);
   const [project, setProject] = useState(ProjectModel.empty());
   const [tasksList, setTasksList] = useState<TaskModel[]>([]);
   const [deliveriesList, setDeliveriesList] = useState<DeliveryModel[]>([]);
   const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isWorkPotencialYesHovered, setisWorkPotencialYesHovered] =
+    useState(false);
+  const [isWorkPotencialNoHovered, setisWorkPotencialNoHovered] =
+    useState(false);
+  const [isEntrepreneurship, setIsEntrepreneurship] = useState(false);
 
   const { id } = useParams();
   const projectId = parseInt(id!);
+
   const { getProject, updateProject } = useContext(ProjectContext);
   const { getAllTasks } = useContext(TaskContext);
   const { getDeliveries } = useContext(DeliveryContext);
-
-  const taskTitles = ["Dados do trabalho", "Pôster Imagem", "Mini Capa", "Vídeo Teaser", "Fotos do Trabalho", "Pôster Técnico (PDF)", "Modelo de Negócios", "Resumo/Abstract", "Vídeo do Trabalho (30min)", "Trabalho de Conclusão de Curso (TCC)", "Autorização de divulgação do TCC", "Banca de Avaliação"];
 
   async function fetchGetProject() {
     const projectCaught = await getProject(projectId);
@@ -66,10 +66,8 @@ export default function Project() {
 
   return (
     <main className="project">
+      <ReturnButton />
       {isLoading && <CircularLoading />}
-      <Link className="return" to={"/"}>
-        <img className="return__icon" src={arrowBackIcon} alt="Ícone de flecha" />
-      </Link>
       {isSkeletonLoading ? <ProjectSkeleton /> :
         <><section className="card card--margin">
           <header className="card__header">
@@ -206,24 +204,24 @@ export default function Project() {
                   return (
                     <React.Fragment key={index}>
                       <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: `${index + 2} / ${index + 3}` }}>
-                        <h3 className="grid__title">{title}</h3>
+                        <Link to={`${window.location.pathname}/data`} className="grid__title grid__title--link">{title}</Link>
                       </div>
                       {
                         tasks.length == 1 ?
                           <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                             <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                            <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                            <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                           </div>
                           :
                           tasks.length == 2 ?
                             <>
                               <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
                                 <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                                <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                               </div>
                               <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                                 <p className="grid__text">Até {tasks[1].deliveryDate}</p>
-                                <p className="grid__text" style={{ color: getContentColor(advisorDelivery?.content["content"]) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                <p className="grid__text" style={{ color: getContentColor(advisorDelivery?.content["content"] as string) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                               </div>
                             </>
                             :
@@ -231,15 +229,15 @@ export default function Project() {
                               <>
                                 <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"]) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                  <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                                 </div>
                                 <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[1].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: getContentColor(advisorDelivery?.content["content"]) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                  <p className="grid__text" style={{ color: getContentColor(advisorDelivery?.content["content"] as string) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                                 </div>
                                 <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[2].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: getContentColor(responsibleDelivery?.content["content"]) }}>{responsibleDelivery?.content["content"] != undefined ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}` : "Não enviado"} </p>
+                                  <p className="grid__text" style={{ color: getContentColor(responsibleDelivery?.content["content"] as string) }}>{responsibleDelivery?.content["content"] != undefined ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}` : "Não enviado"} </p>
                                 </div>
                               </>
                               : null
