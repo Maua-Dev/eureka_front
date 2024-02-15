@@ -19,7 +19,7 @@ export default function Card({
       <header className="card__header">
         <h1 className={`header__title ${headerTitleClassName}`}>{headerTitle}</h1>
       </header>
-      {children}
+      <div className="card__content">{children}</div>
     </section>
   );
 }

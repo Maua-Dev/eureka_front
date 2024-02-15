@@ -2,8 +2,176 @@
   padding: 3rem 2.5rem 4rem 2.5rem;
 }
 
+.project_data .header__title--upper {
+  text-transform: uppercase;
+}
+
+.project_data .card--margin {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.project_data .card__main {
+  background-color: var(--white);
+  border-radius: 0.8rem;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.project_data .input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border: 4px solid var(--dark-blue);
+  border-radius: 0.4rem;
+  padding: 0.2rem 1rem;
+  transition: ease-in-out 0.2s;
+}
+
+.project_data .input--bigger {
+  min-height: 200px;
+}
+
+.project_data .input--column {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+}
+
+.project_data .input__title {
+  color: var(--dark-blue);
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.project_data .input__field {
+  width: 100%;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  color: var(--dark-blue);
+  font-weight: 600;
+  resize: none;
+  background-color: transparent;
+  appearance: none;
+}
+
+.project_data .input__field::-webkit-scrollbar {
+  display: none;
+}
+
+.project_data .input__btn {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.project_data .input__btn--end {
+  align-self: flex-end;
+}
+
+.project_data .card__span {
+  font-weight: 600;
+  color: var(--dark-blue);
+  font-size: 1.1rem;
+}
+
+.project_data .input__btn:hover {
+  background-color: var(--dark-mustard);
+  color: var(--dark-blue);
+}
+
+.project_data .input:hover {
+  border-color: var(--dark-mustard);
+}
+
+@media screen and (max-width: 1200px) {
+  .project_data .input__title {
+    font-size: 1.4rem;
+  }
+
+  .project_data .input__btn {
+    font-size: 0.9rem;
+  }
+
+  .project_data .input__field {
+    font-size: 1rem;
+  }
+
+  .project_data .card__span {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .project_data .input__btn {
+    font-size: 0.8rem;
+  }
+
+  .project_data .input__field {
+    font-size: 0.9rem;
+  }
+
+  .project_data .card__span {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .project_data .card--margin {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .project_data .input__title {
+    font-size: 1.3rem;
+  }
+
+  .project_data .input__btn {
+    font-size: 0.7rem;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .project_data {
     padding: 1rem 1rem 4rem 1rem;
+  }
+
+  .project_data .card__main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-bottom: 2rem;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .project_data .card__main {
+    padding: 0.5rem 1rem 2rem 1rem;
+  }
+
+  .project_data .input__btn {
+    font-size: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .project_data .input__title {
+    font-size: 1.1rem;
   }
 }

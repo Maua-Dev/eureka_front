@@ -20,7 +20,7 @@ export default function CardSkeleton({
           <Skeleton className={`header__title--skeleton ${headerTitleClassName}`} />
         </header>
       </SkeletonTheme>
-      {children}
+      <div className="card__content">{children}</div>
     </section>
   );
 }
