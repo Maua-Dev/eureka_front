@@ -1,6 +1,6 @@
-import { Task } from '../../@clean/shared/domain/entities/task'
-import { stringToDate } from '../utils/date-formatter'
-import { TaskModel } from '../models/task-model'
+import { Task } from "../../@clean/shared/domain/entities/task";
+import { stringToDate } from "../utils/date-formatter";
+import { TaskModel } from "../models/task-model";
 
 export class TaskAdapter {
   static fromModel (model: TaskModel): Task {
@@ -9,7 +9,7 @@ export class TaskAdapter {
       title: model.title,
       deliveryDate: stringToDate(model.deliveryDate),
       responsible: model.responsible
-    })
+    });
   }
 
   static toModel (entity: Task): TaskModel {
@@ -18,6 +18,6 @@ export class TaskAdapter {
       title: entity.title,
       deliveryDate: entity.deliveryDate.toLocaleDateString(),
       responsible: entity.responsible
-    })
+    });
   }
 }

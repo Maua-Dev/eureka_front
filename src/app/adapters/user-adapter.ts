@@ -1,6 +1,6 @@
-import { User } from '../../@clean/shared/domain/entities/user'
-import { UserModel } from '../models/user-model'
-import { stringCapitalize } from '../utils/string-formatter'
+import { User } from "../../@clean/shared/domain/entities/user";
+import { UserModel } from "../models/user-model";
+import { stringCapitalize } from "../utils/string-formatter";
 
 export class UserAdapter {
   static fromModel (model: UserModel): User {
@@ -9,7 +9,7 @@ export class UserAdapter {
       name: model.name,
       email: model.email,
       role: model.role
-    })
+    });
   }
 
   static toModel (entity: User): UserModel {
@@ -18,6 +18,6 @@ export class UserAdapter {
       name: stringCapitalize(entity.name),
       email: entity.email,
       role: entity.role
-    })
+    });
   }
 }

@@ -1,5 +1,5 @@
-import { TaskModel } from './task-model'
-import { UserModel } from './user-model'
+import { TaskModel } from "./task-model";
+import { UserModel } from "./user-model";
 
 interface DeliveryModelProps {
   deliveryId: number
@@ -10,18 +10,18 @@ interface DeliveryModelProps {
 }
 
 export class DeliveryModel {
-  deliveryId: number
-  task: TaskModel
-  user: UserModel
-  date: Date
-  content: Record<string, unknown>
+  deliveryId: number;
+  task: TaskModel;
+  user: UserModel;
+  date: Date;
+  content: Record<string, unknown>;
 
   constructor (props: DeliveryModelProps) {
-    this.deliveryId = props.deliveryId
-    this.task = props.task
-    this.user = props.user
-    this.date = props.date
-    this.content = props.content
+    this.deliveryId = props.deliveryId;
+    this.task = props.task;
+    this.user = props.user;
+    this.date = props.date;
+    this.content = props.content;
   }
 
   static empty (): DeliveryModel {
@@ -31,6 +31,6 @@ export class DeliveryModel {
       user: UserModel.empty(),
       date: new Date(),
       content: {}
-    })
+    });
   }
 }
