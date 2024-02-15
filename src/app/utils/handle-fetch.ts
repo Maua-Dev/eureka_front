@@ -8,7 +8,9 @@ export async function handleFetch(
 ) {
   setIsLoading(true);
   try {
-    Promise.all(fetchFunctions);
+    for (const fetchFunction of fetchFunctions) {
+      await fetchFunction;
+    }
     setIsLoading(false);
   } catch (err) {
     console.error(err);
@@ -17,5 +19,8 @@ export async function handleFetch(
     } else {
       showBoundary(err);
     }
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
   }
 }

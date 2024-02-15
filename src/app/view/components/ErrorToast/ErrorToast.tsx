@@ -7,11 +7,10 @@ export default function ErrorToast() {
     <ToastContainer
       className="error_dialog"
       position="bottom-center"
-      autoClose={false}
+      autoClose={2400}
       closeButton={false}
       closeOnClick={false}
       limit={1}
-      hideProgressBar
       newestOnTop={false}
       rtl={false}
       draggable={false}
