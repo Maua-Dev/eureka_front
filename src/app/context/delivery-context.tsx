@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { DeliveryModel } from "../models/delivery-model";
 import { RegistryDelivery, containerDelivery } from "../../@clean/shared/infra/containers/container-delivery";
 import { GetDeliveriesUsecase } from "../../@clean/modules/delivery/usecases/get-deliveries-usecase";
@@ -28,7 +28,7 @@ const getDeliveriesUsecase = containerDelivery.get<GetDeliveriesUsecase>(
 );
 
 export const DeliveryProvider = ({ children }: { children: React.ReactNode }) => {
-    let deliveriesList: DeliveryModel[] = [];
+    const [deliveriesList, setDeliveriesList] = useState<DeliveryModel[]>([]);
 
     const createDelivery = async (delivery: DeliveryModel) => {
         const deliveryCreated = await createDeliveryUsecase.execute(DeliveryAdapter.fromModel(delivery));
@@ -38,7 +38,7 @@ export const DeliveryProvider = ({ children }: { children: React.ReactNode }) =>
     const getDeliveries = async (projectId: number) => {
         const deliveriesCaught = await getDeliveriesUsecase.execute(projectId);
         const deliveriesModel = deliveriesCaught.map(delivery => DeliveryAdapter.toModel(delivery));
-        deliveriesList = deliveriesModel;
+        setDeliveriesList(deliveriesModel);
         return deliveriesList;
     };
 

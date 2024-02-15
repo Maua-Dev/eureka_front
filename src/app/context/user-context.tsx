@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { UserModel } from "../models/user-model";
 import { RegistryUser, containerUser } from "../../@clean/shared/infra/containers/container-user";
 import { GetAllStudentsUsecase } from "../../@clean/modules/user/usecases/get-all-students-usecase";
@@ -21,12 +21,12 @@ const getAllStudentsUsecase = containerUser.get<GetAllStudentsUsecase>(
 );
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-    let studentsList: UserModel[] = [];
+    const [studentsList, setStudentsList] = useState<UserModel[]>([]);
 
     const getAllStudents = async () => {
         const studentsCaught = await getAllStudentsUsecase.execute();
         const studentsModel = studentsCaught.map(task => UserAdapter.toModel(task));
-        studentsList = studentsModel;
+        setStudentsList(studentsModel);
         return studentsList;
     };
 

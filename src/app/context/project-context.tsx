@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { ProjectModel } from "../models/project-model";
 import { UserModel } from "../models/user-model";
 import { SHIFT } from "../../@clean/shared/domain/enums/shift-enum";
@@ -12,6 +12,7 @@ import { GetProjectsByRoleUsecase } from "../../@clean/modules/project/usecases/
 
 type ProjectContextType = {
     projectsList: ProjectModel[];
+    project: ProjectModel
     createProject(project: ProjectModel): Promise<ProjectModel | undefined>;
     getProjectsByRole(userId: number): Promise<ProjectModel[] | undefined>;
     getProject(projectId: number): Promise<ProjectModel | undefined>;
@@ -27,6 +28,7 @@ type ProjectContextType = {
 
 const defaultContext: ProjectContextType = {
     projectsList: [],
+    project: ProjectModel.empty(),
     createProject: async () => ProjectModel.empty(),
     getProjectsByRole: async () => [],
     getProject: async () => ProjectModel.empty(),
@@ -52,26 +54,28 @@ const updateProjectUsecase = containerProject.get<UpdateProjectUsecase>(
 );
 
 export const ProjectProvider = ({ children }: { children: React.ReactNode }) => {
-    let projectsList: ProjectModel[] = [];
+    const [projectsList, setProjectsList] = useState<ProjectModel[]>([]);
+    const [project, setProject] = useState<ProjectModel>(ProjectModel.empty());
 
     const createProject = async (projectModelToCreate: ProjectModel) => {
         const projectToCreate = ProjectAdapter.fromModel(projectModelToCreate);
         const createdProject = await createProjectUsecase.execute(projectToCreate);
         const createdProjectModel = ProjectAdapter.toModel(createdProject);
-        projectsList.push(createdProjectModel);
+        setProjectsList([...projectsList, createdProjectModel]);
         return createdProjectModel;
     };
 
     const getProjectsByRole = async (projectId: number) => {
         const projectsCaught = await getProjectsByRoleUsecase.execute(projectId);
         const projectsModel = projectsCaught.map(project => ProjectAdapter.toModel(project));
-        projectsList = projectsModel;
+        setProjectsList(projectsModel);
         return projectsList;
     };
 
     const getProject = async (projectId: number) => {
         const projectCaught = await getProjectUsecase.execute(projectId);
         const projectModel = ProjectAdapter.toModel(projectCaught);
+        setProject(projectModel);
         return projectModel;
     };
 
@@ -80,11 +84,13 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
         const newStudents = newStudentsModel?.map(newStudentModel => UserAdapter.fromModel(newStudentModel));
         const projectUpdated = await updateProjectUsecase.execute(projectId, newTitle, newQualification, newCode, newShift, newStandNumber, newIsEntrepreneurship, newProfessors, newStudents);
         const projectModelUpdated = ProjectAdapter.toModel(projectUpdated);
+        setProjectsList(projectsList.map(project => project.projectId === projectId ? projectModelUpdated : project));
+        setProject(projectModelUpdated);
         return projectModelUpdated;
     };
 
     return (
-        <ProjectContext.Provider value={{ projectsList, createProject, getProjectsByRole, getProject, updateProject }}>
+        <ProjectContext.Provider value={{ projectsList, project, createProject, getProjectsByRole, getProject, updateProject }}>
             {children}
         </ProjectContext.Provider>
     );

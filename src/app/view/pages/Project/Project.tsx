@@ -5,13 +5,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { ProjectContext } from "../../../context/project-context";
 import { shiftToAcronym } from "../../../../@clean/shared/domain/enums/shift-enum";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
-import { ProjectModel } from "../../../models/project-model";
 import ProjectSkeleton from "./ProjectSkeleton";
 import CircularLoading from "../../components/CircularLoading/CircularLoading";
-import { TaskModel } from "../../../models/task-model";
 import { TaskContext } from "../../../context/task-context";
 import { DeliveryContext } from "../../../context/delivery-context";
-import { DeliveryModel } from "../../../models/delivery-model";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import { taskTitles } from "../../../utils/task-titles";
 import Card from "../../components/Card/Card";
@@ -19,9 +16,6 @@ import { handleFetch } from "../../../utils/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 
 export default function Project() {
-  const [project, setProject] = useState(ProjectModel.empty());
-  const [tasksList, setTasksList] = useState<TaskModel[]>([]);
-  const [deliveriesList, setDeliveriesList] = useState<DeliveryModel[]>([]);
   const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isWorkPotencialYesHovered, setisWorkPotencialYesHovered] =
@@ -33,36 +27,13 @@ export default function Project() {
   const { id } = useParams();
   const projectId = parseInt(id!);
 
-  const { getProject, updateProject } = useContext(ProjectContext);
-  const { getAllTasks } = useContext(TaskContext);
-  const { getDeliveries } = useContext(DeliveryContext);
-
-  async function fetchGetProject() {
-    const projectCaught = await getProject(projectId);
-    if (projectCaught) {
-      setProject(projectCaught);
-      setIsEntrepreneurship(projectCaught.isEntrepreneurship);
-    }
-  }
-
-  async function fetchGetAllTasks() {
-    const tasksCaught = await getAllTasks();
-    if (tasksCaught) {
-      setTasksList(tasksCaught);
-    }
-  }
-
-  async function fetchGetDeliveries() {
-    const deliveriesCaught = await getDeliveries(projectId);
-    if (deliveriesCaught) {
-      setDeliveriesList(deliveriesCaught);
-    }
-  }
-
+  const { project, getProject, updateProject } = useContext(ProjectContext);
+  const { tasksList, getAllTasks } = useContext(TaskContext);
+  const { deliveriesList, getDeliveries } = useContext(DeliveryContext);
   const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
-    handleFetch(setIsSkeletonLoading, showBoundary, fetchGetProject, fetchGetAllTasks, fetchGetDeliveries);
+    handleFetch(setIsSkeletonLoading, showBoundary, getProject(projectId), getAllTasks(), getDeliveries(projectId));
   }, []);
 
   return (
@@ -156,7 +127,7 @@ export default function Project() {
                 </div>
                 <button onClick={() => {
                   setIsLoading(true);
-                  updateProject(projectId, undefined, undefined, undefined, undefined, undefined, isEntrepreneurship);
+                  handleFetch(setIsLoading, showBoundary, updateProject(projectId, undefined, undefined, undefined, undefined, undefined, isEntrepreneurship));
                   setIsLoading(false);
                 }} className="main__btn">
                   <p className="btn__text">Atualizar potencial do trabalho</p>

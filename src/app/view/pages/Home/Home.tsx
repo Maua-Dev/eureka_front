@@ -7,33 +7,23 @@ import Dialog from "../../components/Dialog/Dialog";
 import { ProjectContext } from "../../../context/project-context";
 import { AuthContext } from "../../../context/auth-context";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
-import { ProjectModel } from "../../../models/project-model";
 import ProjectCardSkeleton from "../../components/ProjectCard/ProjectCardSkeleton";
 import { handleFetch } from "../../../utils/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 
 export default function Home() {
-  const [projectsList, setProjectsList] = useState<ProjectModel[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [dropdownText, setDropdownText] = useState<string>(
     "Visualizar trabalhos como"
   );
 
-  const { getProjectsByRole } = useContext(ProjectContext);
-
-  async function fetchGetProjectsByRole() {
-    const projectsListCaught = await getProjectsByRole(user!.userId);
-    if (projectsListCaught) {
-      setProjectsList(projectsListCaught);
-    }
-  }
-
+  const { projectsList, getProjectsByRole } = useContext(ProjectContext);
   const { showBoundary } = useErrorBoundary();
 
   /* fetch api and handle loading states */
   useEffect(() => {
-    handleFetch(setIsLoading, showBoundary, fetchGetProjectsByRole);
+    handleFetch(setIsLoading, showBoundary, getProjectsByRole(user!.userId));
   }, []);
 
   /* get user from auth context */

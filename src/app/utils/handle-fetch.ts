@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
 
-// function to make the fetch and handle the error if neccessary
-export async function handleFetch(setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, showBoundary: (error : unknown) => void,  ...fetchFunctions: (() => Promise<void>)[]) {
+// function to make the fetch handle the loading state and the error if neccessary
+export async function handleFetch(setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, showBoundary: (error : unknown) => void,  ...fetchFunctions: Promise<unknown>[]) {
   setIsLoading(true);
     try {
         for (const fetchFunction of fetchFunctions) {
-          await fetchFunction();
+          await fetchFunction;
         }
         setIsLoading(false);
     } catch (err) {
