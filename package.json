@@ -50,13 +50,12 @@
   },
   "lint-staged": {
     "*.ts": [
-      "eslint --fix",
-      "prettier --write"
+      "npm run format",
+      "npm run lint"
     ],
     "*.tsx": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{ts,tsx}": "eslint --cache --fix"
+      "npm run format",
+      "npm run lint"
+    ]
   }
 }
