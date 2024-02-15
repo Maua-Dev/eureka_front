@@ -48,11 +48,6 @@
     "prettier": "^3.2.5",
     "vite": "^4.4.5"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.ts": [
       "eslint --fix",
@@ -61,6 +56,7 @@
     "*.tsx": [
       "eslint --fix",
       "prettier --write"
-    ]
+    ],
+    "*.{ts,tsx}": "eslint --cache --fix"
   }
 }
