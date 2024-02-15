@@ -35,6 +35,7 @@ export class ProjectRepositoryMock implements IProjectRepository {
     if (json == null) {
       throw new NoItemsFoundError("projectId: " + projectId);
     }
+
     const project = Project.fromJson(json);
 
     return project;
@@ -52,21 +53,22 @@ export class ProjectRepositoryMock implements IProjectRepository {
   ): Promise<Project> {
     let existingProject: Project | null = null;
 
-    ProjectJson.projectJson.forEach((project) => {
+    ProjectJson.projectJson.forEach((project, index) => {
       if (project.project_id === projectId) {
-        existingProject = Project.fromJson(project);
-
-        if (newTitle !== undefined) project.title = newTitle;
-        if (newQualification !== undefined) project.qualification = newQualification;
-        if (newCode !== undefined) project.code = newCode;
-        if (newShift !== undefined) project.shift = SHIFT[newShift].toString();
-        if (newStandNumber !== undefined) project.stand_number = newStandNumber;
+        const projectToUpdate = { ...project };
+        if (newTitle !== undefined) projectToUpdate.title = newTitle;
+        if (newQualification !== undefined) projectToUpdate.qualification = newQualification;
+        if (newCode !== undefined) projectToUpdate.code = newCode;
+        if (newShift !== undefined) projectToUpdate.shift = SHIFT[newShift].toString();
+        if (newStandNumber !== undefined) projectToUpdate.stand_number = newStandNumber;
         if (newIsEntrepreneurship !== undefined)
-          project.is_entrepreneurship = newIsEntrepreneurship;
+          projectToUpdate.is_entrepreneurship = newIsEntrepreneurship;
         if (newProfessors !== undefined)
-          project.professors = newProfessors.map((professor) => professor.toJson());
+          projectToUpdate.professors = newProfessors.map((professor) => professor.toJson());
         if (newStudents !== undefined)
-          project.students = newStudents.map((student) => student.toJson());
+          projectToUpdate.students = newStudents.map((student) => student.toJson());
+        existingProject = Project.fromJson(projectToUpdate);
+        ProjectJson.projectJson[index] = projectToUpdate;
       }
     });
 

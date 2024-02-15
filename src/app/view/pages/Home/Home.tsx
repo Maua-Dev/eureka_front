@@ -10,6 +10,7 @@ import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import ProjectCardSkeleton from "../../components/ProjectCard/ProjectCardSkeleton";
 import { handleFetch } from "../../../utils/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
+import { shiftToAcronym } from "../../../../@clean/shared/domain/enums/shift-enum";
 
 export default function Home() {
   const { user } = useContext(AuthContext);
@@ -77,7 +78,7 @@ export default function Home() {
                 projectId={project.projectId}
                 image={workingImage}
                 advisor={advisor}
-                title={project.title}
+                title={`${project.code}${shiftToAcronym(project.shift)}${project.standNumber} - ${project.title}`}
                 newDeliveries={[
                   "Dados do trabalho",
                   "Pôster de imagem",

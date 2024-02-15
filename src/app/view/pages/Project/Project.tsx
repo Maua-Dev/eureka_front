@@ -32,7 +32,7 @@ export default function Project() {
   // state to control general loading actions
   const [isLoading, setIsLoading] = useState(false);
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
-  const [isEntrepreneurship, setIsEntrepreneurship] = useState(project.isEntrepreneurship);
+  const [isEntrepreneurship, setIsEntrepreneurship] = useState<boolean>(project.isEntrepreneurship);
 
   // function to control the selection of the entrepreneurship option
   const handleOptionClick = (optionValue: string) => {
