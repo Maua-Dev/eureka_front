@@ -7,7 +7,6 @@ import { CreateProjectUsecase } from "../../@clean/modules/project/usecases/crea
 import { GetProjectUsecase } from "../../@clean/modules/project/usecases/get-project-usecase";
 import { UpdateProjectUsecase } from "../../@clean/modules/project/usecases/update-project-usecase";
 import { ProjectAdapter } from "../adapters/project-adapter";
-import { useErrorBoundary } from "react-error-boundary";
 import { UserAdapter } from "../adapters/user-adapter";
 import { GetProjectsByRoleUsecase } from "../../@clean/modules/project/usecases/get-projects-by-role-usecase";
 
@@ -55,56 +54,33 @@ const updateProjectUsecase = containerProject.get<UpdateProjectUsecase>(
 export const ProjectProvider = ({ children }: { children: React.ReactNode }) => {
     let projectsList: ProjectModel[] = [];
 
-    // used to show the error boundary (error threatment)
-    const { showBoundary } = useErrorBoundary();
-
     const createProject = async (projectModelToCreate: ProjectModel) => {
-        try {
-            const projectToCreate = ProjectAdapter.fromModel(projectModelToCreate);
-            const createdProject = await createProjectUsecase.execute(projectToCreate);
-            const createdProjectModel = ProjectAdapter.toModel(createdProject);
-            projectsList.push(createdProjectModel);
-            return createdProjectModel;
-        } catch (err) {
-            console.error(err);
-            showBoundary(err);
-        }
+        const projectToCreate = ProjectAdapter.fromModel(projectModelToCreate);
+        const createdProject = await createProjectUsecase.execute(projectToCreate);
+        const createdProjectModel = ProjectAdapter.toModel(createdProject);
+        projectsList.push(createdProjectModel);
+        return createdProjectModel;
     };
 
     const getProjectsByRole = async (projectId: number) => {
-        try {
-            const projectsCaught = await getProjectsByRoleUsecase.execute(projectId);
-            const projectsModel = projectsCaught.map(project => ProjectAdapter.toModel(project));
-            projectsList = projectsModel;
-            return projectsList;
-        } catch (err) {
-            console.error(err);
-            showBoundary(err);
-        }
+        const projectsCaught = await getProjectsByRoleUsecase.execute(projectId);
+        const projectsModel = projectsCaught.map(project => ProjectAdapter.toModel(project));
+        projectsList = projectsModel;
+        return projectsList;
     };
 
     const getProject = async (projectId: number) => {
-        try {
-            const projectCaught = await getProjectUsecase.execute(projectId);
-            const projectModel = ProjectAdapter.toModel(projectCaught);
-            return projectModel;
-        } catch (err) {
-            console.error(err);
-            showBoundary(err);
-        }
+        const projectCaught = await getProjectUsecase.execute(projectId);
+        const projectModel = ProjectAdapter.toModel(projectCaught);
+        return projectModel;
     };
 
     const updateProject = async (projectId: number, newTitle?: string, newQualification?: string, newCode?: string, newShift?: SHIFT, newStandNumber?: string, newIsEntrepreneurship?: boolean, newProfessorsModel?: UserModel[], newStudentsModel?: UserModel[]) => {
-        try {
-            const newProfessors = newProfessorsModel?.map(professorModel => UserAdapter.fromModel(professorModel));
-            const newStudents = newStudentsModel?.map(newStudentModel => UserAdapter.fromModel(newStudentModel));
-            const projectUpdated = await updateProjectUsecase.execute(projectId, newTitle, newQualification, newCode, newShift, newStandNumber, newIsEntrepreneurship, newProfessors, newStudents);
-            const projectModelUpdated = ProjectAdapter.toModel(projectUpdated);
-            return projectModelUpdated;
-        } catch (err) {
-            console.error(err);
-            showBoundary(err);
-        }
+        const newProfessors = newProfessorsModel?.map(professorModel => UserAdapter.fromModel(professorModel));
+        const newStudents = newStudentsModel?.map(newStudentModel => UserAdapter.fromModel(newStudentModel));
+        const projectUpdated = await updateProjectUsecase.execute(projectId, newTitle, newQualification, newCode, newShift, newStandNumber, newIsEntrepreneurship, newProfessors, newStudents);
+        const projectModelUpdated = ProjectAdapter.toModel(projectUpdated);
+        return projectModelUpdated;
     };
 
     return (

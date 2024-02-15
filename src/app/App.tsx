@@ -9,6 +9,9 @@ import { AuthProvider } from "./context/auth-context";
 import { ErrorBoundary } from "react-error-boundary";
 import { TaskProvider } from "./context/task-context";
 import { DeliveryProvider } from "./context/delivery-context";
+import "react-toastify/dist/ReactToastify.css";
+import DefaultError from "./view/pages/DefaultError/DefaultError";
+import ErrorDialog from "./view/components/ErrorDialog/ErrorDialog";
 
 export type States = {
   [key: string]: boolean;
@@ -16,36 +19,25 @@ export type States = {
 
 function App() {
   return (
-    <>
+    <div className="app_container">
       <BrowserRouter>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <ErrorDialog />
+        <ErrorBoundary FallbackComponent={DefaultError}>
           <AuthProvider>
             <DeliveryProvider>
               <TaskProvider>
                 <ProjectProvider>
-                  <div className="app_container">
-                    <Header />
-                    <AppRouter />
-                    <Footer />
-                  </div>
+                  <Header />
+                  <AppRouter />
+                  <Footer />
                 </ProjectProvider>
               </TaskProvider>
             </DeliveryProvider>
           </AuthProvider>
         </ErrorBoundary>
       </BrowserRouter>
-    </>
+    </div >
   );
 }
-
-const ErrorFallback: React.FC<{ error: Error, resetErrorBoundary: () => void }> = ({ error, resetErrorBoundary }) => {
-  return (
-    <div>
-      <h2>Algo deu errado!</h2>
-      <p>{error.message}</p>
-      <button onClick={resetErrorBoundary}>Tentar novamente</button>
-    </div>
-  );
-};
 
 export default App;

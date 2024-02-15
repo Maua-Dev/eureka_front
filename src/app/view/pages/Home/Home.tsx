@@ -9,6 +9,8 @@ import { AuthContext } from "../../../context/auth-context";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import { ProjectModel } from "../../../models/project-model";
 import ProjectCardSkeleton from "../../components/ProjectCard/ProjectCardSkeleton";
+import { handleFetch } from "../../../utils/handle-fetch";
+import { useErrorBoundary } from "react-error-boundary";
 
 export default function Home() {
   const [projectsList, setProjectsList] = useState<ProjectModel[]>([]);
@@ -27,11 +29,11 @@ export default function Home() {
     }
   }
 
+  const { showBoundary } = useErrorBoundary();
+
   /* fetch api and handle loading states */
   useEffect(() => {
-    setIsLoading(true);
-    fetchGetProjectsByRole();
-    setIsLoading(false);
+    handleFetch(setIsLoading, showBoundary, fetchGetProjectsByRole);
   }, []);
 
   /* get user from auth context */

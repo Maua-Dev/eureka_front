@@ -77,8 +77,8 @@ export default function Header() {
               />
               {dialogStates["isUserDialogOpen"] && <section className="baloon baloon--user">
                 <div className="baloon__content">
-                  {user.name !== undefined ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
-                  {user.role === ROLE.STUDENT && (ra !== undefined ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
+                  {user.name !== "" ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
+                  {user.role === ROLE.STUDENT && (ra !== "" ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
                   <Link className="baloon__btn" to={""}>
                     Sair
                   </Link>

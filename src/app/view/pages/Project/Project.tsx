@@ -15,6 +15,8 @@ import { DeliveryModel } from "../../../models/delivery-model";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import { taskTitles } from "../../../utils/task-titles";
 import Card from "../../components/Card/Card";
+import { handleFetch } from "../../../utils/handle-fetch";
+import { useErrorBoundary } from "react-error-boundary";
 
 export default function Project() {
   const [project, setProject] = useState(ProjectModel.empty());
@@ -57,12 +59,10 @@ export default function Project() {
     }
   }
 
+  const { showBoundary } = useErrorBoundary();
+
   useEffect(() => {
-    setIsSkeletonLoading(true);
-    fetchGetProject();
-    fetchGetAllTasks();
-    fetchGetDeliveries();
-    setIsSkeletonLoading(false);
+    handleFetch(setIsSkeletonLoading, showBoundary, fetchGetProject, fetchGetAllTasks, fetchGetDeliveries);
   }, []);
 
   return (
