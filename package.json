@@ -57,9 +57,8 @@
       "npm run format",
       "npm run lint"
     ],
-    "*.c": [
-      "npm run format",
-      "npm run lint"
+    "*.css": [
+      "npm run format"
     ]
   }
 }
