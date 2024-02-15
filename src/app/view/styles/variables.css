@@ -12,10 +12,6 @@
   --extra-light-blue: #e2e9f1;
   --mustard: rgba(168, 192, 36, 0.4);
   --dark-mustard: #a8c024;
-
-
-
-
   /* filter to apply in hover of images and logos */
   --dark-mustard-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(376%) hue-rotate(17deg) brightness(87%) contrast(87%);
 }
