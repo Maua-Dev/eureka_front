@@ -245,7 +245,7 @@
 }
 
 @media screen and (max-width: 753px) {
-  #footer>.footer__content {
+  #footer > .footer__content {
     display: flex;
     flex-direction: row;
     align-items: start;
@@ -412,7 +412,6 @@
     gap: 2rem;
     font-size: 0.7rem;
     border-radius: 0.5rem;
-
   }
 
   #footer .baloon__textarea {

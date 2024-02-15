@@ -131,8 +131,6 @@
   #home .dropdown__icon {
     height: 1rem;
   }
-
-
 }
 
 @media screen and (max-width: 650px) {
@@ -145,9 +143,11 @@
   }
 }
 
-@media screen and (max-width: 600px) {}
+@media screen and (max-width: 600px) {
+}
 
-@media screen and (max-width: 500px) {}
+@media screen and (max-width: 500px) {
+}
 
 @media screen and (max-width: 400px) {
   #home .dropdown__button {
@@ -155,7 +155,7 @@
   }
 
   #home .dropdown__text {
-    margin: 0.8rem 0rem 0.8rem 1rem
+    margin: 0.8rem 0rem 0.8rem 1rem;
   }
 
   #home.dropdown__icon {

@@ -6,23 +6,22 @@ import { DeliveryJson } from "../../jsons/delivery-json";
 import { decorate, injectable } from "inversify";
 
 export class DeliveryRepositoryMock implements IDeliveryRepository {
+  async getDeliveries(): Promise<Delivery[]> {
+    const jsons = DeliveryJson.deliveryJson;
 
-    async getDeliveries(): Promise<Delivery[]> {
-        const jsons = DeliveryJson.deliveryJson;
-
-        if(jsons == null){
-            throw new NoItemsFoundError("deliveries");	
-        }
-        const deliveries = jsons.map(delivery => Delivery.fromJson(delivery));
-
-        return deliveries;
+    if (jsons == null) {
+      throw new NoItemsFoundError("deliveries");
     }
+    const deliveries = jsons.map((delivery) => Delivery.fromJson(delivery));
 
-    async createDelivery(delivery: Delivery): Promise<Delivery> {
-        DeliveryJson.deliveryJson.push(delivery.toJson());
+    return deliveries;
+  }
 
-        return delivery;
-    }
+  async createDelivery(delivery: Delivery): Promise<Delivery> {
+    DeliveryJson.deliveryJson.push(delivery.toJson());
+
+    return delivery;
+  }
 }
 
 decorate(injectable(), DeliveryRepositoryMock);

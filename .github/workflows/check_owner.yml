@@ -5,7 +5,7 @@ on:
     types: [submitted]
     branches: [homolog, prod]
 
-jobs: 
+jobs:
   check_owner:
     uses: maua-dev/ci_workflows_reusable/.github/workflows/pr_owner.yml@V1.0
     with:

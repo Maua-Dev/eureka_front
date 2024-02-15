@@ -5,21 +5,21 @@ import { decorate, injectable } from "inversify";
 import { AxiosInstance } from "axios";
 
 export class DeliveryRepositoryHttp implements IDeliveryRepository {
-    _axios: AxiosInstance;
+  _axios: AxiosInstance;
 
-    constructor(axios: AxiosInstance) {
-        this._axios = axios;
-    }
+  constructor(axios: AxiosInstance) {
+    this._axios = axios;
+  }
 
-    async getDeliveries(projectId: number): Promise<Delivery[]> {
-        const response = await this._axios.get(`/get-deliveries?project_id=${projectId}`);
-        return response.data.map((delivery : DeliveryJsonProps) => Delivery.fromJson(delivery));
-    }
+  async getDeliveries(projectId: number): Promise<Delivery[]> {
+    const response = await this._axios.get(`/get-deliveries?project_id=${projectId}`);
+    return response.data.map((delivery: DeliveryJsonProps) => Delivery.fromJson(delivery));
+  }
 
-    async createDelivery(delivery: Delivery): Promise<Delivery> {
-        const response = await this._axios.post("/create-delivery", delivery.toJson());
-        return Delivery.fromJson(response.data);
-    }
+  async createDelivery(delivery: Delivery): Promise<Delivery> {
+    const response = await this._axios.post("/create-delivery", delivery.toJson());
+    return Delivery.fromJson(response.data);
+  }
 }
 
 decorate(injectable(), DeliveryRepositoryHttp);

@@ -14,8 +14,7 @@ import { useState } from "react";
 import Dialog from "../Dialog/Dialog";
 
 export default function Footer() {
-  const [isContactDialogOpen, setIsContactDialogOpen] =
-    useState<boolean>(false);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState<boolean>(false);
 
   return (
     <footer id="footer">
@@ -33,12 +32,14 @@ export default function Footer() {
                 src={letterIcon}
                 alt="Ícone de carta"
               />
-              {isContactDialogOpen && <aside className="baloon">
-                <div className="baloon__content">
-                  <header className="baloon__header">Contato - eureka@maua.br</header>
-                  <textarea className="baloon__textarea" placeholder="Digite algo" />
-                </div>
-              </aside>}
+              {isContactDialogOpen && (
+                <aside className="baloon">
+                  <div className="baloon__content">
+                    <header className="baloon__header">Contato - eureka@maua.br</header>
+                    <textarea className="baloon__textarea" placeholder="Digite algo" />
+                  </div>
+                </aside>
+              )}
             </Dialog>
             <p className="nav__text">eureka@maua.br</p>
           </nav>
@@ -46,15 +47,8 @@ export default function Footer() {
         <section className="container container--desktop">
           <span className="container__text">Siga-nos: </span>
           <nav className="container__nav">
-            <Link
-              className="square"
-              to={"https://www.facebook.com/InstitutoMaua"}
-            >
-              <img
-                className="square__img img--hover"
-                src={facebookIcon}
-                alt="Ícone do Facebook"
-              />
+            <Link className="square" to={"https://www.facebook.com/InstitutoMaua"}>
+              <img className="square__img img--hover" src={facebookIcon} alt="Ícone do Facebook" />
             </Link>
             <Link className="square" to={"https://www.instagram.com/infomaua/"}>
               <img
@@ -64,11 +58,7 @@ export default function Footer() {
               />
             </Link>
             <Link className="square" to={"https://www.youtube.com/infomaua"}>
-              <img
-                className="square__img img--hover"
-                src={youtubeIcon}
-                alt="Ícone do Youtube"
-              />
+              <img className="square__img img--hover" src={youtubeIcon} alt="Ícone do Youtube" />
             </Link>
             <Link
               className="square"
@@ -78,18 +68,11 @@ export default function Footer() {
             >
               <img className="square__img img--hover" src={blogIcon} alt="Ícone do Blog" />
             </Link>
-            <Link
-              className="square"
-              to={"https://www.flickr.com/photos/infomaua"}
-            >
+            <Link className="square" to={"https://www.flickr.com/photos/infomaua"}>
               <img className="square__img img--hover" src={flickrIcon} alt="Ícone do Flickr" />
             </Link>
             <Link className="square" to={"https://twitter.com/InfoMaua"}>
-              <img
-                className="square__img img--hover"
-                src={twitterIcon}
-                alt="Ícone do Twitter"
-              />
+              <img className="square__img img--hover" src={twitterIcon} alt="Ícone do Twitter" />
             </Link>
           </nav>
         </section>
@@ -100,7 +83,11 @@ export default function Footer() {
               <img className="logo__img img--hover" src={labDesignLogo} alt="Logo da LabDesign" />
             </Link>
             <Link className="logo" to={"https://devmaua.com"}>
-              <img className="logo__img img--hover" src={devLogo} alt="Logo da Dev. Community Mauá" />
+              <img
+                className="logo__img img--hover"
+                src={devLogo}
+                alt="Logo da Dev. Community Mauá"
+              />
             </Link>
           </nav>
         </section>
@@ -108,10 +95,7 @@ export default function Footer() {
           <section className="container">
             <span className="container__text">Siga-nos: </span>
             <nav className="container__nav">
-              <Link
-                className="square"
-                to={"https://www.facebook.com/InstitutoMaua"}
-              >
+              <Link className="square" to={"https://www.facebook.com/InstitutoMaua"}>
                 <img
                   className="square__img img--hover"
                   src={facebookIcon}
@@ -126,11 +110,7 @@ export default function Footer() {
                 />
               </Link>
               <Link className="square" to={"https://www.youtube.com/infomaua"}>
-                <img
-                  className="square__img img--hover"
-                  src={youtubeIcon}
-                  alt="Ícone do Youtube"
-                />
+                <img className="square__img img--hover" src={youtubeIcon} alt="Ícone do Youtube" />
               </Link>
               <Link
                 className="square"
@@ -140,18 +120,11 @@ export default function Footer() {
               >
                 <img className="square__img img--hover" src={blogIcon} alt="Ícone do Blog" />
               </Link>
-              <Link
-                className="square"
-                to={"https://www.flickr.com/photos/infomaua"}
-              >
+              <Link className="square" to={"https://www.flickr.com/photos/infomaua"}>
                 <img className="square__img img--hover" src={flickrIcon} alt="Ícone do Flickr" />
               </Link>
               <Link className="square" to={"https://twitter.com/InfoMaua"}>
-                <img
-                  className="square__img img--hover"
-                  src={twitterIcon}
-                  alt="Ícone do Twitter"
-                />
+                <img className="square__img img--hover" src={twitterIcon} alt="Ícone do Twitter" />
               </Link>
             </nav>
           </section>
@@ -162,12 +135,15 @@ export default function Footer() {
                 <img className="logo__img img--hover" src={labDesignLogo} alt="Logo da LabDesign" />
               </Link>
               <Link className="logo" to={"https://devmaua.com"}>
-                <img className="logo__img img--hover" src={devLogo} alt="Logo da Dev. Community Mauá" />
+                <img
+                  className="logo__img img--hover"
+                  src={devLogo}
+                  alt="Logo da Dev. Community Mauá"
+                />
               </Link>
             </nav>
           </section>
         </div>
-
       </section>
     </footer>
   );

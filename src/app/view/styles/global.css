@@ -1,5 +1,4 @@
 * {
-
   /* reset css */
   margin: 0;
   padding: 0;
@@ -10,7 +9,6 @@
   -webkit-tap-highlight-color: transparent;
 
   font-family: "omnes-pro", sans-serif;
-
 }
 
 .app_container {
@@ -21,16 +19,23 @@
 }
 
 /* main breakpoints used in project */
-@media screen and (max-width: 1200px) {}
+@media screen and (max-width: 1200px) {
+}
 
-@media screen and (max-width: 1024px) {}
+@media screen and (max-width: 1024px) {
+}
 
-@media screen and (max-width: 800px) {}
+@media screen and (max-width: 800px) {
+}
 
-@media screen and (max-width: 650px) {}
+@media screen and (max-width: 650px) {
+}
 
-@media screen and (max-width: 600px) {}
+@media screen and (max-width: 600px) {
+}
 
-@media screen and (max-width: 500px) {}
+@media screen and (max-width: 500px) {
+}
 
-@media screen and (max-width: 400px) {}
+@media screen and (max-width: 400px) {
+}

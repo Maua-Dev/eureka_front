@@ -20,9 +20,7 @@ export default function Home() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const [dropdownText, setDropdownText] = useState<string>(
-    "Visualizar trabalhos como"
-  );
+  const [dropdownText, setDropdownText] = useState<string>("Visualizar trabalhos como");
 
   useEffect(() => {
     handleFetch(setIsLoading, showBoundary, getProjectsByRole(user!.userId));
@@ -30,55 +28,65 @@ export default function Home() {
 
   return (
     <main id="home">
-      {user.role != ROLE.STUDENT && <div className="container">
-        <Dialog setOpen={setIsDropdownOpen} className="dropdown">
-          <button
-            className="dropdown__button"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          >
-            <p className="dropdown__text">{dropdownText}</p>
-            <img
-              className="dropdown__icon"
-              src={arrowIcon}
-              style={isDropdownOpen ? { transform: "scale(1, -1)" } : {}}
-              alt="Ícone de flecha"
-            />
-            {isDropdownOpen && <section className="dropdown__options">
-              <div
-                className="option"
-                onClick={(event) => {
-                  setDropdownText(event.currentTarget.innerHTML);
-                }}
-              >
-                Professor orientador
-              </div>
-              <div
-                className="option"
-                onClick={(event) => {
-                  setDropdownText(event.currentTarget.innerHTML);
-                }}
-              >
-                Professor responsável
-              </div>
-            </section>}
-
-          </button>
-        </Dialog>
-      </div>}
-      {isLoading ? Array(user.role == ROLE.STUDENT ? 1 : 3).fill(0).map((_, index) => <ProjectCardSkeleton key={index} />)
+      {user.role != ROLE.STUDENT && (
+        <div className="container">
+          <Dialog setOpen={setIsDropdownOpen} className="dropdown">
+            <button className="dropdown__button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+              <p className="dropdown__text">{dropdownText}</p>
+              <img
+                className="dropdown__icon"
+                src={arrowIcon}
+                style={isDropdownOpen ? { transform: "scale(1, -1)" } : {}}
+                alt="Ícone de flecha"
+              />
+              {isDropdownOpen && (
+                <section className="dropdown__options">
+                  <div
+                    className="option"
+                    onClick={(event) => {
+                      setDropdownText(event.currentTarget.innerHTML);
+                    }}
+                  >
+                    Professor orientador
+                  </div>
+                  <div
+                    className="option"
+                    onClick={(event) => {
+                      setDropdownText(event.currentTarget.innerHTML);
+                    }}
+                  >
+                    Professor responsável
+                  </div>
+                </section>
+              )}
+            </button>
+          </Dialog>
+        </div>
+      )}
+      {isLoading
+        ? Array(user.role == ROLE.STUDENT ? 1 : 3)
+            .fill(0)
+            .map((_, index) => <ProjectCardSkeleton key={index} />)
         : projectsList.map((project) => {
-          const advisor = project.professors.find((professor) => professor.role === ROLE.ADVISOR)!.name;
-          return (
-            <ProjectCard
-              key={project.projectId}
-              projectId={project.projectId}
-              image={workingImage}
-              advisor={advisor}
-              title={project.title}
-              newDeliveries={["Dados do trabalho", "Pôster de imagem", "Dados do trabalho", "Pôster de imagem"]}
-            />
-          );
-        })}
-    </main >
+            const advisor = project.professors.find(
+              (professor) => professor.role === ROLE.ADVISOR
+            )!.name;
+            return (
+              <ProjectCard
+                key={project.projectId}
+                projectId={project.projectId}
+                image={workingImage}
+                advisor={advisor}
+                title={project.title}
+                newDeliveries={[
+                  "Dados do trabalho",
+                  "Pôster de imagem",
+                  "Dados do trabalho",
+                  "Pôster de imagem",
+                ]}
+              />
+            );
+          })}
+    </main>
   );
 }

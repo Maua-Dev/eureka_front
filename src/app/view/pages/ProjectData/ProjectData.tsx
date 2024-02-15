@@ -10,29 +10,31 @@ import isEqual from "lodash.isequal";
 import "./ProjectData.css";
 
 export default function ProjectData() {
-    // get the project id from the url to fetch the project data
-    const { id } = useParams();
-    const projectId = parseInt(id!);
+  // get the project id from the url to fetch the project data
+  const { id } = useParams();
+  const projectId = parseInt(id!);
 
-    const { project, getProject } = useContext(ProjectContext);
+  const { project, getProject } = useContext(ProjectContext);
 
-    // error boundary to catch errors in the components (used in handleFetch function)
-    const { showBoundary } = useErrorBoundary();
+  // error boundary to catch errors in the components (used in handleFetch function)
+  const { showBoundary } = useErrorBoundary();
 
-    const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
+  const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (isEqual(project, ProjectModel.empty())) {
-            handleFetch(setIsSkeletonLoading, showBoundary, getProject(projectId));
-        }
-    }, []);
+  useEffect(() => {
+    if (isEqual(project, ProjectModel.empty())) {
+      handleFetch(setIsSkeletonLoading, showBoundary, getProject(projectId));
+    }
+  }, []);
 
-    return (
-        <main className="project_data">
-            <ReturnButton to={`/project/${projectId}`} />
-            <Card headerTitle={project.title} >
-                <h1> TESTE </h1>
-            </Card>
-        </main>
-    );
+  return (
+    <main className="project_data">
+      <ReturnButton to={`/project/${projectId}`} />
+      {isSkeletonLoading ? (
+        <Card headerTitle={project.title}>
+          <h1> TESTE </h1>
+        </Card>
+      ) : null}
+    </main>
+  );
 }

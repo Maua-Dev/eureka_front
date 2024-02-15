@@ -305,7 +305,7 @@
 }
 
 .project .grid__title--skeleton {
-  width: 80%
+  width: 80%;
 }
 
 .project .grid__text {
@@ -315,7 +315,7 @@
 }
 
 .project .grid__text--skeleton {
-  width: 80%
+  width: 80%;
 }
 
 .project .grid__link {
@@ -402,7 +402,6 @@
 
   .project .option {
     font-size: 1rem;
-
   }
 
   .project .option__icon {
@@ -438,7 +437,6 @@
 
   .project .column__title {
     font-size: 1rem;
-
   }
 }
 
@@ -499,7 +497,6 @@
 
   .project .column__element {
     font-size: 1rem;
-
   }
 
   .project .column__title {
@@ -735,7 +732,6 @@
 
   .project .column__element {
     font-size: 1rem;
-
   }
 
   .project .column__title {
@@ -743,7 +739,8 @@
   }
 }
 
-@media screen and (max-width: 650px) {}
+@media screen and (max-width: 650px) {
+}
 
 @media screen and (max-width: 600px) {
   .project .card__main {

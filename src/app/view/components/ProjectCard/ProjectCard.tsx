@@ -8,14 +8,14 @@ type ProjectCardProps = {
   advisor: string;
   newDeliveries?: string[];
   projectId: number;
-}
+};
 
 export default function ProjectCard({
   image,
   title,
   advisor,
   newDeliveries,
-  projectId
+  projectId,
 }: ProjectCardProps) {
   const hasNewDeliveries = newDeliveries != null;
 
@@ -33,18 +33,22 @@ export default function ProjectCard({
         <p className="infos__teacher">Prof. orientador: {advisor}</p>
       </aside>
       {hasNewDeliveries && <div className="circle"></div>}
-      {hasNewDeliveries &&
+      {hasNewDeliveries && (
         <div className="deliveries">
           <h1 className="deliveries__text">Nova entrega em:</h1>
-          {newDeliveries.map((delivery, index) => (
-            index <= 3 &&
-            <div key={index} className="delivery">
-              <span className="deliveries__text deliveries__text--lighter">{delivery}</span>
-            </div>
-          ))}
-          {newDeliveries.length > 4 && <span className="deliveries__text deliveries__text--lighter">...</span>}
+          {newDeliveries.map(
+            (delivery, index) =>
+              index <= 3 && (
+                <div key={index} className="delivery">
+                  <span className="deliveries__text deliveries__text--lighter">{delivery}</span>
+                </div>
+              )
+          )}
+          {newDeliveries.length > 4 && (
+            <span className="deliveries__text deliveries__text--lighter">...</span>
+          )}
         </div>
-      }
+      )}
     </Link>
   );
 }

@@ -122,7 +122,6 @@
   }
 }
 
-
 @media screen and (max-width: 1024px) {}
 
 @media screen and (max-width: 900px) {
@@ -149,7 +148,6 @@
   .project_card .infos {
     width: calc(100% - 90px);
   }
-
 }
 
 @media screen and (max-width: 650px) {

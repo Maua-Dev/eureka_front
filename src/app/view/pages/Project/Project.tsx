@@ -63,7 +63,13 @@ export default function Project() {
   };
 
   useEffect(() => {
-    handleFetch(setIsSkeletonLoading, showBoundary, getProject(projectId), getAllTasks(), getDeliveries(projectId));
+    handleFetch(
+      setIsSkeletonLoading,
+      showBoundary,
+      getProject(projectId),
+      getAllTasks(),
+      getDeliveries(projectId)
+    );
   }, []);
 
   useEffect(() => {
@@ -74,82 +80,112 @@ export default function Project() {
     <main className="project">
       <ReturnButton />
       {isLoading && <CircularLoading />}
-      {isSkeletonLoading ? <ProjectSkeleton /> :
-        <><Card cardClassName="card--margin" headerTitleClassName="header__title--upper" headerTitle={`${project.code}${shiftToAcronym(project.shift)}${project.standNumber} - ${project.title}`}>
-          <div className="card__main">
-            <div className="subject">
-              <h2 className="main__title">Habilitação: </h2>
-              <span className="main__text">{project.qualification}</span>
-            </div>
-            <div className="supervisor">
-              <h2 className="main__title">Orientador: </h2>
-              <span className="main__text">{project.professors.find((professor) => professor.role === ROLE.ADVISOR)?.name}</span>
-            </div>
-            <div className="cosupervisor">
-              <h2 className="main__title main__title--cosupervisor">Coorientador: </h2>
-              <input type="text" className="main__input" />
-              <button className="main__btn main__btn--margin main__btn--smaller"><p className="btn__text">Salvar</p></button>
-            </div>
-            <div className="students">
-              <h2 className="main__title main__title--students">Alunos: </h2>
-              <div className="students__name">
-                {project?.students.map((user, index) => (
-                  <span className="main__text main__text--students" key={index}>{user.name}</span>
-                ))}
+      {isSkeletonLoading ? (
+        <ProjectSkeleton />
+      ) : (
+        <>
+          <Card
+            cardClassName="card--margin"
+            headerTitleClassName="header__title--upper"
+            headerTitle={`${project.code}${shiftToAcronym(project.shift)}${project.standNumber} - ${project.title}`}
+          >
+            <div className="card__main">
+              <div className="subject">
+                <h2 className="main__title">Habilitação: </h2>
+                <span className="main__text">{project.qualification}</span>
               </div>
-            </div>
-          </div>
-          <footer className="card__footer">
-            <div className="code">
-              <h2 className="main__title">Código: </h2>
-              <span className="main__text">{project.code}</span>
-            </div>
-            <div className="infos">
-              <div className="infos__period">
-                <h2 className="main__title">Período: </h2>
-                <span className="main__text">{shiftToAcronym(project.shift)}</span>
+              <div className="supervisor">
+                <h2 className="main__title">Orientador: </h2>
+                <span className="main__text">
+                  {project.professors.find((professor) => professor.role === ROLE.ADVISOR)?.name}
+                </span>
               </div>
-              <div className="infos__number">
-                <h2 className="main__title">Número: </h2>
-                <span className="main__text">{project.standNumber}</span>
-              </div>
-            </div>
-            <div className="potencial">
-              <h2 className="main__title">O trabalho tem potencial para empreendimento: </h2>
-              <div className="options">
-                {["yes", "no"].map((optionValue) => (
-                  <div className="option" key={optionValue}>
-                    <p className="option__title">{optionValue === "yes" ? "Sim" : "Não"}</p>
-                    <div
-                      className="option__checkbox"
-                      onClick={() => handleOptionClick(optionValue)}
-                      onMouseEnter={() => handleOptionMouseEnter(optionValue)}
-                      onMouseLeave={handleOptionMouseLeave}
-                      style={{
-                        backgroundColor: hoveredOption === optionValue
-                          ? "var(--extra-light-blue)"
-                          : isEntrepreneurship === (optionValue === "yes")
-                            ? "var(--dark-mustard)"
-                            : "",
-                      }}
-                    >
-                      {(hoveredOption === optionValue || isEntrepreneurship === (optionValue === "yes")) && (
-                        <img className="option__icon" src={checkIcon} alt="Ícone de check" />
-                      )}
-                    </div>
-                  </div>
-                ))}
-                <button onClick={() => {
-                  setIsLoading(true);
-                  handleFetch(setIsLoading, showBoundary, updateProject(projectId, undefined, undefined, undefined, undefined, undefined, isEntrepreneurship));
-                  setIsLoading(false);
-                }} className="main__btn">
-                  <p className="btn__text">Atualizar potencial do trabalho</p>
+              <div className="cosupervisor">
+                <h2 className="main__title main__title--cosupervisor">Coorientador: </h2>
+                <input type="text" className="main__input" />
+                <button className="main__btn main__btn--margin main__btn--smaller">
+                  <p className="btn__text">Salvar</p>
                 </button>
               </div>
+              <div className="students">
+                <h2 className="main__title main__title--students">Alunos: </h2>
+                <div className="students__name">
+                  {project?.students.map((user, index) => (
+                    <span className="main__text main__text--students" key={index}>
+                      {user.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-          </footer>
-        </Card>
+            <footer className="card__footer">
+              <div className="code">
+                <h2 className="main__title">Código: </h2>
+                <span className="main__text">{project.code}</span>
+              </div>
+              <div className="infos">
+                <div className="infos__period">
+                  <h2 className="main__title">Período: </h2>
+                  <span className="main__text">{shiftToAcronym(project.shift)}</span>
+                </div>
+                <div className="infos__number">
+                  <h2 className="main__title">Número: </h2>
+                  <span className="main__text">{project.standNumber}</span>
+                </div>
+              </div>
+              <div className="potencial">
+                <h2 className="main__title">O trabalho tem potencial para empreendimento: </h2>
+                <div className="options">
+                  {["yes", "no"].map((optionValue) => (
+                    <div className="option" key={optionValue}>
+                      <p className="option__title">{optionValue === "yes" ? "Sim" : "Não"}</p>
+                      <div
+                        className="option__checkbox"
+                        onClick={() => handleOptionClick(optionValue)}
+                        onMouseEnter={() => handleOptionMouseEnter(optionValue)}
+                        onMouseLeave={handleOptionMouseLeave}
+                        style={{
+                          backgroundColor:
+                            hoveredOption === optionValue
+                              ? "var(--extra-light-blue)"
+                              : isEntrepreneurship === (optionValue === "yes")
+                                ? "var(--dark-mustard)"
+                                : "",
+                        }}
+                      >
+                        {(hoveredOption === optionValue ||
+                          isEntrepreneurship === (optionValue === "yes")) && (
+                          <img className="option__icon" src={checkIcon} alt="Ícone de check" />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    onClick={() => {
+                      setIsLoading(true);
+                      handleFetch(
+                        setIsLoading,
+                        showBoundary,
+                        updateProject(
+                          projectId,
+                          undefined,
+                          undefined,
+                          undefined,
+                          undefined,
+                          undefined,
+                          isEntrepreneurship
+                        )
+                      );
+                      setIsLoading(false);
+                    }}
+                    className="main__btn"
+                  >
+                    <p className="btn__text">Atualizar potencial do trabalho</p>
+                  </button>
+                </div>
+              </div>
+            </footer>
+          </Card>
           <article className="deliveries">
             <Card headerTitle="Informações do trabalho" cardClassName="card--width">
               <div className="grid">
@@ -165,56 +201,173 @@ export default function Project() {
                 {taskTitles.map((title, index) => {
                   // mount the tasks list grid
                   const tasks = tasksList.filter((task) => task.title === title);
-                  const deliveries = deliveriesList.filter((delivery) => delivery.task.title === title);
-                  const studentDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.STUDENT)[0];
-                  const advisorDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.ADVISOR)[0];
-                  const responsibleDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.RESPONSIBLE)[0];
+                  const deliveries = deliveriesList.filter(
+                    (delivery) => delivery.task.title === title
+                  );
+                  const studentDelivery = deliveries.filter(
+                    (delivery) => delivery.user.role === ROLE.STUDENT
+                  )[0];
+                  const advisorDelivery = deliveries.filter(
+                    (delivery) => delivery.user.role === ROLE.ADVISOR
+                  )[0];
+                  const responsibleDelivery = deliveries.filter(
+                    (delivery) => delivery.user.role === ROLE.RESPONSIBLE
+                  )[0];
 
                   return (
                     <React.Fragment key={index}>
-                      <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: `${index + 2} / ${index + 3}` }}>
-                        <Link to={`${window.location.pathname}/data`} className="grid__title grid__title--link">{title}</Link>
+                      <div
+                        className="grid__element"
+                        style={{
+                          gridColumn: "1 / 2",
+                          gridRow: `${index + 2} / ${index + 3}`,
+                        }}
+                      >
+                        <Link
+                          to={`${window.location.pathname}/data`}
+                          className="grid__title grid__title--link"
+                        >
+                          {title}
+                        </Link>
                       </div>
-                      {
-                        tasks.length == 1 ?
-                          <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
+                      {tasks.length == 1 ? (
+                        <div
+                          className="grid__element"
+                          style={{
+                            gridColumn: "2 / 5",
+                            gridRow: `${index + 2} / ${index + 3}`,
+                          }}
+                        >
+                          <p className="grid__text">Até {tasks[0].deliveryDate}</p>
+                          <p
+                            className="grid__text"
+                            style={{
+                              color: handleGetContentColor(
+                                studentDelivery?.content["content"] as string
+                              ),
+                            }}
+                          >
+                            {studentDelivery?.content["content"] != undefined
+                              ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
+                              : "Não enviado"}
+                          </p>
+                        </div>
+                      ) : tasks.length == 2 ? (
+                        <>
+                          <div
+                            className="grid__element"
+                            style={{
+                              gridColumn: "2 / 3",
+                              gridRow: `${index + 2} / ${index + 3}`,
+                            }}
+                          >
                             <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                            <p className="grid__text" style={{ color: handleGetContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                            <p
+                              className="grid__text"
+                              style={{
+                                color: handleGetContentColor(
+                                  studentDelivery?.content["content"] as string
+                                ),
+                              }}
+                            >
+                              {studentDelivery?.content["content"] != undefined
+                                ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
+                                : "Não enviado"}
+                            </p>
                           </div>
-                          :
-                          tasks.length == 2 ?
-                            <>
-                              <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
-                                <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                                <p className="grid__text" style={{ color: handleGetContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
-                              </div>
-                              <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
-                                <p className="grid__text">Até {tasks[1].deliveryDate}</p>
-                                <p className="grid__text" style={{ color: handleGetContentColor(advisorDelivery?.content["content"] as string) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
-                              </div>
-                            </>
-                            :
-                            tasks.length == 3 ?
-                              <>
-                                <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
-                                  <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: handleGetContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
-                                </div>
-                                <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: `${index + 2} / ${index + 3}` }}>
-                                  <p className="grid__text">Até {tasks[1].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: handleGetContentColor(advisorDelivery?.content["content"] as string) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
-                                </div>
-                                <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
-                                  <p className="grid__text">Até {tasks[2].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: handleGetContentColor(responsibleDelivery?.content["content"] as string) }}>{responsibleDelivery?.content["content"] != undefined ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}` : "Não enviado"} </p>
-                                </div>
-                              </>
-                              : null
-                      }
+                          <div
+                            className="grid__element"
+                            style={{
+                              gridColumn: "3 / 5",
+                              gridRow: `${index + 2} / ${index + 3}`,
+                            }}
+                          >
+                            <p className="grid__text">Até {tasks[1].deliveryDate}</p>
+                            <p
+                              className="grid__text"
+                              style={{
+                                color: handleGetContentColor(
+                                  advisorDelivery?.content["content"] as string
+                                ),
+                              }}
+                            >
+                              {advisorDelivery?.content["content"] != undefined
+                                ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}`
+                                : "Não enviado"}
+                            </p>
+                          </div>
+                        </>
+                      ) : tasks.length == 3 ? (
+                        <>
+                          <div
+                            className="grid__element"
+                            style={{
+                              gridColumn: "2 / 3",
+                              gridRow: `${index + 2} / ${index + 3}`,
+                            }}
+                          >
+                            <p className="grid__text">Até {tasks[0].deliveryDate}</p>
+                            <p
+                              className="grid__text"
+                              style={{
+                                color: handleGetContentColor(
+                                  studentDelivery?.content["content"] as string
+                                ),
+                              }}
+                            >
+                              {studentDelivery?.content["content"] != undefined
+                                ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
+                                : "Não enviado"}
+                            </p>
+                          </div>
+                          <div
+                            className="grid__element"
+                            style={{
+                              gridColumn: "3 / 4",
+                              gridRow: `${index + 2} / ${index + 3}`,
+                            }}
+                          >
+                            <p className="grid__text">Até {tasks[1].deliveryDate}</p>
+                            <p
+                              className="grid__text"
+                              style={{
+                                color: handleGetContentColor(
+                                  advisorDelivery?.content["content"] as string
+                                ),
+                              }}
+                            >
+                              {advisorDelivery?.content["content"] != undefined
+                                ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}`
+                                : "Não enviado"}
+                            </p>
+                          </div>
+                          <div
+                            className="grid__element"
+                            style={{
+                              gridColumn: "4 / 5",
+                              gridRow: `${index + 2} / ${index + 3}`,
+                            }}
+                          >
+                            <p className="grid__text">Até {tasks[2].deliveryDate}</p>
+                            <p
+                              className="grid__text"
+                              style={{
+                                color: handleGetContentColor(
+                                  responsibleDelivery?.content["content"] as string
+                                ),
+                              }}
+                            >
+                              {responsibleDelivery?.content["content"] != undefined
+                                ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}`
+                                : "Não enviado"}{" "}
+                            </p>
+                          </div>
+                        </>
+                      ) : null}
                     </React.Fragment>
                   );
                 })}
-              </div >
+              </div>
             </Card>
             <aside className="deliveries--right">
               <Card headerTitle="Montagem do evento">
@@ -233,7 +386,9 @@ export default function Project() {
                   </div>
                   <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }}>
                     <p className="grid__text">Até 26/08/2023</p>
-                    <p className="grid__text">Enviado por Isabella Augusta Rodrigues em 19/06/2023</p>
+                    <p className="grid__text">
+                      Enviado por Isabella Augusta Rodrigues em 19/06/2023
+                    </p>
                   </div>
                   <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "2 / 3" }}>
                     <p className="grid__text">Até 31/08/2023</p>
@@ -252,7 +407,9 @@ export default function Project() {
                   </div>
                   <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}>
                     <p className="grid__text">Até 26/08/2023</p>
-                    <p className="grid__text">Enviado por Isabella Augusta Rodrigues em 19/06/2023</p>
+                    <p className="grid__text">
+                      Enviado por Isabella Augusta Rodrigues em 19/06/2023
+                    </p>
                   </div>
                   <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "3 / 4" }}>
                     <p className="grid__text">Até 31/08/2023</p>
@@ -271,7 +428,9 @@ export default function Project() {
                   </div>
                   <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: "4 / 5" }}>
                     <p className="grid__text">Até 26/08/2023</p>
-                    <p className="grid__text">Enviado por Isabella Augusta Rodrigues em 19/06/2023</p>
+                    <p className="grid__text">
+                      Enviado por Isabella Augusta Rodrigues em 19/06/2023
+                    </p>
                   </div>
                   <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "4 / 5" }}>
                     <p className="grid__text">Até 31/08/2023</p>
@@ -288,15 +447,25 @@ export default function Project() {
                     <p className="grid__text">Até 17/09/2023</p>
                     <p className="grid__text">Não enviado</p>
                   </div>
-                  <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: "5 / 6" }}></div>
-                  <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "5 / 6" }}></div>
+                  <div
+                    className="grid__element"
+                    style={{ gridColumn: "3 / 4", gridRow: "5 / 6" }}
+                  ></div>
+                  <div
+                    className="grid__element"
+                    style={{ gridColumn: "4 / 5", gridRow: "5 / 6" }}
+                  ></div>
                   <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: "6 / 7" }}>
                     <h3 className="grid__title">Autorização de entrada</h3>
                   </div>
                   <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: "6 / 7" }}>
                     <p className="grid__text">Até 24/10/2023</p>
                     <p className="grid__text">Opcional</p>
-                    <Link className="grid__link" to={""} onClick={(event) => event.preventDefault()}>
+                    <Link
+                      className="grid__link"
+                      to={""}
+                      onClick={(event) => event.preventDefault()}
+                    >
                       Consultar solicitações
                     </Link>
                   </div>
@@ -322,7 +491,9 @@ export default function Project() {
                 </div>
               </Card>
             </aside>
-          </article> </>}
-    </main >
+          </article>{" "}
+        </>
+      )}
+    </main>
   );
 }

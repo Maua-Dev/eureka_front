@@ -3,142 +3,138 @@ import { stringToLocaleDate } from "../helpers/errors/date-formatter";
 import { EntityError } from "../helpers/errors/domain-errors";
 
 type TaskProps = {
-    taskId: number;
-    title: string;
-    deliveryDate: Date;
-    responsible: ROLE;
-}
+  taskId: number;
+  title: string;
+  deliveryDate: Date;
+  responsible: ROLE;
+};
 
 export type TaskJsonProps = {
-    task_id: number;
-    title: string;
-    delivery_date: string;
-    responsible: string;
-}
+  task_id: number;
+  title: string;
+  delivery_date: string;
+  responsible: string;
+};
 
 export class Task {
-    private _taskId: number;
-    private _title: string;
-    private _deliveryDate: Date;
-    private _responsible: ROLE;
+  private _taskId: number;
+  private _title: string;
+  private _deliveryDate: Date;
+  private _responsible: ROLE;
 
-    constructor(props: TaskProps) {
-            if(!Task.validateTaskId(props.taskId)){
-                throw new EntityError("taskId");
-            }
-            this._taskId = props.taskId;
-
-            if(!Task.validateTitle(props.title)){
-                throw new EntityError("title");
-            }
-            this._title = props.title;
-            
-            if(!Task.validateDeliveryDate(props.deliveryDate)){
-                throw new EntityError("deliveryDate");
-            }
-            this._deliveryDate = props.deliveryDate;
-
-            if(!Task.validateResponsible(props.responsible)){
-                throw new EntityError("responsible");
-            }
-            this._responsible = props.responsible;
-        }
-
-    get taskId() : number {
-        return this._taskId;
+  constructor(props: TaskProps) {
+    if (!Task.validateTaskId(props.taskId)) {
+      throw new EntityError("taskId");
     }
+    this._taskId = props.taskId;
 
-    set taskId(taskId: number) {
-        if(!Task.validateTaskId(taskId)){
-            throw new EntityError("taskId");
-        }
-        this._taskId = taskId;
+    if (!Task.validateTitle(props.title)) {
+      throw new EntityError("title");
     }
+    this._title = props.title;
 
-    get title() : string {
-        return this._title;
+    if (!Task.validateDeliveryDate(props.deliveryDate)) {
+      throw new EntityError("deliveryDate");
     }
+    this._deliveryDate = props.deliveryDate;
 
-    set title(title: string) {
-        if(!Task.validateTitle(title)){
-            throw new EntityError("title");
-        }
-        this._title = title;
+    if (!Task.validateResponsible(props.responsible)) {
+      throw new EntityError("responsible");
     }
+    this._responsible = props.responsible;
+  }
 
-    get deliveryDate() : Date {
-        return this._deliveryDate;
-    }
+  get taskId(): number {
+    return this._taskId;
+  }
 
-    set deliveryDate(deliveryDate: Date) {
-        if(!Task.validateDeliveryDate(deliveryDate)){
-            throw new EntityError("deliveryDate");
-        }
-        this._deliveryDate = deliveryDate;
+  set taskId(taskId: number) {
+    if (!Task.validateTaskId(taskId)) {
+      throw new EntityError("taskId");
     }
+    this._taskId = taskId;
+  }
 
-    get responsible() : ROLE {
-        return this._responsible;
-    }
+  get title(): string {
+    return this._title;
+  }
 
-    set responsible(responsible: ROLE) {
-        if(!Task.validateResponsible(responsible)){
-            throw new EntityError("responsible");
-        }
-        this._responsible = responsible;
+  set title(title: string) {
+    if (!Task.validateTitle(title)) {
+      throw new EntityError("title");
     }
+    this._title = title;
+  }
 
-    toJson() : TaskJsonProps {
-        return {
-            "task_id": this._taskId,
-            "title": this._title,
-            "delivery_date": this._deliveryDate.toISOString(),
-            "responsible": ROLE[this._responsible].toString()
-        };
-    }
+  get deliveryDate(): Date {
+    return this._deliveryDate;
+  }
 
-    static fromJson(json: TaskJsonProps): Task {
-        return new Task(
-            {
-                taskId: json.task_id,
-                title: json.title,
-                deliveryDate: stringToLocaleDate(json.delivery_date),
-                responsible: roleToEnum(json.responsible) 
-            }
-        );
+  set deliveryDate(deliveryDate: Date) {
+    if (!Task.validateDeliveryDate(deliveryDate)) {
+      throw new EntityError("deliveryDate");
     }
+    this._deliveryDate = deliveryDate;
+  }
 
-    static validateTaskId(taskId: number) : boolean{
-        if(taskId == null){
-            return false;
-        }
-        else if(taskId <= 0){
-            return false;
-        }
-        return true;
-    }
+  get responsible(): ROLE {
+    return this._responsible;
+  }
 
-    static validateTitle(title: string) : boolean{
-        if(title == null){
-            return false;
-        }
-        else if(title.trim() == ""){
-            return false;
-        }
-        return true;
+  set responsible(responsible: ROLE) {
+    if (!Task.validateResponsible(responsible)) {
+      throw new EntityError("responsible");
     }
+    this._responsible = responsible;
+  }
 
-    static validateDeliveryDate(deliveryDate: Date) : boolean{
-        if(deliveryDate == null){
-            return false;
-        }
-        return true;
-    }
+  toJson(): TaskJsonProps {
+    return {
+      task_id: this._taskId,
+      title: this._title,
+      delivery_date: this._deliveryDate.toISOString(),
+      responsible: ROLE[this._responsible].toString(),
+    };
+  }
 
-    static validateResponsible(responsible: ROLE) : boolean{
-        if(responsible == null){
-            return false;
-        }
-        return true;
+  static fromJson(json: TaskJsonProps): Task {
+    return new Task({
+      taskId: json.task_id,
+      title: json.title,
+      deliveryDate: stringToLocaleDate(json.delivery_date),
+      responsible: roleToEnum(json.responsible),
+    });
+  }
+
+  static validateTaskId(taskId: number): boolean {
+    if (taskId == null) {
+      return false;
+    } else if (taskId <= 0) {
+      return false;
     }
+    return true;
+  }
+
+  static validateTitle(title: string): boolean {
+    if (title == null) {
+      return false;
+    } else if (title.trim() == "") {
+      return false;
+    }
+    return true;
+  }
+
+  static validateDeliveryDate(deliveryDate: Date): boolean {
+    if (deliveryDate == null) {
+      return false;
+    }
+    return true;
+  }
+
+  static validateResponsible(responsible: ROLE): boolean {
+    if (responsible == null) {
+      return false;
+    }
+    return true;
+  }
 }

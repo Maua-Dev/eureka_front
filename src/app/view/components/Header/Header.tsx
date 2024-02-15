@@ -41,14 +41,14 @@ export default function Header() {
   const handleNavStates = (key: string, state?: boolean) => {
     setNavStates((prevState) => ({
       ...prevState,
-      [key]: state === undefined ? !prevState[key] : state
+      [key]: state === undefined ? !prevState[key] : state,
     }));
   };
 
   const handleDialogStates = (key: string, state?: boolean) => {
     setDialogStates((prevState) => ({
       ...prevState,
-      [key]: state === undefined ? !prevState[key] : state
+      [key]: state === undefined ? !prevState[key] : state,
     }));
   };
 
@@ -56,56 +56,96 @@ export default function Header() {
     <header id="header">
       <div className="header--top">
         <div className="container--left">
-          <Link className="logo" to={""} >
+          <Link className="logo" to={""}>
             <img className="logo__img" src={mauaLogo} alt="Logo do Instituto Mauá de Tecnologia" />
           </Link>
           <Link className="logo logo--margin" to={""}>
-            <img className="logo__img logo__img--bigger" src={eurekaLogo} alt="Logo da Eureka 2024" />
+            <img
+              className="logo__img logo__img--bigger"
+              src={eurekaLogo}
+              alt="Logo da Eureka 2024"
+            />
           </Link>
         </div>
         <aside className="container--right">
           <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
-            <Dialog setOpen={() => handleDialogStates("isUserDialogOpen", false)} className="square square--user">
+            <Dialog
+              setOpen={() => handleDialogStates("isUserDialogOpen", false)}
+              className="square square--user"
+            >
               <img
                 className="square__img"
                 onClick={() => handleDialogStates("isUserDialogOpen")}
                 src={profileIcon}
                 alt="Ícone de perfil"
               />
-              {dialogStates["isUserDialogOpen"] && <section className="baloon baloon--user">
-                <div className="baloon__content">
-                  {user.name !== "" ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
-                  {user.role === ROLE.STUDENT && (ra !== "" ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
-                  <Link className="baloon__btn" to={""}>
-                    Sair
-                  </Link>
-                </div>
-              </section>}
+              {dialogStates["isUserDialogOpen"] && (
+                <section className="baloon baloon--user">
+                  <div className="baloon__content">
+                    {user.name !== "" ? (
+                      <h1 className="baloon__title baloon__title--margin">{user.name}</h1>
+                    ) : (
+                      <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin"></Skeleton>
+                    )}
+                    {user.role === ROLE.STUDENT &&
+                      (ra !== "" ? (
+                        <p className="baloon__text">RA: {ra}</p>
+                      ) : (
+                        <Skeleton containerClassName="baloon__text baloon__text--skeleton"></Skeleton>
+                      ))}
+                    <Link className="baloon__btn" to={""}>
+                      Sair
+                    </Link>
+                  </div>
+                </section>
+              )}
             </Dialog>
           </SkeletonTheme>
-          <Dialog setOpen={() => handleDialogStates("isQuestionDialogOpen", false)} className="square" to={""}>
+          <Dialog
+            setOpen={() => handleDialogStates("isQuestionDialogOpen", false)}
+            className="square"
+            to={""}
+          >
             <img
               className="square__img"
               onClick={() => handleDialogStates("isQuestionDialogOpen")}
               src={questionIcon}
               alt="Ícone de interrogação"
             />
-            {dialogStates["isQuestionDialogOpen"] && <section className="baloon baloon--question">
-              <div className="baloon__content baloon__content--question">
-                <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
-                  Ajuda
-                </Link>
-                <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
-                  Conheça o sistema
-                </Link>
-              </div>
-            </section>}
+            {dialogStates["isQuestionDialogOpen"] && (
+              <section className="baloon baloon--question">
+                <div className="baloon__content baloon__content--question">
+                  <Link
+                    className="baloon__title baloon__title--hover"
+                    to={""}
+                    onClick={(event) => event.preventDefault()}
+                  >
+                    Ajuda
+                  </Link>
+                  <Link
+                    className="baloon__title baloon__title--hover"
+                    to={""}
+                    onClick={(event) => event.preventDefault()}
+                  >
+                    Conheça o sistema
+                  </Link>
+                </div>
+              </section>
+            )}
           </Dialog>
           <Link className="square" to={""} onClick={(event) => event.preventDefault()}>
             <img className="square__img" src={messageIcon} alt="Ícone de mensagens" />
           </Link>
-          <Link className="square square--calendar" to={""} onClick={(event) => event.preventDefault()}>
-            <img className="square__img square__img--calendar" src={calendarIcon} alt="ìcone de calendário" />
+          <Link
+            className="square square--calendar"
+            to={""}
+            onClick={(event) => event.preventDefault()}
+          >
+            <img
+              className="square__img square__img--calendar"
+              src={calendarIcon}
+              alt="ìcone de calendário"
+            />
           </Link>
         </aside>
       </div>
@@ -114,65 +154,103 @@ export default function Header() {
           {navOptions.map((navOption, index) => {
             /* construct the nav row  */
             return (
-              <Dialog key={index} setOpen={() => handleNavStates(navOption.stateKey!, false)} className="nav__item">
-                <div
-                  onClick={() => handleNavStates(navOption.stateKey!)}
-                  className="nav__btn"
-                >
+              <Dialog
+                key={index}
+                setOpen={() => handleNavStates(navOption.stateKey!, false)}
+                className="nav__item"
+              >
+                <div onClick={() => handleNavStates(navOption.stateKey!)} className="nav__btn">
                   {navOption.primaryOption}
                 </div>
-                {navStates[navOption.stateKey!] && <NavColumn
-                  navColumnOptions={navOption.secondaryOptions}
-                />}
+                {navStates[navOption.stateKey!] && (
+                  <NavColumn navColumnOptions={navOption.secondaryOptions} />
+                )}
               </Dialog>
             );
           })}
         </ul>
         <aside className="squares">
           <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
-            <Dialog setOpen={() => handleDialogStates("isUserMobileDialogOpen", false)} className="square square--user">
+            <Dialog
+              setOpen={() => handleDialogStates("isUserMobileDialogOpen", false)}
+              className="square square--user"
+            >
               <img
                 className="square__img"
                 onClick={() => handleDialogStates("isUserMobileDialogOpen")}
                 src={profileIcon}
                 alt="Ícone de perfil"
               />
-              {dialogStates["isUserMobileDialogOpen"] && <section className="baloon baloon--user">
-                <div className="baloon__content">
-                  {user.name != undefined ? <h1 className="baloon__title baloon__title--margin">{user.name}</h1> : <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin" ></Skeleton>}
-                  {user.role == ROLE.STUDENT && (ra != undefined ? <p className="baloon__text">RA: {ra}</p> : <Skeleton containerClassName="baloon__text baloon__text--skeleton" ></Skeleton>)}
-                  <Link className="baloon__btn" to={""} onClick={(event) => event.preventDefault()}>
-                    Sair
-                  </Link>
-                </div>
-              </section>}
+              {dialogStates["isUserMobileDialogOpen"] && (
+                <section className="baloon baloon--user">
+                  <div className="baloon__content">
+                    {user.name != undefined ? (
+                      <h1 className="baloon__title baloon__title--margin">{user.name}</h1>
+                    ) : (
+                      <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin"></Skeleton>
+                    )}
+                    {user.role == ROLE.STUDENT &&
+                      (ra != undefined ? (
+                        <p className="baloon__text">RA: {ra}</p>
+                      ) : (
+                        <Skeleton containerClassName="baloon__text baloon__text--skeleton"></Skeleton>
+                      ))}
+                    <Link
+                      className="baloon__btn"
+                      to={""}
+                      onClick={(event) => event.preventDefault()}
+                    >
+                      Sair
+                    </Link>
+                  </div>
+                </section>
+              )}
             </Dialog>
           </SkeletonTheme>
-          <Dialog setOpen={() => handleDialogStates("isQuestionMobileDialogOpen", false)} className="square" >
+          <Dialog
+            setOpen={() => handleDialogStates("isQuestionMobileDialogOpen", false)}
+            className="square"
+          >
             <img
               className="square__img"
-              onClick={
-                () => handleDialogStates("isQuestionMobileDialogOpen")
-              }
+              onClick={() => handleDialogStates("isQuestionMobileDialogOpen")}
               src={questionIcon}
               alt="Ícone de interrogação"
             />
-            {dialogStates["isQuestionMobileDialogOpen"] && <section className="baloon baloon--question">
-              <div className="baloon__content baloon__content--question">
-                <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
-                  Ajuda
-                </Link>
-                <Link className="baloon__title baloon__title--hover" to={""} onClick={(event) => event.preventDefault()}>
-                  Conheça o sistema
-                </Link>
-              </div>
-            </section>}
+            {dialogStates["isQuestionMobileDialogOpen"] && (
+              <section className="baloon baloon--question">
+                <div className="baloon__content baloon__content--question">
+                  <Link
+                    className="baloon__title baloon__title--hover"
+                    to={""}
+                    onClick={(event) => event.preventDefault()}
+                  >
+                    Ajuda
+                  </Link>
+                  <Link
+                    className="baloon__title baloon__title--hover"
+                    to={""}
+                    onClick={(event) => event.preventDefault()}
+                  >
+                    Conheça o sistema
+                  </Link>
+                </div>
+              </section>
+            )}
           </Dialog>
           <Link to={""} className="square" onClick={(event) => event.preventDefault()}>
             <img className="square__img" src={messageIcon} alt="Ícone de mensagens" />
           </Link>
-          <Link to={""} className="square square--calendar" onClick={(event) => event.preventDefault()}>
-            <img className="square__img square__img--calendar" src={calendarIcon} alt="ìcone de calendário" />
+          <Link
+            to={""}
+            className="square square--calendar"
+            onClick={(event) => event.preventDefault()}
+          >
+            <img
+              className="square__img square__img--calendar"
+              src={calendarIcon}
+              alt="ìcone de calendário"
+            />
           </Link>
           <Dialog className="menu" setOpen={() => handleNavStates("isMenuColumnOpen", false)}>
             <img
@@ -185,6 +263,6 @@ export default function Header() {
           </Dialog>
         </aside>
       </nav>
-    </header >
+    </header>
   );
 }

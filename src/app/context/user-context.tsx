@@ -5,34 +5,32 @@ import { GetAllStudentsUsecase } from "../../@clean/modules/user/usecases/get-al
 import { UserAdapter } from "../adapters/user-adapter";
 
 type UserContextType = {
-    studentsList: UserModel[];
-    getAllStudents(): Promise<UserModel[] | undefined>;
-}
+  studentsList: UserModel[];
+  getAllStudents(): Promise<UserModel[] | undefined>;
+};
 
 const defaultContext: UserContextType = {
-    studentsList: [],
-    getAllStudents: async () => []
+  studentsList: [],
+  getAllStudents: async () => [],
 };
 
 export const UserContext = createContext(defaultContext);
 
 const getAllStudentsUsecase = containerUser.get<GetAllStudentsUsecase>(
-    RegistryUser.GetAllStudentsUsecase
+  RegistryUser.GetAllStudentsUsecase
 );
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-    const [studentsList, setStudentsList] = useState<UserModel[]>([]);
+  const [studentsList, setStudentsList] = useState<UserModel[]>([]);
 
-    const getAllStudents = async () => {
-        const studentsCaught = await getAllStudentsUsecase.execute();
-        const studentsModel = studentsCaught.map(task => UserAdapter.toModel(task));
-        setStudentsList(studentsModel);
-        return studentsList;
-    };
+  const getAllStudents = async () => {
+    const studentsCaught = await getAllStudentsUsecase.execute();
+    const studentsModel = studentsCaught.map((task) => UserAdapter.toModel(task));
+    setStudentsList(studentsModel);
+    return studentsList;
+  };
 
-    return (
-        <UserContext.Provider value={{ studentsList, getAllStudents }}>
-            {children}
-        </UserContext.Provider>
-    );
+  return (
+    <UserContext.Provider value={{ studentsList, getAllStudents }}>{children}</UserContext.Provider>
+  );
 };

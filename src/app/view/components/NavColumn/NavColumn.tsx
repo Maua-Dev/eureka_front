@@ -7,7 +7,7 @@ import { navOptions } from "../../../utils/nav-options";
 
 type NavColumnProps = {
   navColumnOptions?: string[];
-}
+};
 
 const initialNavStates: States = {
   isWorkAndStandsColumnOpen: false,
@@ -23,7 +23,7 @@ export default function NavColumn({ navColumnOptions }: NavColumnProps) {
   const handleNavStates = (key: string, state?: boolean) => {
     setNavStates((prevState) => ({
       ...prevState,
-      [key]: state === undefined ? !prevState[key] : state
+      [key]: state === undefined ? !prevState[key] : state,
     }));
   };
 
@@ -31,36 +31,52 @@ export default function NavColumn({ navColumnOptions }: NavColumnProps) {
     <div id="nav_column">
       {navColumnOptions === undefined
         ? navOptions.map((navOption, navOptionIndex) => {
-          return (
-            <Dialog key={navOptionIndex} setOpen={() => handleNavStates(navOption.stateKey!, false)} className="option">
-              <div onClick={(event) => {
-                event.preventDefault();
-                handleNavStates(navOption.stateKey!);
-              }}
-                className="option__button"
+            return (
+              <Dialog
+                key={navOptionIndex}
+                setOpen={() => handleNavStates(navOption.stateKey!, false)}
+                className="option"
               >
-                <span className="option__title">{navOption.primaryOption}</span>
-              </div>
-              {navStates[navOption.stateKey!] &&
-                <div className="nav_column--secondary">
-                  {navOption.secondaryOptions.map((secondaryOption, index) => {
-                    return (
-                      <Link key={index} className="option option--secondary" to={""} onClick={(event) => event.preventDefault()}>
-                        <span className="option__title">{secondaryOption}</span>
-                      </Link>
-                    );
-                  })}
-                </div>}
-            </Dialog>
-          );
-        })
+                <div
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleNavStates(navOption.stateKey!);
+                  }}
+                  className="option__button"
+                >
+                  <span className="option__title">{navOption.primaryOption}</span>
+                </div>
+                {navStates[navOption.stateKey!] && (
+                  <div className="nav_column--secondary">
+                    {navOption.secondaryOptions.map((secondaryOption, index) => {
+                      return (
+                        <Link
+                          key={index}
+                          className="option option--secondary"
+                          to={""}
+                          onClick={(event) => event.preventDefault()}
+                        >
+                          <span className="option__title">{secondaryOption}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </Dialog>
+            );
+          })
         : navColumnOptions!.map((e, index) => {
-          return (
-            <Link key={index} className="option" to={""} onClick={(event) => event.preventDefault()}>
-              <span className="option__title">{e}</span>
-            </Link>
-          );
-        })}
-    </div >
+            return (
+              <Link
+                key={index}
+                className="option"
+                to={""}
+                onClick={(event) => event.preventDefault()}
+              >
+                <span className="option__title">{e}</span>
+              </Link>
+            );
+          })}
+    </div>
   );
 }
