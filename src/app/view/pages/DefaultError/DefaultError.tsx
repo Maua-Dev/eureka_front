@@ -7,6 +7,7 @@ type DefaultErrorProps = {
     resetErrorBoundary: () => void;
 };
 
+// component to show a default error page if an unknown error occurs
 export default function DefaultError({ error, resetErrorBoundary }: DefaultErrorProps) {
     return (
         <>

@@ -17,12 +17,9 @@ const initialNavStates: States = {
   isMenuColumnOpen: false,
 };
 
-export default function NavColumn({
-  navColumnOptions,
-}: NavColumnProps) {
-
-  /* nav columns states */
+export default function NavColumn({ navColumnOptions }: NavColumnProps) {
   const [navStates, setNavStates] = useState<States>(initialNavStates);
+
   const handleNavStates = (key: string, state?: boolean) => {
     setNavStates((prevState) => ({
       ...prevState,

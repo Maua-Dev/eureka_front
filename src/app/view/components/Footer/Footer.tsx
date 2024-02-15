@@ -14,8 +14,6 @@ import { useState } from "react";
 import Dialog from "../Dialog/Dialog";
 
 export default function Footer() {
-
-  /* send email dialog state */
   const [isContactDialogOpen, setIsContactDialogOpen] =
     useState<boolean>(false);
 

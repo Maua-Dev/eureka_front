@@ -16,25 +16,59 @@ import { handleFetch } from "../../../utils/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 
 export default function Project() {
-  const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isWorkPotencialYesHovered, setisWorkPotencialYesHovered] =
-    useState(false);
-  const [isWorkPotencialNoHovered, setisWorkPotencialNoHovered] =
-    useState(false);
-  const [isEntrepreneurship, setIsEntrepreneurship] = useState(false);
-
+  // get the project id from the url to fetch the project data
   const { id } = useParams();
   const projectId = parseInt(id!);
 
   const { project, getProject, updateProject } = useContext(ProjectContext);
   const { tasksList, getAllTasks } = useContext(TaskContext);
   const { deliveriesList, getDeliveries } = useContext(DeliveryContext);
+
+  // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
+
+  // state to control the primary loading of the page
+  const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
+  // state to control general loading actions
+  const [isLoading, setIsLoading] = useState(false);
+  const [hoveredOption, setHoveredOption] = useState<string | null>(null);
+  const [isEntrepreneurship, setIsEntrepreneurship] = useState(project.isEntrepreneurship);
+
+  // function to control the selection of the entrepreneurship option
+  const handleOptionClick = (optionValue: string) => {
+    setHoveredOption(optionValue);
+    setIsEntrepreneurship(optionValue === "yes");
+  };
+
+  // function to control the hover of the entrepreneurship option
+  const handleOptionMouseEnter = (optionValue: string) => {
+    setHoveredOption(optionValue);
+  };
+
+  // function to control the leave of the entrepreneurship option
+  const handleOptionMouseLeave = () => {
+    setHoveredOption(null);
+  };
+
+  // function to get the color of the task status based in the content
+  const handleGetContentColor = (content: string) => {
+    switch (content?.toLowerCase()) {
+      case "aprovado":
+        return "var(--green)";
+      case "reprovado":
+        return "var(--red)";
+      default:
+        return "var(--dark-blue)";
+    }
+  };
 
   useEffect(() => {
     handleFetch(setIsSkeletonLoading, showBoundary, getProject(projectId), getAllTasks(), getDeliveries(projectId));
   }, []);
+
+  useEffect(() => {
+    setIsEntrepreneurship(project.isEntrepreneurship);
+  }, [project.isEntrepreneurship]);
 
   return (
     <main className="project">
@@ -83,48 +117,28 @@ export default function Project() {
             <div className="potencial">
               <h2 className="main__title">O trabalho tem potencial para empreendimento: </h2>
               <div className="options">
-                <div className="option">
-                  <p className="option__title">Sim</p>
-                  <div
-                    className="option__checkbox"
-                    onClick={() => {
-                      setisWorkPotencialYesHovered(false);
-                      setIsEntrepreneurship(true);
-                    }}
-                    onMouseEnter={() => setisWorkPotencialYesHovered(true)}
-                    onMouseLeave={() => setisWorkPotencialYesHovered(false)}
-                    style={{
-                      backgroundColor: isEntrepreneurship
-                        ? "var(--dark-mustard)"
-                        : "var(--extra-light-blue)",
-                    }}
-                  >
-                    {(isEntrepreneurship || isWorkPotencialYesHovered) && (
-                      <img className="option__icon" src={checkIcon} alt="Ícone de check" />
-                    )}
+                {["yes", "no"].map((optionValue) => (
+                  <div className="option" key={optionValue}>
+                    <p className="option__title">{optionValue === "yes" ? "Sim" : "Não"}</p>
+                    <div
+                      className="option__checkbox"
+                      onClick={() => handleOptionClick(optionValue)}
+                      onMouseEnter={() => handleOptionMouseEnter(optionValue)}
+                      onMouseLeave={handleOptionMouseLeave}
+                      style={{
+                        backgroundColor: hoveredOption === optionValue
+                          ? "var(--extra-light-blue)"
+                          : isEntrepreneurship === (optionValue === "yes")
+                            ? "var(--dark-mustard)"
+                            : "",
+                      }}
+                    >
+                      {(hoveredOption === optionValue || isEntrepreneurship === (optionValue === "yes")) && (
+                        <img className="option__icon" src={checkIcon} alt="Ícone de check" />
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div className="option">
-                  <p className="option__title">Não</p>
-                  <div
-                    className="option__checkbox"
-                    onClick={() => {
-                      setisWorkPotencialNoHovered(false);
-                      setIsEntrepreneurship(false);
-                    }}
-                    onMouseEnter={() => setisWorkPotencialNoHovered(true)}
-                    onMouseLeave={() => setisWorkPotencialNoHovered(false)}
-                    style={{
-                      backgroundColor: !isEntrepreneurship
-                        ? "var(--dark-mustard)"
-                        : "var(--extra-light-blue)",
-                    }}
-                  >
-                    {(!isEntrepreneurship || isWorkPotencialNoHovered) && (
-                      <img className="option__icon" src={checkIcon} alt="Ícone de check" />
-                    )}
-                  </div>
-                </div>
+                ))}
                 <button onClick={() => {
                   setIsLoading(true);
                   handleFetch(setIsLoading, showBoundary, updateProject(projectId, undefined, undefined, undefined, undefined, undefined, isEntrepreneurship));
@@ -156,17 +170,6 @@ export default function Project() {
                   const advisorDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.ADVISOR)[0];
                   const responsibleDelivery = deliveries.filter((delivery) => delivery.user.role === ROLE.RESPONSIBLE)[0];
 
-                  const getContentColor = (content: string) => {
-                    switch (content?.toLowerCase()) {
-                      case "aprovado":
-                        return "var(--green)";
-                      case "reprovado":
-                        return "var(--red)";
-                      default:
-                        return "var(--dark-blue)";
-                    }
-                  };
-
                   return (
                     <React.Fragment key={index}>
                       <div className="grid__element" style={{ gridColumn: "1 / 2", gridRow: `${index + 2} / ${index + 3}` }}>
@@ -176,18 +179,18 @@ export default function Project() {
                         tasks.length == 1 ?
                           <div className="grid__element" style={{ gridColumn: "2 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                             <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                            <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                            <p className="grid__text" style={{ color: handleGetContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                           </div>
                           :
                           tasks.length == 2 ?
                             <>
                               <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
                                 <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                                <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                <p className="grid__text" style={{ color: handleGetContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                               </div>
                               <div className="grid__element" style={{ gridColumn: "3 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                                 <p className="grid__text">Até {tasks[1].deliveryDate}</p>
-                                <p className="grid__text" style={{ color: getContentColor(advisorDelivery?.content["content"] as string) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                <p className="grid__text" style={{ color: handleGetContentColor(advisorDelivery?.content["content"] as string) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                               </div>
                             </>
                             :
@@ -195,15 +198,15 @@ export default function Project() {
                               <>
                                 <div className="grid__element" style={{ gridColumn: "2 / 3", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[0].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: getContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                  <p className="grid__text" style={{ color: handleGetContentColor(studentDelivery?.content["content"] as string) }}>{studentDelivery?.content["content"] != undefined ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                                 </div>
                                 <div className="grid__element" style={{ gridColumn: "3 / 4", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[1].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: getContentColor(advisorDelivery?.content["content"] as string) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
+                                  <p className="grid__text" style={{ color: handleGetContentColor(advisorDelivery?.content["content"] as string) }}>{advisorDelivery?.content["content"] != undefined ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}` : "Não enviado"}</p>
                                 </div>
                                 <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: `${index + 2} / ${index + 3}` }}>
                                   <p className="grid__text">Até {tasks[2].deliveryDate}</p>
-                                  <p className="grid__text" style={{ color: getContentColor(responsibleDelivery?.content["content"] as string) }}>{responsibleDelivery?.content["content"] != undefined ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}` : "Não enviado"} </p>
+                                  <p className="grid__text" style={{ color: handleGetContentColor(responsibleDelivery?.content["content"] as string) }}>{responsibleDelivery?.content["content"] != undefined ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}` : "Não enviado"} </p>
                                 </div>
                               </>
                               : null

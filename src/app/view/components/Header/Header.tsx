@@ -32,9 +32,12 @@ const initialDialogStates: States = {
 };
 
 export default function Header() {
+  const { user } = useContext(AuthContext);
+  const ra = user.email.slice(0, 10);
 
-  /* nav columns states */
   const [navStates, setNavStates] = useState<States>(initialNavStates);
+  const [dialogStates, setDialogStates] = useState<States>(initialDialogStates);
+
   const handleNavStates = (key: string, state?: boolean) => {
     setNavStates((prevState) => ({
       ...prevState,
@@ -42,18 +45,12 @@ export default function Header() {
     }));
   };
 
-  /* dialog states */
-  const [dialogStates, setDialogStates] = useState<States>(initialDialogStates);
   const handleDialogStates = (key: string, state?: boolean) => {
     setDialogStates((prevState) => ({
       ...prevState,
       [key]: state === undefined ? !prevState[key] : state
     }));
   };
-
-  /* get user and ra from auth context */
-  const { user } = useContext(AuthContext);
-  const ra = user.email.slice(0, 10);
 
   return (
     <header id="header">

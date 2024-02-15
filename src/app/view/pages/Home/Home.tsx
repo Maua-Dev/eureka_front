@@ -12,22 +12,21 @@ import { handleFetch } from "../../../utils/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 
 export default function Home() {
+  const { user } = useContext(AuthContext);
+  const { projectsList, getProjectsByRole } = useContext(ProjectContext);
+
+  // error boundary to catch errors in the components (used in handleFetch function)
+  const { showBoundary } = useErrorBoundary();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [dropdownText, setDropdownText] = useState<string>(
     "Visualizar trabalhos como"
   );
 
-  const { projectsList, getProjectsByRole } = useContext(ProjectContext);
-  const { showBoundary } = useErrorBoundary();
-
-  /* fetch api and handle loading states */
   useEffect(() => {
     handleFetch(setIsLoading, showBoundary, getProjectsByRole(user!.userId));
   }, []);
-
-  /* get user from auth context */
-  const { user } = useContext(AuthContext);
 
   return (
     <main id="home">

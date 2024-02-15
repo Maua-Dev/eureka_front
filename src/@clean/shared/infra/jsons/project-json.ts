@@ -45,7 +45,7 @@ export class ProjectJson {
             "code": "EDA-12",
             "shift": "NOTURNO",
             "stand_number": "3",
-            "is_entrepreneurship": false,
+            "is_entrepreneurship": true,
             "professors": [
                 UserJson.userJson[4],
                 UserJson.userJson[5]

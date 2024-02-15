@@ -6,7 +6,7 @@ type ReturnButtonProps = {
     to?: string;
 }
 
-// Component that returns to the previous page
+// component that returns to the previous page
 export default function ReturnButton({ to = "/" }: ReturnButtonProps) {
     return (
         <Link className="return" to={to}>

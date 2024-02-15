@@ -4,6 +4,7 @@ type navOptions = {
     stateKey?: string;
 }
 
+// const nav options of the nav horizontal bar (header)
 export const navOptions: navOptions[] = [
     {
         primaryOption: "Meus trabalhos e estandes",

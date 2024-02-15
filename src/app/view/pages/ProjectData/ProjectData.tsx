@@ -10,13 +10,16 @@ import isEqual from "lodash.isequal";
 import "./ProjectData.css";
 
 export default function ProjectData() {
-    const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
-
+    // get the project id from the url to fetch the project data
     const { id } = useParams();
     const projectId = parseInt(id!);
 
     const { project, getProject } = useContext(ProjectContext);
+
+    // error boundary to catch errors in the components (used in handleFetch function)
     const { showBoundary } = useErrorBoundary();
+
+    const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
 
     useEffect(() => {
         if (isEqual(project, ProjectModel.empty())) {

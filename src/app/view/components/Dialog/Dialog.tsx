@@ -8,8 +8,7 @@ interface DialogProps {
     className: string;
 }
 
-/* this component is used to encopass dialogs that close when click outside */
-
+// component is used to encopass dialogs that close when click outside 
 export default function Dialog({ setOpen, children, to, className }: DialogProps) {
     const ref = useRef<HTMLAnchorElement>(null);
 

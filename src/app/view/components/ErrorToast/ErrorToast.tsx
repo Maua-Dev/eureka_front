@@ -1,7 +1,8 @@
 import { Flip, ToastContainer } from "react-toastify";
-import "./ErrorDialog.css";
+import "./ErrorToast.css";
 
-export default function ErrorDialog() {
+// component to show a styled toast with an error message
+export default function ErrorToast() {
     return <ToastContainer
         className="error_dialog"
         position="bottom-center"
