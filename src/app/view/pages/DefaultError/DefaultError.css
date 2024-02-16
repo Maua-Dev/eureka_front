@@ -9,25 +9,25 @@
 }
 
 .default_error .default_error__title {
-  font-size: 3rem;
-  font-weight: 700;
+  font-weight: var(--semi-bold);
   color: var(--dark-blue);
+  font-size: var(--screen-title);
 }
 
-.default_error.default_error__message {
-  font-size: 1.5rem;
-  font-weight: 400;
+.default_error .default_error__message {
+  font-weight: var(--medium);
   color: var(--dark-blue);
   margin-bottom: 2rem;
+  font-size: var(--big-title);
 }
 
 .default_error .default_error__btn {
   padding: 0.2rem 0.5rem;
-  border-radius: 0.2rem;
+  border-radius: var(--input-radius);
   background-color: var(--dark-blue);
   color: var(--white);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: var(--span-text);
+  font-weight: var(--semi-bold);
   border: none;
   cursor: pointer;
   transition: ease-in-out 0.2s;
@@ -38,80 +38,4 @@
 .default_error .default_error__btn:hover {
   background-color: var(--dark-mustard);
   color: var(--dark-blue);
-}
-
-@media screen and (max-width: 1024px) {
-  .default_error .default_error__title {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--dark-blue);
-  }
-
-  .default_error.default_error__message {
-    font-size: 1.3rem;
-    font-weight: 400;
-    color: var(--dark-blue);
-    margin-bottom: 2rem;
-  }
-
-  .default_error .default_error__btn {
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.2rem;
-    background-color: var(--dark-blue);
-    color: var(--white);
-    font-size: 0.8rem;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: ease-in-out 0.2s;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .default_error .default_error__title {
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: var(--dark-blue);
-  }
-
-  .default_error.default_error__message {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--dark-blue);
-    margin-bottom: 2rem;
-  }
-
-  .default_error .default_error__btn {
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.2rem;
-    background-color: var(--dark-blue);
-    color: var(--white);
-    font-size: 0.6rem;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: ease-in-out 0.2s;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .default_error .default_error__title {
-    font-size: 2.3rem;
-    font-weight: 700;
-    color: var(--dark-blue);
-  }
-
-  .default_error.default_error__message {
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: var(--dark-blue);
-    margin-bottom: 2rem;
-  }
-}
-
-@media screen and (max-width: 400px) {
 }

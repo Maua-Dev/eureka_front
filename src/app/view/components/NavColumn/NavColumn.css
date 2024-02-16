@@ -7,7 +7,7 @@
   justify-content: center;
   width: 99%;
   color: var(--white);
-  font-weight: 700;
+  font-weight: var(--semi-bold);
   z-index: 1;
   background-color: var(--dark-blue);
 }
@@ -23,50 +23,20 @@
   width: 150px;
   background-color: var(--medium-light-blue);
   color: var(--white);
-  font-weight: 700;
+  font-weight: var(--semi-bold);
   z-index: 1;
 }
 
 #nav_column .option {
   padding: 1rem;
-  font-size: 1.3rem;
   text-decoration: none;
   color: var(--white);
   text-align: center;
+  font-size: var(--regular-text);
 }
 
 #nav_column .option__title:hover {
   color: var(--dark-mustard);
-}
-
-@media screen and (max-width: 1382px) {
-  #nav_column .option {
-    font-size: 1.2rem;
-  }
-}
-
-@media screen and (max-width: 1150px) {
-  #nav_column .option {
-    font-size: 1rem;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  #nav_column .option {
-    font-size: 0.9rem;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  #nav_column .option {
-    font-size: 0.8rem;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  #nav_column .option {
-    font-size: 0.7rem;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -78,7 +48,6 @@
 
   #nav_column .option {
     padding: 0rem;
-    font-size: 0.8rem;
     text-decoration: none;
     color: var(--white);
     width: 100%;

@@ -15,6 +15,7 @@ import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { navOptions } from "../../../utils/nav-options";
 import { States } from "../../../utils/states-type";
+import BasicButton from "../BasicButton/BasicButton";
 
 const initialNavStates: States = {
   isWorkAndStandsColumnOpen: false,
@@ -93,9 +94,7 @@ export default function Header() {
                       ) : (
                         <Skeleton containerClassName="baloon__text baloon__text--skeleton"></Skeleton>
                       ))}
-                    <Link className="baloon__btn" to={""}>
-                      Sair
-                    </Link>
+                    <BasicButton title="Sair" buttonClassName="baloon__btn"></BasicButton>
                   </div>
                 </section>
               )}
@@ -195,13 +194,7 @@ export default function Header() {
                       ) : (
                         <Skeleton containerClassName="baloon__text baloon__text--skeleton"></Skeleton>
                       ))}
-                    <Link
-                      className="baloon__btn"
-                      to={""}
-                      onClick={(event) => event.preventDefault()}
-                    >
-                      Sair
-                    </Link>
+                    <BasicButton title="Sair" buttonClassName="baloon__btn"></BasicButton>
                   </div>
                 </section>
               )}

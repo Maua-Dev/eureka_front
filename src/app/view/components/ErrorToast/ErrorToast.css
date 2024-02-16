@@ -1,10 +1,10 @@
 .error_dialog {
   width: 80%;
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-weight: var(--bold);
+  font-size: var(--regular-text);
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
   .error_dialog {
     width: 100%;
   }

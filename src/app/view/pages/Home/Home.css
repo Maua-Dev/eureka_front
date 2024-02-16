@@ -21,9 +21,8 @@
 #home .dropdown__button {
   background-color: var(--light-blue);
   color: var(--dark-blue);
-  font-weight: 700;
-  border-radius: 8px;
-  font-size: 1.3rem;
+  font-weight: var(--semi-bold);
+  border-radius: var(--small-radius);
   appearance: none;
   cursor: pointer;
   border: none;
@@ -46,12 +45,13 @@
   width: 100%;
   display: flex;
   align-items: flex-start;
+  font-size: var(--regular-text);
 }
 
 #home .dropdown__options {
   color: var(--dark-blue);
   background-color: var(--extra-light-blue);
-  border-radius: 8px;
+  border-radius: var(--small-radius);
   transition: 0.2s;
   position: absolute;
   z-index: 1;
@@ -60,15 +60,16 @@
 }
 
 #home .option {
-  font-weight: 700;
+  font-weight: var(--semi-bold);
   padding: 1.5rem 1.5rem;
-  font-size: 1.3rem;
+  font-size: var(--regular-text);
   text-align: start;
 }
 
 #home .dropdown__button:hover {
   background-color: var(--dark-mustard);
   cursor: pointer;
+  font-size: var(--regular-text);
 }
 
 #home .container:hover {
@@ -86,30 +87,14 @@
     width: 28rem;
   }
 
-  #home .dropdown__button {
-    font-size: 1.2rem;
-  }
-
-  #home .option {
-    font-size: 1.2rem;
-  }
-
   #home .dropdown__icon {
     height: 1.3rem;
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1000px) {
   #home .container {
     width: 24rem;
-  }
-
-  #home .dropdown__button {
-    font-size: 1.1rem;
-  }
-
-  #home .option {
-    font-size: 1.1rem;
   }
 
   #home .dropdown__icon {
@@ -133,7 +118,7 @@
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
   #home .container {
     width: 100%;
   }
@@ -143,17 +128,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
-}
-
-@media screen and (max-width: 500px) {
-}
-
 @media screen and (max-width: 400px) {
-  #home .dropdown__button {
-    font-size: 1.1rem;
-  }
-
   #home .dropdown__text {
     margin: 0.8rem 0rem 0.8rem 1rem;
   }
@@ -162,21 +137,7 @@
     margin: 0.8rem 0.8rem;
   }
 
-  #home .option {
-    font-size: 1.1rem;
-  }
-
   #home .dropdown__icon {
     height: 1rem;
-  }
-}
-
-@media screen and (max-width: 330px) {
-  #home .dropdown__button {
-    font-size: 1rem;
-  }
-
-  #home .option {
-    font-size: 1rem;
   }
 }

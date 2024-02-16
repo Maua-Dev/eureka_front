@@ -15,7 +15,7 @@
 .project .card--width {
   width: 50%;
   background-color: var(--light-blue);
-  border-radius: 0.8rem;
+  border-radius: var(--medium-radius);
 }
 
 .project .card--margin {
@@ -35,7 +35,7 @@
 
 .project .card__main {
   background-color: var(--white);
-  border-radius: 0.8rem;
+  border-radius: var(--medium-radius);
   display: grid;
   padding: 1rem 2rem;
   gap: 1rem;
@@ -92,24 +92,24 @@
 
 .project .main__input {
   width: 100%;
-  border: 3px solid var(--dark-blue);
-  border-radius: 0.2rem;
-  font-size: 1.1rem;
+  border: var(--thin-border);
+  border-radius: var(--input-radius);
+  font-size: var(--regular-text);
   color: var(--dark-blue);
-  font-weight: 600;
+  font-weight: var(--medium);
 }
 
 .project .main__input--skeleton {
   width: 100%;
   border: none;
   color: var(--dark-blue);
-  font-weight: 600;
+  font-weight: var(--medium);
 }
 
 .project .main__title {
-  font-size: 1.1rem;
+  font-size: var(--regular-text);
   color: var(--dark-blue);
-  font-weight: 700;
+  font-weight: var(--semi-bold);
 }
 
 .project .main__title--cosupervisor {
@@ -117,52 +117,35 @@
 }
 
 .project .main__text {
-  font-size: 1.1rem;
+  font-size: var(--regular-text);
   color: var(--dark-blue);
-  font-weight: 600;
+  font-weight: var(--medium);
 }
 
 .project .main__text--skeleton {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: var(--regular-text);
+  font-weight: var(--medium);
   width: 100%;
   background-color: var(--blue);
 }
 
-.project .main__btn {
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.2rem;
-  background-color: var(--dark-blue);
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  transition: ease-in-out 0.2s;
-  min-width: 120px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.project .main__btn--smaller {
-  min-width: 0;
-}
-
-.main__btn--skeleton {
+.project .main__btn--skeleton {
   align-self: flex-start;
   padding: 0.2rem 0.5rem;
-  border-radius: 0.2rem;
+  border-radius: var(--input-radius);
   background-color: var(--dark-blue);
   color: var(--white);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: var(--span-text);
+  font-weight: var(--semi-bold);
   border: none;
 }
 
 .project .main__btn--margin {
   margin-top: 0.5rem;
+}
+
+.project .main__btn--width {
+  min-width: 120px;
 }
 
 .project .main__title--students {
@@ -231,9 +214,9 @@
   align-items: center;
   display: flex;
   gap: 0.5rem;
-  font-size: 1.1rem;
+  font-size: var(--regular-text);
   color: var(--dark-blue);
-  font-weight: 600;
+  font-weight: var(--medium);
   cursor: pointer;
 }
 
@@ -241,8 +224,8 @@
   width: 1.8rem;
   height: 1.8rem;
   background-color: var(--light-blue);
-  border: solid 3px var(--dark-blue);
-  border-radius: 0.2rem;
+  border: var(--thin-border);
+  border-radius: var(--input-radius);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -251,7 +234,7 @@
 .project .option__checkbox--skeleton {
   width: 1.8rem;
   height: 1.8rem;
-  border-radius: 0.2rem;
+  border-radius: var(--input-radius);
 }
 
 .project .option__icon {
@@ -281,7 +264,7 @@
 
 .project .grid__element {
   background-color: var(--white);
-  border-radius: 0.4rem;
+  border-radius: var(--small-radius);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -296,9 +279,9 @@
 }
 
 .project .grid__title {
-  font-size: 0.9rem;
+  font-size: var(--span-text);
   color: var(--dark-blue);
-  font-weight: 700;
+  font-weight: var(--semi-bold);
   text-decoration: none;
 }
 
@@ -307,9 +290,9 @@
 }
 
 .project .grid__text {
-  font-size: 0.8rem;
+  font-size: var(--small-text);
   color: var(--dark-blue);
-  font-weight: 600;
+  font-weight: var(--medium);
 }
 
 .project .grid__text--skeleton {
@@ -317,9 +300,9 @@
 }
 
 .project .grid__link {
-  font-size: 0.8rem;
+  font-size: var(--small-text);
   color: var(--dark-blue);
-  font-weight: 600;
+  font-weight: var(--medium);
 }
 
 .project .card__column {
@@ -334,10 +317,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: var(--regular-text);
   color: var(--dark-blue);
   flex-grow: 1;
-  border-radius: 0.4rem;
+  border-radius: var(--small-radius);
   text-align: center;
 }
 
@@ -354,17 +337,12 @@
 }
 
 .project .column__title {
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-weight: var(--medium);
+  font-size: var(--regular-text);
 }
 
 .project .column_title--skeleton {
   width: 80%;
-}
-
-.project .main__btn:hover {
-  background-color: var(--dark-mustard);
-  color: var(--dark-blue);
 }
 
 .project .grid__title--link:hover {
@@ -373,34 +351,6 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .project .main__title {
-    font-size: 1rem;
-  }
-
-  .project .main__text {
-    font-size: 1rem;
-  }
-
-  .project .main__text--skeleton {
-    font-size: 1rem;
-  }
-
-  .project .main__input {
-    font-size: 1rem;
-  }
-
-  .project .main__btn {
-    font-size: 0.9rem;
-  }
-
-  .project .main__btn--skeleton {
-    font-size: 0.9rem;
-  }
-
-  .project .option {
-    font-size: 1rem;
-  }
-
   .project .option__icon {
     pointer-events: none;
     width: 0.9rem;
@@ -415,52 +365,10 @@
     width: 1.7rem;
     height: 1.7rem;
   }
-
-  .project .grid__title {
-    font-size: 0.8rem;
-  }
-
-  .project .grid__text {
-    font-size: 0.7rem;
-  }
-
-  .project .grid__link {
-    font-size: 0.7rem;
-  }
-
-  .project .column__element {
-    font-size: 1.1rem;
-  }
-
-  .project .column__title {
-    font-size: 1rem;
-  }
 }
 
-@media screen and (max-width: 1024px) {
-  .project .main__title {
-    font-size: 0.9rem;
-  }
-
-  .project .main__text {
-    font-size: 0.9rem;
-  }
-
-  .project .main__input {
-    font-size: 0.9rem;
-    border: 2px solid var(--dark-blue);
-  }
-
-  .project .main__btn {
-    font-size: 0.8rem;
-  }
-
-  .project .main__btn--skeleton {
-    font-size: 0.8rem;
-  }
-
+@media screen and (max-width: 1000px) {
   .project .option {
-    font-size: 0.9rem;
     gap: 0.4rem;
   }
 
@@ -472,63 +380,21 @@
   .project .option__checkbox {
     width: 1.6rem;
     height: 1.6rem;
-    border: 2px solid var(--dark-blue);
   }
 
   .project .option__checkbox--skeleton {
     width: 1.6rem;
     height: 1.6rem;
   }
-
-  .project .grid__title {
-    font-size: 0.7rem;
-  }
-
-  .project .grid__text {
-    font-size: 0.6rem;
-  }
-
-  .project .grid__link {
-    font-size: 0.6rem;
-  }
-
-  .project .column__element {
-    font-size: 1rem;
-  }
-
-  .project .column__title {
-    font-size: 0.9rem;
-  }
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 800px) {
   .project .card--margin {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
 
-  .project .main__title {
-    font-size: 0.7rem;
-  }
-
-  .project .main__text {
-    font-size: 0.7rem;
-  }
-
-  .project .main__input {
-    font-size: 0.7rem;
-  }
-
-  .project .main__btn {
-    font-size: 0.6rem;
-  }
-
-  .project .main__btn--skeleton {
-    font-size: 0.6rem;
-  }
-
   .project .option {
-    font-size: 0.7rem;
     gap: 0.3rem;
   }
 
@@ -540,26 +406,6 @@
   .project .option__checkbox--skeleton {
     width: 1.4rem;
     height: 1.4rem;
-  }
-
-  .project .grid__title {
-    font-size: 0.6rem;
-  }
-
-  .project .grid__text {
-    font-size: 0.5rem;
-  }
-
-  .project .grid__link {
-    font-size: 0.5rem;
-  }
-
-  .project .column__element {
-    font-size: 0.9rem;
-  }
-
-  .project .column__title {
-    font-size: 0.7rem;
   }
 }
 
@@ -627,30 +473,17 @@
     width: 100%;
   }
 
-  .project .main__title {
-    font-size: 0.7rem;
-  }
-
   .project .main__title--skeleton {
     align-self: center;
   }
 
-  .project .main__text {
-    font-size: 0.7rem;
-  }
-
   .project .main__text--skeleton {
-    font-size: 0.7rem;
     width: 50%;
   }
 
   .project .main__text--students {
     word-wrap: break-word;
     width: 48%;
-  }
-
-  .project .main__input {
-    font-size: 0.6rem;
   }
 
   .project .main__input--center {
@@ -670,10 +503,6 @@
 
   .project .main__input--skeleton {
     width: 50%;
-  }
-
-  .project .option {
-    font-size: 0.7rem;
   }
 
   .project .main__btn--margin {
@@ -712,32 +541,9 @@
     width: 100%;
   }
 
-  .project .grid__title {
-    font-size: 0.7rem;
-  }
-
-  .project .grid__text {
-    font-size: 0.7rem;
-  }
-
-  .project .grid__link {
-    font-size: 0.7rem;
-  }
-
   .project .column__element {
     padding: 1rem;
   }
-
-  .project .column__element {
-    font-size: 1rem;
-  }
-
-  .project .column__title {
-    font-size: 0.7rem;
-  }
-}
-
-@media screen and (max-width: 650px) {
 }
 
 @media screen and (max-width: 600px) {
@@ -761,22 +567,6 @@
   .project .cosupervisor {
     grid-column: 2 / 5;
     grid-row: 1 / 3;
-  }
-
-  .project .main__input {
-    font-size: 0.5rem;
-  }
-
-  .project .main__btn {
-    font-size: 0.4rem;
-  }
-
-  .project .main__btn--skeleton {
-    font-size: 0.4rem;
-  }
-
-  .project .main__btn--margin {
-    margin-top: 0.2rem;
   }
 
   .project .card__footer {
@@ -805,18 +595,6 @@
     grid-row: 3 / 4;
   }
 
-  .project .grid__title {
-    font-size: 0.6rem;
-  }
-
-  .project .grid__text {
-    font-size: 0.6rem;
-  }
-
-  .project .grid__link {
-    font-size: 0.6rem;
-  }
-
   .project .card__footer {
     display: flex;
     flex-wrap: wrap;
@@ -827,13 +605,9 @@
   .project .infos {
     gap: 0.6rem;
   }
-
-  .project .column__element {
-    font-size: 0.9rem;
-  }
 }
 
-@media screen and (max-width: 446px) {
+@media screen and (max-width: 400px) {
   .project .code {
     margin-right: 2rem;
     align-items: center;
@@ -889,33 +663,5 @@
   .project .option__icon {
     pointer-events: none;
     width: 0.6rem;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .project .grid__title {
-    font-size: 0.5rem;
-  }
-
-  .project .grid__text {
-    font-size: 0.5rem;
-  }
-
-  .project .grid__link {
-    font-size: 0.5rem;
-  }
-
-  .project .column__element {
-    font-size: 0.8rem;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .project .grid__text {
-    font-size: 0.4rem;
-  }
-
-  .project .grid__link {
-    font-size: 0.4rem;
   }
 }

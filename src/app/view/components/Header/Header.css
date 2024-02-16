@@ -56,7 +56,7 @@
 
 #header .baloon__content {
   position: relative;
-  border-radius: 1.5rem;
+  border-radius: var(--big-radius);
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -81,7 +81,7 @@
   left: 50%;
   width: 0;
   height: 0;
-  border: 15px solid transparent;
+  border: var(--baloon-border);
   border-bottom-color: var(--extra-light-blue);
   border-top: 0;
   margin-left: 40px;
@@ -89,10 +89,10 @@
 }
 
 #header .baloon__title {
-  font-weight: 700;
-  font-size: 1.4rem;
+  font-weight: var(--semi-bold);
   text-decoration: none;
   color: var(--dark-blue);
+  font-size: var(--big-title);
 }
 
 #header .baloon__title--skeleton {
@@ -105,28 +105,22 @@
 }
 
 #header .baloon__text {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: var(--semi-bold);
   color: var(--medium-light-blue);
   margin-bottom: 2.5rem;
+  font-size: var(--regular-text);
 }
 
-.baloon__text--skeleton {
+#header .baloon__text--skeleton {
   width: 80%;
 }
 
 #header .baloon__btn {
-  background-color: var(--dark-blue);
-  color: var(--white);
-  text-decoration: none;
   padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1rem;
+  border-radius: var(--small-radius);
   width: 100%;
-  font-weight: 700;
-  font-size: 1.5rem;
+  font-weight: var(--semi-bold);
+  font-size: var(--big-title);
 }
 
 /* fix images irregularity */
@@ -179,9 +173,9 @@
   background-color: var(--medium-light-blue);
   cursor: pointer;
   color: var(--white);
-  font-weight: 700;
-  font-size: 1.3rem;
+  font-weight: var(--semi-bold);
   padding: 0.2rem 1rem;
+  font-size: var(--regular-text);
 }
 
 #header .squares {
@@ -213,9 +207,6 @@
 }
 
 @media screen and (max-width: 1382px) {
-  #header .nav__btn {
-    font-size: 1.2rem;
-  }
 }
 
 @media screen and (max-width: 1150px) {
@@ -264,7 +255,6 @@
   }
 
   #header .baloon__title {
-    font-size: 1.2rem;
     text-decoration: none;
   }
 
@@ -274,33 +264,15 @@
   }
 
   #header .baloon__text {
-    font-size: 1rem;
     margin-bottom: 2.3rem;
   }
 
   #header .baloon__btn {
     padding: 0.8rem;
-    font-size: 1.3rem;
-  }
-
-  #header .nav__btn {
-    font-size: 1rem;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  #header .nav__btn {
-    font-size: 0.9rem;
   }
 }
 
 @media screen and (max-width: 900px) {
-  #header .nav__btn {
-    font-size: 0.8rem;
-  }
-}
-
-@media screen and (max-width: 850px) {
   #header .container--left {
     display: flex;
     gap: 1.1rem;
@@ -362,7 +334,6 @@
 
   #header .baloon__title {
     text-decoration: none;
-    font-size: 1.1rem;
   }
 
   #header .baloon__title--margin {
@@ -371,24 +342,20 @@
   }
 
   #header .baloon__text {
-    font-size: 0.9rem;
     margin-bottom: 1rem;
   }
 
   #header .baloon__btn {
     padding: 0.7rem;
-    font-size: 1.3rem;
   }
 
   #header .nav__btn {
-    font-size: 0.8rem;
     padding: 0.6rem 0.8rem;
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
   #header .nav__btn {
-    font-size: 0.7rem;
     padding: 0.6rem 0.6rem;
   }
 }
@@ -485,7 +452,6 @@
 
   #header .baloon__content {
     position: relative;
-    border-radius: 1.2rem;
     display: flex;
     align-items: center;
     padding: 1rem;
@@ -510,7 +476,7 @@
     left: 50%;
     width: 0;
     height: 0;
-    border: 15px solid transparent;
+    border: var(--baloon-border);
     border-bottom-color: var(--extra-light-blue);
     border-top: 0;
     margin-left: 40px;
@@ -519,9 +485,7 @@
 
   #header .baloon__title {
     text-decoration: none;
-    font-weight: 700;
     color: var(--dark-blue);
-    font-size: 1.2rem;
   }
 
   #header .baloon__title--margin {
@@ -529,23 +493,8 @@
     margin-top: 1.5rem;
   }
 
-  #header .baloon__text {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--medium-light-blue);
-  }
-
-  #header .baloon__btn {
-    border-radius: 0.8rem;
-    font-size: 1.2rem;
-  }
-
   #header .nav {
     display: none;
-  }
-
-  #header .nav__btn {
-    font-size: 0.8rem;
   }
 }
 
@@ -610,22 +559,12 @@
     margin-top: -10px;
   }
 
-  #header .baloon__title {
-    font-size: 0.8rem;
-  }
-
   #header .baloon__title--margin {
     margin-bottom: 1rem;
     margin-top: 1.2rem;
   }
 
-  #header .baloon__text {
-    font-size: 0.7rem;
-  }
-
   #header .baloon__btn {
     padding: 0.6rem;
-    font-weight: 800;
-    font-size: 0.9rem;
   }
 }

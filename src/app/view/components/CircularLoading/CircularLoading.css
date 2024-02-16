@@ -4,9 +4,9 @@
   left: 50%;
   width: 50px;
   height: 50px;
-  border: 5px solid var(--dark-blue);
+  border: var(--thick-border);
   border-bottom-color: var(--light-blue);
-  border-radius: 50%;
+  border-radius: var(--circle);
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;

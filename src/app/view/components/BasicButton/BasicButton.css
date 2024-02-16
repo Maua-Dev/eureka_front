@@ -1,0 +1,19 @@
+.basic_button {
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--input-radius);
+  background-color: var(--dark-blue);
+  color: var(--white);
+  font-size: var(--span-text);
+  font-weight: var(--semi-bold);
+  border: none;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.basic_button:hover {
+  background-color: var(--dark-mustard);
+  color: var(--dark-blue);
+}

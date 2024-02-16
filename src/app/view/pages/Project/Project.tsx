@@ -14,6 +14,7 @@ import { taskTitles } from "../../../utils/task-titles";
 import Card from "../../components/Card/Card";
 import { handleFetch } from "../../../utils/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
+import BasicButton from "../../components/BasicButton/BasicButton";
 
 export default function Project() {
   // get the project id from the url to fetch the project data
@@ -103,9 +104,7 @@ export default function Project() {
               <div className="cosupervisor">
                 <h2 className="main__title main__title--cosupervisor">Coorientador: </h2>
                 <input type="text" className="main__input" />
-                <button className="main__btn main__btn--margin main__btn--smaller">
-                  <p className="btn__text">Salvar</p>
-                </button>
+                <BasicButton title="Salvar" buttonClassName="main__btn--margin"></BasicButton>
               </div>
               <div className="students">
                 <h2 className="main__title main__title--students">Alunos: </h2>
@@ -160,7 +159,8 @@ export default function Project() {
                       </div>
                     </div>
                   ))}
-                  <button
+                  <BasicButton
+                    title="Atualizar potencial do trabalho"
                     onClick={() => {
                       setIsLoading(true);
                       handleFetch(
@@ -178,10 +178,8 @@ export default function Project() {
                       );
                       setIsLoading(false);
                     }}
-                    className="main__btn"
-                  >
-                    <p className="btn__text">Atualizar potencial do trabalho</p>
-                  </button>
+                    buttonClassName="main__btn--width"
+                  ></BasicButton>
                 </div>
               </div>
             </footer>

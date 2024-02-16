@@ -9,6 +9,7 @@ import { ProjectContext } from "../../../context/project-context";
 import isEqual from "lodash.isequal";
 import "./ProjectData.css";
 import CircularLoading from "../../components/CircularLoading/CircularLoading";
+import BasicButton from "../../components/BasicButton/BasicButton";
 
 export default function ProjectData() {
   // get the project id from the url to fetch the project data
@@ -56,14 +57,13 @@ export default function ProjectData() {
                 value={projectTitle}
                 onChange={(value) => setProjectTitle(value.currentTarget.value)}
               ></input>
-              <button
-                className="input__btn"
+              <BasicButton
+                title="Salvar"
+                buttonClassName="input__btn"
                 onClick={() =>
                   handleFetch(setIsLoading, showBoundary, updateProject(projectId, projectTitle))
                 }
-              >
-                Salvar
-              </button>
+              ></BasicButton>
             </div>
             <div className="input input--bigger input--column">
               <h2 className="input__title">Descrição: </h2>
@@ -72,14 +72,13 @@ export default function ProjectData() {
                 value={projectDescription}
                 onChange={(value) => setProjectDescription(value.currentTarget.value)}
               ></textarea>
-              <button
-                className="input__btn input__btn--end"
+              <BasicButton
+                title="Salvar"
+                buttonClassName="input__btn--end"
                 onClick={() =>
                   handleFetch(setIsLoading, showBoundary, updateProject(projectId, projectTitle))
                 }
-              >
-                Salvar
-              </button>
+              ></BasicButton>
             </div>
             <span className="card__span">
               Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adotada

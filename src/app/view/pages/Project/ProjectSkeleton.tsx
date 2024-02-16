@@ -1,5 +1,6 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import CardSkeleton from "../../components/Card/CardSkeleton";
+import BasicButton from "../../components/BasicButton/BasicButton";
 
 // Skeleton for the project page
 export default function ProjectSkeleton() {
@@ -24,9 +25,10 @@ export default function ProjectSkeleton() {
                 containerClassName="main__input--center"
                 className="main__input--skeleton react-loading-skeleton"
               />
-              <button className="main__btn--skeleton main__btn--margin main__btn--smaller">
-                <p className="btn__text">Salvar</p>
-              </button>
+              <BasicButton
+                title="Salvar"
+                buttonClassName="main__btn--margin main__btn--skeleton"
+              ></BasicButton>
             </div>
             <div className="students students--skeleton">
               <h2 className="main__title main__title--students main__title--skeleton">Alunos: </h2>
@@ -65,7 +67,10 @@ export default function ProjectSkeleton() {
                   <p className="option__title">Não</p>
                   <Skeleton className="option__checkbox--skeleton"></Skeleton>
                 </div>
-                <button className="main__btn">Atualizar potencial do trabalho</button>
+                <BasicButton
+                  title="Atualizar potencial do trabalho"
+                  buttonClassName="main__btn--width"
+                ></BasicButton>
               </div>
             </div>
           </footer>
