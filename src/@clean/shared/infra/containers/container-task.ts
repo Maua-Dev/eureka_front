@@ -24,9 +24,9 @@ containerTask.bind(RegistryTask.TaskRepositoryHttp).toDynamicValue((context) => 
 });
 
 containerTask.bind(RegistryTask.GetAllTasksUsecase).toDynamicValue((context) => {
-  if (import.meta.env.VITE_STAGE === "TEST") {
+  if (import.meta.env.APP_STAGE === "TEST") {
     return new GetAllTasksUsecase(context.container.get(RegistryTask.TaskRepositoryMock));
-  } else if (import.meta.env.VITE_STAGE === "DEV" || import.meta.env.VITE_STAGE === "PROD") {
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new GetAllTasksUsecase(context.container.get(RegistryTask.TaskRepositoryHttp));
   } else {
     return new GetAllTasksUsecase(context.container.get(RegistryTask.TaskRepositoryMock));

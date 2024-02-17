@@ -30,9 +30,9 @@ containerProject.bind(RegistryProject.ProjectRepositoryHttp).toDynamicValue((con
 });
 
 containerProject.bind(RegistryProject.CreateProjectUsecase).toDynamicValue((context) => {
-  if (import.meta.env.VITE_STAGE === "TEST") {
+  if (import.meta.env.APP_STAGE === "TEST") {
     return new CreateProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryMock));
-  } else if (import.meta.env.VITE_STAGE === "DEV" || import.meta.env.VITE_STAGE === "PROD") {
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new CreateProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryHttp));
   } else {
     return new CreateProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryMock));
@@ -40,11 +40,11 @@ containerProject.bind(RegistryProject.CreateProjectUsecase).toDynamicValue((cont
 });
 
 containerProject.bind(RegistryProject.GetProjectsByRoleUsecase).toDynamicValue((context) => {
-  if (import.meta.env.VITE_STAGE === "TEST") {
+  if (import.meta.env.APP_STAGE === "TEST") {
     return new GetProjectsByRoleUsecase(
       context.container.get(RegistryProject.ProjectRepositoryMock)
     );
-  } else if (import.meta.env.VITE_STAGE === "DEV" || import.meta.env.VITE_STAGE === "PROD") {
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new GetProjectsByRoleUsecase(
       context.container.get(RegistryProject.ProjectRepositoryHttp)
     );
@@ -56,19 +56,21 @@ containerProject.bind(RegistryProject.GetProjectsByRoleUsecase).toDynamicValue((
 });
 
 containerProject.bind(RegistryProject.GetProjectUsecase).toDynamicValue((context) => {
-  if (import.meta.env.VITE_STAGE === "TEST") {
+  if (import.meta.env.APP_STAGE === "TEST") {
     return new GetProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryMock));
-  } else if (import.meta.env.VITE_STAGE === "DEV" || import.meta.env.VITE_STAGE === "PROD") {
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new GetProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryHttp));
   } else {
+    console.log(import.meta.env.APP_STAGE);
+    console.log(import.meta.env.APP_URL);
     return new GetProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryMock));
   }
 });
 
 containerProject.bind(RegistryProject.UpdateProjectUsecase).toDynamicValue((context) => {
-  if (import.meta.env.VITE_STAGE === "TEST") {
+  if (import.meta.env.APP_STAGE === "TEST") {
     return new UpdateProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryMock));
-  } else if (import.meta.env.VITE_STAGE === "DEV" || import.meta.env.VITE_STAGE === "PROD") {
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new UpdateProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryHttp));
   } else {
     return new UpdateProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryMock));

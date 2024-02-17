@@ -26,11 +26,11 @@ containerDelivery.bind(RegistryDelivery.DeliveryRepositoryHttp).toDynamicValue((
 });
 
 containerDelivery.bind(RegistryDelivery.CreateDeliveryUsecase).toDynamicValue((context) => {
-  if (import.meta.env.VITE_STAGE === "TEST") {
+  if (import.meta.env.APP_STAGE === "TEST") {
     return new CreateDeliveryUsecase(
       context.container.get(RegistryDelivery.DeliveryRepositoryMock)
     );
-  } else if (import.meta.env.VITE_STAGE === "DEV" || import.meta.env.VITE_STAGE === "PROD") {
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new CreateDeliveryUsecase(
       context.container.get(RegistryDelivery.DeliveryRepositoryHttp)
     );
@@ -42,9 +42,9 @@ containerDelivery.bind(RegistryDelivery.CreateDeliveryUsecase).toDynamicValue((c
 });
 
 containerDelivery.bind(RegistryDelivery.GetDeliveriesUsecase).toDynamicValue((context) => {
-  if (import.meta.env.VITE_STAGE === "TEST") {
+  if (import.meta.env.APP_STAGE === "TEST") {
     return new GetDeliveriesUsecase(context.container.get(RegistryDelivery.DeliveryRepositoryMock));
-  } else if (import.meta.env.VITE_STAGE === "DEV" || import.meta.env.VITE_STAGE === "PROD") {
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new GetDeliveriesUsecase(context.container.get(RegistryDelivery.DeliveryRepositoryHttp));
   } else {
     return new GetDeliveriesUsecase(context.container.get(RegistryDelivery.DeliveryRepositoryMock));

@@ -24,9 +24,9 @@ containerUser.bind(RegistryUser.UserRepositoryHttp).toDynamicValue((context) => 
 });
 
 containerUser.bind(RegistryUser.GetAllStudentsUsecase).toDynamicValue((context) => {
-  if (import.meta.env.VITE_STAGE === "TEST") {
+  if (import.meta.env.APP_STAGE === "TEST") {
     return new GetAllStudentsUsecase(context.container.get(RegistryUser.UserRepositoryMock));
-  } else if (import.meta.env.VITE_STAGE === "DEV" || import.meta.env.VITE_STAGE === "PROD") {
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new GetAllStudentsUsecase(context.container.get(RegistryUser.UserRepositoryHttp));
   } else {
     return new GetAllStudentsUsecase(context.container.get(RegistryUser.UserRepositoryMock));

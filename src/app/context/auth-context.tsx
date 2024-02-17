@@ -15,7 +15,7 @@ const defaultContext: AuthContextType = {
 export const AuthContext = createContext(defaultContext);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const user = UserAdapter.toModel(User.fromJson(UserJson.userJson[5]));
+  const user = UserAdapter.toModel(User.fromJson(UserJson.userJson[0]));
 
   return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };
