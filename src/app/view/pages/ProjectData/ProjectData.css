@@ -20,6 +20,16 @@
   gap: 1.4rem;
 }
 
+.project_data .card__main--flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
 .project_data .input {
   display: flex;
   flex-direction: row;
