@@ -19,8 +19,9 @@ export async function handleFetch(
     } else {
       showBoundary(err);
     }
-    setTimeout(() => {
+    // TODO: threat the infinite loading
+    /*  setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 3000); */
   }
 }
