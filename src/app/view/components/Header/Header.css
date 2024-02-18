@@ -174,7 +174,7 @@
   cursor: pointer;
   color: var(--white);
   font-weight: var(--semi-bold);
-  padding: 0.2rem 1rem;
+  padding: 1rem;
   font-size: var(--regular-text);
 }
 
