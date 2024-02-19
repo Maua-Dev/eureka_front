@@ -1,0 +1,25 @@
+.project_file {
+  padding: 3rem 2.5rem 4rem 2.5rem;
+}
+
+.project_file .card--file {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.project_file .card__header--file {
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 800px) {
+  .project_file .card--file {
+    width: 80%;
+    margin: 1rem auto;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .project_file {
+    padding: 1rem 1rem 4rem 1rem;
+  }
+}

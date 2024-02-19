@@ -97,6 +97,18 @@ export default function ProjectData() {
     }
   }, [selectedActions]);
 
+  useEffect(() => {
+    setSelectedActions(
+      (deliveriesList.find((delivery) => delivery.task.title === "Dados do trabalho")?.content[
+        "actions"
+      ] as number[]) || []
+    );
+  }, [
+    deliveriesList.find((delivery) => delivery.task.title === "Dados do trabalho")?.content[
+      "actions"
+    ],
+  ]);
+
   return (
     <main className="project_data">
       <ReturnButton to={`/project/${projectId}`} />

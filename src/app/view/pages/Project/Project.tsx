@@ -10,7 +10,7 @@ import CircularLoading from "../../components/CircularLoading/CircularLoading";
 import { TaskContext } from "../../../context/task-context";
 import { DeliveryContext } from "../../../context/delivery-context";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
-import { taskTitles } from "../../../utils/task-titles";
+import { tasksTitlesList } from "../../../utils/tasks-titles-list";
 import Card from "../../components/Card/Card";
 import { handleFetch } from "../../../utils/functions/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
@@ -305,11 +305,11 @@ export default function Project() {
                 <div className="grid__element" style={{ gridColumn: "4 / 5", gridRow: "1 / 2" }}>
                   <h3 className="grid__title">Responsável</h3>
                 </div>
-                {taskTitles.map((title, index) => {
+                {tasksTitlesList.map((taskTitle, index) => {
                   // mount the tasks list grid
-                  const tasks = tasksList.filter((task) => task.title === title);
+                  const tasks = tasksList.filter((task) => task.title === taskTitle.title);
                   const deliveries = deliveriesList.filter(
-                    (delivery) => delivery.task.title === title
+                    (delivery) => delivery.task.title === taskTitle.title
                   );
                   const studentDelivery = deliveries.filter(
                     (delivery) => delivery.user.role === ROLE.STUDENT
@@ -331,10 +331,10 @@ export default function Project() {
                         }}
                       >
                         <Link
-                          to={`${window.location.pathname}/data/${tasks[0]?.taskId}`}
+                          to={`${window.location.pathname}/${taskTitle.to}/${tasks[0]?.taskId}`}
                           className="grid__title grid__title--link"
                         >
-                          {title}
+                          {taskTitle.title}
                         </Link>
                       </div>
                       {tasks.length == 1 ? (
