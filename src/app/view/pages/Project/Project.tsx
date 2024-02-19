@@ -12,9 +12,10 @@ import { DeliveryContext } from "../../../context/delivery-context";
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import { taskTitles } from "../../../utils/task-titles";
 import Card from "../../components/Card/Card";
-import { handleFetch } from "../../../utils/handle-fetch";
+import { handleFetch } from "../../../utils/functions/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 import BasicButton from "../../components/BasicButton/BasicButton";
+import { UserModel } from "../../../models/user-model";
 
 export default function Project() {
   // get the project id from the url to fetch the project data
@@ -34,6 +35,7 @@ export default function Project() {
   const [isLoading, setIsLoading] = useState(false);
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
   const [isEntrepreneurship, setIsEntrepreneurship] = useState<boolean>(project.isEntrepreneurship);
+  const [coosupervisorName, setCoosupervisorName] = useState<string>(project.professors[2]?.name);
 
   // function to control the selection of the entrepreneurship option
   const handleOptionClick = (optionValue: string) => {
@@ -103,8 +105,40 @@ export default function Project() {
               </div>
               <div className="cosupervisor">
                 <h2 className="main__title main__title--cosupervisor">Coorientador: </h2>
-                <input type="text" className="main__input" />
-                <BasicButton title="Salvar" buttonClassName="main__btn--margin"></BasicButton>
+                <input
+                  type="text"
+                  className="main__input"
+                  value={coosupervisorName}
+                  onChange={(element) => setCoosupervisorName(element.currentTarget.value)}
+                />
+                <BasicButton
+                  title="Salvar"
+                  buttonClassName="main__btn--margin"
+                  onClick={() =>
+                    handleFetch(
+                      setIsLoading,
+                      showBoundary,
+                      updateProject(
+                        projectId,
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        [
+                          ...project.professors,
+                          new UserModel({
+                            email: "teste@mail.com",
+                            userId: 100,
+                            name: coosupervisorName,
+                            role: ROLE.RESPONSIBLE,
+                          }),
+                        ]
+                      )
+                    )
+                  }
+                ></BasicButton>
               </div>
               <div className="students">
                 <h2 className="main__title main__title--students">Alunos: </h2>
@@ -241,12 +275,12 @@ export default function Project() {
                             className="grid__text"
                             style={{
                               color: handleGetContentColor(
-                                studentDelivery?.content["content"] as string
+                                studentDelivery?.content["status"] as string
                               ),
                             }}
                           >
-                            {studentDelivery?.content["content"] != undefined
-                              ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
+                            {studentDelivery?.content["status"] != undefined
+                              ? `${studentDelivery?.content["status"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
                               : "Não enviado"}
                           </p>
                         </div>
@@ -264,12 +298,12 @@ export default function Project() {
                               className="grid__text"
                               style={{
                                 color: handleGetContentColor(
-                                  studentDelivery?.content["content"] as string
+                                  studentDelivery?.content["status"] as string
                                 ),
                               }}
                             >
-                              {studentDelivery?.content["content"] != undefined
-                                ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
+                              {studentDelivery?.content["status"] != undefined
+                                ? `${studentDelivery?.content["status"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
                                 : "Não enviado"}
                             </p>
                           </div>
@@ -285,12 +319,12 @@ export default function Project() {
                               className="grid__text"
                               style={{
                                 color: handleGetContentColor(
-                                  advisorDelivery?.content["content"] as string
+                                  advisorDelivery?.content["status"] as string
                                 ),
                               }}
                             >
-                              {advisorDelivery?.content["content"] != undefined
-                                ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}`
+                              {advisorDelivery?.content["status"] != undefined
+                                ? `${advisorDelivery?.content["status"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}`
                                 : "Não enviado"}
                             </p>
                           </div>
@@ -309,12 +343,12 @@ export default function Project() {
                               className="grid__text"
                               style={{
                                 color: handleGetContentColor(
-                                  studentDelivery?.content["content"] as string
+                                  studentDelivery?.content["status"] as string
                                 ),
                               }}
                             >
-                              {studentDelivery?.content["content"] != undefined
-                                ? `${studentDelivery?.content["content"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
+                              {studentDelivery?.content["status"] != undefined
+                                ? `${studentDelivery?.content["status"]} por ${studentDelivery?.user.name} em ${studentDelivery?.task.deliveryDate}`
                                 : "Não enviado"}
                             </p>
                           </div>
@@ -330,12 +364,12 @@ export default function Project() {
                               className="grid__text"
                               style={{
                                 color: handleGetContentColor(
-                                  advisorDelivery?.content["content"] as string
+                                  advisorDelivery?.content["status"] as string
                                 ),
                               }}
                             >
-                              {advisorDelivery?.content["content"] != undefined
-                                ? `${advisorDelivery?.content["content"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}`
+                              {advisorDelivery?.content["status"] != undefined
+                                ? `${advisorDelivery?.content["status"]} por ${advisorDelivery?.user.name} em ${advisorDelivery?.task.deliveryDate}`
                                 : "Não enviado"}
                             </p>
                           </div>
@@ -351,12 +385,12 @@ export default function Project() {
                               className="grid__text"
                               style={{
                                 color: handleGetContentColor(
-                                  responsibleDelivery?.content["content"] as string
+                                  responsibleDelivery?.content["status"] as string
                                 ),
                               }}
                             >
-                              {responsibleDelivery?.content["content"] != undefined
-                                ? `${responsibleDelivery?.content["content"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}`
+                              {responsibleDelivery?.content["status"] != undefined
+                                ? `${responsibleDelivery?.content["status"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}`
                                 : "Não enviado"}{" "}
                             </p>
                           </div>

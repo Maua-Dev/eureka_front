@@ -92,6 +92,7 @@
 
 .project .main__input {
   width: 100%;
+  padding-left: 0.2rem;
   border: var(--thin-border);
   border-radius: var(--input-radius);
   font-size: var(--regular-text);
