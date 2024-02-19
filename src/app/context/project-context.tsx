@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 import { ProjectModel } from "../models/project-model";
-import { UserModel } from "../models/user-model";
 import { SHIFT } from "../../@clean/shared/domain/enums/shift-enum";
 import {
   RegistryProject,
@@ -10,7 +9,6 @@ import { CreateProjectUsecase } from "../../@clean/modules/project/usecases/crea
 import { GetProjectUsecase } from "../../@clean/modules/project/usecases/get-project-usecase";
 import { UpdateProjectUsecase } from "../../@clean/modules/project/usecases/update-project-usecase";
 import { ProjectAdapter } from "../adapters/project-adapter";
-import { UserAdapter } from "../adapters/user-adapter";
 import { GetProjectsByRoleUsecase } from "../../@clean/modules/project/usecases/get-projects-by-role-usecase";
 
 type ProjectContextType = {
@@ -27,8 +25,8 @@ type ProjectContextType = {
     newShift?: SHIFT,
     newStandNumber?: string,
     newIsEntrepreneurship?: boolean,
-    newProfessors?: UserModel[],
-    newStudents?: UserModel[]
+    newProfessors?: number[],
+    newStudents?: number[]
   ): Promise<ProjectModel | undefined>;
 };
 
@@ -93,15 +91,9 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
     newShift?: SHIFT,
     newStandNumber?: string,
     newIsEntrepreneurship?: boolean,
-    newProfessorsModel?: UserModel[],
-    newStudentsModel?: UserModel[]
+    newProfessors?: number[],
+    newStudents?: number[]
   ) => {
-    const newProfessors = newProfessorsModel?.map((professorModel) =>
-      UserAdapter.fromModel(professorModel)
-    );
-    const newStudents = newStudentsModel?.map((newStudentModel) =>
-      UserAdapter.fromModel(newStudentModel)
-    );
     const projectUpdated = await updateProjectUsecase.execute(
       projectId,
       newTitle,

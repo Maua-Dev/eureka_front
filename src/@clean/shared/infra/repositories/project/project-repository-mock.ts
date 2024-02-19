@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import { IProjectRepository } from "../../../../modules/project/domain/repositories/project-repository-interface";
 import { Project } from "../../../domain/entities/project";
-import { User } from "../../../domain/entities/user";
 import { SHIFT } from "../../../domain/enums/shift-enum";
 import { NoItemsFoundError } from "../../../domain/helpers/errors/domain-errors";
 import { ProjectJson } from "../../jsons/project-json";
 import { decorate, injectable } from "inversify";
+import { UserJson } from "../../jsons/user-json";
 
 export class ProjectRepositoryMock implements IProjectRepository {
   async createProject(project: Project): Promise<Project> {
@@ -48,8 +48,8 @@ export class ProjectRepositoryMock implements IProjectRepository {
     newShift?: SHIFT | undefined,
     newStandNumber?: string | undefined,
     newIsEntrepreneurship?: boolean | undefined,
-    newProfessors?: User[] | undefined,
-    newStudents?: User[] | undefined
+    newProfessors?: number[] | undefined,
+    newStudents?: number[] | undefined
   ): Promise<Project> {
     let existingProject: Project | null = null;
 
@@ -63,10 +63,29 @@ export class ProjectRepositoryMock implements IProjectRepository {
         if (newStandNumber !== undefined) projectToUpdate.stand_number = newStandNumber;
         if (newIsEntrepreneurship !== undefined)
           projectToUpdate.is_entrepreneurship = newIsEntrepreneurship;
-        if (newProfessors !== undefined)
-          projectToUpdate.professors = newProfessors.map((professor) => professor.toJson());
-        if (newStudents !== undefined)
-          projectToUpdate.students = newStudents.map((student) => student.toJson());
+        if (newProfessors !== undefined) {
+          projectToUpdate.professors = projectToUpdate.professors.concat(
+            newProfessors.map((professorId) => {
+              const user = UserJson.userJson.find((user) => user.user_id === professorId);
+              if (user == null) {
+                throw new NoItemsFoundError("userId: " + professorId);
+              }
+              return user;
+            })
+          );
+        }
+        if (newStudents !== undefined) {
+          projectToUpdate.students = projectToUpdate.students.concat(
+            newStudents.map((studentId) => {
+              const user = UserJson.userJson.find((user) => user.user_id === studentId);
+              if (user == null) {
+                throw new NoItemsFoundError("userId: " + studentId);
+              }
+              return user;
+            })
+          );
+        }
+
         existingProject = Project.fromJson(projectToUpdate);
         ProjectJson.projectJson[index] = projectToUpdate;
       }

@@ -1,5 +1,4 @@
 import { Project } from "../../../../shared/domain/entities/project";
-import { User } from "../../../../shared/domain/entities/user";
 import { SHIFT } from "../../../../shared/domain/enums/shift-enum";
 
 export interface IProjectRepository {
@@ -13,8 +12,8 @@ export interface IProjectRepository {
     newShift?: SHIFT,
     newStandNumber?: string,
     newIsEntrepreneurship?: boolean,
-    newProfessors?: User[],
-    newStudents?: User[]
+    newProfessors?: number[],
+    newStudents?: number[]
   ): Promise<Project>;
   getProjectsByRole(userId: number): Promise<Project[]>;
 }

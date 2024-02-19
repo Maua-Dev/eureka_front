@@ -15,12 +15,15 @@ import Card from "../../components/Card/Card";
 import { handleFetch } from "../../../utils/functions/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import { UserModel } from "../../../models/user-model";
+import { UserJson } from "../../../../@clean/shared/infra/jsons/user-json";
+import { NoItemsFoundError } from "../../../../@clean/shared/domain/helpers/errors/domain-errors";
+import { toast } from "react-toastify";
+import { stringCapitalize } from "../../../utils/functions/string-formatter";
 
 export default function Project() {
   // get the project id from the url to fetch the project data
-  const { id } = useParams();
-  const projectId = parseInt(id!);
+  const { idProject } = useParams();
+  const projectId = parseInt(idProject!);
 
   const { project, getProject, updateProject } = useContext(ProjectContext);
   const { tasksList, getAllTasks } = useContext(TaskContext);
@@ -108,36 +111,37 @@ export default function Project() {
                 <input
                   type="text"
                   className="main__input"
-                  value={coosupervisorName}
-                  onChange={(element) => setCoosupervisorName(element.currentTarget.value)}
+                  value={coosupervisorName || ""}
+                  onChange={(event) => setCoosupervisorName(event.currentTarget.value)}
                 />
                 <BasicButton
                   title="Salvar"
                   buttonClassName="main__btn--margin"
-                  onClick={() =>
-                    handleFetch(
-                      setIsLoading,
-                      showBoundary,
-                      updateProject(
-                        projectId,
-                        undefined,
-                        undefined,
-                        undefined,
-                        undefined,
-                        undefined,
-                        undefined,
-                        [
-                          ...project.professors,
-                          new UserModel({
-                            email: "teste@mail.com",
-                            userId: 100,
-                            name: coosupervisorName,
-                            role: ROLE.RESPONSIBLE,
-                          }),
-                        ]
-                      )
-                    )
-                  }
+                  onClick={() => {
+                    const professor = UserJson.userJson.find(
+                      (user) => user.name.toLowerCase() === coosupervisorName.toLowerCase()
+                    );
+                    if (professor === undefined) {
+                      toast.error(new NoItemsFoundError("name: " + coosupervisorName).message);
+                    } else {
+                      const professorId = [professor!.user_id];
+                      handleFetch(
+                        setIsLoading,
+                        showBoundary,
+                        updateProject(
+                          projectId,
+                          undefined,
+                          undefined,
+                          undefined,
+                          undefined,
+                          undefined,
+                          undefined,
+                          professorId
+                        )
+                      );
+                      setCoosupervisorName(stringCapitalize(professor!.name));
+                    }
+                  }}
                 ></BasicButton>
               </div>
               <div className="students">
@@ -256,7 +260,7 @@ export default function Project() {
                         }}
                       >
                         <Link
-                          to={`${window.location.pathname}/data`}
+                          to={`${window.location.pathname}/data/${tasks[0]?.taskId}`}
                           className="grid__title grid__title--link"
                         >
                           {title}
@@ -391,7 +395,7 @@ export default function Project() {
                             >
                               {responsibleDelivery?.content["status"] != undefined
                                 ? `${responsibleDelivery?.content["status"]} por ${responsibleDelivery?.user.name} em ${responsibleDelivery?.task.deliveryDate}`
-                                : "Não enviado"}{" "}
+                                : "Não enviado"}
                             </p>
                           </div>
                         </>
@@ -523,7 +527,7 @@ export default function Project() {
                 </div>
               </Card>
             </aside>
-          </article>{" "}
+          </article>
         </>
       )}
     </main>
