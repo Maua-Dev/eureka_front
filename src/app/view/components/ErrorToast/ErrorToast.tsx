@@ -10,7 +10,7 @@ export default function ErrorToast() {
       autoClose={2400}
       closeButton={false}
       closeOnClick={false}
-      limit={1}
+      limit={5}
       newestOnTop={false}
       rtl={false}
       draggable={false}
