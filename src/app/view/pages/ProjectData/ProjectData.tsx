@@ -14,6 +14,8 @@ import { odsList } from "../../../utils/ods-list";
 import DataCard from "../../components/DataCard/DataCard";
 import { DeliveryContext } from "../../../context/delivery-context";
 import { AuthContext } from "../../../context/auth-context";
+import { toast } from "react-toastify";
+import { actionsList } from "../../../utils/actions-list";
 
 export default function ProjectData() {
   // get the project id from the url to fetch the project data
@@ -40,6 +42,11 @@ export default function ProjectData() {
   const [selectedOds, setSelectedOds] = useState<number[]>(
     (deliveriesList.find((delivery) => delivery.task.title === "Dados do trabalho")?.content[
       "ods"
+    ] as number[]) || []
+  );
+  const [selectedActions, setSelectedActions] = useState<number[]>(
+    (deliveriesList.find((delivery) => delivery.task.title === "Dados do trabalho")?.content[
+      "actions"
     ] as number[]) || []
   );
 
@@ -80,6 +87,16 @@ export default function ProjectData() {
     }
   }, [selectedOds]);
 
+  useEffect(() => {
+    if (selectedOds.length > 0) {
+      handleFetch(
+        setIsLoading,
+        showBoundary,
+        createDelivery(taskid, projectId, user.userId, { actions: selectedActions })
+      );
+    }
+  }, [selectedActions]);
+
   return (
     <main className="project_data">
       <ReturnButton to={`/project/${projectId}`} />
@@ -102,9 +119,20 @@ export default function ProjectData() {
                 <BasicButton
                   title="Salvar"
                   buttonClassName="input__btn"
-                  onClick={() =>
-                    handleFetch(setIsLoading, showBoundary, updateProject(projectId, projectTitle))
-                  }
+                  onClick={() => {
+                    if (projectTitle === "") {
+                      toast.error("O título do projeto não pode ser vazio");
+                    } else if (projectTitle === project.title) {
+                      toast.error("O título do projeto não pode ser igual ao anterior");
+                    } else {
+                      handleFetch(
+                        setIsLoading,
+                        showBoundary,
+                        updateProject(projectId, projectTitle)
+                      );
+                      toast.success("Título atualizado");
+                    }
+                  }}
                 ></BasicButton>
               </div>
               <div className="input input--bigger input--column">
@@ -141,7 +169,10 @@ export default function ProjectData() {
               </span>
             </div>
           </Card>
-          <Card headerTitle="Selecione quais ODS o trabalho está envolvido: ">
+          <Card
+            cardClassName="card--margin"
+            headerTitle="Selecione quais ODS o trabalho está envolvido: "
+          >
             <div className="card__main--flex">
               {odsList.map((ods) => {
                 return (
@@ -158,6 +189,31 @@ export default function ProjectData() {
                         const updatedOds = previousOds.includes(ods.odsId)
                           ? previousOds.filter((id) => id !== ods.odsId)
                           : [...previousOds, ods.odsId];
+                        return updatedOds;
+                      });
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </Card>
+          <Card headerTitle="Selecione quais Ações do IMT o trabalho está envolvido: ">
+            <div className="card__main--flex">
+              {actionsList.map((action) => {
+                return (
+                  <DataCard
+                    title={action.title}
+                    description={action.description}
+                    image={action.image}
+                    key={action.actionId}
+                    backgroundColor={
+                      selectedActions.includes(action.actionId) ? "var(--dark-mustard)" : undefined
+                    }
+                    onClick={() => {
+                      setSelectedActions((previousOds) => {
+                        const updatedOds = previousOds.includes(action.actionId)
+                          ? previousOds.filter((id) => id !== action.actionId)
+                          : [...previousOds, action.actionId];
                         return updatedOds;
                       });
                     }}

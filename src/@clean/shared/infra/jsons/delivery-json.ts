@@ -20,6 +20,7 @@ export class DeliveryJson {
       content: {
         status: "Aprovado",
         ods: [1, 2, 5, 7],
+        actions: [5, 6, 7],
       },
     },
     {
