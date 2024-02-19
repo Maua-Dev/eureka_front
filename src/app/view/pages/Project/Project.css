@@ -92,9 +92,7 @@
 
 .project .main__input {
   width: 100%;
-  padding-left: 0.2rem;
-  border: var(--thin-border);
-  border-radius: var(--input-radius);
+  display: flex;
   font-size: var(--regular-text);
   color: var(--dark-blue);
   font-weight: var(--medium);
@@ -103,6 +101,7 @@
 .project .main__input--skeleton {
   width: 100%;
   border: none;
+  min-height: 20px;
   color: var(--dark-blue);
   font-weight: var(--medium);
 }
@@ -423,6 +422,10 @@
     align-items: center;
   }
 
+  .project .main__input {
+    text-align: center;
+  }
+
   .project .card--width {
     width: 100%;
   }
@@ -446,7 +449,7 @@
   }
 
   .project .cosupervisor {
-    max-width: 50%;
+    width: 80%;
     align-items: center;
   }
 
@@ -500,10 +503,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .project .main__input--skeleton {
-    width: 50%;
   }
 
   .project .main__btn--margin {

@@ -16,9 +16,12 @@ import { handleFetch } from "../../../utils/functions/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import { UserJson } from "../../../../@clean/shared/infra/jsons/user-json";
-import { NoItemsFoundError } from "../../../../@clean/shared/domain/helpers/errors/domain-errors";
 import { toast } from "react-toastify";
-import { stringCapitalize } from "../../../utils/functions/string-formatter";
+import { User } from "../../../../@clean/shared/domain/entities/user";
+import { UserModel } from "../../../models/user-model";
+import { UserAdapter } from "../../../adapters/user-adapter";
+import Select from "react-select";
+import isEqual from "lodash.isequal";
 
 export default function Project() {
   // get the project id from the url to fetch the project data
@@ -38,7 +41,8 @@ export default function Project() {
   const [isLoading, setIsLoading] = useState(false);
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
   const [isEntrepreneurship, setIsEntrepreneurship] = useState<boolean>(project.isEntrepreneurship);
-  const [coosupervisorName, setCoosupervisorName] = useState<string>(project.professors[2]?.name);
+  const [cosupervisor, setCosupervisor] = useState<UserModel>(project.professors[2]);
+  const [professorsOptions, setProfessorsOptions] = useState<UserModel[]>([]);
 
   // function to control the selection of the entrepreneurship option
   const handleOptionClick = (optionValue: string) => {
@@ -82,6 +86,19 @@ export default function Project() {
     setIsEntrepreneurship(project.isEntrepreneurship);
   }, [project.isEntrepreneurship]);
 
+  useEffect(() => {
+    const users: UserModel[] = UserJson.userJson.map((user) =>
+      UserAdapter.toModel(User.fromJson(user))
+    );
+    setProfessorsOptions(
+      users.filter(
+        (user) =>
+          (user.role === ROLE.ADVISOR || user.role === ROLE.RESPONSIBLE) &&
+          !isEqual(user, project.professors[0])
+      )
+    );
+  }, [project.professors]);
+
   return (
     <main className="project">
       <ReturnButton />
@@ -108,22 +125,73 @@ export default function Project() {
               </div>
               <div className="cosupervisor">
                 <h2 className="main__title main__title--cosupervisor">Coorientador: </h2>
-                <input
-                  type="text"
+                <Select
                   className="main__input"
-                  value={coosupervisorName || ""}
-                  onChange={(event) => setCoosupervisorName(event.currentTarget.value)}
+                  value={cosupervisor}
+                  components={{
+                    DropdownIndicator: null,
+                    NoOptionsMessage: () => "Professor não encontrado",
+                  }}
+                  styles={{
+                    control(base) {
+                      return {
+                        ...base,
+                        width: "100%",
+                        border: "var(--thin-border)",
+                        borderRadius: "var(--input-radius)",
+                        backgroundColor: "var(--white)",
+                        boxShadow: "none",
+                        padding: "0 0.2rem",
+                        minHeight: "20px",
+                      };
+                    },
+                    menu(base) {
+                      return {
+                        ...base,
+                        top: "84%",
+                      };
+                    },
+                    menuList(base) {
+                      return {
+                        ...base,
+                        backgroundColor: "var(--white)",
+                        borderEndStartRadius: "var(--input-radius)",
+                        borderEndEndRadius: "var(--input-radius)",
+                        width: "100%",
+                        margin: "0",
+                        border: "var(--thin-border)",
+                        borderTop: "none",
+                      };
+                    },
+                    option(base) {
+                      return {
+                        ...base,
+                        padding: "0.2rem",
+                      };
+                    },
+                  }}
+                  backspaceRemovesValue={true}
+                  unstyled={true}
+                  placeholder=""
+                  options={professorsOptions}
+                  onChange={(option: UserModel | null) => {
+                    setCosupervisor(option!);
+                  }}
+                  getOptionLabel={(option: UserModel) => option.name}
+                  getOptionValue={(option: UserModel) => option.name}
                 />
                 <BasicButton
                   title="Salvar"
                   buttonClassName="main__btn--margin"
                   onClick={() => {
-                    const professor = UserJson.userJson.find(
-                      (user) => user.name.toLowerCase() === coosupervisorName.toLowerCase()
-                    );
-                    if (professor === undefined) {
-                      toast.error(new NoItemsFoundError("name: " + coosupervisorName).message);
+                    if (cosupervisor === undefined) {
+                      toast.error("Selecione um professor");
+                    } else if (isEqual(cosupervisor, project.professors[2])) {
+                      toast.error("O coorientador não pode ser igual ao anterior");
                     } else {
+                      const professor = UserJson.userJson.find(
+                        (user) => user.name.toLowerCase() === cosupervisor?.name.toLowerCase()
+                      );
                       const professorId = [professor!.user_id];
                       handleFetch(
                         setIsLoading,
@@ -139,7 +207,7 @@ export default function Project() {
                           professorId
                         )
                       );
-                      setCoosupervisorName(stringCapitalize(professor!.name));
+                      toast.success("Coorientador atualizado");
                     }
                   }}
                 ></BasicButton>
@@ -200,21 +268,24 @@ export default function Project() {
                   <BasicButton
                     title="Atualizar potencial do trabalho"
                     onClick={() => {
-                      setIsLoading(true);
-                      handleFetch(
-                        setIsLoading,
-                        showBoundary,
-                        updateProject(
-                          projectId,
-                          undefined,
-                          undefined,
-                          undefined,
-                          undefined,
-                          undefined,
-                          isEntrepreneurship
-                        )
-                      );
-                      setIsLoading(false);
+                      if (isEntrepreneurship === project.isEntrepreneurship) {
+                        toast.error("O potencial do trabalho não pode ser igual ao anterior");
+                      } else {
+                        handleFetch(
+                          setIsLoading,
+                          showBoundary,
+                          updateProject(
+                            projectId,
+                            undefined,
+                            undefined,
+                            undefined,
+                            undefined,
+                            undefined,
+                            isEntrepreneurship
+                          )
+                        );
+                        toast.success("Potencial atualizado");
+                      }
                     }}
                     buttonClassName="main__btn--width"
                   ></BasicButton>
