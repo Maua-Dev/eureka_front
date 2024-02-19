@@ -16,8 +16,18 @@ export class DeliveryRepositoryHttp implements IDeliveryRepository {
     return response.data.map((delivery: DeliveryJsonProps) => Delivery.fromJson(delivery));
   }
 
-  async createDelivery(delivery: Delivery): Promise<Delivery> {
-    const response = await this._axios.post("/create-delivery", delivery.toJson());
+  async createDelivery(
+    taskId: number,
+    projectId: number,
+    userId: number,
+    content: { [key: string]: unknown }
+  ): Promise<Delivery> {
+    const response = await this._axios.post("/create-delivery", {
+      task_id: taskId,
+      project_id: projectId,
+      user_id: userId,
+      content: content,
+    });
     return Delivery.fromJson(response.data);
   }
 }

@@ -13,14 +13,20 @@ import BasicButton from "../../components/BasicButton/BasicButton";
 import { odsList } from "../../../utils/ods-list";
 import DataCard from "../../components/DataCard/DataCard";
 import { DeliveryContext } from "../../../context/delivery-context";
+import { AuthContext } from "../../../context/auth-context";
 
 export default function ProjectData() {
   // get the project id from the url to fetch the project data
-  const { id } = useParams();
-  const projectId = parseInt(id!);
+  const { idProject } = useParams();
+  const projectId = parseInt(idProject!);
 
+  // get the task id from the url to fetch the project data
+  const { idTask } = useParams();
+  const taskid = parseInt(idTask!);
+
+  const { user } = useContext(AuthContext);
   const { project, getProject, updateProject } = useContext(ProjectContext);
-  const { deliveriesList, getDeliveries } = useContext(DeliveryContext);
+  const { deliveriesList, getDeliveries, createDelivery } = useContext(DeliveryContext);
 
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
@@ -64,13 +70,22 @@ export default function ProjectData() {
     deliveriesList.find((delivery) => delivery.task.title === "Dados do trabalho")?.content["ods"],
   ]);
 
+  useEffect(() => {
+    if (selectedOds.length > 0) {
+      handleFetch(
+        setIsLoading,
+        showBoundary,
+        createDelivery(taskid, projectId, user.userId, { ods: selectedOds })
+      );
+    }
+  }, [selectedOds]);
+
   return (
     <main className="project_data">
       <ReturnButton to={`/project/${projectId}`} />
       {isLoading && <CircularLoading />}
       {isSkeletonLoading ? null : (
         <>
-          {" "}
           <Card
             headerTitleClassName="header__title--upper"
             cardClassName="card--margin"
@@ -111,15 +126,15 @@ export default function ProjectData() {
                 Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adotada
                 durante a Cúpula das Nações Unidas sobre o Desenvolvimento Sustentável em setembro
                 de 2015 composta por 17 objetivos e 169 metas a serem atingidos até 2030. Para saber
-                mais veja a tela de{" "}
+                mais veja a tela de
                 <Link
                   className="card__span"
                   target="_blank"
                   to={"https://sistema-eureka.maua.br/downloads/arquivos/ODS-agenda2030-pt-br.pdf"}
                 >
                   downloads
-                </Link>{" "}
-                ou{" "}
+                </Link>
+                ou
                 <Link className="card__span" target="_blank" to={"https://brasil.un.org/pt-br"}>
                   link
                 </Link>
@@ -140,9 +155,10 @@ export default function ProjectData() {
                     }
                     onClick={() => {
                       setSelectedOds((previousOds) => {
-                        return previousOds.includes(ods.odsId)
+                        const updatedOds = previousOds.includes(ods.odsId)
                           ? previousOds.filter((id) => id !== ods.odsId)
                           : [...previousOds, ods.odsId];
+                        return updatedOds;
                       });
                     }}
                   />

@@ -8,7 +8,12 @@ export class CreateDeliveryUsecase {
     this._repository = repository;
   }
 
-  async execute(delivery: Delivery): Promise<Delivery> {
-    return await this._repository.createDelivery(delivery);
+  async execute(
+    taskId: number,
+    projectId: number,
+    userId: number,
+    content: { [key: string]: unknown }
+  ): Promise<Delivery> {
+    return await this._repository.createDelivery(taskId, projectId, userId, content);
   }
 }

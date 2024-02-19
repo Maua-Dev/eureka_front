@@ -19,7 +19,7 @@ export default function ProjectSkeleton() {
             </div>
             <div className=" cosupervisor--skeleton">
               <h2 className="main__title main__title--cosupervisor main__title--skeleton">
-                Coorientador:{" "}
+                Coorientador:
               </h2>
               <Skeleton
                 containerClassName="main__input--center"

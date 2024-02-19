@@ -8,8 +8,8 @@ export function AppRouter() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/project">
-        <Route path=":id" element={<Project />} />
-        <Route path=":id/data" element={<ProjectData />} />
+        <Route path=":idProject" element={<Project />} />
+        <Route path=":idProject/data/:idTask" element={<ProjectData />} />
       </Route>
     </Routes>
   );

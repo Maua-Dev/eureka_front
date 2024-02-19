@@ -10,7 +10,12 @@ import { CreateDeliveryUsecase } from "../../@clean/modules/delivery/usecases/cr
 
 type DeliveryContextType = {
   deliveriesList: DeliveryModel[];
-  createDelivery(delivery: DeliveryModel): Promise<DeliveryModel | undefined>;
+  createDelivery(
+    taskId: number,
+    projectId: number,
+    userId: number,
+    content: { [key: string]: unknown }
+  ): Promise<DeliveryModel | undefined>;
   getDeliveries(projectId: number): Promise<DeliveryModel[] | undefined>;
 };
 
@@ -33,10 +38,14 @@ const getDeliveriesUsecase = containerDelivery.get<GetDeliveriesUsecase>(
 export const DeliveryProvider = ({ children }: { children: React.ReactNode }) => {
   const [deliveriesList, setDeliveriesList] = useState<DeliveryModel[]>([]);
 
-  const createDelivery = async (delivery: DeliveryModel) => {
-    const deliveryCreated = await createDeliveryUsecase.execute(
-      DeliveryAdapter.fromModel(delivery)
-    );
+  const createDelivery = async (
+    taskId: number,
+    projectId: number,
+    userId: number,
+    content: { [key: string]: unknown }
+  ) => {
+    const deliveryCreated = await createDeliveryUsecase.execute(taskId, projectId, userId, content);
+
     return DeliveryAdapter.toModel(deliveryCreated);
   };
 
