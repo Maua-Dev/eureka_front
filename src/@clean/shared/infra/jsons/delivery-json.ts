@@ -18,7 +18,8 @@ export class DeliveryJson {
       },
       date: "2024-01-24T22:20:11.546Z",
       content: {
-        content: "Aprovado",
+        status: "Aprovado",
+        ods: [1, 2, 5, 7],
       },
     },
     {
@@ -37,7 +38,7 @@ export class DeliveryJson {
       },
       date: "2024-01-24T22:53:34.071Z",
       content: {
-        content: "Aprovado",
+        status: "Aprovado",
       },
     },
     {
@@ -56,7 +57,7 @@ export class DeliveryJson {
       },
       date: "2024-01-25T15:39:09.588Z",
       content: {
-        content: "Aprovado",
+        status: "Aprovado",
       },
     },
   ];

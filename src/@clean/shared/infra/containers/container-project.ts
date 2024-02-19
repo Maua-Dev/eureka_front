@@ -61,8 +61,6 @@ containerProject.bind(RegistryProject.GetProjectUsecase).toDynamicValue((context
   } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
     return new GetProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryHttp));
   } else {
-    console.log(import.meta.env.APP_STAGE);
-    console.log(import.meta.env.APP_URL);
     return new GetProjectUsecase(context.container.get(RegistryProject.ProjectRepositoryMock));
   }
 });

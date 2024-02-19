@@ -1,5 +1,5 @@
 import { Task } from "../../@clean/shared/domain/entities/task";
-import { stringToDate } from "../utils/date-formatter";
+import { stringToDate } from "../utils/functions/date-formatter";
 import { TaskModel } from "../models/task-model";
 
 export class TaskAdapter {

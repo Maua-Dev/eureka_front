@@ -3,7 +3,7 @@ import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import Card from "../../components/Card/Card";
 import { ProjectModel } from "../../../models/project-model";
 import { useContext, useEffect, useState } from "react";
-import { handleFetch } from "../../../utils/handle-fetch";
+import { handleFetch } from "../../../utils/functions/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 import { ProjectContext } from "../../../context/project-context";
 import isEqual from "lodash.isequal";
@@ -12,6 +12,7 @@ import CircularLoading from "../../components/CircularLoading/CircularLoading";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import { odsList } from "../../../utils/ods-list";
 import DataCard from "../../components/DataCard/DataCard";
+import { DeliveryContext } from "../../../context/delivery-context";
 
 export default function ProjectData() {
   // get the project id from the url to fetch the project data
@@ -19,6 +20,7 @@ export default function ProjectData() {
   const projectId = parseInt(id!);
 
   const { project, getProject, updateProject } = useContext(ProjectContext);
+  const { deliveriesList, getDeliveries } = useContext(DeliveryContext);
 
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
@@ -29,7 +31,11 @@ export default function ProjectData() {
   const [projectDescription, setProjectDescription] = useState<string>(
     "Descrição do projeto muito legal e interessante."
   );
-  const [selectedOds, setSelectedOds] = useState<number[]>([]);
+  const [selectedOds, setSelectedOds] = useState<number[]>(
+    (deliveriesList.find((delivery) => delivery.task.title === "Dados do trabalho")?.content[
+      "ods"
+    ] as number[]) || []
+  );
 
   useEffect(() => {
     if (isEqual(project, ProjectModel.empty())) {
@@ -38,9 +44,25 @@ export default function ProjectData() {
   }, []);
 
   useEffect(() => {
+    if (isEqual(deliveriesList, [])) {
+      handleFetch(setIsSkeletonLoading, showBoundary, getDeliveries(projectId));
+    }
+  }, []);
+
+  useEffect(() => {
     setProjectTitle(project.title);
     setProjectDescription("Descrição do projeto muito legal e interessante.");
   }, [project.title]);
+
+  useEffect(() => {
+    setSelectedOds(
+      (deliveriesList.find((delivery) => delivery.task.title === "Dados do trabalho")?.content[
+        "ods"
+      ] as number[]) || []
+    );
+  }, [
+    deliveriesList.find((delivery) => delivery.task.title === "Dados do trabalho")?.content["ods"],
+  ]);
 
   return (
     <main className="project_data">

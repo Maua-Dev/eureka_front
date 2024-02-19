@@ -8,7 +8,7 @@ import { ProjectContext } from "../../../context/project-context";
 import { AuthContext } from "../../../context/auth-context";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import ProjectCardSkeleton from "../../components/ProjectCard/ProjectCardSkeleton";
-import { handleFetch } from "../../../utils/handle-fetch";
+import { handleFetch } from "../../../utils/functions/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 import { shiftToAcronym } from "../../../../@clean/shared/domain/enums/shift-enum";
 
