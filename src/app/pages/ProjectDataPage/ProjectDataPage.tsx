@@ -15,6 +15,7 @@ import { odsList } from "../../utils/statics/ods-list";
 import ImageInfoCard from "../../ui/components/ImageInfoCard/ImageInfoCard";
 import { actionsList } from "../../utils/statics/actions-list";
 import DefaultTextField from "../../ui/components/DefaultTextField/DefaultTextField";
+import ProjectDataPageSkeleton from "./ProjectDataPageSkeleton";
 
 export default function ProjectDataPage() {
   // get the project id from the url to fetch the project data
@@ -74,7 +75,7 @@ export default function ProjectDataPage() {
   useEffect(() => {
     if (selectedOds.length > 0) {
       handleFetch(
-        setIsLoading,
+        setIsSkeletonLoading,
         showBoundary,
         undefined,
         createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
@@ -87,7 +88,7 @@ export default function ProjectDataPage() {
   useEffect(() => {
     if (selectedOds.length > 0) {
       handleFetch(
-        setIsLoading,
+        setIsSkeletonLoading,
         showBoundary,
         undefined,
         createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
@@ -111,7 +112,9 @@ export default function ProjectDataPage() {
   return (
     <main className="project_data_page">
       {isLoading && <LoadingSpinner />}
-      {isSkeletonLoading ? null : (
+      {isSkeletonLoading ? (
+        <ProjectDataPageSkeleton />
+      ) : (
         <>
           <HeaderedBox
             headerTitleClassName="header__title--upper"
@@ -167,15 +170,15 @@ export default function ProjectDataPage() {
                 Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adotada
                 durante a Cúpula das Nações Unidas sobre o Desenvolvimento Sustentável em setembro
                 de 2015 composta por 17 objetivos e 169 metas a serem atingidos até 2030. Para saber
-                mais veja a tela de
+                mais veja a tela de{" "}
                 <Link
                   className="box__span"
                   target="_blank"
                   to={"https://sistema-eureka.maua.br/downloads/arquivos/ODS-agenda2030-pt-br.pdf"}
                 >
                   downloads
-                </Link>
-                ou
+                </Link>{" "}
+                ou{" "}
                 <Link className="box__span" target="_blank" to={"https://brasil.un.org/pt-br"}>
                   link
                 </Link>

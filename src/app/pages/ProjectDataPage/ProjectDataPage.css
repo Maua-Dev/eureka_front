@@ -2,6 +2,10 @@
   padding: 3rem 2.5rem 4rem 2.5rem;
 }
 
+.project_data_page--skeleton {
+  pointer-events: none;
+}
+
 .project_data_page .header__title--upper {
   text-transform: uppercase;
 }

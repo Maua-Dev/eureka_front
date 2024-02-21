@@ -11,6 +11,10 @@
   padding: 1.2rem;
 }
 
+.image_info_card--skeleton {
+  background-color: var(--white);
+}
+
 .image_info_card .image_info_card__img {
   width: 70%;
   max-height: 100%;
@@ -31,6 +35,11 @@
 .image_info_card:hover {
   background-color: var(--mustard);
   cursor: pointer;
+}
+
+.image_info_card--skeleton:hover {
+  background-color: var(--white);
+  cursor: none;
 }
 
 @media screen and (max-width: 1200px) {

@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.default_text_field--skeleton {
+  pointer-events: none;
+}
+
 .default_text_field .input {
   display: flex;
   flex-direction: row;
@@ -22,7 +26,6 @@
 
 .default_text_field .input__title {
   color: var(--dark-blue);
-  margin-right: 0.5rem;
   font-size: var(--big-title);
   font-weight: var(--semi-bold);
 }
@@ -38,6 +41,7 @@
   resize: none;
   background-color: transparent;
   appearance: none;
+  padding: 0 0.5rem;
 }
 
 .default_text_field .input__field--textarea {
