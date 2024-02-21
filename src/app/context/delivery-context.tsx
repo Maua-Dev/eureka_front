@@ -9,7 +9,7 @@ import { DeliveryAdapter } from "../adapters/delivery-adapter";
 import { CreateDeliveryUsecase } from "../../@clean/modules/delivery/usecases/create-delivery-usecase";
 
 type DeliveryContextType = {
-  deliveriesList: DeliveryModel[];
+  deliveriesFromContext: DeliveryModel[];
   createDelivery(
     taskId: number,
     projectId: number,
@@ -20,7 +20,7 @@ type DeliveryContextType = {
 };
 
 const defaultContext: DeliveryContextType = {
-  deliveriesList: [],
+  deliveriesFromContext: [],
   createDelivery: async () => DeliveryModel.empty(),
   getDeliveries: async () => [],
 };
@@ -36,7 +36,7 @@ const getDeliveriesUsecase = containerDelivery.get<GetDeliveriesUsecase>(
 );
 
 export const DeliveryProvider = ({ children }: { children: React.ReactNode }) => {
-  const [deliveriesList, setDeliveriesList] = useState<DeliveryModel[]>([]);
+  const [deliveriesFromContext, setDeliveriesFromContext] = useState<DeliveryModel[]>([]);
 
   const createDelivery = async (
     taskId: number,
@@ -52,12 +52,13 @@ export const DeliveryProvider = ({ children }: { children: React.ReactNode }) =>
   const getDeliveries = async (projectId: number) => {
     const deliveriesCaught = await getDeliveriesUsecase.execute(projectId);
     const deliveriesModel = deliveriesCaught.map((delivery) => DeliveryAdapter.toModel(delivery));
-    setDeliveriesList(deliveriesModel);
-    return deliveriesList;
+    setDeliveriesFromContext(deliveriesModel);
+
+    return deliveriesModel;
   };
 
   return (
-    <DeliveryContext.Provider value={{ deliveriesList, createDelivery, getDeliveries }}>
+    <DeliveryContext.Provider value={{ deliveriesFromContext, createDelivery, getDeliveries }}>
       {children}
     </DeliveryContext.Provider>
   );

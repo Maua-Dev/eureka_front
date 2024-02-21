@@ -1,36 +1,36 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppRouter } from "./AppRouter";
-import Footer from "./view/components/Footer/Footer";
-import Header from "./view/components/Header/Header";
-import "./view/styles/global.css";
-import "./view/styles/variables.css";
+import "./ui/styles/global.css";
+import "./ui/styles/variables.css";
 import { ProjectProvider } from "./context/project-context";
 import { AuthProvider } from "./context/auth-context";
 import { ErrorBoundary } from "react-error-boundary";
 import { TaskProvider } from "./context/task-context";
 import { DeliveryProvider } from "./context/delivery-context";
 import "react-toastify/dist/ReactToastify.css";
-import DefaultError from "./view/pages/DefaultError/DefaultError";
-import ErrorToast from "./view/components/ErrorToast/ErrorToast";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import ErrorAlert from "./ui/helpers/ErrorToast/ErrorAlert";
+import Header from "./ui/components/Header/Header";
+import Footer from "./ui/components/Footer/Footer";
 
 function App() {
   return (
     <div className="app_container">
       <BrowserRouter>
-        <ErrorToast />
-        <ErrorBoundary FallbackComponent={DefaultError}>
-          <AuthProvider>
-            <DeliveryProvider>
-              <TaskProvider>
-                <ProjectProvider>
-                  <Header />
+        <ErrorAlert />
+        <AuthProvider>
+          <DeliveryProvider>
+            <TaskProvider>
+              <ProjectProvider>
+                <Header />
+                <ErrorBoundary FallbackComponent={ErrorPage}>
                   <AppRouter />
-                  <Footer />
-                </ProjectProvider>
-              </TaskProvider>
-            </DeliveryProvider>
-          </AuthProvider>
-        </ErrorBoundary>
+                </ErrorBoundary>
+                <Footer />
+              </ProjectProvider>
+            </TaskProvider>
+          </DeliveryProvider>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

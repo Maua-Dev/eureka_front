@@ -5,17 +5,17 @@ import { UserJson } from "../../@clean/shared/infra/jsons/user-json";
 import { User } from "../../@clean/shared/domain/entities/user";
 
 type AuthContextType = {
-  user: UserModel;
+  userFromContext: UserModel;
 };
 
 const defaultContext: AuthContextType = {
-  user: UserModel.empty(),
+  userFromContext: UserModel.empty(),
 };
 
 export const AuthContext = createContext(defaultContext);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const user = UserAdapter.toModel(User.fromJson(UserJson.userJson[0]));
+  const userFromContext = UserAdapter.toModel(User.fromJson(UserJson.userJson[0]));
 
-  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ userFromContext }}>{children}</AuthContext.Provider>;
 };

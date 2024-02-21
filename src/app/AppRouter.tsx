@@ -1,17 +1,42 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./view/pages/Home/Home";
-import Project from "./view/pages/Project/Project";
-import ProjectData from "./view/pages/ProjectData/ProjectData";
-import ProjectFile from "./view/pages/ProjectFile/ProjectFile";
+import HomePage from "./pages/HomePage/HomePage";
+import ProjectDataPage from "./pages/ProjectDataPage/ProjectDataPage";
+import TasksPage from "./pages/TasksPage/TasksPage";
+import FileUploadPage from "./pages/FileUploadPage/FileUploadPage";
+import ReturnButton from "./ui/helpers/ReturnButton/ReturnButton";
 
 export function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/project">
-        <Route path=":idProject" element={<Project />} />
-        <Route path=":idProject/data/:idTask" element={<ProjectData />} />
-        <Route path=":idProject/file/:idTask" element={<ProjectFile />} />
+        <Route
+          path=":projectId"
+          element={
+            <>
+              <ReturnButton />
+              <TasksPage />
+            </>
+          }
+        />
+        <Route
+          path=":projectId/data/:taskId"
+          element={
+            <>
+              <ReturnButton />
+              <ProjectDataPage />
+            </>
+          }
+        />
+        <Route
+          path=":projectId/upload/:taskId"
+          element={
+            <>
+              <ReturnButton />
+              <FileUploadPage />
+            </>
+          }
+        />
       </Route>
     </Routes>
   );

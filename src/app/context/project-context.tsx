@@ -12,8 +12,8 @@ import { ProjectAdapter } from "../adapters/project-adapter";
 import { GetProjectsByRoleUsecase } from "../../@clean/modules/project/usecases/get-projects-by-role-usecase";
 
 type ProjectContextType = {
-  projectsList: ProjectModel[];
-  project: ProjectModel;
+  projectsFromContext: ProjectModel[];
+  projectFromContext: ProjectModel;
   createProject(project: ProjectModel): Promise<ProjectModel | undefined>;
   getProjectsByRole(userId: number): Promise<ProjectModel[] | undefined>;
   getProject(projectId: number): Promise<ProjectModel | undefined>;
@@ -31,8 +31,8 @@ type ProjectContextType = {
 };
 
 const defaultContext: ProjectContextType = {
-  projectsList: [],
-  project: ProjectModel.empty(),
+  projectsFromContext: [],
+  projectFromContext: ProjectModel.empty(),
   createProject: async () => ProjectModel.empty(),
   getProjectsByRole: async () => [],
   getProject: async () => ProjectModel.empty(),
@@ -58,28 +58,31 @@ const updateProjectUsecase = containerProject.get<UpdateProjectUsecase>(
 );
 
 export const ProjectProvider = ({ children }: { children: React.ReactNode }) => {
-  const [projectsList, setProjectsList] = useState<ProjectModel[]>([]);
-  const [project, setProject] = useState<ProjectModel>(ProjectModel.empty());
+  const [projectsFromContext, setProjectsFromContext] = useState<ProjectModel[]>([]);
+  const [projectFromContext, setProjectFromContext] = useState<ProjectModel>(ProjectModel.empty());
 
   const createProject = async (projectModelToCreate: ProjectModel) => {
     const projectToCreate = ProjectAdapter.fromModel(projectModelToCreate);
-    const createdProject = await createProjectUsecase.execute(projectToCreate);
-    const createdProjectModel = ProjectAdapter.toModel(createdProject);
-    setProjectsList([...projectsList, createdProjectModel]);
-    return createdProjectModel;
+    const projectCreated = await createProjectUsecase.execute(projectToCreate);
+    const projectModel = ProjectAdapter.toModel(projectCreated);
+    setProjectsFromContext([...projectsFromContext, projectModel]);
+
+    return projectModel;
   };
 
   const getProjectsByRole = async (projectId: number) => {
     const projectsCaught = await getProjectsByRoleUsecase.execute(projectId);
     const projectsModel = projectsCaught.map((project) => ProjectAdapter.toModel(project));
-    setProjectsList(projectsModel);
-    return projectsList;
+    setProjectsFromContext(projectsModel);
+
+    return projectsModel;
   };
 
   const getProject = async (projectId: number) => {
     const projectCaught = await getProjectUsecase.execute(projectId);
     const projectModel = ProjectAdapter.toModel(projectCaught);
-    setProject(projectModel);
+    setProjectFromContext(projectModel);
+
     return projectModel;
   };
 
@@ -105,21 +108,22 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
       newProfessors,
       newStudents
     );
-    const projectModelUpdated = ProjectAdapter.toModel(projectUpdated);
-    setProjectsList(
-      projectsList.map((project) =>
-        project.projectId === projectId ? projectModelUpdated : project
+    const projectModel = ProjectAdapter.toModel(projectUpdated);
+    setProjectsFromContext(
+      projectsFromContext.map((project) =>
+        project.projectId === projectId ? projectModel : project
       )
     );
-    setProject(projectModelUpdated);
-    return projectModelUpdated;
+    setProjectFromContext(projectModel);
+
+    return projectModel;
   };
 
   return (
     <ProjectContext.Provider
       value={{
-        projectsList,
-        project,
+        projectsFromContext,
+        projectFromContext,
         createProject,
         getProjectsByRole,
         getProject,

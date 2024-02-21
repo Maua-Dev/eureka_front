@@ -1,5 +1,6 @@
 import { Delivery } from "../../@clean/shared/domain/entities/delivery";
 import { DeliveryModel } from "../models/delivery-model";
+import { stringToDate } from "../utils/formatters/date-formatters";
 import { TaskAdapter } from "./task-adapter";
 import { UserAdapter } from "./user-adapter";
 
@@ -9,7 +10,7 @@ export class DeliveryAdapter {
       deliveryId: model.deliveryId,
       task: TaskAdapter.fromModel(model.task),
       user: UserAdapter.fromModel(model.user),
-      date: model.date,
+      date: stringToDate(model.date),
       content: model.content,
     });
   }
@@ -19,7 +20,7 @@ export class DeliveryAdapter {
       deliveryId: entity.deliveryId,
       task: TaskAdapter.toModel(entity.task),
       user: UserAdapter.toModel(entity.user),
-      date: entity.date,
+      date: entity.date.toLocaleDateString(),
       content: entity.content,
     });
   }

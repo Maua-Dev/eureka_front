@@ -1,6 +1,6 @@
 import { User } from "../../@clean/shared/domain/entities/user";
 import { UserModel } from "../models/user-model";
-import { stringCapitalize } from "../utils/functions/string-formatter";
+import { stringCapitalize } from "../utils/formatters/string-formatters";
 
 export class UserAdapter {
   static fromModel(model: UserModel): User {
