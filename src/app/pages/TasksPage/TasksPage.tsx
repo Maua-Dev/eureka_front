@@ -28,6 +28,9 @@ import {
 } from "../../utils/statics/event-setup-content-list";
 
 export default function TasksPage() {
+  const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   // get the project id from the url to fetch the project data
   const { projectId } = useParams();
   const projectIdFromPath = parseInt(projectId!);
@@ -39,10 +42,6 @@ export default function TasksPage() {
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
 
-  // state to control the primary loading of the page
-  const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
-  // state to control general loading actions
-  const [isLoading, setIsLoading] = useState(false);
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
   const [isEntrepreneurship, setIsEntrepreneurship] = useState<boolean>(
     projectFromContext.isEntrepreneurship

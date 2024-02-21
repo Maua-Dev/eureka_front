@@ -8,24 +8,22 @@ import calendarIcon from "../../../assets/icons/calendar-icon.svg";
 import menuIcon from "../../../assets/icons/menu-icon.svg";
 import { Link } from "react-router-dom";
 import NavColumn from "../NavColumn/NavColumn";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { AuthContext } from "../../../context/auth-context";
 import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
 import { navOptionsList } from "../../../utils/statics/nav-options-list";
-import { StatesType } from "../../../utils/@types/states-type";
+import { BooleanStatesType } from "../../../utils/@types/boolean-states-type";
+import { useHandleBooleanStates } from "../../../hooks/useHandleBooleanStates";
 
-const initialNavStates: StatesType = {
+const initialStates: BooleanStatesType = {
   isWorkAndStandsColumnOpen: false,
   isEventColumnOpen: false,
   isUserColumnOpen: false,
   isSystemColumnOpen: false,
   isMenuColumnOpen: false,
-};
-
-const initialDialogStates: StatesType = {
   isUserDialogOpen: false,
   isQuestionDialogOpen: false,
   isUserMobileDialogOpen: false,
@@ -36,22 +34,7 @@ export default function Header() {
   const { userFromContext } = useContext(AuthContext);
   const ra = userFromContext.email.slice(0, 10);
 
-  const [navStates, setNavStates] = useState<StatesType>(initialNavStates);
-  const [dialogStates, setDialogStates] = useState<StatesType>(initialDialogStates);
-
-  const handleNavStates = (key: string, state?: boolean) => {
-    setNavStates((prevState) => ({
-      ...prevState,
-      [key]: state === undefined ? !prevState[key] : state,
-    }));
-  };
-
-  const handleDialogStates = (key: string, state?: boolean) => {
-    setDialogStates((prevState) => ({
-      ...prevState,
-      [key]: state === undefined ? !prevState[key] : state,
-    }));
-  };
+  const { states, handleStates } = useHandleBooleanStates(initialStates);
 
   return (
     <header id="header">
@@ -71,16 +54,16 @@ export default function Header() {
         <aside className="container--right">
           <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
             <DismissableDialog
-              setOpen={() => handleDialogStates("isUserDialogOpen", false)}
+              setOpen={() => handleStates("isUserDialogOpen", false)}
               dialogClassName="square square--user"
             >
               <img
                 className="square__img"
-                onClick={() => handleDialogStates("isUserDialogOpen")}
+                onClick={() => handleStates("isUserDialogOpen")}
                 src={profileIcon}
                 alt="Ícone de perfil"
               />
-              {dialogStates["isUserDialogOpen"] && (
+              {states["isUserDialogOpen"] && (
                 <section className="baloon baloon--user">
                   <div className="baloon__content">
                     {userFromContext.name !== "" ? (
@@ -103,17 +86,16 @@ export default function Header() {
             </DismissableDialog>
           </SkeletonTheme>
           <DismissableDialog
-            setOpen={() => handleDialogStates("isQuestionDialogOpen", false)}
+            setOpen={() => handleStates("isQuestionDialogOpen", false)}
             dialogClassName="square"
-            to={""}
           >
             <img
               className="square__img"
-              onClick={() => handleDialogStates("isQuestionDialogOpen")}
+              onClick={() => handleStates("isQuestionDialogOpen")}
               src={questionIcon}
               alt="Ícone de interrogação"
             />
-            {dialogStates["isQuestionDialogOpen"] && (
+            {states["isQuestionDialogOpen"] && (
               <section className="baloon baloon--question">
                 <div className="baloon__content baloon__content--question">
                   <Link
@@ -157,13 +139,13 @@ export default function Header() {
             return (
               <DismissableDialog
                 key={index}
-                setOpen={() => handleNavStates(navOption.stateKey!, false)}
+                setOpen={() => handleStates(navOption.stateKey!, false)}
                 dialogClassName="nav__item"
               >
-                <div onClick={() => handleNavStates(navOption.stateKey!)} className="nav__btn">
+                <div onClick={() => handleStates(navOption.stateKey!)} className="nav__btn">
                   {navOption.primaryOption}
                 </div>
-                {navStates[navOption.stateKey!] && (
+                {states[navOption.stateKey!] && (
                   <NavColumn navColumnOptions={navOption.secondaryOptions} />
                 )}
               </DismissableDialog>
@@ -173,16 +155,16 @@ export default function Header() {
         <aside className="squares">
           <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
             <DismissableDialog
-              setOpen={() => handleDialogStates("isUserMobileDialogOpen", false)}
+              setOpen={() => handleStates("isUserMobileDialogOpen", false)}
               dialogClassName="square square--user"
             >
               <img
                 className="square__img"
-                onClick={() => handleDialogStates("isUserMobileDialogOpen")}
+                onClick={() => handleStates("isUserMobileDialogOpen")}
                 src={profileIcon}
                 alt="Ícone de perfil"
               />
-              {dialogStates["isUserMobileDialogOpen"] && (
+              {states["isUserMobileDialogOpen"] && (
                 <section className="baloon baloon--user">
                   <div className="baloon__content">
                     {userFromContext.name != undefined ? (
@@ -205,16 +187,16 @@ export default function Header() {
             </DismissableDialog>
           </SkeletonTheme>
           <DismissableDialog
-            setOpen={() => handleDialogStates("isQuestionMobileDialogOpen", false)}
+            setOpen={() => handleStates("isQuestionMobileDialogOpen", false)}
             dialogClassName="square"
           >
             <img
               className="square__img"
-              onClick={() => handleDialogStates("isQuestionMobileDialogOpen")}
+              onClick={() => handleStates("isQuestionMobileDialogOpen")}
               src={questionIcon}
               alt="Ícone de interrogação"
             />
-            {dialogStates["isQuestionMobileDialogOpen"] && (
+            {states["isQuestionMobileDialogOpen"] && (
               <section className="baloon baloon--question">
                 <div className="baloon__content baloon__content--question">
                   <Link
@@ -251,15 +233,15 @@ export default function Header() {
           </Link>
           <DismissableDialog
             dialogClassName="menu"
-            setOpen={() => handleNavStates("isMenuColumnOpen", false)}
+            setOpen={() => handleStates("isMenuColumnOpen", false)}
           >
             <img
               className="menu__img"
-              onClick={() => handleNavStates("isMenuColumnOpen")}
+              onClick={() => handleStates("isMenuColumnOpen")}
               src={menuIcon}
               alt="ìcone de menu"
             />
-            {navStates["isMenuColumnOpen"] && <NavColumn />}
+            {states["isMenuColumnOpen"] && <NavColumn />}
           </DismissableDialog>
         </aside>
       </nav>

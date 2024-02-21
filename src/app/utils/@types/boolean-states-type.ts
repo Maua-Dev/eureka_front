@@ -1,4 +1,4 @@
 // base state type to use in boolean states
-export type StatesType = {
+export type BooleanStatesType = {
   [key: string]: boolean;
 };

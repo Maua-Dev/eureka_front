@@ -10,11 +10,16 @@ import twitterIcon from "../../../assets/icons/twitter-icon.svg";
 import devLogo from "../../../assets/logos/dev-logo.png";
 import labDesignLogo from "../../../assets/logos/labdesign-logo.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
+import { BooleanStatesType } from "../../../utils/@types/boolean-states-type";
+import { useHandleBooleanStates } from "../../../hooks/useHandleBooleanStates";
+
+const initialStates: BooleanStatesType = {
+  isContactDialogOpen: false,
+};
 
 export default function Footer() {
-  const [isContactDialogOpen, setIsContactDialogOpen] = useState<boolean>(false);
+  const { states, handleStates } = useHandleBooleanStates(initialStates);
 
   return (
     <footer id="footer">
@@ -25,14 +30,17 @@ export default function Footer() {
             <Link className="square" to={""} onClick={(event) => event.preventDefault()}>
               <img className="square__img img--hover" src={houseIcon} alt="Ícone de casa" />
             </Link>
-            <DismissableDialog setOpen={setIsContactDialogOpen} dialogClassName="square" to={""}>
+            <DismissableDialog
+              setOpen={() => handleStates("isContactDialogOpen", false)}
+              dialogClassName="square"
+            >
               <img
                 className="square__img img--hover"
-                onClick={() => setIsContactDialogOpen(!isContactDialogOpen)}
+                onClick={() => handleStates("isContactDialogOpen")}
                 src={letterIcon}
                 alt="Ícone de carta"
               />
-              {isContactDialogOpen && (
+              {states["isContactDialogOpen"] && (
                 <aside className="baloon">
                   <div className="baloon__content">
                     <header className="baloon__header">Contato - eureka@maua.br</header>

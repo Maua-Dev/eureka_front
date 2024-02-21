@@ -9,6 +9,8 @@ import { handleFetch } from "../../utils/functions/handle-fetch";
 import { useErrorBoundary } from "react-error-boundary";
 
 export default function FileUploadPage() {
+  const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
+
   // get the project id from the url to fetch the project data
   const { taskId } = useParams();
   const taskIdFromPath = parseInt(taskId!);
@@ -21,8 +23,6 @@ export default function FileUploadPage() {
 
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
-
-  const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (isEqual(tasksFromContext, [])) {

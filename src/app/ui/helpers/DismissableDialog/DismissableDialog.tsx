@@ -1,10 +1,8 @@
-import React, { ReactNode, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { ReactNode, useEffect, useRef } from "react";
 
 interface DismissableDialogProps {
-  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen?: (state: boolean) => void;
   children: ReactNode;
-  to?: string;
   dialogClassName: string;
 }
 
@@ -12,10 +10,9 @@ interface DismissableDialogProps {
 export default function DismissableDialog({
   setOpen,
   children,
-  to,
   dialogClassName,
 }: DismissableDialogProps) {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.addEventListener("click", (e: MouseEvent) => {
@@ -26,13 +23,8 @@ export default function DismissableDialog({
   }, []);
 
   return (
-    <Link
-      className={dialogClassName}
-      ref={ref}
-      to={to ?? ""}
-      onClick={(event) => event.preventDefault()}
-    >
+    <div className={dialogClassName} ref={ref} onClick={(event) => event.preventDefault()}>
       {children}
-    </Link>
+    </div>
   );
 }

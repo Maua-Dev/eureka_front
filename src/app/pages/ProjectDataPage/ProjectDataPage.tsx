@@ -18,6 +18,9 @@ import DefaultTextField from "../../ui/components/DefaultTextField/DefaultTextFi
 import ProjectDataPageSkeleton from "./ProjectDataPageSkeleton";
 
 export default function ProjectDataPage() {
+  const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   // get the project id from the url to fetch the project data
   const { projectId, taskId } = useParams();
   const projectIdFromPath = parseInt(projectId!);
@@ -30,8 +33,6 @@ export default function ProjectDataPage() {
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
 
-  const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [projectTitle, setProjectTitle] = useState<string>(projectFromContext.title);
   const [projectDescription, setProjectDescription] = useState<string>(
     "Descrição do projeto muito legal e interessante."

@@ -12,13 +12,14 @@ import { shiftToAcronym } from "../../../@clean/shared/domain/enums/shift-enum";
 import DropdownButton from "../../ui/components/DropdownButton/DropdownButton";
 
 export default function HomePage() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const { userFromContext } = useContext(AuthContext);
   const { projectsFromContext, getProjectsByRole } = useContext(ProjectContext);
 
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [projectsViewType, setProjectsViewType] = useState<string>("Visualizar trabalhos como ");
 
   useEffect(() => {

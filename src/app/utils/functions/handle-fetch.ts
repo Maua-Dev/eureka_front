@@ -13,7 +13,6 @@ export async function handleFetch(
       await fetchFunction;
     }
     toast.success(successMessage);
-    setIsLoading(false);
   } catch (err) {
     console.error(err);
     if (err instanceof Error) {
