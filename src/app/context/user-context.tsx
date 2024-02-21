@@ -5,12 +5,12 @@ import { GetAllStudentsUsecase } from "../../@clean/modules/user/usecases/get-al
 import { UserAdapter } from "../adapters/user-adapter";
 
 type UserContextType = {
-  studentsList: UserModel[];
+  studentsFromContext: UserModel[];
   getAllStudents(): Promise<UserModel[] | undefined>;
 };
 
 const defaultContext: UserContextType = {
-  studentsList: [],
+  studentsFromContext: [],
   getAllStudents: async () => [],
 };
 
@@ -21,16 +21,19 @@ const getAllStudentsUsecase = containerUser.get<GetAllStudentsUsecase>(
 );
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [studentsList, setStudentsList] = useState<UserModel[]>([]);
+  const [studentsFromContext, setStudentsFromContext] = useState<UserModel[]>([]);
 
   const getAllStudents = async () => {
     const studentsCaught = await getAllStudentsUsecase.execute();
     const studentsModel = studentsCaught.map((task) => UserAdapter.toModel(task));
-    setStudentsList(studentsModel);
-    return studentsList;
+    setStudentsFromContext(studentsModel);
+
+    return studentsModel;
   };
 
   return (
-    <UserContext.Provider value={{ studentsList, getAllStudents }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ studentsFromContext, getAllStudents }}>
+      {children}
+    </UserContext.Provider>
   );
 };

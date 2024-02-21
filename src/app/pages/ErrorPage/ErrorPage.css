@@ -1,0 +1,40 @@
+.error_page {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.error_page .error_page__title {
+  font-weight: var(--semi-bold);
+  color: var(--dark-blue);
+  font-size: var(--screen-title);
+}
+
+.error_page .error_page__message {
+  font-weight: var(--medium);
+  color: var(--dark-blue);
+  margin-bottom: 2rem;
+  font-size: var(--big-title);
+}
+
+.error_page .error_page__btn {
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--input-radius);
+  background-color: var(--dark-blue);
+  color: var(--white);
+  font-size: var(--span-text);
+  font-weight: var(--semi-bold);
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.error_page .error_page__btn:hover {
+  background-color: var(--dark-mustard);
+  color: var(--dark-blue);
+}

@@ -5,12 +5,12 @@ import { RegistryTask, containerTask } from "../../@clean/shared/infra/container
 import { TaskAdapter } from "../adapters/task-adapter";
 
 type TaskContextType = {
-  tasksList: TaskModel[];
+  tasksFromContext: TaskModel[];
   getAllTasks(): Promise<TaskModel[] | undefined>;
 };
 
 const defaultContext: TaskContextType = {
-  tasksList: [],
+  tasksFromContext: [],
   getAllTasks: async () => [],
 };
 
@@ -19,14 +19,19 @@ export const TaskContext = createContext(defaultContext);
 const getAllTasksUsecase = containerTask.get<GetAllTasksUsecase>(RegistryTask.GetAllTasksUsecase);
 
 export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
-  const [tasksList, setTasksList] = useState<TaskModel[]>([]);
+  const [tasksFromContext, setTasksFromContext] = useState<TaskModel[]>([]);
 
   const getAllTasks = async () => {
     const tasksCaught = await getAllTasksUsecase.execute();
     const tasksModel = tasksCaught.map((task) => TaskAdapter.toModel(task));
-    setTasksList(tasksModel);
-    return tasksList;
+    setTasksFromContext(tasksModel);
+
+    return tasksModel;
   };
 
-  return <TaskContext.Provider value={{ tasksList, getAllTasks }}>{children}</TaskContext.Provider>;
+  return (
+    <TaskContext.Provider value={{ tasksFromContext, getAllTasks }}>
+      {children}
+    </TaskContext.Provider>
+  );
 };
