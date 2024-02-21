@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 export async function handleFetch(
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   showBoundary: (error: unknown) => void,
+  successMessage?: string,
   ...fetchFunctions: Promise<unknown>[]
 ) {
   setIsLoading(true);
@@ -11,6 +12,7 @@ export async function handleFetch(
     for (const fetchFunction of fetchFunctions) {
       await fetchFunction;
     }
+    toast.success(successMessage);
     setIsLoading(false);
   } catch (err) {
     console.error(err);
