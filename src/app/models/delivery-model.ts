@@ -5,7 +5,7 @@ interface DeliveryModelProps {
   deliveryId: number;
   task: TaskModel;
   user: UserModel;
-  date: Date;
+  date: string;
   content: Record<string, unknown>;
 }
 
@@ -13,7 +13,7 @@ export class DeliveryModel {
   deliveryId: number;
   task: TaskModel;
   user: UserModel;
-  date: Date;
+  date: string;
   content: Record<string, unknown>;
 
   constructor(props: DeliveryModelProps) {
@@ -29,7 +29,7 @@ export class DeliveryModel {
       deliveryId: 0,
       task: TaskModel.empty(),
       user: UserModel.empty(),
-      date: new Date(),
+      date: "",
       content: {},
     });
   }

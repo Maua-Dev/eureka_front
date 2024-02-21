@@ -1,0 +1,64 @@
+.default_text_field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.default_text_field .input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border: var(--thick-border);
+  border-radius: var(--input-radius);
+  padding: 0.2rem 1rem;
+}
+
+.default_text_field .input--textarea {
+  flex-direction: column;
+  align-items: start;
+}
+
+.default_text_field .input__title {
+  color: var(--dark-blue);
+  margin-right: 0.5rem;
+  font-size: var(--big-title);
+  font-weight: var(--semi-bold);
+}
+
+.default_text_field .input__field {
+  width: 100%;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: var(--regular-text);
+  color: var(--dark-blue);
+  font-weight: var(--medium);
+  resize: none;
+  background-color: transparent;
+  appearance: none;
+}
+
+.default_text_field .input__field--textarea {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+}
+
+.default_text_field .input__field::-webkit-scrollbar {
+  display: none;
+}
+
+.default_text_field .input__btn--end {
+  align-self: flex-end;
+}
+
+.default_text_field .input__btn:hover {
+  background-color: var(--dark-mustard);
+  color: var(--dark-blue);
+}
+
+.default_text_field .input:hover {
+  border-color: var(--dark-mustard);
+}
