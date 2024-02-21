@@ -5,6 +5,7 @@ import { User, UserJsonProps } from "./user";
 type ProjectProps = {
   projectId: number;
   title: string;
+  description: string;
   qualification: string;
   code: string;
   shift: SHIFT;
@@ -17,6 +18,7 @@ type ProjectProps = {
 export type ProjectJsonProps = {
   project_id: number;
   title: string;
+  description: string;
   qualification: string;
   code: string;
   shift: string;
@@ -29,18 +31,20 @@ export type ProjectJsonProps = {
 export type ProjectRequestBodyProps = {
   project_id: number;
   title?: string;
+  description?: string;
   qualification?: string;
   code?: string;
   shift?: string;
   stand_number?: string;
   is_entrepreneurship?: boolean;
-  professors?: UserJsonProps[];
-  students?: UserJsonProps[];
+  professors?: number[];
+  students?: number[];
 };
 
 export class Project {
   private _projectId: number;
   private _title: string;
+  private _description: string;
   private _qualification: string;
   private _code: string;
   private _shift: SHIFT;
@@ -59,6 +63,11 @@ export class Project {
       throw new EntityError("title");
     }
     this._title = props.title;
+
+    if (!Project.validateDescription(props.description)) {
+      throw new EntityError("description");
+    }
+    this._description = props.description;
 
     if (!Project.validateQualification(props.qualification)) {
       throw new EntityError("qualification");
@@ -116,6 +125,17 @@ export class Project {
       throw new EntityError("title");
     }
     this._title = title;
+  }
+
+  get description(): string {
+    return this._description;
+  }
+
+  set description(description: string) {
+    if (!Project.validateDescription(description)) {
+      throw new EntityError("description");
+    }
+    this._description = description;
   }
 
   get qualification(): string {
@@ -199,6 +219,7 @@ export class Project {
     return {
       project_id: this._projectId,
       title: this._title,
+      description: this._description,
       qualification: this._qualification,
       code: this._code,
       shift: SHIFT[this._shift].toString(),
@@ -213,6 +234,7 @@ export class Project {
     return new Project({
       projectId: json.project_id,
       title: json.title,
+      description: json.description,
       qualification: json.qualification,
       code: json.code,
       shift: shiftToEnum(json.shift),
@@ -237,6 +259,16 @@ export class Project {
     if (title == null) {
       return false;
     } else if (title.trim() == "") {
+      return false;
+    }
+
+    return true;
+  }
+
+  static validateDescription(description: string): boolean {
+    if (description == null) {
+      return false;
+    } else if (description.trim() == "") {
       return false;
     }
 

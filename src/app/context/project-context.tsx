@@ -20,6 +20,7 @@ type ProjectContextType = {
   updateProject(
     projectId: number,
     newTitle?: string,
+    newDescription?: string,
     newQualification?: string,
     newCode?: string,
     newShift?: SHIFT,
@@ -89,6 +90,7 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
   const updateProject = async (
     projectId: number,
     newTitle?: string,
+    newDescription?: string,
     newQualification?: string,
     newCode?: string,
     newShift?: SHIFT,
@@ -100,6 +102,7 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
     const projectUpdated = await updateProjectUsecase.execute(
       projectId,
       newTitle,
+      newDescription,
       newQualification,
       newCode,
       newShift,

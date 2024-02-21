@@ -12,6 +12,7 @@ export class UpdateProjectUsecase {
   async execute(
     projectId: number,
     newTitle?: string,
+    newDescription?: string,
     newQualification?: string,
     newCode?: string,
     newShift?: SHIFT,
@@ -23,6 +24,7 @@ export class UpdateProjectUsecase {
     const projectUpdated = await this._projectRepository.updateProject(
       projectId,
       newTitle,
+      newDescription,
       newQualification,
       newCode,
       newShift,

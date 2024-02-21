@@ -4,6 +4,7 @@ import { UserModel } from "./user-model";
 type ProjectModelProps = {
   projectId: number;
   title: string;
+  description: string;
   qualification: string;
   code: string;
   shift: SHIFT;
@@ -16,6 +17,7 @@ type ProjectModelProps = {
 export class ProjectModel {
   projectId: number;
   title: string;
+  description: string;
   qualification: string;
   code: string;
   shift: SHIFT;
@@ -27,6 +29,7 @@ export class ProjectModel {
   constructor(props: ProjectModelProps) {
     this.projectId = props.projectId;
     this.title = props.title;
+    this.description = props.description;
     this.qualification = props.qualification;
     this.code = props.code;
     this.shift = props.shift;
@@ -39,6 +42,7 @@ export class ProjectModel {
   static empty(): ProjectModel {
     return new ProjectModel({
       projectId: 0,
+      description: "",
       title: "",
       qualification: "",
       code: "",

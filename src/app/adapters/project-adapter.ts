@@ -7,6 +7,7 @@ export class ProjectAdapter {
     return new Project({
       projectId: model.projectId,
       title: model.title,
+      description: model.description,
       qualification: model.qualification,
       code: model.code,
       shift: model.shift,
@@ -21,6 +22,7 @@ export class ProjectAdapter {
     return new ProjectModel({
       projectId: entity.projectId,
       title: entity.title,
+      description: entity.description,
       qualification: entity.qualification,
       code: entity.code,
       shift: entity.shift,

@@ -43,6 +43,7 @@ export class ProjectRepositoryMock implements IProjectRepository {
   async updateProject(
     projectId: number,
     newTitle?: string | undefined,
+    newDescription?: string | undefined,
     newQualification?: string | undefined,
     newCode?: string | undefined,
     newShift?: SHIFT | undefined,
@@ -57,6 +58,7 @@ export class ProjectRepositoryMock implements IProjectRepository {
       if (project.project_id === projectId) {
         const projectToUpdate = { ...project };
         if (newTitle !== undefined) projectToUpdate.title = newTitle;
+        if (newDescription !== undefined) projectToUpdate.description = newDescription;
         if (newQualification !== undefined) projectToUpdate.qualification = newQualification;
         if (newCode !== undefined) projectToUpdate.code = newCode;
         if (newShift !== undefined) projectToUpdate.shift = SHIFT[newShift].toString();

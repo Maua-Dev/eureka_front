@@ -6,6 +6,7 @@ export class ProjectJson {
     {
       project_id: 1,
       title: "Estudo da Lágrima",
+      description: "Estudo da lágrima humana",
       qualification: "Engenharia de Software",
       code: "ECM-02",
       shift: "DIURNO",
@@ -17,6 +18,7 @@ export class ProjectJson {
     {
       project_id: 2,
       title: "Computação em nuvem",
+      description: "Estudo de computação em nuvem",
       qualification: "Sistemas de Informação",
       code: "G2-1",
       shift: "DIURNO",
@@ -33,6 +35,7 @@ export class ProjectJson {
     {
       project_id: 3,
       title: "Alimentos orientais",
+      description: "Estudo de alimentos orientais",
       qualification: "Engenharia de Alimentos",
       code: "EDA-12",
       shift: "NOTURNO",

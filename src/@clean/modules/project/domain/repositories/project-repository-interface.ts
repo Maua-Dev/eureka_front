@@ -7,6 +7,7 @@ export interface IProjectRepository {
   updateProject(
     projectId: number,
     newTitle?: string,
+    newDescription?: string,
     newQualification?: string,
     newCode?: string,
     newShift?: SHIFT,

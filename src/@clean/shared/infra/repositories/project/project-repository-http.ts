@@ -6,7 +6,6 @@ import {
   ProjectJsonProps,
   ProjectRequestBodyProps,
 } from "../../../domain/entities/project";
-import { User } from "../../../domain/entities/user";
 import { SHIFT } from "../../../domain/enums/shift-enum";
 import { decorate, injectable } from "inversify";
 
@@ -36,26 +35,27 @@ export class ProjectRepositoryHttp implements IProjectRepository {
 
   async updateProject(
     projectId: number,
-    newTitle?: string | undefined,
-    newQualification?: string | undefined,
-    newCode?: string | undefined,
-    newShift?: SHIFT | undefined,
-    newStandNumber?: string | undefined,
-    newIsEntrepreneurship?: boolean | undefined,
-    newProfessors?: User[] | undefined,
-    newStudents?: User[] | undefined
+    newTitle?: string,
+    newDescription?: string,
+    newQualification?: string,
+    newCode?: string,
+    newShift?: SHIFT,
+    newStandNumber?: string,
+    newIsEntrepreneurship?: boolean,
+    newProfessors?: number[],
+    newStudents?: number[]
   ): Promise<Project> {
     const body: ProjectRequestBodyProps = { project_id: projectId };
 
     if (newTitle !== undefined) body.title = newTitle;
+    if (newDescription !== undefined) body.description = newDescription;
     if (newQualification !== undefined) body.qualification = newQualification;
     if (newCode !== undefined) body.code = newCode;
     if (newShift !== undefined) body.shift = SHIFT[newShift].toString();
     if (newStandNumber !== undefined) body.stand_number = newStandNumber;
     if (newIsEntrepreneurship !== undefined) body.is_entrepreneurship = newIsEntrepreneurship;
-    if (newProfessors !== undefined)
-      body.professors = newProfessors.map((professor) => professor.toJson());
-    if (newStudents !== undefined) body.students = newStudents.map((student) => student.toJson());
+    if (newProfessors !== undefined) body.professors = newProfessors;
+    if (newStudents !== undefined) body.students = newStudents;
 
     const response = await this._axios.put(`/update_project?project_id=${projectId}`, body);
     return Project.fromJson(response.data);

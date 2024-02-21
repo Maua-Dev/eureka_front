@@ -35,7 +35,7 @@ export default function ProjectDataPage() {
 
   const [projectTitle, setProjectTitle] = useState<string>(projectFromContext.title);
   const [projectDescription, setProjectDescription] = useState<string>(
-    "Descrição do projeto muito legal e interessante."
+    projectFromContext.description
   );
   const [selectedOds, setSelectedOds] = useState<number[]>(
     (deliveriesFromContext.find((delivery) => delivery.task.title === "Dados do trabalho")?.content[
@@ -59,8 +59,8 @@ export default function ProjectDataPage() {
 
   useEffect(() => {
     setProjectTitle(projectFromContext.title);
-    setProjectDescription("Descrição do projeto muito legal e interessante.");
-  }, [projectFromContext.title]);
+    setProjectDescription(projectFromContext.description);
+  }, [projectFromContext.title, projectFromContext.description]);
 
   useEffect(() => {
     setSelectedOds(
@@ -155,14 +155,14 @@ export default function ProjectDataPage() {
                 onSaveClick={() => {
                   if (projectDescription === "") {
                     toast.error("A descrição do projeto não pode ser vazio");
-                  } else if (projectTitle === projectFromContext.title) {
+                  } else if (projectTitle === projectFromContext.description) {
                     toast.error("A descrição do projeto não pode ser igual ao anterior");
                   } else {
                     handleFetch(
                       setIsLoading,
                       showBoundary,
                       "Descrição atualizada",
-                      updateProject(projectIdFromPath, projectTitle)
+                      updateProject(projectIdFromPath, undefined, projectDescription)
                     );
                   }
                 }}
