@@ -13,7 +13,8 @@ export interface IProjectRepository {
     newShift?: SHIFT,
     newStandNumber?: string,
     newIsEntrepreneurship?: boolean,
-    newProfessors?: number[],
+    newResponsibles?: number[],
+    newAdvisors?: number[],
     newStudents?: number[]
   ): Promise<Project>;
   getProjectsByRole(userId: number): Promise<Project[]>;

@@ -10,7 +10,8 @@ type ProjectModelProps = {
   shift: SHIFT;
   standNumber: string;
   isEntrepreneurship: boolean;
-  professors: UserModel[];
+  responsibles: UserModel[];
+  advisors: UserModel[];
   students: UserModel[];
 };
 
@@ -23,7 +24,8 @@ export class ProjectModel {
   shift: SHIFT;
   standNumber: string;
   isEntrepreneurship: boolean;
-  professors: UserModel[];
+  responsibles: UserModel[];
+  advisors: UserModel[];
   students: UserModel[];
 
   constructor(props: ProjectModelProps) {
@@ -35,7 +37,8 @@ export class ProjectModel {
     this.shift = props.shift;
     this.standNumber = props.standNumber;
     this.isEntrepreneurship = props.isEntrepreneurship;
-    this.professors = props.professors;
+    this.responsibles = props.responsibles;
+    this.advisors = props.advisors;
     this.students = props.students;
   }
 
@@ -49,7 +52,8 @@ export class ProjectModel {
       shift: SHIFT.DAYTIME,
       standNumber: "",
       isEntrepreneurship: false,
-      professors: [],
+      responsibles: [],
+      advisors: [],
       students: [],
     });
   }

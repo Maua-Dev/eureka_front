@@ -1,17 +1,17 @@
-import { ROLE } from "../../@clean/shared/domain/enums/role-enum";
+import { RESPONSIBLE } from "../../@clean/shared/domain/enums/responsible-enum";
 
 interface TaskModelProps {
   taskId: number;
   title: string;
   deliveryDate: string;
-  responsible: ROLE;
+  responsible: RESPONSIBLE;
 }
 
 export class TaskModel {
   taskId: number;
   title: string;
   deliveryDate: string;
-  responsible: ROLE;
+  responsible: RESPONSIBLE;
 
   constructor(props: TaskModelProps) {
     this.taskId = props.taskId;
@@ -25,7 +25,7 @@ export class TaskModel {
       taskId: 0,
       title: "",
       deliveryDate: "",
-      responsible: ROLE.STUDENT,
+      responsible: RESPONSIBLE.STUDENT,
     });
   }
 }

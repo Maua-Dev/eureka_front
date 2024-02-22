@@ -38,8 +38,8 @@ export default function ProjectDataPageSkeleton() {
       </HeaderedBoxSkeleton>
       <HeaderedBoxSkeleton boxClassName="box--margin">
         <div className="box__main--flex">
-          {odsList.map(() => {
-            return <ImageInfoCardSkeleton />;
+          {odsList.map((_, index) => {
+            return <ImageInfoCardSkeleton key={index} />;
           })}
         </div>
       </HeaderedBoxSkeleton>

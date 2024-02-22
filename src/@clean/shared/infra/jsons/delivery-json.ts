@@ -1,4 +1,5 @@
 import { DeliveryJsonProps } from "../../domain/entities/delivery";
+import { UserJson } from "./user-json";
 
 export class DeliveryJson {
   static deliveryJson: DeliveryJsonProps[] = [
@@ -10,12 +11,7 @@ export class DeliveryJson {
         delivery_date: "2023-05-15",
         responsible: "STUDENT",
       },
-      user: {
-        user_id: 1,
-        name: "VITOR GUIRAO SOLLER",
-        email: "21.01444-2@maua.br",
-        role: "STUDENT",
-      },
+      user: UserJson.userJson[0],
       date: "2024-01-24T22:20:11.546Z",
       content: {
         status: "Aprovado",
@@ -31,12 +27,7 @@ export class DeliveryJson {
         delivery_date: "2023-10-01",
         responsible: "STUDENT",
       },
-      user: {
-        user_id: 1,
-        name: "VITOR GUIRAO SOLLER",
-        email: "21.01444-2@maua.br",
-        role: "STUDENT",
-      },
+      user: UserJson.userJson[9],
       date: "2024-01-24T22:53:34.071Z",
       content: {
         status: "Aprovado",
@@ -50,12 +41,7 @@ export class DeliveryJson {
         delivery_date: "2023-05-22",
         responsible: "ADVISOR",
       },
-      user: {
-        user_id: 4,
-        name: "CARLOS EDUARDO DANTAS DE MENEZES",
-        email: "carlos.menezes@maua.br",
-        role: "ADVISOR",
-      },
+      user: UserJson.userJson[0],
       date: "2024-01-25T15:39:09.588Z",
       content: {
         status: "Aprovado",

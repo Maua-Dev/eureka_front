@@ -16,6 +16,7 @@ export class DeliveryRepositoryMock implements IDeliveryRepository {
     if (jsons == null) {
       throw new NoItemsFoundError("deliveries");
     }
+
     const deliveries = jsons.map((delivery) => Delivery.fromJson(delivery));
 
     return deliveries;
@@ -45,6 +46,7 @@ export class DeliveryRepositoryMock implements IDeliveryRepository {
       }
 
       deliveriesJson[existingDeliveryIndex] = { ...existingDelivery, content: updatedContent };
+
       return Delivery.fromJson(deliveriesJson[existingDeliveryIndex]);
     }
 

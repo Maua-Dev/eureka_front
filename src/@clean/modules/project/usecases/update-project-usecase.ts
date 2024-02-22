@@ -18,7 +18,8 @@ export class UpdateProjectUsecase {
     newShift?: SHIFT,
     newStandNumber?: string,
     newIsEntrepreneurship?: boolean,
-    newProfessors?: number[],
+    newResponsibles?: number[],
+    newAdvisors?: number[],
     newStudents?: number[]
   ): Promise<Project> {
     const projectUpdated = await this._projectRepository.updateProject(
@@ -30,7 +31,8 @@ export class UpdateProjectUsecase {
       newShift,
       newStandNumber,
       newIsEntrepreneurship,
-      newProfessors,
+      newResponsibles,
+      newAdvisors,
       newStudents
     );
 

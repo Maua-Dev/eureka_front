@@ -155,7 +155,7 @@ export default function ProjectDataPage() {
                 onSaveClick={() => {
                   if (projectDescription === "") {
                     toast.error("A descrição do projeto não pode ser vazio");
-                  } else if (projectTitle === projectFromContext.description) {
+                  } else if (projectDescription === projectFromContext.description) {
                     toast.error("A descrição do projeto não pode ser igual ao anterior");
                   } else {
                     handleFetch(

@@ -46,7 +46,8 @@ export default function TasksPage() {
   const [isEntrepreneurship, setIsEntrepreneurship] = useState<boolean>(
     projectFromContext.isEntrepreneurship
   );
-  const [cosupervisor, setCosupervisor] = useState<UserModel>(projectFromContext.professors[2]);
+
+  const [cosupervisor, setCosupervisor] = useState<UserModel>(projectFromContext.advisors[1]);
   const [professorsOptions, setProfessorsOptions] = useState<UserModel[]>([]);
 
   // function to control the selection of the entrepreneurship option
@@ -87,12 +88,11 @@ export default function TasksPage() {
     );
     setProfessorsOptions(
       users.filter(
-        (user) =>
-          (user.role === ROLE.ADVISOR || user.role === ROLE.RESPONSIBLE) &&
-          !isEqual(user, projectFromContext.professors[0])
+        (user) => user.role === ROLE.PROFESSOR && !isEqual(user, projectFromContext.advisors[0])
       )
     );
-  }, [projectFromContext.professors]);
+    setCosupervisor(projectFromContext.advisors[1]);
+  }, [projectFromContext.advisors, projectFromContext.responsibles]);
 
   return (
     <main className="tasks_page">
@@ -113,13 +113,7 @@ export default function TasksPage() {
               </div>
               <div className="supervisor">
                 <h2 className="main__title">Orientador: </h2>
-                <span className="main__text">
-                  {
-                    projectFromContext.professors.find(
-                      (professor) => professor.role === ROLE.ADVISOR
-                    )?.name
-                  }
-                </span>
+                <span className="main__text">{projectFromContext.advisors[0]?.name}</span>
               </div>
               <div className="cosupervisor">
                 <ControlledTextField<UserModel>
@@ -136,7 +130,7 @@ export default function TasksPage() {
                   onClick={() => {
                     if (cosupervisor === undefined) {
                       toast.error("Selecione um professor");
-                    } else if (isEqual(cosupervisor, projectFromContext.professors[2])) {
+                    } else if (isEqual(cosupervisor, projectFromContext.advisors[1])) {
                       toast.error("O coorientador não pode ser igual ao anterior");
                     } else {
                       const professor = UserJson.userJson.find(
@@ -149,6 +143,8 @@ export default function TasksPage() {
                         "Coorientador atualizado",
                         updateProject(
                           projectIdFromPath,
+                          undefined,
+                          undefined,
                           undefined,
                           undefined,
                           undefined,
@@ -227,6 +223,7 @@ export default function TasksPage() {
                           "Potencial atualizado",
                           updateProject(
                             projectIdFromPath,
+                            undefined,
                             undefined,
                             undefined,
                             undefined,

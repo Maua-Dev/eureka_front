@@ -12,7 +12,8 @@ export class ProjectJson {
       shift: "DIURNO",
       stand_number: "1",
       is_entrepreneurship: false,
-      professors: [UserJson.userJson[0], UserJson.userJson[1]],
+      responsibles: [UserJson.userJson[0]],
+      advisors: [UserJson.userJson[1], UserJson.userJson[2]],
       students: [UserJson.userJson[7]],
     },
     {
@@ -24,7 +25,8 @@ export class ProjectJson {
       shift: "DIURNO",
       stand_number: "2",
       is_entrepreneurship: true,
-      professors: [UserJson.userJson[2], UserJson.userJson[3]],
+      responsibles: [UserJson.userJson[1]],
+      advisors: [UserJson.userJson[2], UserJson.userJson[3]],
       students: [
         UserJson.userJson[9],
         UserJson.userJson[10],
@@ -41,7 +43,8 @@ export class ProjectJson {
       shift: "NOTURNO",
       stand_number: "3",
       is_entrepreneurship: true,
-      professors: [UserJson.userJson[4], UserJson.userJson[5]],
+      responsibles: [UserJson.userJson[3]],
+      advisors: [UserJson.userJson[4], UserJson.userJson[5]],
       students: [UserJson.userJson[7], UserJson.userJson[8]],
     },
   ];

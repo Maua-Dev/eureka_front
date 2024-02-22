@@ -45,8 +45,18 @@ export const DeliveryProvider = ({ children }: { children: React.ReactNode }) =>
     content: { [key: string]: unknown }
   ) => {
     const deliveryCreated = await createDeliveryUsecase.execute(taskId, projectId, userId, content);
+    const deliveryModel = DeliveryAdapter.toModel(deliveryCreated);
 
-    return DeliveryAdapter.toModel(deliveryCreated);
+    setDeliveriesFromContext((prevDeliveries) =>
+      prevDeliveries.map((delivery) => {
+        if (delivery.deliveryId === deliveryModel.deliveryId) {
+          return deliveryModel;
+        }
+        return delivery;
+      })
+    );
+
+    return deliveryModel;
   };
 
   const getDeliveries = async (projectId: number) => {

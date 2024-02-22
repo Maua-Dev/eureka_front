@@ -13,7 +13,8 @@ export class ProjectAdapter {
       shift: model.shift,
       standNumber: model.standNumber,
       isEntrepreneurship: model.isEntrepreneurship,
-      professors: model.professors.map((professor) => UserAdapter.fromModel(professor)),
+      responsibles: model.responsibles.map((responsible) => UserAdapter.fromModel(responsible)),
+      advisors: model.advisors.map((advisor) => UserAdapter.fromModel(advisor)),
       students: model.students.map((student) => UserAdapter.fromModel(student)),
     });
   }
@@ -28,7 +29,8 @@ export class ProjectAdapter {
       shift: entity.shift,
       standNumber: entity.standNumber,
       isEntrepreneurship: entity.isEntrepreneurship,
-      professors: entity.professors.map((professor) => UserAdapter.toModel(professor)),
+      responsibles: entity.responsibles.map((responsible) => UserAdapter.toModel(responsible)),
+      advisors: entity.advisors.map((advisor) => UserAdapter.toModel(advisor)),
       students: entity.students.map((student) => UserAdapter.toModel(student)),
     });
   }

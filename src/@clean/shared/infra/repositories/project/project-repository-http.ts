@@ -42,7 +42,8 @@ export class ProjectRepositoryHttp implements IProjectRepository {
     newShift?: SHIFT,
     newStandNumber?: string,
     newIsEntrepreneurship?: boolean,
-    newProfessors?: number[],
+    newResponsibles?: number[],
+    newAdvisors?: number[],
     newStudents?: number[]
   ): Promise<Project> {
     const body: ProjectRequestBodyProps = { project_id: projectId };
@@ -54,7 +55,8 @@ export class ProjectRepositoryHttp implements IProjectRepository {
     if (newShift !== undefined) body.shift = SHIFT[newShift].toString();
     if (newStandNumber !== undefined) body.stand_number = newStandNumber;
     if (newIsEntrepreneurship !== undefined) body.is_entrepreneurship = newIsEntrepreneurship;
-    if (newProfessors !== undefined) body.professors = newProfessors;
+    if (newResponsibles !== undefined) body.responsibles = newResponsibles;
+    if (newAdvisors !== undefined) body.advisors = newAdvisors;
     if (newStudents !== undefined) body.students = newStudents;
 
     const response = await this._axios.put(`/update_project?project_id=${projectId}`, body);

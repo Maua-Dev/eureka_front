@@ -11,7 +11,8 @@ type ProjectProps = {
   shift: SHIFT;
   standNumber: string;
   isEntrepreneurship: boolean;
-  professors: User[];
+  responsibles: User[];
+  advisors: User[];
   students: User[];
 };
 
@@ -24,7 +25,8 @@ export type ProjectJsonProps = {
   shift: string;
   stand_number: string;
   is_entrepreneurship: boolean;
-  professors: UserJsonProps[];
+  responsibles: UserJsonProps[];
+  advisors: UserJsonProps[];
   students: UserJsonProps[];
 };
 
@@ -37,7 +39,8 @@ export type ProjectRequestBodyProps = {
   shift?: string;
   stand_number?: string;
   is_entrepreneurship?: boolean;
-  professors?: number[];
+  responsibles?: number[];
+  advisors?: number[];
   students?: number[];
 };
 
@@ -50,7 +53,8 @@ export class Project {
   private _shift: SHIFT;
   private _standNumber: string;
   private _isEntrepreneurship: boolean;
-  private _professors: User[];
+  private _responsibles: User[];
+  private _advisors: User[];
   private _students: User[];
 
   constructor(props: ProjectProps) {
@@ -94,10 +98,15 @@ export class Project {
     }
     this._isEntrepreneurship = props.isEntrepreneurship;
 
-    if (!Project.validateProfessors(props.professors)) {
-      throw new EntityError("professors");
+    if (!Project.validateResponsibles(props.responsibles)) {
+      throw new EntityError("responsibles");
     }
-    this._professors = props.professors;
+    this._responsibles = props.responsibles;
+
+    if (!Project.validateAdvisors(props.advisors)) {
+      throw new EntityError("advisors");
+    }
+    this._advisors = props.advisors;
 
     if (!Project.validateStudents(props.students)) {
       throw new EntityError("students");
@@ -193,15 +202,26 @@ export class Project {
     this._isEntrepreneurship = isEntrepreneurship;
   }
 
-  get professors(): User[] {
-    return this._professors;
+  get responsibles(): User[] {
+    return this._responsibles;
   }
 
-  set professors(professors: User[]) {
-    if (!Project.validateProfessors(professors)) {
-      throw new EntityError("professors");
+  set responsibles(responsibles: User[]) {
+    if (!Project.validateResponsibles(responsibles)) {
+      throw new EntityError("responsibles");
     }
-    this._professors = professors;
+    this._responsibles = responsibles;
+  }
+
+  get advisors(): User[] {
+    return this._advisors;
+  }
+
+  set advisors(advisors: User[]) {
+    if (!Project.validateAdvisors(advisors)) {
+      throw new EntityError("advisors");
+    }
+    this._advisors = advisors;
   }
 
   get students(): User[] {
@@ -225,7 +245,8 @@ export class Project {
       shift: SHIFT[this._shift].toString(),
       stand_number: this._standNumber,
       is_entrepreneurship: this._isEntrepreneurship,
-      professors: this._professors.map((professor) => professor.toJson()),
+      responsibles: this.responsibles.map((responsible) => responsible.toJson()),
+      advisors: this._advisors.map((advisor) => advisor.toJson()),
       students: this._students.map((student) => student.toJson()),
     };
   }
@@ -240,7 +261,8 @@ export class Project {
       shift: shiftToEnum(json.shift),
       standNumber: json.stand_number,
       isEntrepreneurship: json.is_entrepreneurship,
-      professors: json.professors.map((professor) => User.fromJson(professor)),
+      responsibles: json.responsibles.map((responsible) => User.fromJson(responsible)),
+      advisors: json.advisors.map((advisor) => User.fromJson(advisor)),
       students: json.students.map((student) => User.fromJson(student)),
     });
   }
@@ -319,10 +341,20 @@ export class Project {
     return true;
   }
 
-  static validateProfessors(professors: User[]): boolean {
-    if (professors == null) {
+  static validateResponsibles(responsibles: User[]): boolean {
+    if (responsibles == null) {
       return false;
-    } else if (professors.length == 0) {
+    } else if (responsibles.length == 0) {
+      return false;
+    }
+
+    return true;
+  }
+
+  static validateAdvisors(advisors: User[]): boolean {
+    if (advisors == null) {
+      return false;
+    } else if (advisors.length == 0) {
       return false;
     }
 

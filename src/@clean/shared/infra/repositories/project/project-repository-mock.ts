@@ -17,7 +17,8 @@ export class ProjectRepositoryMock implements IProjectRepository {
   async getProjectsByRole(userId: number): Promise<Project[]> {
     const json = ProjectJson.projectJson.filter(
       (project) =>
-        project.professors.some((professor) => professor.user_id === userId) ||
+        project.responsibles.some((responsible) => responsible.user_id === userId) ||
+        project.advisors.some((advisor) => advisor.user_id === userId) ||
         project.students.some((student) => student.user_id === userId)
     );
 
@@ -49,7 +50,8 @@ export class ProjectRepositoryMock implements IProjectRepository {
     newShift?: SHIFT | undefined,
     newStandNumber?: string | undefined,
     newIsEntrepreneurship?: boolean | undefined,
-    newProfessors?: number[] | undefined,
+    newResponsibles?: number[] | undefined,
+    newAdvisors?: number[] | undefined,
     newStudents?: number[] | undefined
   ): Promise<Project> {
     let existingProject: Project | null = null;
@@ -65,16 +67,36 @@ export class ProjectRepositoryMock implements IProjectRepository {
         if (newStandNumber !== undefined) projectToUpdate.stand_number = newStandNumber;
         if (newIsEntrepreneurship !== undefined)
           projectToUpdate.is_entrepreneurship = newIsEntrepreneurship;
-        if (newProfessors !== undefined) {
-          projectToUpdate.professors = projectToUpdate.professors.concat(
-            newProfessors.map((professorId) => {
-              const user = UserJson.userJson.find((user) => user.user_id === professorId);
+        if (newResponsibles !== undefined) {
+          projectToUpdate.responsibles = projectToUpdate.responsibles.concat(
+            newResponsibles.map((responsibleId) => {
+              const user = UserJson.userJson.find((user) => user.user_id === responsibleId);
               if (user == null) {
-                throw new NoItemsFoundError("userId: " + professorId);
+                throw new NoItemsFoundError("userId: " + responsibleId);
               }
               return user;
             })
           );
+        }
+        if (newAdvisors !== undefined) {
+          const users = newAdvisors.map((advisorId) => {
+            const user = UserJson.userJson.find((user) => user.user_id === advisorId);
+            if (user == null) {
+              throw new NoItemsFoundError("userId: " + advisorId);
+            }
+            return user;
+          });
+          switch (newAdvisors.length) {
+            case 1:
+              projectToUpdate.advisors[1] = users[0];
+              break;
+            case 2:
+              projectToUpdate.advisors[0] = users[0];
+              projectToUpdate.advisors[1] = users[1];
+              break;
+            default:
+              throw new Error("Invalid number of advisors");
+          }
         }
         if (newStudents !== undefined) {
           projectToUpdate.students = projectToUpdate.students.concat(

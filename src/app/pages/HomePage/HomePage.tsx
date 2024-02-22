@@ -42,15 +42,12 @@ export default function HomePage() {
             .fill(0)
             .map((_, index) => <ProjectCardSkeleton key={index} />)
         : projectsFromContext.map((project) => {
-            const advisor = project.professors.find(
-              (professor) => professor.role === ROLE.ADVISOR
-            )!.name;
             return (
               <ProjectCard
                 key={project.projectId}
                 projectId={project.projectId}
                 image={workingImage}
-                advisor={advisor}
+                advisor={project.advisors[0].name}
                 title={`${project.code}${shiftToAcronym(project.shift)}${project.standNumber} - ${project.title}`}
                 newDeliveries={[
                   "Dados do trabalho",

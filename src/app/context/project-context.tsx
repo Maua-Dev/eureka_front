@@ -26,7 +26,8 @@ type ProjectContextType = {
     newShift?: SHIFT,
     newStandNumber?: string,
     newIsEntrepreneurship?: boolean,
-    newProfessors?: number[],
+    newResponsibles?: number[],
+    newAdvisors?: number[],
     newStudents?: number[]
   ): Promise<ProjectModel | undefined>;
 };
@@ -96,7 +97,8 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
     newShift?: SHIFT,
     newStandNumber?: string,
     newIsEntrepreneurship?: boolean,
-    newProfessors?: number[],
+    newResponsibles?: number[],
+    newAdvisors?: number[],
     newStudents?: number[]
   ) => {
     const projectUpdated = await updateProjectUsecase.execute(
@@ -108,7 +110,8 @@ export const ProjectProvider = ({ children }: { children: React.ReactNode }) => 
       newShift,
       newStandNumber,
       newIsEntrepreneurship,
-      newProfessors,
+      newResponsibles,
+      newAdvisors,
       newStudents
     );
     const projectModel = ProjectAdapter.toModel(projectUpdated);
