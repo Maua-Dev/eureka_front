@@ -8,30 +8,21 @@ import calendarIcon from "../../../assets/icons/calendar-icon.svg";
 import menuIcon from "../../../assets/icons/menu-icon.svg";
 import { Link } from "react-router-dom";
 import NavColumn from "../NavColumn/NavColumn";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import Skeleton from "react-loading-skeleton";
 import { AuthContext } from "../../../context/auth-context";
 import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
 import { navOptionsList } from "../../../utils/statics/nav-options-list";
-import { BooleanStatesType } from "../../../utils/@types/boolean-states-type";
-import { useHandleBooleanStates } from "../../../hooks/useHandleBooleanStates";
 import SquareIconButton from "../SquareIconButton/SquareIconButton";
-
-const initialStates: BooleanStatesType = {
-  isWorkAndStandsColumnOpen: false,
-  isEventColumnOpen: false,
-  isUserColumnOpen: false,
-  isSystemColumnOpen: false,
-  isMenuColumnOpen: false,
-};
+import NavSquare from "../NavSquare/NavSquare";
 
 export default function Header() {
   const { userFromContext } = useContext(AuthContext);
   const ra = userFromContext.email.slice(0, 10);
 
-  const { states, handleStates } = useHandleBooleanStates(initialStates);
+  const [isMenuColumnOpen, setIsMenuColumnOpen] = useState(false);
 
   return (
     <header id="header">
@@ -97,18 +88,11 @@ export default function Header() {
           {navOptionsList.map((navOption, index) => {
             /* construct the nav row  */
             return (
-              <DismissableDialog
+              <NavSquare
+                primaryOption={navOption.primaryOption}
+                secondaryOptions={navOption.secondaryOptions}
                 key={index}
-                setOpen={() => handleStates(navOption.stateKey!, false)}
-                dialogClassName="nav__item"
-              >
-                <div onClick={() => handleStates(navOption.stateKey!)} className="nav__btn">
-                  {navOption.primaryOption}
-                </div>
-                {states[navOption.stateKey!] && (
-                  <NavColumn navColumnOptions={navOption.secondaryOptions} />
-                )}
-              </DismissableDialog>
+              />
             );
           })}
         </ul>
@@ -154,17 +138,14 @@ export default function Header() {
             squareClassName="square--calendar"
             iconClassName="square__img--calendar"
           />
-          <DismissableDialog
-            dialogClassName="menu"
-            setOpen={() => handleStates("isMenuColumnOpen", false)}
-          >
+          <DismissableDialog dialogClassName="menu" setOpen={setIsMenuColumnOpen}>
             <img
               className="menu__img"
-              onClick={() => handleStates("isMenuColumnOpen")}
+              onClick={() => setIsMenuColumnOpen(!isMenuColumnOpen)}
               src={menuIcon}
               alt="ìcone de menu"
             />
-            {states["isMenuColumnOpen"] && <NavColumn />}
+            {isMenuColumnOpen && <NavColumn />}
           </DismissableDialog>
         </aside>
       </nav>
