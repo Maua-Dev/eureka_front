@@ -10,78 +10,63 @@ import twitterIcon from "../../../assets/icons/twitter-icon.svg";
 import devLogo from "../../../assets/logos/dev-logo.png";
 import labDesignLogo from "../../../assets/logos/labdesign-logo.png";
 import { Link } from "react-router-dom";
-import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
-import { BooleanStatesType } from "../../../utils/@types/boolean-states-type";
-import { useHandleBooleanStates } from "../../../hooks/useHandleBooleanStates";
-
-const initialStates: BooleanStatesType = {
-  isContactDialogOpen: false,
-};
+import SquareIconButton from "../SquareIconButton/SquareIconButton";
 
 export default function Footer() {
-  const { states, handleStates } = useHandleBooleanStates(initialStates);
-
   return (
     <footer id="footer">
       <section className="footer__content">
         <section className="container">
           <span className="container__text">Home e contato: </span>
           <nav className="container__nav">
-            <Link className="square" to={""} onClick={(event) => event.preventDefault()}>
-              <img className="square__img img--hover" src={houseIcon} alt="Ícone de casa" />
-            </Link>
-            <DismissableDialog
-              setOpen={() => handleStates("isContactDialogOpen", false)}
-              dialogClassName="square"
+            <SquareIconButton icon={houseIcon} alt="Ícone de casa" />
+            <SquareIconButton
+              baloonContentClassName="baloon__content"
+              position="--bottom_left"
+              icon={letterIcon}
+              alt="Ícone de carta"
             >
-              <img
-                className="square__img img--hover"
-                onClick={() => handleStates("isContactDialogOpen")}
-                src={letterIcon}
-                alt="Ícone de carta"
-              />
-              {states["isContactDialogOpen"] && (
-                <aside className="baloon">
-                  <div className="baloon__content">
-                    <header className="baloon__header">Contato - eureka@maua.br</header>
-                    <textarea className="baloon__textarea" placeholder="Digite algo" />
-                  </div>
-                </aside>
-              )}
-            </DismissableDialog>
+              <header className="baloon__header">Contato - eureka@maua.br</header>
+              <textarea className="baloon__textarea" placeholder="Digite algo" />
+            </SquareIconButton>
             <p className="nav__text">eureka@maua.br</p>
           </nav>
         </section>
         <section className="container container--desktop">
           <span className="container__text">Siga-nos: </span>
           <nav className="container__nav">
-            <Link className="square" to={"https://www.facebook.com/InstitutoMaua"}>
-              <img className="square__img img--hover" src={facebookIcon} alt="Ícone do Facebook" />
-            </Link>
-            <Link className="square" to={"https://www.instagram.com/infomaua/"}>
-              <img
-                className="square__img img--hover"
-                src={instagramIcon}
-                alt="Ícone do Instagram"
-              />
-            </Link>
-            <Link className="square" to={"https://www.youtube.com/infomaua"}>
-              <img className="square__img img--hover" src={youtubeIcon} alt="Ícone do Youtube" />
-            </Link>
-            <Link
-              className="square"
+            <SquareIconButton
+              icon={facebookIcon}
+              alt="Ícone do Facebook"
+              to={"https://www.facebook.com/InstitutoMaua"}
+            />
+            <SquareIconButton
+              icon={instagramIcon}
+              alt="Ícone do Instagram"
+              to={"https://www.instagram.com/infomaua/"}
+            />
+            <SquareIconButton
+              icon={youtubeIcon}
+              alt="Ícone do Youtube"
+              to={"https://www.youtube.com/infomaua"}
+            />
+            <SquareIconButton
+              icon={blogIcon}
+              alt="Ícone do Facebook"
               to={
                 "https://blog.maua.br/?_ga=2.107994242.1414937596.1695719404-557492636.1682549809&_gac=1.53077722.1695732254.CjwKCAjwgsqoBhBNEiwAwe5w0yR8bwZ0v2Dd6deTiy168V5dkN9HsX1jlRARvEG7AbvunbEC-a-4uRoCmHIQAvD_BwE&_gl=1*841yo3*_ga*NTU3NDkyNjM2LjE2ODI1NDk4MDk.*_ga_Q0DH4GG89H*MTY5NTc1OTg1MS43My4xLjE2OTU3NTk4OTIuMTkuMC4w"
               }
-            >
-              <img className="square__img img--hover" src={blogIcon} alt="Ícone do Blog" />
-            </Link>
-            <Link className="square" to={"https://www.flickr.com/photos/infomaua"}>
-              <img className="square__img img--hover" src={flickrIcon} alt="Ícone do Flickr" />
-            </Link>
-            <Link className="square" to={"https://twitter.com/InfoMaua"}>
-              <img className="square__img img--hover" src={twitterIcon} alt="Ícone do Twitter" />
-            </Link>
+            />
+            <SquareIconButton
+              icon={flickrIcon}
+              alt="Ícone do Flickr"
+              to={"https://www.flickr.com/photos/infomaua"}
+            />
+            <SquareIconButton
+              icon={twitterIcon}
+              alt="Ícone do Twitter"
+              to={"https://twitter.com/InfoMauaa"}
+            />
           </nav>
         </section>
         <section className="container container--desktop">
@@ -103,40 +88,41 @@ export default function Footer() {
           <section className="container">
             <span className="container__text">Siga-nos: </span>
             <nav className="container__nav">
-              <Link className="square" to={"https://www.facebook.com/InstitutoMaua"}>
-                <img
-                  className="square__img img--hover"
-                  src={facebookIcon}
-                  alt="Ícone do Facebook"
-                />
-              </Link>
-              <Link className="square" to={"https://www.instagram.com/infomaua/"}>
-                <img
-                  className="square__img img--hover"
-                  src={instagramIcon}
-                  alt="Ícone do Instagram"
-                />
-              </Link>
-              <Link className="square" to={"https://www.youtube.com/infomaua"}>
-                <img className="square__img img--hover" src={youtubeIcon} alt="Ícone do Youtube" />
-              </Link>
-              <Link
-                className="square"
+              <SquareIconButton
+                icon={facebookIcon}
+                alt="Ícone do Facebook"
+                to={"https://www.facebook.com/InstitutoMaua"}
+              />
+              <SquareIconButton
+                icon={instagramIcon}
+                alt="Ícone do Instagram"
+                to={"https://www.instagram.com/infomaua/"}
+              />
+              <SquareIconButton
+                icon={youtubeIcon}
+                alt="Ícone do Youtube"
+                to={"https://www.youtube.com/infomaua"}
+              />
+              <SquareIconButton
+                icon={blogIcon}
+                alt="Ícone do Facebook"
                 to={
                   "https://blog.maua.br/?_ga=2.107994242.1414937596.1695719404-557492636.1682549809&_gac=1.53077722.1695732254.CjwKCAjwgsqoBhBNEiwAwe5w0yR8bwZ0v2Dd6deTiy168V5dkN9HsX1jlRARvEG7AbvunbEC-a-4uRoCmHIQAvD_BwE&_gl=1*841yo3*_ga*NTU3NDkyNjM2LjE2ODI1NDk4MDk.*_ga_Q0DH4GG89H*MTY5NTc1OTg1MS43My4xLjE2OTU3NTk4OTIuMTkuMC4w"
                 }
-              >
-                <img className="square__img img--hover" src={blogIcon} alt="Ícone do Blog" />
-              </Link>
-              <Link className="square" to={"https://www.flickr.com/photos/infomaua"}>
-                <img className="square__img img--hover" src={flickrIcon} alt="Ícone do Flickr" />
-              </Link>
-              <Link className="square" to={"https://twitter.com/InfoMaua"}>
-                <img className="square__img img--hover" src={twitterIcon} alt="Ícone do Twitter" />
-              </Link>
+              />
+              <SquareIconButton
+                icon={flickrIcon}
+                alt="Ícone do Flickr"
+                to={"https://www.flickr.com/photos/infomaua"}
+              />
+              <SquareIconButton
+                icon={twitterIcon}
+                alt="Ícone do Twitter"
+                to={"https://twitter.com/InfoMauaa"}
+              />
             </nav>
           </section>
-          <section className="container">
+          <section className="container container--logos">
             <span className="container__text">Desenvolvido por:</span>
             <nav className="container__nav container__nav--spaced">
               <Link className="logo" to={"https://labdesign.maua.br"}>

@@ -10,13 +10,14 @@ import { Link } from "react-router-dom";
 import NavColumn from "../NavColumn/NavColumn";
 import { useContext } from "react";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import { AuthContext } from "../../../context/auth-context";
 import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
 import { navOptionsList } from "../../../utils/statics/nav-options-list";
 import { BooleanStatesType } from "../../../utils/@types/boolean-states-type";
 import { useHandleBooleanStates } from "../../../hooks/useHandleBooleanStates";
+import SquareIconButton from "../SquareIconButton/SquareIconButton";
 
 const initialStates: BooleanStatesType = {
   isWorkAndStandsColumnOpen: false,
@@ -24,10 +25,6 @@ const initialStates: BooleanStatesType = {
   isUserColumnOpen: false,
   isSystemColumnOpen: false,
   isMenuColumnOpen: false,
-  isUserDialogOpen: false,
-  isQuestionDialogOpen: false,
-  isUserMobileDialogOpen: false,
-  isQuestionMobileDialogOpen: false,
 };
 
 export default function Header() {
@@ -52,84 +49,47 @@ export default function Header() {
           </Link>
         </div>
         <aside className="container--right">
-          <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
-            <DismissableDialog
-              setOpen={() => handleStates("isUserDialogOpen", false)}
-              dialogClassName="square square--user"
-            >
-              <img
-                className="square__img"
-                onClick={() => handleStates("isUserDialogOpen")}
-                src={profileIcon}
-                alt="Ícone de perfil"
-              />
-              {states["isUserDialogOpen"] && (
-                <section className="baloon baloon--user">
-                  <div className="baloon__content">
-                    {userFromContext.name !== "" ? (
-                      <h1 className="baloon__title baloon__title--margin">
-                        {userFromContext.name}
-                      </h1>
-                    ) : (
-                      <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin"></Skeleton>
-                    )}
-                    {userFromContext.role === ROLE.STUDENT &&
-                      (ra !== "" ? (
-                        <p className="baloon__text">RA: {ra}</p>
-                      ) : (
-                        <Skeleton containerClassName="baloon__text baloon__text--skeleton"></Skeleton>
-                      ))}
-                    <DefaultButton title="Sair" buttonClassName="baloon__btn"></DefaultButton>
-                  </div>
-                </section>
-              )}
-            </DismissableDialog>
-          </SkeletonTheme>
-          <DismissableDialog
-            setOpen={() => handleStates("isQuestionDialogOpen", false)}
-            dialogClassName="square"
-          >
-            <img
-              className="square__img"
-              onClick={() => handleStates("isQuestionDialogOpen")}
-              src={questionIcon}
-              alt="Ícone de interrogação"
-            />
-            {states["isQuestionDialogOpen"] && (
-              <section className="baloon baloon--question">
-                <div className="baloon__content baloon__content--question">
-                  <Link
-                    className="baloon__title baloon__title--hover"
-                    to={""}
-                    onClick={(event) => event.preventDefault()}
-                  >
-                    Ajuda
-                  </Link>
-                  <Link
-                    className="baloon__title baloon__title--hover"
-                    to={""}
-                    onClick={(event) => event.preventDefault()}
-                  >
-                    Conheça o sistema
-                  </Link>
-                </div>
-              </section>
+          <SquareIconButton icon={profileIcon} alt="Ícone de perfil">
+            {userFromContext.name != undefined ? (
+              <h1 className="baloon__title baloon__title--margin">{userFromContext.name}</h1>
+            ) : (
+              <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin"></Skeleton>
             )}
-          </DismissableDialog>
-          <Link className="square" to={""} onClick={(event) => event.preventDefault()}>
-            <img className="square__img" src={messageIcon} alt="Ícone de mensagens" />
-          </Link>
-          <Link
-            className="square square--calendar"
-            to={""}
-            onClick={(event) => event.preventDefault()}
+            {userFromContext.role == ROLE.STUDENT &&
+              (ra != undefined ? (
+                <p className="baloon__text">RA: {ra}</p>
+              ) : (
+                <Skeleton containerClassName="baloon__text baloon__text--skeleton"></Skeleton>
+              ))}
+            <DefaultButton title="Sair" buttonClassName="baloon__btn"></DefaultButton>
+          </SquareIconButton>
+          <SquareIconButton
+            icon={questionIcon}
+            alt="Ícone de dúvidas"
+            baloonContentClassName="baloon__content--question"
           >
-            <img
-              className="square__img square__img--calendar"
-              src={calendarIcon}
-              alt="ìcone de calendário"
-            />
-          </Link>
+            <Link
+              className="baloon__title baloon__title--hover"
+              to={""}
+              onClick={(event) => event.preventDefault()}
+            >
+              Ajuda
+            </Link>
+            <Link
+              className="baloon__title baloon__title--hover"
+              to={""}
+              onClick={(event) => event.preventDefault()}
+            >
+              Conheça o sistema
+            </Link>
+          </SquareIconButton>
+          <SquareIconButton alt="Ícone de mensagens" icon={messageIcon} />
+          <SquareIconButton
+            alt="Ícone de calendário"
+            icon={calendarIcon}
+            squareClassName="square--calendar"
+            iconClassName="square__img--calendar"
+          />
         </aside>
       </div>
       <nav className="header--botton">
@@ -153,84 +113,47 @@ export default function Header() {
           })}
         </ul>
         <aside className="squares">
-          <SkeletonTheme baseColor="var(--blue)" highlightColor="var(--light-blue)">
-            <DismissableDialog
-              setOpen={() => handleStates("isUserMobileDialogOpen", false)}
-              dialogClassName="square square--user"
-            >
-              <img
-                className="square__img"
-                onClick={() => handleStates("isUserMobileDialogOpen")}
-                src={profileIcon}
-                alt="Ícone de perfil"
-              />
-              {states["isUserMobileDialogOpen"] && (
-                <section className="baloon baloon--user">
-                  <div className="baloon__content">
-                    {userFromContext.name != undefined ? (
-                      <h1 className="baloon__title baloon__title--margin">
-                        {userFromContext.name}
-                      </h1>
-                    ) : (
-                      <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin"></Skeleton>
-                    )}
-                    {userFromContext.role == ROLE.STUDENT &&
-                      (ra != undefined ? (
-                        <p className="baloon__text">RA: {ra}</p>
-                      ) : (
-                        <Skeleton containerClassName="baloon__text baloon__text--skeleton"></Skeleton>
-                      ))}
-                    <DefaultButton title="Sair" buttonClassName="baloon__btn"></DefaultButton>
-                  </div>
-                </section>
-              )}
-            </DismissableDialog>
-          </SkeletonTheme>
-          <DismissableDialog
-            setOpen={() => handleStates("isQuestionMobileDialogOpen", false)}
-            dialogClassName="square"
-          >
-            <img
-              className="square__img"
-              onClick={() => handleStates("isQuestionMobileDialogOpen")}
-              src={questionIcon}
-              alt="Ícone de interrogação"
-            />
-            {states["isQuestionMobileDialogOpen"] && (
-              <section className="baloon baloon--question">
-                <div className="baloon__content baloon__content--question">
-                  <Link
-                    className="baloon__title baloon__title--hover"
-                    to={""}
-                    onClick={(event) => event.preventDefault()}
-                  >
-                    Ajuda
-                  </Link>
-                  <Link
-                    className="baloon__title baloon__title--hover"
-                    to={""}
-                    onClick={(event) => event.preventDefault()}
-                  >
-                    Conheça o sistema
-                  </Link>
-                </div>
-              </section>
+          <SquareIconButton icon={profileIcon} alt="Ícone de perfil">
+            {userFromContext.name != undefined ? (
+              <h1 className="baloon__title baloon__title--margin">{userFromContext.name}</h1>
+            ) : (
+              <Skeleton containerClassName="baloon__title baloon__title--skeleton baloon__title--margin"></Skeleton>
             )}
-          </DismissableDialog>
-          <Link to={""} className="square" onClick={(event) => event.preventDefault()}>
-            <img className="square__img" src={messageIcon} alt="Ícone de mensagens" />
-          </Link>
-          <Link
-            to={""}
-            className="square square--calendar"
-            onClick={(event) => event.preventDefault()}
+            {userFromContext.role == ROLE.STUDENT &&
+              (ra != undefined ? (
+                <p className="baloon__text">RA: {ra}</p>
+              ) : (
+                <Skeleton containerClassName="baloon__text baloon__text--skeleton"></Skeleton>
+              ))}
+            <DefaultButton title="Sair" buttonClassName="baloon__btn"></DefaultButton>
+          </SquareIconButton>
+          <SquareIconButton
+            icon={questionIcon}
+            alt="Ícone de dúvidas"
+            baloonContentClassName="baloon__content--question"
           >
-            <img
-              className="square__img square__img--calendar"
-              src={calendarIcon}
-              alt="ìcone de calendário"
-            />
-          </Link>
+            <Link
+              className="baloon__title baloon__title--hover"
+              to={""}
+              onClick={(event) => event.preventDefault()}
+            >
+              Ajuda
+            </Link>
+            <Link
+              className="baloon__title baloon__title--hover"
+              to={""}
+              onClick={(event) => event.preventDefault()}
+            >
+              Conheça o sistema
+            </Link>
+          </SquareIconButton>
+          <SquareIconButton alt="Ícone de mensagens" icon={messageIcon} />
+          <SquareIconButton
+            alt="Ícone de calendário"
+            icon={calendarIcon}
+            squareClassName="square--calendar"
+            iconClassName="square__img--calendar"
+          />
           <DismissableDialog
             dialogClassName="menu"
             setOpen={() => handleStates("isMenuColumnOpen", false)}

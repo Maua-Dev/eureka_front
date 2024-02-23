@@ -1,0 +1,209 @@
+.square_icon_button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.square_icon_button .square_icon_button__img {
+  width: 50px;
+  height: 50px;
+}
+
+.square_icon_button .baloon {
+  position: absolute;
+  z-index: 1;
+}
+
+.square_icon_button .baloon--top_right {
+  right: 0;
+  top: calc(100% + 18px);
+}
+
+.square_icon_button .baloon--bottom_left {
+  left: 0;
+  bottom: calc(100% + 18px);
+}
+
+.square_icon_button .baloon__content {
+  position: relative;
+  border-radius: var(--big-radius);
+  display: flex;
+  align-items: center;
+  padding: 1.2rem;
+  flex-direction: column;
+  background-color: var(--extra-light-blue);
+  color: var(--dark-blue);
+  text-align: center;
+  min-width: 270px;
+  max-width: 370px;
+}
+
+.square_icon_button .baloon__content:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: var(--baloon-border);
+  border-bottom-color: var(--extra-light-blue);
+  border-top: 0;
+}
+
+.square_icon_button .baloon__content--top_right:after {
+  top: 0;
+  right: 0;
+  transform: translateX(calc(100% - 25px - 50%));
+  margin-top: -10px;
+}
+
+.square_icon_button .baloon__content--bottom_left:after {
+  left: 0;
+  bottom: 0;
+  transform: rotate(180deg) translateX(calc(100% - 25px - 50%));
+  border-bottom-color: var(--light-blue);
+  margin-bottom: -10px;
+}
+
+.square_icon_button .square_icon_button__img:hover {
+  filter: var(--dark-mustard-filter);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .square_icon_button .baloon__content {
+    min-width: 240px;
+    max-width: 340px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .square_icon_button .baloon__content {
+    min-width: 220px;
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .square_icon_button .baloon__content {
+    min-width: 200px;
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .square_icon_button {
+    height: 45px;
+    width: 45px;
+  }
+
+  .square_icon_button .baloon--top_right {
+    top: calc(100% + 14px);
+  }
+
+  .square_icon_button .baloon--bottom_left {
+    bottom: calc(100% + 14px);
+  }
+
+  .square_icon_button .square_icon_button__img {
+    height: 45px;
+    width: 45px;
+  }
+
+  .square_icon_button .baloon__content {
+    min-width: 180px;
+    max-width: 280px;
+    padding: 1rem;
+  }
+
+  .square_icon_button .baloon__content--top_right:after {
+    transform: translateX(calc(100% - 22.5px - 50%));
+    margin-top: -8px;
+  }
+
+  .square_icon_button .baloon__content--bottom_left:after {
+    transform: rotate(180deg) translateX(calc(100% - 22.5px - 50%));
+    margin-bottom: -8px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .square_icon_button .baloon__content {
+    min-width: 170px;
+    max-width: 270px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .square_icon_button .baloon__content {
+    min-width: 160px;
+    max-width: 260px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .square_icon_button {
+    height: 41px;
+    width: 41px;
+  }
+
+  .square_icon_button .square_icon_button__img {
+    height: 41px;
+    width: 41px;
+  }
+
+  .square_icon_button .baloon__content {
+    min-width: 150px;
+    max-width: 250px;
+    padding: 0.8rem;
+  }
+
+  .square_icon_button .baloon__content--top_right:after {
+    transform: translateX(calc(100% - 20.1px - 50%));
+    margin-top: -8px;
+  }
+
+  .square_icon_button .baloon__content--bottom_left:after {
+    transform: rotate(180deg) translateX(calc(100% - 20.1px - 50%));
+    margin-bottom: -8px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .square_icon_button {
+    height: 30px;
+    width: 30px;
+  }
+
+  .square_icon_button .square_icon_button__img {
+    height: 30px;
+    width: 30px;
+  }
+
+  .square_icon_button .baloon__content {
+    min-width: 140px;
+    max-width: 240px;
+  }
+
+  .square_icon_button .baloon__content--top_right:after {
+    transform: translateX(calc(100% - 15px - 50%));
+    margin-top: -7px;
+  }
+
+  .square_icon_button .baloon__content--bottom_left:after {
+    transform: rotate(180deg) translateX(calc(100% - 15px - 50%));
+    margin-bottom: -7px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .square_icon_button .baloon__content {
+    min-width: 130px;
+    max-width: 230px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .square_icon_button .baloon__content {
+    min-width: 110px;
+    max-width: 210px;
+  }
+}
