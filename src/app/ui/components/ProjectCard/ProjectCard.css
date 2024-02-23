@@ -134,6 +134,11 @@
     width: 90px;
   }
 
+  .project_card .project_card__img--skeleton {
+    height: 90px;
+    width: 90px;
+  }
+
   .project_card .infos {
     width: calc(100% - 90px);
   }
@@ -141,6 +146,11 @@
 
 @media screen and (max-width: 600px) {
   .project_card .project_card__img {
+    height: 80px;
+    width: 80px;
+  }
+
+  .project_card .project_card__img--skeleton {
     height: 80px;
     width: 80px;
   }
