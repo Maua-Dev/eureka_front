@@ -25,7 +25,7 @@ export default function Header() {
   const [isMenuColumnOpen, setIsMenuColumnOpen] = useState(false);
 
   return (
-    <header id="header">
+    <header className="header">
       <div className="header--top">
         <div className="container--left">
           <Link className="logo" to={""}>

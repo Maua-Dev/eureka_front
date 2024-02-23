@@ -28,7 +28,7 @@ export default function NavColumn({ navColumnOptions }: NavColumnProps) {
   };
 
   return (
-    <div id="nav_column">
+    <div className="nav_column">
       {navColumnOptions === undefined
         ? navOptionsList.map((navOption, navOptionIndex) => {
             return (

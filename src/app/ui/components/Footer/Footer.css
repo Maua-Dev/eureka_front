@@ -1,4 +1,4 @@
-#footer {
+.footer {
   background-color: var(--dark-blue);
   display: flex;
   justify-content: space-between;
@@ -10,7 +10,7 @@
   color: var(--white);
 }
 
-#footer .footer__content {
+.footer .footer__content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,11 +18,11 @@
   gap: 2rem;
 }
 
-#footer .footer__div--mobile {
+.footer .footer__div--mobile {
   display: none;
 }
 
-#footer .container {
+.footer .container {
   display: flex;
   align-items: start;
   flex-direction: column;
@@ -30,27 +30,27 @@
   gap: 1rem;
 }
 
-#footer .container__text {
+.footer .container__text {
   font-size: var(--span-text);
 }
 
-#footer .container__nav {
+.footer .container__nav {
   display: flex;
   gap: 0.6rem;
   display: flex;
   align-items: center;
 }
 
-#footer .container__nav--spaced {
+.footer .container__nav--spaced {
   gap: 1.2rem;
 }
 
-#footer .nav__text {
+.footer .nav__text {
   margin-bottom: 0.3rem;
   margin-left: 0.3rem;
 }
 
-#footer .baloon__content {
+.footer .baloon__content {
   min-width: 370px;
   max-width: 400px;
   min-height: 370px;
@@ -58,7 +58,7 @@
   background-color: var(--light-blue);
 }
 
-#footer .baloon__header {
+.footer .baloon__header {
   background-color: var(--dark-blue);
   color: var(--white);
   border-radius: var(--small-radius);
@@ -71,7 +71,7 @@
   font-size: var(--big-title);
 }
 
-#footer .baloon__textarea {
+.footer .baloon__textarea {
   border-radius: var(--small-radius);
   appearance: none;
   border: none;
@@ -86,22 +86,22 @@
   font-size: var(--regular-text);
 }
 
-#footer .baloon__textarea::placeholder {
+.footer .baloon__textarea::placeholder {
   font-weight: var(--semi-bold);
   color: var(--medium-light-blue);
 }
 
-#footer .baloon__textarea::-webkit-scrollbar {
+.footer .baloon__textarea::-webkit-scrollbar {
   display: none;
 }
 
-#footer .logo__img {
+.footer .logo__img {
   max-width: 100%;
   height: 50px;
 }
 
 @media screen and (max-width: 1200px) {
-  #footer .baloon__content {
+  .footer .baloon__content {
     min-width: 350px;
     min-height: 350px;
     max-width: 400px;
@@ -111,19 +111,19 @@
 }
 
 @media screen and (max-width: 1000px) {
-  #footer .footer__div--mobile {
+  .footer .footer__div--mobile {
     font-size: var(--span-text);
   }
 
-  #footer .nav__text {
+  .footer .nav__text {
     display: none;
   }
 
-  #footer .logo__img {
+  .footer .logo__img {
     height: 3rem;
   }
 
-  #footer .baloon__content {
+  .footer .baloon__content {
     min-width: 330px;
     min-height: 330px;
     max-width: 360px;
@@ -131,22 +131,22 @@
     background-color: var(--light-blue);
   }
 
-  #footer .baloon__header {
+  .footer .baloon__header {
     padding: 0.8rem;
     margin-bottom: 0.8rem;
   }
 
-  #footer .baloon__textarea {
+  .footer .baloon__textarea {
     padding: 1rem;
   }
 }
 
 @media screen and (max-width: 900px) {
-  #footer .logo__img {
+  .footer .logo__img {
     height: 45px;
   }
 
-  #footer .baloon__content {
+  .footer .baloon__content {
     min-width: 310px;
     min-height: 310px;
     max-width: 340px;
@@ -154,25 +154,25 @@
     background-color: var(--light-blue);
   }
 
-  #footer .baloon__header {
+  .footer .baloon__header {
     padding: 0.7rem;
     margin-bottom: 0.7rem;
   }
 
-  #footer .baloon__textarea {
+  .footer .baloon__textarea {
     padding: 0.8rem;
   }
 }
 
 @media screen and (max-width: 800px) {
-  #footer .footer__content {
+  .footer .footer__content {
     display: flex;
     flex-direction: row;
     align-items: start;
     flex-wrap: wrap;
   }
 
-  #footer .footer__div--mobile {
+  .footer .footer__div--mobile {
     display: block;
     display: flex;
     align-items: start;
@@ -180,11 +180,11 @@
     gap: 1rem;
   }
 
-  #footer .container--desktop {
+  .footer .container--desktop {
     display: none;
   }
 
-  #footer .baloon__content {
+  .footer .baloon__content {
     min-width: 290px;
     min-height: 290px;
     max-width: 320px;
@@ -192,26 +192,26 @@
     background-color: var(--light-blue);
   }
 
-  #footer .baloon__header {
+  .footer .baloon__header {
     padding: 0.6rem;
     margin-bottom: 0.7rem;
   }
 
-  #footer .baloon__textarea {
+  .footer .baloon__textarea {
     padding: 0.7rem;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #footer {
+  .footer {
     padding: 1.5rem;
   }
 
-  #footer .logo__img {
+  .footer .logo__img {
     height: 41px;
   }
 
-  #footer .baloon__content {
+  .footer .baloon__content {
     min-width: 270px;
     min-height: 270px;
     max-width: 300px;
@@ -221,31 +221,31 @@
 }
 
 @media screen and (max-width: 500px) {
-  #footer .footer__content {
+  .footer .footer__content {
     gap: 0.8rem;
   }
 
-  #footer .footer__div--mobile {
+  .footer .footer__div--mobile {
     gap: 0.8rem;
   }
 
-  #footer .container {
+  .footer .container {
     gap: 0.5rem;
   }
 
-  #footer .container__nav {
+  .footer .container__nav {
     gap: 0.4rem;
   }
 
-  #footer .container__nav--spaced {
+  .footer .container__nav--spaced {
     gap: 1.2rem;
   }
 
-  #footer .logo__img {
+  .footer .logo__img {
     height: 30px;
   }
 
-  #footer .baloon__content {
+  .footer .baloon__content {
     min-width: 250px;
     min-height: 250px;
     max-width: 280px;
@@ -253,30 +253,30 @@
     background-color: var(--light-blue);
   }
 
-  #footer .baloon__header {
+  .footer .baloon__header {
     padding: 0.6rem;
     margin-bottom: 0.7rem;
   }
 
-  #footer .baloon__textarea {
+  .footer .baloon__textarea {
     padding: 0.7rem;
   }
 }
 
 @media screen and (max-width: 400px) {
-  #footer {
+  .footer {
     padding: 1.2rem;
   }
 
-  #footer .footer__div--mobile {
+  .footer .footer__div--mobile {
     gap: 0.6rem;
   }
 
-  #footer .logo__img {
+  .footer .logo__img {
     height: 30px;
   }
 
-  #footer .baloon__content {
+  .footer .baloon__content {
     min-width: 230px;
     min-height: 230px;
     max-width: 260px;
@@ -284,40 +284,40 @@
     background-color: var(--light-blue);
   }
 
-  #footer .baloon__header {
+  .footer .baloon__header {
     padding: 0.6rem;
     margin-bottom: 0.7rem;
   }
 
-  #footer .baloon__textarea {
+  .footer .baloon__textarea {
     padding: 0.7rem;
   }
 
-  #footer .container--logos {
+  .footer .container--logos {
     width: 100%;
   }
 }
 
 @media screen and (max-width: 350px) {
-  #footer .footer__content {
+  .footer .footer__content {
     justify-content: center;
   }
 
-  #footer .container__nav {
+  .footer .container__nav {
     align-self: center;
   }
 }
 
 @media screen and (max-width: 300px) {
-  #footer .footer__content {
+  .footer .footer__content {
     gap: 0.5rem;
   }
 
-  #footer .logo__img {
+  .footer .logo__img {
     height: 24px;
   }
 
-  #footer .baloon__content {
+  .footer .baloon__content {
     min-width: 210px;
     min-height: 210px;
     max-width: 240px;
@@ -325,12 +325,12 @@
     background-color: var(--light-blue);
   }
 
-  #footer .baloon__header {
+  .footer .baloon__header {
     padding: 0.6rem;
     margin-bottom: 0.7rem;
   }
 
-  #footer .baloon__textarea {
+  .footer .baloon__textarea {
     padding: 0.7rem;
   }
 }

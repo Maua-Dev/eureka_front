@@ -14,7 +14,7 @@ import SquareIconButton from "../SquareIconButton/SquareIconButton";
 
 export default function Footer() {
   return (
-    <footer id="footer">
+    <footer className="footer">
       <section className="footer__content">
         <section className="container">
           <span className="container__text">Home e contato: </span>
