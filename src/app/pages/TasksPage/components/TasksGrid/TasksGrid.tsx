@@ -63,7 +63,7 @@ export default function TasksGrid({
                 }}
               >
                 <Link
-                  to={`${taskContent.basePath}/${tasksFiltered[0].taskId}`}
+                  to={`${taskContent.basePath}/${tasksFiltered[0]?.taskId}`}
                   className="tasks_grid__title grid__title--link"
                 >
                   {taskContent.title}
