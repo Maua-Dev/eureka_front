@@ -58,19 +58,17 @@ export default function ControlledTextField<T>({
           menu(base) {
             return {
               ...base,
-              top: "84%",
+              top: "90%",
             };
           },
           menuList(base) {
             return {
               ...base,
-              backgroundColor: "var(--white)",
-              borderEndStartRadius: "var(--input-radius)",
-              borderEndEndRadius: "var(--input-radius)",
+              backgroundColor: "var(--extra-light-blue)",
+              borderRadius: "var(--input-radius)",
               width: "100%",
               margin: "0",
               border: "var(--thin-border)",
-              borderTop: "none",
             };
           },
           option(base) {
