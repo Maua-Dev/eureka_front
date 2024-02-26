@@ -6,10 +6,10 @@ import { ProjectContext } from "../../context/project-context";
 import { AuthContext } from "../../context/auth-context";
 import { ROLE } from "../../../@clean/shared/domain/enums/role-enum";
 import { handleFetch } from "../../utils/functions/handle-fetch";
-import ProjectCardSkeleton from "../../ui/components/ProjectCard/ProjectCardSkeleton";
-import ProjectCard from "../../ui/components/ProjectCard/ProjectCard";
 import { shiftToAcronym } from "../../../@clean/shared/domain/enums/shift-enum";
-import DropdownButton from "../../ui/components/DropdownButton/DropdownButton";
+import ProjectCardSkeleton from "./components/ProjectCard/ProjectCardSkeleton";
+import ProjectCard from "./components/ProjectCard/ProjectCard";
+import DropdownButton from "./components/DropdownButton/DropdownButton";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);

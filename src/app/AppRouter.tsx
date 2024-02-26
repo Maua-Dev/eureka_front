@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ProjectDataPage from "./pages/ProjectDataPage/ProjectDataPage";
 import TasksPage from "./pages/TasksPage/TasksPage";
 import FileUploadPage from "./pages/FileUploadPage/FileUploadPage";
-import ReturnButton from "./ui/helpers/ReturnButton/ReturnButton";
+import ReturnButton from "./ui/components/ReturnButton/ReturnButton";
 
 export function AppRouter() {
   return (

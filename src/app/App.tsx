@@ -9,9 +9,9 @@ import { TaskProvider } from "./context/task-context";
 import { DeliveryProvider } from "./context/delivery-context";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import ErrorAlert from "./ui/helpers/ErrorToast/ErrorAlert";
 import Header from "./ui/components/Header/Header";
 import Footer from "./ui/components/Footer/Footer";
+import ErrorAlert from "./ui/components/ErrorToast/ErrorAlert";
 
 function App() {
   return (

@@ -1,8 +1,8 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { TaskContentType } from "../../../utils/@types/task-content-type";
-import HeaderedBoxSkeleton from "../HeaderedBox/HeaderedBoxSkeleton";
 import "./TasksGrid.css";
 import React from "react";
+import { TaskContentType } from "../../../../utils/@types/task-content-type";
+import HeaderedBoxSkeleton from "../../../../ui/components/HeaderedBox/HeaderedBoxSkeleton";
 
 type TaskGridSkeletonProps = {
   boxClassName?: string;

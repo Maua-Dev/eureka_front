@@ -4,31 +4,37 @@ import { TaskContentType } from "../@types/task-content-type";
 
 export const eventSetupContentList: TaskContentType[] = [
   {
+    id: 13,
     title: "Recursos de estande",
     basePath: "",
     description: "",
   },
   {
+    id: 14,
     title: "Questionário",
     basePath: "",
     description: "",
   },
   {
+    id: 15,
     title: "Layout do estande",
     basePath: "",
     description: "",
   },
   {
+    id: 16,
     title: "Testeira",
     basePath: "",
     description: "",
   },
   {
+    id: 17,
     title: "Autorização de entrada",
     basePath: "",
     description: "",
   },
   {
+    id: 18,
     title: "Certificado",
     basePath: "",
     description: "",

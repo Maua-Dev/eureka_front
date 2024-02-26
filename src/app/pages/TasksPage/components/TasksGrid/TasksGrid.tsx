@@ -1,11 +1,11 @@
 import React from "react";
-import { DeliveryModel } from "../../../models/delivery-model";
-import { TaskModel } from "../../../models/task-model";
-import HeaderedBox from "../HeaderedBox/HeaderedBox";
 import "./TasksGrid.css";
-import { TaskContentType } from "../../../utils/@types/task-content-type";
 import { Link } from "react-router-dom";
-import { handleGetTaskContentColor } from "../../../utils/functions/handle-get-task-content-color";
+import { TaskContentType } from "../../../../utils/@types/task-content-type";
+import { TaskModel } from "../../../../models/task-model";
+import { DeliveryModel } from "../../../../models/delivery-model";
+import { handleGetTaskContentColor } from "../../../../utils/functions/handle-get-task-content-color";
+import HeaderedBox from "../../../../ui/components/HeaderedBox/HeaderedBox";
 
 type TasksGridProps = {
   headerTitle: string;
@@ -63,7 +63,7 @@ export default function TasksGrid({
                 }}
               >
                 <Link
-                  to={`${window.location.pathname}/${taskContent.basePath}/${tasks[0]?.taskId}`}
+                  to={`${taskContent.basePath}/${taskContent.id}`}
                   className="tasks_grid__title grid__title--link"
                 >
                   {taskContent.title}

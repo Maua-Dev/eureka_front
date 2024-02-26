@@ -1,8 +1,8 @@
-import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
 import { ReactNode, useState } from "react";
 import "./SquareIconButton.css";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { Link } from "react-router-dom";
+import DismissableDialog from "../DismissableDialog/DismissableDialog";
 
 type SquareIconButtonProps = {
   icon: string;

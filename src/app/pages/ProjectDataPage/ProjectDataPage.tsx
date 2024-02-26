@@ -8,14 +8,14 @@ import { ProjectContext } from "../../context/project-context";
 import { DeliveryContext } from "../../context/delivery-context";
 import { ProjectModel } from "../../models/project-model";
 import { handleFetch } from "../../utils/functions/handle-fetch";
-import LoadingSpinner from "../../ui/helpers/LoadingSpinner/LoadingSpinner";
 import HeaderedBox from "../../ui/components/HeaderedBox/HeaderedBox";
 import { toast } from "react-toastify";
 import { odsList } from "../../utils/statics/ods-list";
-import ImageInfoCard from "../../ui/components/ImageInfoCard/ImageInfoCard";
 import { actionsList } from "../../utils/statics/actions-list";
 import DefaultTextField from "../../ui/components/DefaultTextField/DefaultTextField";
 import ProjectDataPageSkeleton from "./ProjectDataPageSkeleton";
+import ImageInfoCard from "./components/ImageInfoCard/ImageInfoCard";
+import LoadingSpinner from "../../ui/components/LoadingSpinner/LoadingSpinner";
 
 export default function ProjectDataPage() {
   const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);

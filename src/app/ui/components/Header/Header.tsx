@@ -12,11 +12,11 @@ import { useContext, useState } from "react";
 import { ROLE } from "../../../../@clean/shared/domain/enums/role-enum";
 import Skeleton from "react-loading-skeleton";
 import { AuthContext } from "../../../context/auth-context";
-import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
 import { navOptionsList } from "../../../utils/statics/nav-options-list";
 import SquareIconButton from "../SquareIconButton/SquareIconButton";
 import NavSquare from "../NavSquare/NavSquare";
+import DismissableDialog from "../DismissableDialog/DismissableDialog";
 
 export default function Header() {
   const { userFromContext } = useContext(AuthContext);

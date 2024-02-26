@@ -16,7 +16,7 @@
   width: 100%;
   border: var(--thick-border);
   border-radius: var(--input-radius);
-  padding: 0.2rem 1rem;
+  padding: 0.4rem 0.6rem;
 }
 
 .default_text_field .input--textarea {

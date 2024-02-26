@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 import "./NavColumn.css";
 import { useState } from "react";
 import { navOptionsList } from "../../../utils/statics/nav-options-list";
-import { BooleanStatesType } from "../../../utils/@types/boolean-states-type";
-import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
+import DismissableDialog from "../DismissableDialog/DismissableDialog";
 
 type NavColumnProps = {
   navColumnOptions?: string[];
 };
 
-const initialNavStates: BooleanStatesType = {
+const initialNavStates: { [key: string]: boolean } = {
   isWorkAndStandsColumnOpen: false,
   isEventColumnOpen: false,
   isUserColumnOpen: false,
@@ -18,7 +17,7 @@ const initialNavStates: BooleanStatesType = {
 };
 
 export default function NavColumn({ navColumnOptions }: NavColumnProps) {
-  const [navStates, setNavStates] = useState<BooleanStatesType>(initialNavStates);
+  const [navStates, setNavStates] = useState<{ [key: string]: boolean }>(initialNavStates);
 
   const handleNavStates = (key: string, state?: boolean) => {
     setNavStates((prevState) => ({

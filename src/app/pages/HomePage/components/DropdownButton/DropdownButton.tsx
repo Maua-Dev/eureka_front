@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import arrowIcon from "../../../assets/icons/arrow-icon.svg";
-import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
+import arrowIcon from "../../../../assets/icons/arrow-icon.svg";
 import "./DropdownButton.css";
+import DismissableDialog from "../../../../ui/components/DismissableDialog/DismissableDialog";
 
 type DropdownButtonProps = {
   options: string[];

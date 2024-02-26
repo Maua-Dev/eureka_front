@@ -13,7 +13,6 @@ import { UserAdapter } from "../../adapters/user-adapter";
 import { UserJson } from "../../../@clean/shared/infra/jsons/user-json";
 import { User } from "../../../@clean/shared/domain/entities/user";
 import { ROLE } from "../../../@clean/shared/domain/enums/role-enum";
-import LoadingSpinner from "../../ui/helpers/LoadingSpinner/LoadingSpinner";
 import ProjectTasksPageSkeleton from "./TasksPageSkeleton";
 import HeaderedBox from "../../ui/components/HeaderedBox/HeaderedBox";
 import { shiftToAcronym } from "../../../@clean/shared/domain/enums/shift-enum";
@@ -21,11 +20,12 @@ import DefaultButton from "../../ui/components/DefaultButton/DefaultButton";
 import { toast } from "react-toastify";
 import { jobInfoContentList } from "../../utils/statics/job-info-content-list";
 import ControlledTextField from "../../ui/components/ControlledTextField/ControlledTextField";
-import TasksGrid from "../../ui/components/TasksGrid/TasksGrid";
 import {
   eventSetupContentList,
   eventSetupContentListMock,
 } from "../../utils/statics/event-setup-content-list";
+import TasksGrid from "./components/TasksGrid/TasksGrid";
+import LoadingSpinner from "../../ui/components/LoadingSpinner/LoadingSpinner";
 
 export default function TasksPage() {
   const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);

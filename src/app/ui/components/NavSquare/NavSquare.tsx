@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./NavSquare.css";
 import NavColumn from "../NavColumn/NavColumn";
-import DismissableDialog from "../../helpers/DismissableDialog/DismissableDialog";
+import DismissableDialog from "../DismissableDialog/DismissableDialog";
 
 type NavSquareProps = {
   primaryOption: string;

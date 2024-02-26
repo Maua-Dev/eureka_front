@@ -41,6 +41,7 @@ export default function FileUploadPage() {
         <div className="description">
           <p className="description__first">{`Envio do ${jobInfo?.title}. Tipos de arquivos válidos: ${jobInfo?.fileFormat?.join(", ")}.`}</p>
           {/* <p className="description__second">{parse(jobInfo?.description!)}</p> */}
+          <input type="file" />
         </div>
       </HeaderedBox>
     </main>

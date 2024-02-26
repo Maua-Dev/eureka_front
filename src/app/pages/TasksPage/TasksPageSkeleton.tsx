@@ -3,9 +3,9 @@ import "./TasksPage.css";
 import DefaultButton from "../../ui/components/DefaultButton/DefaultButton";
 import HeaderedBoxSkeleton from "../../ui/components/HeaderedBox/HeaderedBoxSkeleton";
 import ControlledTextFieldSkeleton from "../../ui/components/ControlledTextField/ControlledTextFieldSkeleton";
-import TaskGridSkeleton from "../../ui/components/TasksGrid/TasksGridSkeleton";
 import { jobInfoContentList } from "../../utils/statics/job-info-content-list";
 import { eventSetupContentList } from "../../utils/statics/event-setup-content-list";
+import TaskGridSkeleton from "./components/TasksGrid/TasksGridSkeleton";
 
 // Skeleton for the tasks page
 export default function TasksPageSkeleton() {

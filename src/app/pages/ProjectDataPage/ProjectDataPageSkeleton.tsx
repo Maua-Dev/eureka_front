@@ -3,8 +3,8 @@ import DefaultTextFieldSkeleton from "../../ui/components/DefaultTextField/Defau
 import HeaderedBoxSkeleton from "../../ui/components/HeaderedBox/HeaderedBoxSkeleton";
 import { odsList } from "../../utils/statics/ods-list";
 import { actionsList } from "../../utils/statics/actions-list";
-import ImageInfoCardSkeleton from "../../ui/components/ImageInfoCard/ImageInfoCardSkeleton";
 import "./ProjectDataPage.css";
+import ImageInfoCardSkeleton from "./components/ImageInfoCard/ImageInfoCardSkeleton";
 
 export default function ProjectDataPageSkeleton() {
   return (
