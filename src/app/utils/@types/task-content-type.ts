@@ -4,4 +4,7 @@ export type TaskContentType = {
   basePath: string;
   fileFormat?: string[];
   description?: string;
+  downloadText?: string;
+  maxSize?: number;
+  maxNumber?: number;
 };
