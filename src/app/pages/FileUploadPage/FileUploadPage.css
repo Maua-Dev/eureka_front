@@ -184,8 +184,13 @@
     height: 40px;
   }
 
+  .file_upload_page .description {
+    margin-bottom: 1rem;
+  }
+
   .file_upload_page .btn--lighter {
     width: 165px;
+    margin-top: 4rem;
   }
 
   .file_upload_page .photos {
@@ -272,8 +277,13 @@
     height: 30px;
   }
 
+  .file_upload_page .description {
+    margin-bottom: 0.5rem;
+  }
+
   .file_upload_page .btn--lighter {
     width: 130px;
+    margin-top: 3rem;
   }
 
   .file_upload_page .photos {
