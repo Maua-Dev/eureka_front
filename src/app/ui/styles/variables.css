@@ -16,7 +16,7 @@
   --dark-mustard-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(376%)
     hue-rotate(17deg) brightness(87%) contrast(87%);
 
-  /* project font weights (this values follow the figma nomeclature) */
+  /* project font weights (this values follows the figma nomeclature) */
   --bold: 800;
   --semi-bold: 700;
   --medium: 600;

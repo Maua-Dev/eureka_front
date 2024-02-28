@@ -308,11 +308,6 @@
   width: 80%;
 }
 
-.tasks_page .grid__title--link:hover {
-  text-decoration: underline;
-  color: var(--dark-mustard);
-}
-
 @media screen and (max-width: 1200px) {
   .tasks_page .option__icon {
     pointer-events: none;

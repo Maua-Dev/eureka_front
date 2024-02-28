@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { TaskContentType } from "../../../../utils/@types/task-content-type";
 import { TaskModel } from "../../../../models/task-model";
 import { DeliveryModel } from "../../../../models/delivery-model";
-import { handleGetTaskContentColor } from "../../../../utils/functions/handle-get-task-content-color";
 import HeaderedBox from "../../../../ui/components/HeaderedBox/HeaderedBox";
 
 type TasksGridProps = {
@@ -22,6 +21,18 @@ export default function TasksGrid({
   deliveries,
   boxClassName,
 }: TasksGridProps) {
+  // function to get the color of the task status based in the content
+  const handleGetTaskContentColor = (content: string) => {
+    switch (content?.toLowerCase()) {
+      case "aprovado":
+        return "tasks_grid__text--green";
+      case "reprovado":
+        return "vtasks_grid__text--red";
+      default:
+        return "tasks_grid__text--blue";
+    }
+  };
+
   return (
     <HeaderedBox headerTitle={headerTitle} boxClassName={boxClassName}>
       <div className="tasks_grid">
@@ -62,17 +73,13 @@ export default function TasksGrid({
                   gridRow: `${taskContentIndex + 2} / ${taskContentIndex + 3}`,
                 }}
               >
-                <Link
-                  to={`${taskContent.basePath}/${tasksFiltered[0]?.taskId}`}
-                  className="tasks_grid__title grid__title--link"
-                >
-                  {taskContent.title}
-                </Link>
+                <div className="tasks_grid__title">{taskContent.title}</div>
               </div>
               <>
                 {tasksFiltered.map((task, taskIndex) => {
                   return (
-                    <div
+                    <Link
+                      to={`${taskContent.basePath}/${tasksFiltered[taskIndex]?.taskId}`}
                       key={taskIndex}
                       className="tasks_grid__element"
                       style={{
@@ -82,12 +89,14 @@ export default function TasksGrid({
                     >
                       <p className="tasks_grid__text">Até {task.deliveryDate}</p>
                       <p className="tasks_grid__text">Não enviado</p>
-                    </div>
+                    </Link>
                   );
                 })}
                 {deliveriesFiltered.map((delivery, deliveryIndex) => {
+                  console.log(delivery);
                   return (
-                    <div
+                    <Link
+                      to={`${taskContent.basePath}/${deliveriesFiltered[deliveryIndex]?.task.taskId}`}
                       key={deliveryIndex}
                       className="tasks_grid__element"
                       style={{
@@ -97,16 +106,13 @@ export default function TasksGrid({
                     >
                       <p className="tasks_grid__text">Até {`${delivery.date}`}</p>
                       <p
-                        className="tasks_grid__text"
-                        style={{
-                          color: handleGetTaskContentColor(delivery?.content["status"] as string),
-                        }}
+                        className={`tasks_grid__text ${handleGetTaskContentColor(delivery?.content["status"] as string)}`}
                       >
                         {delivery?.content["status"] != undefined
                           ? `${delivery?.content["status"]} por ${delivery?.user.name} em ${delivery?.task.deliveryDate}`
                           : ""}
                       </p>
-                    </div>
+                    </Link>
                   );
                 })}
               </>

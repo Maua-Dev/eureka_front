@@ -42,7 +42,7 @@ export default function TaskGridSkeleton({ boxClassName, tasksContent }: TaskGri
                     gridRow: `${taskContentIndex + 2} / ${taskContentIndex + 3}`,
                   }}
                 >
-                  <Skeleton className="tasks_grid__title tasks_grid__title--skeleton grid__title--link"></Skeleton>
+                  <Skeleton className="tasks_grid__title tasks_grid__title--skeleton"></Skeleton>
                 </div>
                 <div
                   className="tasks_grid__element tasks_grid__element--skeleton"

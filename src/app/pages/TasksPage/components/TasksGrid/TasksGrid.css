@@ -14,6 +14,7 @@
   flex-direction: column;
   height: 5rem;
   padding: 0.2rem;
+  text-decoration: none;
 }
 
 .tasks_grid .tasks_grid__element--skeleton {
@@ -38,6 +39,18 @@
   font-weight: var(--medium);
 }
 
+.tasks_grid .tasks_grid__text--green {
+  color: var(--green);
+}
+
+.tasks_grid .tasks_grid__text--red {
+  color: var(--red);
+}
+
+.tasks_grid .tasks_grid__text--blue {
+  color: var(--dark-blue);
+}
+
 .tasks_grid .tasks_grid__text--skeleton {
   width: 80%;
 }
@@ -48,7 +61,7 @@
   font-weight: var(--medium);
 }
 
-.tasks_grid .tasks_grid__title--link:hover {
-  text-decoration: underline;
+.tasks_grid .tasks_grid__element:hover .tasks_grid__text {
   color: var(--dark-mustard);
+  cursor: pointer;
 }
