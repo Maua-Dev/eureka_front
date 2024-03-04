@@ -1,8 +1,4 @@
-type navOptions = {
-  primaryOption: string;
-  secondaryOptions: string[];
-  stateKey?: string; // optional key to change state of the nav column based in useState declared in header
-};
+import { navOptions } from "../@types/nav-options-type";
 
 // const nav options of the nav horizontal bar (header)
 export const navOptionsList: navOptions[] = [

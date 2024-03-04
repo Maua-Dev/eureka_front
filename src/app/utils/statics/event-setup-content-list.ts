@@ -6,8 +6,7 @@ export const eventSetupContentList: TaskContentType[] = [
   {
     id: 13,
     title: "Recursos de estande",
-    basePath: "",
-    description: "",
+    basePath: "resources",
   },
   {
     id: 14,

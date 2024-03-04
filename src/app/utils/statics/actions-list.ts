@@ -6,13 +6,7 @@ import tripodLogo from "../../assets/actions/tripod-logo.png";
 import systemLogo from "../../assets/actions/system-logo.png";
 import companiesLogo from "../../assets/actions/companies-logo.png";
 import fablabLogo from "../../assets/actions/fablab-logo.png";
-
-type action = {
-  actionId: number;
-  image: string;
-  title: string;
-  description: string;
-};
+import { action } from "../@types/action-type";
 
 export const actionsList: action[] = [
   {
