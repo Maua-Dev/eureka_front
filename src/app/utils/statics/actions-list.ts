@@ -1,11 +1,11 @@
-import divisionLogo from "../../assets/logos/division-logo.png";
-import innovationLogo from "../../assets/logos/innovation-logo.png";
-import smartLogo from "../../assets/logos/smart-logo.png";
-import accessibilityLogo from "../../assets/logos/accessibility-logo.png";
-import tripodLogo from "../../assets/logos/tripod-logo.png";
-import systemLogo from "../../assets/logos/system-logo.png";
-import companiesLogo from "../../assets/logos/companies-logo.png";
-import fablabLogo from "../../assets/logos/fablab-logo.png";
+import divisionLogo from "../../assets/actions/division-logo.png";
+import innovationLogo from "../../assets/actions/innovation-logo.png";
+import smartLogo from "../../assets/actions/smart-logo.png";
+import accessibilityLogo from "../../assets/actions/accessibility-logo.png";
+import tripodLogo from "../../assets/actions/tripod-logo.png";
+import systemLogo from "../../assets/actions/system-logo.png";
+import companiesLogo from "../../assets/actions/companies-logo.png";
+import fablabLogo from "../../assets/actions/fablab-logo.png";
 
 type action = {
   actionId: number;
