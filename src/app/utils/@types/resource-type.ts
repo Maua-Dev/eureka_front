@@ -1,4 +1,4 @@
-export type resource = {
+export type ResourceType = {
   resourceId: number;
   image?: string;
   title: string;

@@ -15,9 +15,9 @@ import waterLifeLogo from "../../assets/ods/water-life-logo.png";
 import groundLife from "../../assets/ods/ground-life-logo.png";
 import peaceLogo from "../../assets/ods/peace-logo.png";
 import partnershipLogo from "../../assets/ods/partnership-logo.png";
-import { ods } from "../@types/ods-type";
+import { OdsType } from "../@types/ods-type";
 
-export const odsList: ods[] = [
+export const odsList: OdsType[] = [
   {
     odsId: 1,
     image: povertyLogo,

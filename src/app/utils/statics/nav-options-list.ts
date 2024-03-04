@@ -1,7 +1,7 @@
-import { navOptions } from "../@types/nav-options-type";
+import { NavOptionsType } from "../@types/nav-options-type";
 
 // const nav options of the nav horizontal bar (header)
-export const navOptionsList: navOptions[] = [
+export const navOptionsList: NavOptionsType[] = [
   {
     primaryOption: "Meus trabalhos e estandes",
     secondaryOptions: [],

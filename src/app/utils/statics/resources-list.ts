@@ -11,9 +11,9 @@ import showcaseLogo from "../../assets/resources/showcase-logo.png";
 import tableLogo from "../../assets/resources/table-logo.png";
 import tableLowLogo from "../../assets/resources/table-low-logo.png";
 import tvLogo from "../../assets/resources/tv-logo.png";
-import { resource } from "../@types/resource-type";
+import { ResourceType } from "../@types/resource-type";
 
-export const resourcesList: resource[] = [
+export const resourcesList: ResourceType[] = [
   {
     resourceId: 1,
     image: tableLogo,
