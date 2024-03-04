@@ -2,6 +2,10 @@
   padding: 3rem 2.5rem 4rem 2.5rem;
 }
 
+.file_upload_page--skeleton {
+  pointer-events: none;
+}
+
 .file_upload_page .box__main {
   background-color: var(--white);
   border-radius: var(--medium-radius);

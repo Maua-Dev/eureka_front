@@ -11,6 +11,7 @@ import DefaultButton from "../../ui/components/DefaultButton/DefaultButton";
 import { toast } from "react-toastify";
 import parse from "html-react-parser";
 import { TaskContentType } from "../../utils/@types/task-content-type";
+import FileUploadSkeleton from "./FileUploadSkeleton";
 
 export default function FileUploadPage() {
   const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
@@ -70,63 +71,71 @@ export default function FileUploadPage() {
 
   return (
     <main className="file_upload_page">
-      {isSkeletonLoading}
-      <HeaderedBox
-        boxHeaderClassName="box__header--file"
-        boxClassName="box--file"
-        headerTitle={jobInfo?.title}
-      >
-        <div className="box__main">
-          <div className="description">
-            {<>{jobInfo?.description && parse(jobInfo.description)}</>}
-          </div>
-          <p className="download_text">{jobInfo?.downloadText}</p>
-          {jobInfo?.title == "Fotos do Trabalho" && (
-            <div className="photos">
-              {files?.map((file, index) => {
-                const objectUrl = URL.createObjectURL(file);
+      {isSkeletonLoading ? (
+        <FileUploadSkeleton />
+      ) : (
+        <HeaderedBox
+          boxHeaderClassName="box__header--file"
+          boxClassName="box--file"
+          headerTitle={jobInfo?.title}
+        >
+          <div className="box__main">
+            <div className="description">
+              {<>{jobInfo?.description && parse(jobInfo.description)}</>}
+            </div>
+            <p className="download_text">{jobInfo?.downloadText}</p>
+            {jobInfo?.title == "Fotos do Trabalho" && (
+              <div className="photos">
+                {files?.map((file, index) => {
+                  const objectUrl = URL.createObjectURL(file);
+                  return (
+                    <div className="photos__item" key={index}>
+                      <img
+                        src={objectUrl}
+                        alt={file.name}
+                        key={index}
+                        className="photos__preview"
+                      />
+                      <DefaultButton
+                        title="Remover"
+                        buttonClassName="photos__btn"
+                        onClick={() => setFiles(files.filter((e) => e != file))}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            <label className="btn btn--lighter">
+              <input
+                onChange={handleFileChange}
+                type="file"
+                className="btn__input"
+                accept={`.${jobInfo?.fileFormat?.join(",.")}`}
+              />
+              <p>Escolher arquivo</p>
+            </label>
+            {jobInfo?.title != "Fotos do Trabalho" &&
+              files?.map((file, index) => {
                 return (
-                  <div className="photos__item" key={index}>
-                    <img src={objectUrl} alt={file.name} key={index} className="photos__preview" />
-                    <DefaultButton
-                      title="Remover"
-                      buttonClassName="photos__btn"
+                  <div className="file" key={index}>
+                    <p className="file__name">{file.name}</p>
+                    <p
                       onClick={() => setFiles(files.filter((e) => e != file))}
-                    />
+                      className="file__icon"
+                    >
+                      X
+                    </p>
                   </div>
                 );
               })}
-            </div>
-          )}
-          <label className="btn btn--lighter">
-            <input
-              onChange={handleFileChange}
-              type="file"
-              className="btn__input"
-              accept={`.${jobInfo?.fileFormat?.join(",.")}`}
-            />
-            <p>Escolher arquivo</p>
-          </label>
-          {jobInfo?.title != "Fotos do Trabalho" &&
-            files?.map((file, index) => {
-              return (
-                <div className="file" key={index}>
-                  <p className="file__name">{file.name}</p>
-                  <p
-                    onClick={() => setFiles(files.filter((e) => e != file))}
-                    className="file__icon"
-                  >
-                    X
-                  </p>
-                </div>
-              );
-            })}
-        </div>
-        <div className="box__footer">
-          <DefaultButton title="Enviar" buttonClassName="btn" />
-          <DefaultButton title="Remover envio" buttonClassName="btn" />
-        </div>
-      </HeaderedBox>
+          </div>
+          <div className="box__footer">
+            <DefaultButton title="Enviar" buttonClassName="btn" />
+            <DefaultButton title="Remover envio" buttonClassName="btn" />
+          </div>
+        </HeaderedBox>
+      )}
     </main>
   );
 }
