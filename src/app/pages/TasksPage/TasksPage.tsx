@@ -9,9 +9,7 @@ import { DeliveryContext } from "../../context/delivery-context";
 import { useErrorBoundary } from "react-error-boundary";
 import { UserModel } from "../../models/user-model";
 import { handleFetch } from "../../utils/functions/handle-fetch";
-import { UserAdapter } from "../../adapters/user-adapter";
 import { UserJson } from "../../../@clean/shared/infra/jsons/user-json";
-import { User } from "../../../@clean/shared/domain/entities/user";
 import { ROLE } from "../../../@clean/shared/domain/enums/role-enum";
 import ProjectTasksPageSkeleton from "./TasksPageSkeleton";
 import HeaderedBox from "../../ui/components/HeaderedBox/HeaderedBox";
@@ -26,6 +24,7 @@ import {
 } from "../../utils/statics/event-setup-content-list";
 import TasksGrid from "./components/TasksGrid/TasksGrid";
 import LoadingSpinner from "../../ui/components/LoadingSpinner/LoadingSpinner";
+import { UserContext } from "../../context/user-context";
 
 export default function TasksPage() {
   const [isSkeletonLoading, setIsSkeletonLoading] = useState(false);
@@ -38,6 +37,7 @@ export default function TasksPage() {
   const { projectFromContext, getProject, updateProject } = useContext(ProjectContext);
   const { tasksFromContext, getAllTasks } = useContext(TaskContext);
   const { deliveriesFromContext, getDeliveries } = useContext(DeliveryContext);
+  const { professorsFromContext, getAllProfessors } = useContext(UserContext);
 
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
@@ -48,7 +48,6 @@ export default function TasksPage() {
   );
 
   const [cosupervisor, setCosupervisor] = useState<UserModel>(projectFromContext.advisors[1]);
-  const [professorsOptions, setProfessorsOptions] = useState<UserModel[]>([]);
 
   // function to control the selection of the entrepreneurship option
   const handleOptionClick = (optionValue: string) => {
@@ -73,7 +72,8 @@ export default function TasksPage() {
       undefined,
       getProject(projectIdFromPath),
       getAllTasks(),
-      getDeliveries(projectIdFromPath)
+      getDeliveries(projectIdFromPath),
+      getAllProfessors()
     );
   }, []);
 
@@ -83,16 +83,8 @@ export default function TasksPage() {
 
   // set the possible professors to be selected in the input, excluding the responsible
   useEffect(() => {
-    const users: UserModel[] = UserJson.userJson.map((user) =>
-      UserAdapter.toModel(User.fromJson(user))
-    );
-    setProfessorsOptions(
-      users.filter(
-        (user) => user.role === ROLE.PROFESSOR && !isEqual(user, projectFromContext.advisors[0])
-      )
-    );
     setCosupervisor(projectFromContext.advisors[1]);
-  }, [projectFromContext.advisors, projectFromContext.responsibles]);
+  }, [projectFromContext.advisors]);
 
   return (
     <main className="tasks_page">
@@ -120,7 +112,10 @@ export default function TasksPage() {
                   title={"Coorientador"}
                   value={cosupervisor}
                   noOptionsMessage={"Professor não encontrado"}
-                  options={professorsOptions}
+                  options={professorsFromContext.filter(
+                    (user) =>
+                      user.role === ROLE.PROFESSOR && !isEqual(user, projectFromContext.advisors[0])
+                  )}
                   onChange={(option: UserModel | null) => {
                     setCosupervisor(option!);
                   }}

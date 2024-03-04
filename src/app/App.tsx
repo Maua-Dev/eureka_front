@@ -12,6 +12,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import Header from "./ui/components/Header/Header";
 import Footer from "./ui/components/Footer/Footer";
 import ErrorAlert from "./ui/components/ErrorToast/ErrorAlert";
+import { UserProvider } from "./context/user-context";
 
 function App() {
   return (
@@ -19,17 +20,19 @@ function App() {
       <BrowserRouter>
         <ErrorAlert />
         <AuthProvider>
-          <DeliveryProvider>
-            <TaskProvider>
-              <ProjectProvider>
-                <Header />
-                <ErrorBoundary FallbackComponent={ErrorPage}>
-                  <AppRouter />
-                </ErrorBoundary>
-                <Footer />
-              </ProjectProvider>
-            </TaskProvider>
-          </DeliveryProvider>
+          <UserProvider>
+            <DeliveryProvider>
+              <TaskProvider>
+                <ProjectProvider>
+                  <Header />
+                  <ErrorBoundary FallbackComponent={ErrorPage}>
+                    <AppRouter />
+                  </ErrorBoundary>
+                  <Footer />
+                </ProjectProvider>
+              </TaskProvider>
+            </DeliveryProvider>
+          </UserProvider>
         </AuthProvider>
       </BrowserRouter>
     </div>

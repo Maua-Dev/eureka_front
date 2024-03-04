@@ -4,6 +4,7 @@ import { http } from "../axios/http";
 import { UserRepositoryMock } from "../repositories/user/user-repository-mock";
 import { UserRepositoryHttp } from "../repositories/user/user-repository-http";
 import { GetAllStudentsUsecase } from "../../../modules/user/usecases/get-all-students-usecase";
+import { GetAllProfessorsUsecase } from "../../../modules/user/usecases/get-all-professors-usecase";
 
 export const RegistryUser = {
   AxiosAdapter: Symbol.for("AxiosAdapter"),
@@ -12,6 +13,7 @@ export const RegistryUser = {
   UserRepositoryHttp: Symbol.for("UserRepositoryHttp"),
 
   GetAllStudentsUsecase: Symbol.for("GetAllStudentsUsecase"),
+  GetAllProfessorsUsecase: Symbol.for("GetAllProfessorsUsecase"),
 };
 
 export const containerUser = new Container();
@@ -30,5 +32,15 @@ containerUser.bind(RegistryUser.GetAllStudentsUsecase).toDynamicValue((context) 
     return new GetAllStudentsUsecase(context.container.get(RegistryUser.UserRepositoryHttp));
   } else {
     return new GetAllStudentsUsecase(context.container.get(RegistryUser.UserRepositoryMock));
+  }
+});
+
+containerUser.bind(RegistryUser.GetAllProfessorsUsecase).toDynamicValue((context) => {
+  if (import.meta.env.APP_STAGE === "TEST") {
+    return new GetAllProfessorsUsecase(context.container.get(RegistryUser.UserRepositoryMock));
+  } else if (import.meta.env.APP_STAGE === "DEV" || import.meta.env.APP_STAGE === "PROD") {
+    return new GetAllProfessorsUsecase(context.container.get(RegistryUser.UserRepositoryHttp));
+  } else {
+    return new GetAllProfessorsUsecase(context.container.get(RegistryUser.UserRepositoryMock));
   }
 });

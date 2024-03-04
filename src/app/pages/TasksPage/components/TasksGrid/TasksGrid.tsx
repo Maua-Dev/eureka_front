@@ -93,7 +93,6 @@ export default function TasksGrid({
                   );
                 })}
                 {deliveriesFiltered.map((delivery, deliveryIndex) => {
-                  console.log(delivery);
                   return (
                     <Link
                       to={`${taskContent.basePath}/${deliveriesFiltered[deliveryIndex]?.task.taskId}`}

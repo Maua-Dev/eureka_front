@@ -15,6 +15,11 @@ export class UserRepositoryHttp implements IUserRepository {
     const response = await this._axios.get("/get_all_students");
     return response.data.map((user: UserJsonProps) => User.fromJson(user));
   }
+
+  async getAllProfessors(): Promise<User[]> {
+    const response = await this._axios.get("/get_all_professors");
+    return response.data.map((user: UserJsonProps) => User.fromJson(user));
+  }
 }
 
 decorate(injectable(), UserRepositoryHttp);
