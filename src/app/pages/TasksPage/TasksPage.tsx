@@ -9,7 +9,6 @@ import { DeliveryContext } from "../../context/delivery-context";
 import { useErrorBoundary } from "react-error-boundary";
 import { UserModel } from "../../models/user-model";
 import { handleFetch } from "../../utils/functions/handle-fetch";
-import { UserJson } from "../../../@clean/shared/infra/jsons/user-json";
 import { ROLE } from "../../../@clean/shared/domain/enums/role-enum";
 import ProjectTasksPageSkeleton from "./TasksPageSkeleton";
 import HeaderedBox from "../../ui/components/HeaderedBox/HeaderedBox";
@@ -109,6 +108,7 @@ export default function TasksPage() {
               </div>
               <div className="cosupervisor">
                 <ControlledTextField<UserModel>
+                  isSearchable={true}
                   title={"Coorientador"}
                   value={cosupervisor}
                   noOptionsMessage={"Professor não encontrado"}
@@ -119,6 +119,7 @@ export default function TasksPage() {
                   onChange={(option: UserModel | null) => {
                     setCosupervisor(option!);
                   }}
+                  showDropDownIcon={false}
                   getOptionLabel={(option: UserModel) => option.name}
                   getOptionValue={(option: UserModel) => option.name}
                   saveButtonIsincluded={true}
@@ -128,10 +129,10 @@ export default function TasksPage() {
                     } else if (isEqual(cosupervisor, projectFromContext.advisors[1])) {
                       toast.error("O coorientador não pode ser igual ao anterior");
                     } else {
-                      const professor = UserJson.userJson.find(
+                      const professor = professorsFromContext.find(
                         (user) => user.name.toLowerCase() === cosupervisor?.name.toLowerCase()
                       );
-                      const professorId = [professor!.user_id];
+                      const professorId = [professor!.userId];
                       handleFetch(
                         setIsLoading,
                         showBoundary,
