@@ -10,6 +10,11 @@
   gap: 1rem;
 }
 
+.resource_card .img {
+  max-height: 100%;
+  max-width: 125px;
+}
+
 .resource_card .resource_card__top {
   display: flex;
   gap: 1rem;
@@ -65,4 +70,62 @@
 .resource_card .input {
   min-height: 100px;
   font-size: var(--span-text);
+}
+
+.resource_card .controlled_text_field {
+  text-align: start;
+}
+
+@media screen and (max-width: 1000px) {
+  .resource_card .img {
+    max-height: 100%;
+    max-width: 105px;
+  }
+
+  .resource_card .quantity_input {
+    width: 90px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .resource_card {
+    padding: 2rem 0.5rem 0.5rem 0.5rem;
+  }
+
+  .resource_card .input {
+    min-height: 70px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .resource_card .img {
+    max-height: 100%;
+    max-width: 95px;
+  }
+
+  .resource_card .quantity_input {
+    width: 80px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .resource_card .img {
+    max-height: 100%;
+    max-width: 85px;
+  }
+
+  .resource_card .quantity_input {
+    width: 70px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .resource_card .img {
+    max-height: 100%;
+    max-width: 75px;
+  }
+
+  .resource_card .quantity_input {
+    width: 60px;
+  }
 }

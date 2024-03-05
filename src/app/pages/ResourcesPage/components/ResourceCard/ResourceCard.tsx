@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ControlledTextField from "../../../../ui/components/ControlledTextField/ControlledTextField";
 import { ResourceType } from "../../../../utils/@types/resource-type";
 import "./ResourceCard.css";
@@ -6,24 +6,54 @@ import DefaultTextField from "../../../../ui/components/DefaultTextField/Default
 
 type ResourceCardProps = {
   resource: ResourceType;
+  setSpecificationValues: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
+  setJustificationValues: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
+  setQuantityValue: React.Dispatch<React.SetStateAction<{ [key: string]: number }>>;
 };
 
 type QuantityType = {
   quantity: number;
 };
 
-export default function ResourceCard({ resource }: ResourceCardProps) {
+export default function ResourceCard({
+  resource,
+  setSpecificationValues,
+  setJustificationValues,
+  setQuantityValue,
+}: ResourceCardProps) {
   const options: QuantityType[] = Array.from({ length: resource.maximum + 1 }, (_, i) => ({
     quantity: i,
   }));
 
   const [quantity, setQuantity] = useState<QuantityType>(options[0]);
-  const [specification, setSpecification] = useState<string>("");
+  const [justificationValue, setJustificationValue] = useState("");
+  const [specificationValue, setSpecificationValue] = useState("");
+
+  useEffect(() => {
+    setJustificationValues((prevState) => ({
+      ...prevState,
+      [resource.resourceId]: justificationValue,
+    }));
+  }, [justificationValue]);
+
+  useEffect(() => {
+    setSpecificationValues((prevState) => ({
+      ...prevState,
+      [resource.resourceId]: specificationValue,
+    }));
+  }, [specificationValue]);
+
+  useEffect(() => {
+    setQuantityValue((prevState) => ({
+      ...prevState,
+      [resource.resourceId]: quantity,
+    }));
+  }, [quantity]);
 
   return (
     <div className="resource_card">
       <div className="resource_card__top">
-        {resource.image && <img src={resource.image} alt={resource.title} />}
+        {resource.image && <img className="img" src={resource.image} alt={resource.title} />}
         <aside className="infos">
           <div>
             <h1 className="infos__title">{resource.title}</h1>
@@ -39,6 +69,7 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
                 getOptionLabel={(option: QuantityType) => option.quantity.toString()}
                 getOptionValue={(option: QuantityType) => option.quantity.toString()}
                 noOptionsMessage=""
+                controlledTextFieldClassName="controlled_text_field"
               />
             </div>
             <p className="maximum">{`(máximo: ${resource.maximum})`}</p>
@@ -48,8 +79,8 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
       <div className="resource_card__bottom">
         {resource.hasSpecificationField && (
           <DefaultTextField
-            setValue={setSpecification}
-            value={specification}
+            setValue={setJustificationValue}
+            value={justificationValue}
             topTitle="Especificação"
             isTextArea={true}
             inputTitleClassName="input__title"
@@ -58,8 +89,8 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
         )}
         {resource.hasJustificationField && (
           <DefaultTextField
-            setValue={setSpecification}
-            value={specification}
+            setValue={setSpecificationValue}
+            value={specificationValue}
             topTitle="Justificativa"
             isTextArea={true}
             inputTitleClassName="input__title"

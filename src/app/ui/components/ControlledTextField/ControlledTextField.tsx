@@ -23,6 +23,7 @@ type ControlledTextFieldProps<T> = {
   title?: string;
   showDropDownIcon?: boolean;
   isSearchable?: boolean;
+  controlledTextFieldClassName?: string;
 };
 
 export default function ControlledTextField<T>({
@@ -37,6 +38,7 @@ export default function ControlledTextField<T>({
   title,
   showDropDownIcon = true,
   isSearchable = false,
+  controlledTextFieldClassName,
 }: ControlledTextFieldProps<T>) {
   const [isControlledTextFieldOpen, setIsControlledTextFieldOpen] = useState<boolean | null>(null);
 
@@ -44,7 +46,7 @@ export default function ControlledTextField<T>({
     <div className="controlled_text_field">
       {title && <h2 className="controlled_text_field__title">{title}</h2>}
       <Select
-        className="controlled_text_field__input"
+        className={`controlled_text_field__input ${controlledTextFieldClassName}`}
         value={value}
         components={{
           DropdownIndicator: () => {
@@ -72,6 +74,23 @@ export default function ControlledTextField<T>({
               padding: "0 0.2rem",
               minHeight: "20px",
               cursor: "pointer",
+            };
+          },
+          indicatorSeparator(base) {
+            return {
+              ...base,
+              height: "0",
+            };
+          },
+          indicatorsContainer(base) {
+            return {
+              ...base,
+              width: "fit-content",
+              display: "flex",
+              justifyContent: "flex-end",
+              height: "fit-content",
+              marginTop: "auto",
+              marginBottom: "auto",
             };
           },
           menu(base) {
