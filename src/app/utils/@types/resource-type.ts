@@ -4,5 +4,6 @@ export type ResourceType = {
   title: string;
   description?: string;
   maximum: number;
-  fields?: string[];
+  hasSpecificationField: boolean;
+  hasJustificationField: boolean;
 };
