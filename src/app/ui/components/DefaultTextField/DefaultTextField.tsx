@@ -11,6 +11,7 @@ type DefaultTextFieldProps = {
   setValue: React.Dispatch<React.SetStateAction<string>>;
   textFieldClassName?: string;
   isTextArea?: boolean;
+  inputTitleClassName?: string;
 };
 
 export default function DefaultTextField({
@@ -23,12 +24,15 @@ export default function DefaultTextField({
   setValue,
   textFieldClassName,
   isTextArea = false,
+  inputTitleClassName,
 }: DefaultTextFieldProps) {
   return (
     <div className={"default_text_field"}>
-      {topTitle && <span className="input__title">{`${topTitle}: `}</span>}
+      {topTitle && <span className={`input__title ${inputTitleClassName}`}>{`${topTitle}: `}</span>}
       <div className={`input ${isTextArea && "input--textarea"}`}>
-        {insideTitle && <h2 className="input__title">{`${insideTitle}: `}</h2>}
+        {insideTitle && (
+          <h2 className={`input__title ${inputTitleClassName}`}>{`${insideTitle}: `}</h2>
+        )}
         {isTextArea ? (
           <textarea
             className={`input__field input__field--textarea ${textFieldClassName}`}
@@ -37,7 +41,7 @@ export default function DefaultTextField({
           ></textarea>
         ) : (
           <input
-            className="input__field"
+            className={`input__field ${textFieldClassName}`}
             value={value}
             onChange={(event) => setValue(event.currentTarget.value)}
             type={type}

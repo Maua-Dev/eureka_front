@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.controlled_text_field .controlled_text_field__icon {
+  height: 60%;
+}
+
 .controlled_text_field .controlled_text_field__title {
   font-size: var(--regular-text);
   color: var(--dark-blue);
@@ -33,6 +37,42 @@
 .controlled_text_field .controlled_text_field__btn {
   margin-top: 0.5rem;
   align-self: flex-start;
+}
+
+.controlled_text_field .controlled_text_field__icon--down {
+  animation-name: icon_down;
+  animation-duration: 0.2s;
+  transform: scale(1, -1);
+}
+
+.controlled_text_field .controlled_text_field__icon--up {
+  animation-name: icon_up;
+  animation-duration: 0.2s;
+  transform: scale(1, 1);
+}
+
+.controlled_text_field:hover {
+  color: var(--dark-mustard);
+}
+
+@keyframes icon_down {
+  from {
+    transform: scale(1, 1);
+  }
+
+  to {
+    transform: scale(1, -1);
+  }
+}
+
+@keyframes icon_up {
+  from {
+    transform: scale(1, -1);
+  }
+
+  to {
+    transform: scale(1, 1);
+  }
 }
 
 @media screen and (max-width: 700px) {

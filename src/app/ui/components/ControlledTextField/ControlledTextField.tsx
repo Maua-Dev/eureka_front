@@ -8,6 +8,8 @@ import Select, {
 } from "react-select";
 import "./ControlledTextField.css";
 import DefaultButton from "../DefaultButton/DefaultButton";
+import arrowIcon from "../../../assets/icons/arrow-icon.svg";
+import { useState } from "react";
 
 type ControlledTextFieldProps<T> = {
   value: T;
@@ -18,7 +20,9 @@ type ControlledTextFieldProps<T> = {
   noOptionsMessage: string;
   saveButtonIsincluded?: boolean;
   onClick?: () => void;
-  title: string;
+  title?: string;
+  showDropDownIcon?: boolean;
+  isSearchable?: boolean;
 };
 
 export default function ControlledTextField<T>({
@@ -31,15 +35,29 @@ export default function ControlledTextField<T>({
   saveButtonIsincluded = false,
   onClick,
   title,
+  showDropDownIcon = true,
+  isSearchable = false,
 }: ControlledTextFieldProps<T>) {
+  const [isControlledTextFieldOpen, setIsControlledTextFieldOpen] = useState<boolean | null>(null);
+
   return (
     <div className="controlled_text_field">
-      <h2 className="controlled_text_field__title">{title}</h2>
+      {title && <h2 className="controlled_text_field__title">{title}</h2>}
       <Select
         className="controlled_text_field__input"
         value={value}
         components={{
-          DropdownIndicator: null,
+          DropdownIndicator: () => {
+            if (showDropDownIcon) {
+              return (
+                <img
+                  className={`controlled_text_field__icon ${isControlledTextFieldOpen == null ? "" : isControlledTextFieldOpen ? "controlled_text_field__icon--down" : "controlled_text_field__icon--up"}`}
+                  src={arrowIcon}
+                  alt="Ícone de flecha"
+                />
+              );
+            }
+          },
           NoOptionsMessage: () => noOptionsMessage,
         }}
         styles={{
@@ -53,6 +71,7 @@ export default function ControlledTextField<T>({
               boxShadow: "none",
               padding: "0 0.2rem",
               minHeight: "20px",
+              cursor: "pointer",
             };
           },
           menu(base) {
@@ -75,13 +94,17 @@ export default function ControlledTextField<T>({
             return {
               ...base,
               padding: "0.2rem",
+              cursor: "pointer",
             };
           },
         }}
+        isSearchable={isSearchable}
         backspaceRemovesValue={true}
         unstyled={true}
         placeholder=""
         options={options}
+        onMenuOpen={() => setIsControlledTextFieldOpen(true)}
+        onMenuClose={() => setIsControlledTextFieldOpen(false)}
         onChange={onChange}
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}
