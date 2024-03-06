@@ -247,7 +247,7 @@ export default function TasksPage() {
             <aside className="deliveries--right">
               <TasksGrid
                 headerTitle="Montagem do evento"
-                deliveries={[]}
+                deliveries={deliveriesFromContext}
                 tasksContent={eventSetupContentList}
                 tasks={eventSetupContentListMock}
               />
