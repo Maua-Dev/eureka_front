@@ -16,6 +16,7 @@ import { ResourceType } from "../@types/resource-type";
 export const resourcesList: ResourceType[] = [
   {
     resourceId: 1,
+    name: "table",
     image: tableLogo,
     title: "Mesa",
     description:
@@ -26,6 +27,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 2,
+    name: "low_table",
     image: tableLowLogo,
     title: "Mesa baixa",
     description:
@@ -36,6 +38,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 3,
+    name: "round_table",
     image: roundTableLogo,
     title: "Mesa redonda",
     description:
@@ -46,6 +49,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 4,
+    name: "chair",
     image: chairLogo,
     title: "Cadeira",
     description: "Cadeira para sentar.",
@@ -55,6 +59,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 5,
+    name: "counter",
     image: counterLogo,
     title: "Balcão",
     description: "Dimensões: largura 0,50m; comprimento 1,00m; altura 1,00m.",
@@ -64,6 +69,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 6,
+    name: "outlet_110",
     image: outlet110Logo,
     title: "Tomada 110V",
     description:
@@ -74,6 +80,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 7,
+    name: "showcase",
     image: showcaseLogo,
     title: "Balcão vitrine",
     description:
@@ -84,6 +91,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 8,
+    name: "dvd",
     image: dvdLogo,
     title: "DVD",
     maximum: 2,
@@ -92,6 +100,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 9,
+    name: "shelf",
     image: shelfLogo,
     title: "Prateleira",
     description: "Dimensões: largura 0,50m; comprimento 1,00m. Especificar altura de fixação.",
@@ -101,6 +110,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 10,
+    name: "corner_shelf",
     image: shelfCornerLogo,
     title: "Prateleira de canto",
     description: "Dimensão 1,00m de lado. Especificar altura de fixação.",
@@ -110,6 +120,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 11,
+    name: "computer",
     title: "Computador alugado",
     description:
       "Observação: grupos que solicitarem Computador não poderão solicitar Televisor. Solicitar 1 tomada de 110V para ligar o estabilizador do computador. Se o grupo for utilizar outro computador não selecionar este item. Descrição do computador: Pentium D, monitor de 17'' LCD, memória RAM 1GB, teclado, mouse, CD-ROM de 52X, DVD-ROM, HD de 40GB, placa de rede sem fio, placa de som e vídeo, 01 serial, 01 paralela, 04 USB e estabilizador. Gravador de CD não está incluso. Os computadores possuem o Windows XP e Office 2003 instalados.",
@@ -119,6 +130,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 12,
+    name: "network_bridge",
     title: "Ponto de rede de dados sem fio",
     description:
       "Para ter acesso à Internet. Observação: Todos os computadores alugados para o evento virão com placa de rede SEM fio.",
@@ -128,6 +140,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 13,
+    name: "wireless_brigde",
     title: "Ponto de rede de dados com fio",
     description:
       "Recurso só liberado para trabalhos que dependam da conexão com equipamentos que só têm placa de rede COM fio. Quem precisar de um ''IP válido'' e também acesso à rede interna da Mauá (por exemplo aos servidores do Núcleo de Métodos Computacionais) tem de entrar em contato com gti@maua.br. Observação: todos os micros alugados para o evento virão com placa de rede SEM fio.",
@@ -138,6 +151,7 @@ export const resourcesList: ResourceType[] = [
   {
     resourceId: 14,
     image: tvLogo,
+    name: "television",
     title: "Televisor",
     description:
       "Recurso só liberado para trabalhos que dependam de seu uso. Observação: Trabalhos que solicitarem televisor não podem solicitar computador. Solicitar uma tomada de 110V para ligar o televisor. Solicitar o cabo conector (televisor x computador), no primeiro dia de montagem, no estande da Organização. Obrigatoriamente o televisor será instalado em um pedestal, que será aleatoriamente distribuído.",
@@ -147,6 +161,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 15,
+    name: "refrigerator",
     image: refrigeratorLogo,
     title: "Geladeira",
     description:
@@ -157,6 +172,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 16,
+    name: "freezer",
     image: refrigeratorLogo,
     title: "Freezer",
     description:
@@ -167,6 +183,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 17,
+    name: "outelet_220",
     image: outlet220Logo,
     title: "Tomada 220V",
     description:
@@ -177,6 +194,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 18,
+    name: "sofware",
     title: "Software",
     description:
       "A aquisição e implantação de Software (com exceção do Pacote Office e Windows) é de responsabilidade do grupo. Pedimos a informação do que será utilizado para verificar a capacidade do computador.",
@@ -186,6 +204,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 19,
+    name: "compressed_air",
     title: "Ponto de ar comprimido",
     description:
       "O ar comprimido será disponibilizado com uma pressão máxima de 7 Bar. Por meio de uma tubulação de aço galvanizado de 1/2'' de diâmetro com um registro de esfera entre a tubulação e a conexão de saída. Essa conexão de saída será do tipo macho (espigão) com mangueira de borracha de diâmetro interno de 5/6'' e 2m de comprimento. A alimentação dos equipamentos bem como o controle da vazão e da pressão é de responsabilidade do grupo. Caso necessário, será permitida a retirada da conexão fornecida, e, nesse caso, a saída do registro será uma rosca fêmea de 1/2'' BSP",
@@ -195,6 +214,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 20,
+    name: "water_point",
     title: "Ponto de água",
     description:
       "Recurso só liberado para trabalhos que dependam do seu uso. Será disponibilizada uma torneira tipo jardim de 1/2'' a uma altura aproximada de 1,10m do piso. Ela terá 2,4m³ de vazão por hora, ou seja, 40 litros por minuto, com uma pressão aproximada de 2,5kgf/m³.Qualquer outra adaptação necessária é de responsabilidade do grupo.",
@@ -204,6 +224,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 21,
+    name: "sewage_point",
     title: "Ponto de esgoto",
     description:
       "Recurso só liberado para trabalhos que dependam do seu uso. Será disponibilizada uma saída de 50mm com uma altura aproximada de 25cm do piso. Qualquer outra adaptação necessária é de responsabilidade do grupo.",
@@ -213,6 +234,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 22,
+    name: "phone_point",
     title: "Ponto de telefone",
     description:
       "Recurso só liberado para trabalhos que dependam de seu uso. O PONTO DE TELEFONE NÃO SERÁ UTILIZADO PARA ACESSO À INTERNET. Para acesso à internet solicitar ponto de rede sem fio. Especificar se o ponto de telefone será utilizado para efetuar ligações apenas e tão somente para ramais internos do campus, para ramais internos do campus e para fora do campus (utilizando PABX) ou para fora do campus, sem depender do sistema de PABX (justificar).",
@@ -222,6 +244,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 23,
+    name: "gas_point",
     title: "Ponto de gás",
     description:
       "Recurso só liberado para trabalhos que dependam de seu uso. Não será permitido o preparo de alimentos dentro do evento. Mencionar a quantidade em kg a ser utilizada.",
@@ -231,6 +254,7 @@ export const resourcesList: ResourceType[] = [
   },
   {
     resourceId: 24,
+    name: "special_gas_point",
     title: "Ponto de gás especial",
     description:
       "Recurso só liberado para trabalhos que dependam de seu uso. Mencionar o tipo do gás (composição, no caso de misturas), pressão e vazão a serem utilizados no trabalho, bem como a(s) quantidade(s) em kg ou L. Mesmo que o grupo já possua o gás mencionar neste campo para podermos localizar o estande em local seguro. Por questões de segurança, nenhum vaso de pressão será permitido dentro do evento.",

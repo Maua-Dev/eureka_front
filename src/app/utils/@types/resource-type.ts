@@ -1,4 +1,5 @@
 export type ResourceType = {
+  name: string;
   resourceId: number;
   image?: string;
   title: string;
