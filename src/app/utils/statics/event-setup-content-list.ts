@@ -11,31 +11,31 @@ export const eventSetupContentList: TaskContentType[] = [
   {
     id: 14,
     title: "Questionário",
-    basePath: "",
+    basePath: "data",
     description: "",
   },
   {
     id: 15,
     title: "Layout do estande",
-    basePath: "",
+    basePath: "data",
     description: "",
   },
   {
     id: 16,
     title: "Testeira",
-    basePath: "",
+    basePath: "data",
     description: "",
   },
   {
     id: 17,
     title: "Autorização de entrada",
-    basePath: "",
+    basePath: "data",
     description: "",
   },
   {
     id: 18,
     title: "Certificado",
-    basePath: "",
+    basePath: "data",
     description: "",
   },
 ];
