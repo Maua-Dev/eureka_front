@@ -17,10 +17,7 @@ import DefaultButton from "../../ui/components/DefaultButton/DefaultButton";
 import { toast } from "react-toastify";
 import { jobInfoContentList } from "../../utils/statics/job-info-content-list";
 import ControlledTextField from "../../ui/components/ControlledTextField/ControlledTextField";
-import {
-  eventSetupContentList,
-  eventSetupContentListMock,
-} from "../../utils/statics/event-setup-content-list";
+import { eventSetupContentList } from "../../utils/statics/event-setup-content-list";
 import TasksGrid from "./components/TasksGrid/TasksGrid";
 import LoadingSpinner from "../../ui/components/LoadingSpinner/LoadingSpinner";
 import { UserContext } from "../../context/user-context";
@@ -241,15 +238,15 @@ export default function TasksPage() {
               headerTitle="Informações do trabalho"
               boxClassName="box--width"
               deliveries={deliveriesFromContext}
-              tasks={tasksFromContext}
+              tasks={tasksFromContext.slice(0, 23)}
               tasksContent={jobInfoContentList}
             />
             <aside className="deliveries--right">
               <TasksGrid
                 headerTitle="Montagem do evento"
-                deliveries={deliveriesFromContext}
+                deliveries={[]}
                 tasksContent={eventSetupContentList}
-                tasks={eventSetupContentListMock}
+                tasks={tasksFromContext.slice(23)}
               />
               <HeaderedBox boxClassName="box--grow" headerTitle="Próximas entregas">
                 <div className="box__column">
