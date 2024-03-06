@@ -51,10 +51,6 @@
   transform: scale(1, 1);
 }
 
-.controlled_text_field:hover {
-  color: var(--dark-mustard);
-}
-
 @keyframes icon_down {
   from {
     transform: scale(1, 1);
