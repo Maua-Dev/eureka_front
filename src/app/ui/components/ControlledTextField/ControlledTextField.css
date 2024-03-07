@@ -39,38 +39,6 @@
   align-self: flex-start;
 }
 
-.controlled_text_field .controlled_text_field__icon--down {
-  animation-name: icon_down;
-  animation-duration: 0.2s;
-  transform: scale(1, -1);
-}
-
-.controlled_text_field .controlled_text_field__icon--up {
-  animation-name: icon_up;
-  animation-duration: 0.2s;
-  transform: scale(1, 1);
-}
-
-@keyframes icon_down {
-  from {
-    transform: scale(1, 1);
-  }
-
-  to {
-    transform: scale(1, -1);
-  }
-}
-
-@keyframes icon_up {
-  from {
-    transform: scale(1, -1);
-  }
-
-  to {
-    transform: scale(1, 1);
-  }
-}
-
 @media screen and (max-width: 1000px) {
   .controlled_text_field .controlled_text_field__icon {
     height: 13px;

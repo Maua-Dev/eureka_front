@@ -9,7 +9,6 @@ import Select, {
 import "./ControlledTextField.css";
 import DefaultButton from "../DefaultButton/DefaultButton";
 import arrowIcon from "../../../assets/icons/arrow-icon.svg";
-import { useState } from "react";
 
 type ControlledTextFieldProps<T> = {
   value: T;
@@ -40,8 +39,6 @@ export default function ControlledTextField<T>({
   isSearchable = false,
   controlledTextFieldClassName,
 }: ControlledTextFieldProps<T>) {
-  const [isControlledTextFieldOpen, setIsControlledTextFieldOpen] = useState<boolean | null>(null);
-
   return (
     <div className="controlled_text_field">
       {title && <h2 className="controlled_text_field__title">{title}</h2>}
@@ -53,7 +50,7 @@ export default function ControlledTextField<T>({
             if (showDropDownIcon) {
               return (
                 <img
-                  className={`controlled_text_field__icon ${isControlledTextFieldOpen == null ? "" : isControlledTextFieldOpen ? "controlled_text_field__icon--down" : "controlled_text_field__icon--up"}`}
+                  className="controlled_text_field__icon"
                   src={arrowIcon}
                   alt="Ícone de flecha"
                 />
@@ -122,8 +119,6 @@ export default function ControlledTextField<T>({
         unstyled={true}
         placeholder=""
         options={options}
-        onMenuOpen={() => setIsControlledTextFieldOpen(true)}
-        onMenuClose={() => setIsControlledTextFieldOpen(false)}
         onChange={onChange}
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}
