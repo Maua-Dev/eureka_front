@@ -238,7 +238,7 @@ export default function TasksPage() {
               headerTitle="Informações do trabalho"
               boxClassName="box--width"
               deliveries={deliveriesFromContext}
-              tasks={tasksFromContext.slice(0, 23)}
+              tasks={tasksFromContext.slice(0, 24)}
               tasksContent={jobInfoContentList}
             />
             <aside className="deliveries--right">
@@ -246,7 +246,7 @@ export default function TasksPage() {
                 headerTitle="Montagem do evento"
                 deliveries={[]}
                 tasksContent={eventSetupContentList}
-                tasks={tasksFromContext.slice(23)}
+                tasks={tasksFromContext.slice(24)}
               />
               <HeaderedBox boxClassName="box--grow" headerTitle="Próximas entregas">
                 <div className="box__column">

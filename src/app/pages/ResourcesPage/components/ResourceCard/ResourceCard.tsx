@@ -3,9 +3,11 @@ import ControlledTextField from "../../../../ui/components/ControlledTextField/C
 import { ResourceType } from "../../../../utils/@types/resource-type";
 import "./ResourceCard.css";
 import DefaultTextField from "../../../../ui/components/DefaultTextField/DefaultTextField";
+import { ResourcesType } from "../../../../utils/@types/resources-type";
 
 type ResourceCardProps = {
   resource: ResourceType;
+  resources?: ResourcesType;
   setSpecificationValues: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
   setJustificationValues: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
   setQuantityValue: React.Dispatch<React.SetStateAction<{ [key: string]: number }>>;
@@ -17,6 +19,7 @@ type QuantityType = {
 
 export default function ResourceCard({
   resource,
+  resources,
   setSpecificationValues,
   setJustificationValues,
   setQuantityValue,
@@ -24,6 +27,8 @@ export default function ResourceCard({
   const options: QuantityType[] = Array.from({ length: resource.maximum + 1 }, (_, i) => ({
     quantity: i,
   }));
+
+  const resourceFromContext = resources ? resources[resource.name] : null;
 
   const [quantity, setQuantity] = useState<QuantityType>(options[0]);
   const [justificationValue, setJustificationValue] = useState("");
@@ -49,6 +54,18 @@ export default function ResourceCard({
       [resource.resourceId]: quantity,
     }));
   }, [quantity]);
+
+  useEffect(() => {
+    if (resourceFromContext?.quantity != null) {
+      setQuantity({ quantity: resourceFromContext!.quantity! });
+    }
+    if (resourceFromContext?.justification != null) {
+      setJustificationValue(resourceFromContext!.justification!);
+    }
+    if (resourceFromContext?.specification != null) {
+      setSpecificationValue(resourceFromContext!.specification!);
+    }
+  }, [resourceFromContext]);
 
   return (
     <div className="resource_card">
