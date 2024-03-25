@@ -66,7 +66,7 @@ export const jobInfoContentList: TaskContentType[] = [
   {
     id: 8,
     title: "Resumo/Abstract",
-    basePath: "upload",
+    basePath: "abstract",
   },
   {
     id: 9,

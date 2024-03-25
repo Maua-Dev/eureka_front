@@ -5,6 +5,7 @@ import TasksPage from "./pages/TasksPage/TasksPage";
 import FileUploadPage from "./pages/FileUploadPage/FileUploadPage";
 import ReturnButton from "./ui/components/ReturnButton/ReturnButton";
 import ResourcesPage from "./pages/ResourcesPage/ResourcesPage";
+import AbstractPage from "./pages/AbstractPage/AbstractPage";
 
 export function AppRouter() {
   return (
@@ -44,6 +45,15 @@ export function AppRouter() {
             <>
               <ReturnButton />
               <ResourcesPage />
+            </>
+          }
+        />
+        <Route
+          path=":projectId/abstract/:taskId"
+          element={
+            <>
+              <ReturnButton />
+              <AbstractPage />
             </>
           }
         />
