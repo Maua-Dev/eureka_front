@@ -1,0 +1,67 @@
+.tasks_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  gap: 0.3rem;
+}
+
+.tasks_grid .tasks_grid__element {
+  background-color: var(--white);
+  border-radius: var(--small-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 5rem;
+  padding: 0.2rem;
+  text-decoration: none;
+}
+
+.tasks_grid .tasks_grid__element--skeleton {
+  display: flex;
+  align-items: normal;
+}
+
+.tasks_grid .tasks_grid__title {
+  font-size: var(--span-text);
+  color: var(--dark-blue);
+  font-weight: var(--semi-bold);
+  text-decoration: none;
+}
+
+.tasks_grid .tasks_grid__title--skeleton {
+  width: 80%;
+}
+
+.tasks_grid .tasks_grid__text {
+  font-size: var(--small-text);
+  color: var(--dark-blue);
+  font-weight: var(--medium);
+}
+
+.tasks_grid .tasks_grid__text--green {
+  color: var(--green);
+}
+
+.tasks_grid .tasks_grid__text--red {
+  color: var(--red);
+}
+
+.tasks_grid .tasks_grid__text--blue {
+  color: var(--dark-blue);
+}
+
+.tasks_grid .tasks_grid__text--skeleton {
+  width: 80%;
+}
+
+.tasks_grid .tasks_grid__link {
+  font-size: var(--small-text);
+  color: var(--dark-blue);
+  font-weight: var(--medium);
+}
+
+.tasks_grid .tasks_grid__element:hover .tasks_grid__text {
+  color: var(--dark-mustard);
+  cursor: pointer;
+}

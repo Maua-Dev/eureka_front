@@ -1,0 +1,38 @@
+.return {
+  border: none;
+  background: none;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 3rem;
+  margin-left: 2.5rem;
+}
+
+.return .return__icon {
+  height: 1.8rem;
+  width: 2rem;
+}
+
+.return:hover {
+  filter: var(--dark-mustard-filter);
+}
+
+@media screen and (max-width: 700px) {
+  .return {
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .return .return__icon {
+    height: 1.3rem;
+    width: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .return .return__icon {
+    height: 1.1rem;
+    width: 1.3rem;
+  }
+}

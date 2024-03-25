@@ -1,0 +1,11 @@
+.error_alert {
+  width: 80%;
+  font-weight: var(--bold);
+  font-size: var(--regular-text);
+}
+
+@media screen and (max-width: 500px) {
+  .error_alert {
+    width: 100%;
+  }
+}
