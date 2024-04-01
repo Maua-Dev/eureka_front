@@ -32,59 +32,20 @@ export default function ResourcesPage() {
     (delivery) => delivery.task.title === "Recursos de estande"
   );
 
-  const resourcesWithJustification = resourcesList.filter(
-    (resource) => resource.hasJustificationField == true
-  );
-  const resourcesWithSpecification = resourcesList.filter(
-    (resource) => resource.hasSpecificationField == true
-  );
-
-  //based on resource id
-  const [justificationValues, setJustificationValues] = useState(
-    Object.fromEntries(resourcesWithJustification.map((resource) => [resource.resourceId, ""]))
-  );
-  const [specificationValues, setSpecificationValues] = useState(
-    Object.fromEntries(resourcesWithSpecification.map((resource) => [resource.resourceId, ""]))
-  );
-  const [quantityValue, setQuantityValue] = useState(
-    Object.fromEntries(resourcesList.map((resource) => [resource.resourceId]))
-  );
   const [resources, setResources] = useState<ResourcesType>(
     resourcesFromContext?.content["resources"] as ResourcesType
   );
-
-  console.log(resources);
 
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
 
   const handleSendButtonClick = () => {
-    const resourceJson = Object.fromEntries(
-      resourcesList.map((resource) => {
-        const specification =
-          specificationValues[resource.resourceId] == ""
-            ? null
-            : specificationValues[resource.resourceId];
-        const justification =
-          justificationValues[resource.resourceId] == ""
-            ? null
-            : justificationValues[resource.resourceId];
-        return [
-          resource.name,
-          {
-            ...quantityValue[resource.resourceId],
-            specification: specification,
-            justification: justification,
-          },
-        ];
-      })
-    );
     handleFetch(
       setIsLoading,
       showBoundary,
       undefined,
       createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
-        resources: resourceJson,
+        resources: resources,
       })
     );
   };
@@ -119,10 +80,8 @@ export default function ResourcesPage() {
                 <div className="card" key={resource.resourceId}>
                   <ResourceCard
                     resource={resource}
-                    setSpecificationValues={setSpecificationValues}
-                    setJustificationValues={setJustificationValues}
-                    setQuantityValue={setQuantityValue}
                     resources={resources}
+                    setResources={setResources}
                   />
                 </div>
               );

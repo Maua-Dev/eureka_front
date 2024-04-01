@@ -7,65 +7,49 @@ import { ResourcesType } from "../../../../utils/@types/resources-type";
 
 type ResourceCardProps = {
   resource: ResourceType;
-  resources?: ResourcesType;
-  setSpecificationValues: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
-  setJustificationValues: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
-  setQuantityValue: React.Dispatch<React.SetStateAction<{ [key: string]: number }>>;
+  resources: ResourcesType;
+  setResources: React.Dispatch<React.SetStateAction<ResourcesType>>;
 };
 
 type QuantityType = {
   quantity: number;
 };
 
-export default function ResourceCard({
-  resource,
-  resources,
-  setSpecificationValues,
-  setJustificationValues,
-  setQuantityValue,
-}: ResourceCardProps) {
+export default function ResourceCard({ resource, resources, setResources }: ResourceCardProps) {
   const options: QuantityType[] = Array.from({ length: resource.maximum + 1 }, (_, i) => ({
     quantity: i,
   }));
 
   const resourceFromContext = resources ? resources[resource.name] : null;
 
-  const [quantity, setQuantity] = useState<QuantityType>(options[0]);
-  const [justificationValue, setJustificationValue] = useState("");
-  const [specificationValue, setSpecificationValue] = useState("");
+  const [quantity, setQuantity] = useState<QuantityType>({
+    quantity: resourceFromContext?.quantity ?? 0,
+  });
+  const [justification, setJustification] = useState(resourceFromContext?.justification ?? "");
+  const [specification, setSpecification] = useState(resourceFromContext?.specification ?? "");
 
   useEffect(() => {
-    setJustificationValues((prevState) => ({
-      ...prevState,
-      [resource.resourceId]: justificationValue,
+    setResources((prevResources) => ({
+      ...prevResources,
+      [resource.name]: {
+        justification: justification,
+        quantity: quantity.quantity,
+        specification: specification,
+      },
     }));
-  }, [justificationValue]);
-
-  useEffect(() => {
-    setSpecificationValues((prevState) => ({
-      ...prevState,
-      [resource.resourceId]: specificationValue,
-    }));
-  }, [specificationValue]);
-
-  useEffect(() => {
-    setQuantityValue((prevState) => ({
-      ...prevState,
-      [resource.resourceId]: quantity,
-    }));
-  }, [quantity]);
+  }, [justification, quantity, specification]);
 
   useEffect(() => {
     if (resourceFromContext?.quantity != null) {
       setQuantity({ quantity: resourceFromContext!.quantity! });
     }
     if (resourceFromContext?.justification != null) {
-      setJustificationValue(resourceFromContext!.justification!);
+      setJustification(resourceFromContext!.justification!);
     }
     if (resourceFromContext?.specification != null) {
-      setSpecificationValue(resourceFromContext!.specification!);
+      setSpecification(resourceFromContext!.specification!);
     }
-  }, [resourceFromContext]);
+  }, [resourceFromContext != null]);
 
   return (
     <div className="resource_card">
@@ -96,8 +80,8 @@ export default function ResourceCard({
       <div className="resource_card__bottom">
         {resource.hasSpecificationField && (
           <DefaultTextField
-            setValue={setJustificationValue}
-            value={justificationValue}
+            setValue={setJustification}
+            value={justification}
             topTitle="Especificação"
             isTextArea={true}
             inputTitleClassName="input__title"
@@ -106,8 +90,8 @@ export default function ResourceCard({
         )}
         {resource.hasJustificationField && (
           <DefaultTextField
-            setValue={setSpecificationValue}
-            value={specificationValue}
+            setValue={setSpecification}
+            value={specification}
             topTitle="Justificativa"
             isTextArea={true}
             inputTitleClassName="input__title"
