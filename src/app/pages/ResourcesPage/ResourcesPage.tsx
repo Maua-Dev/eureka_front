@@ -61,10 +61,9 @@ export default function ResourcesPage() {
     }
   }, []);
 
-  // prevents infinity loop, does not trigger new immediate updates
   useEffect(() => {
     setResources(resourcesFromContext);
-  });
+  }, [resourcesFromContext]);
 
   return (
     <main className="resources_page">

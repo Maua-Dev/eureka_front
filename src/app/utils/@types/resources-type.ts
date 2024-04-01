@@ -1,7 +1,7 @@
 export type ResourcesType = {
   [key: string]: {
-    specification: string | null;
-    justification: string | null;
+    specification?: string;
+    justification?: string;
     quantity: number;
   };
 };

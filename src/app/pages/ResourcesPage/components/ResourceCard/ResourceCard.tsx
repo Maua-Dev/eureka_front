@@ -29,33 +29,58 @@ export default function ResourceCard({ resource, resources, setResources }: Reso
   const [specification, setSpecification] = useState(resourceFromContext?.specification ?? "");
 
   useEffect(() => {
-    setResources((prevResources) => ({
-      ...prevResources,
-      [resource.name]: {
-        justification: justification,
-        quantity: quantity.quantity,
-        specification: specification,
-      },
-    }));
-  }, [justification, quantity, specification]);
+    console.log("TESTE");
+
+    if (
+      resourceFromContext?.justification != null &&
+      justification !== resourceFromContext.justification
+    ) {
+      setJustification(resourceFromContext.justification);
+    }
+  }, [resourceFromContext?.justification != undefined]);
 
   useEffect(() => {
-    if (resourceFromContext?.quantity != null) {
-      setQuantity({ quantity: resourceFromContext!.quantity! });
+    console.log("TESTE");
+
+    if (
+      resourceFromContext?.quantity != null &&
+      quantity.quantity !== resourceFromContext.quantity
+    ) {
+      setQuantity({ quantity: resourceFromContext.quantity });
     }
-  }, [resourceFromContext?.quantity]);
+  }, [resourceFromContext?.quantity != undefined]);
 
   useEffect(() => {
-    if (resourceFromContext?.justification != null) {
-      setJustification(resourceFromContext!.justification!);
+    if (
+      resourceFromContext?.specification != null &&
+      specification !== resourceFromContext.specification
+    ) {
+      setSpecification(resourceFromContext.specification);
     }
-  }, [resourceFromContext?.justification]);
+  }, [resourceFromContext?.specification != undefined]);
 
   useEffect(() => {
-    if (resourceFromContext?.specification != null) {
-      setSpecification(resourceFromContext!.specification!);
+    const updatedResource: {
+      specification?: string;
+      justification?: string;
+      quantity: number;
+    } = { quantity: quantity.quantity };
+
+    if (justification !== "") {
+      updatedResource.justification = justification;
     }
-  }, [resourceFromContext?.specification]);
+
+    if (specification !== "") {
+      updatedResource.specification = specification;
+    }
+
+    const newResources = {
+      ...resources,
+      [resource.name]: updatedResource,
+    };
+
+    setResources(newResources);
+  }, [specification, justification, quantity]);
 
   return (
     <div className="resource_card">
