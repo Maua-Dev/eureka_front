@@ -62,6 +62,7 @@ export default function ProjectDataPage() {
     setProjectDescription(projectFromContext.description);
   }, [projectFromContext.title, projectFromContext.description]);
 
+  // prevents infinity loop, does not trigger new immediate updates
   useEffect(() => {
     setSelectedOds(
       (deliveriesFromContext.find((delivery) => delivery.task.title === "Dados do trabalho")
@@ -99,6 +100,7 @@ export default function ProjectDataPage() {
     }
   }, [selectedActions]);
 
+  // prevents infinity loop, does not trigger new immediate updates
   useEffect(() => {
     setSelectedActions(
       (deliveriesFromContext.find((delivery) => delivery.task.title === "Dados do trabalho")

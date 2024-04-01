@@ -43,13 +43,19 @@ export default function ResourceCard({ resource, resources, setResources }: Reso
     if (resourceFromContext?.quantity != null) {
       setQuantity({ quantity: resourceFromContext!.quantity! });
     }
+  }, [resourceFromContext?.quantity]);
+
+  useEffect(() => {
     if (resourceFromContext?.justification != null) {
       setJustification(resourceFromContext!.justification!);
     }
+  }, [resourceFromContext?.justification]);
+
+  useEffect(() => {
     if (resourceFromContext?.specification != null) {
       setSpecification(resourceFromContext!.specification!);
     }
-  }, [resourceFromContext != null]);
+  }, [resourceFromContext?.specification]);
 
   return (
     <div className="resource_card">

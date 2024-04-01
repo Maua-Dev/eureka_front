@@ -14,6 +14,7 @@ import isEqual from "lodash.isequal";
 import { ProjectModel } from "../../models/project-model";
 import { ProjectContext } from "../../context/project-context";
 import { ResourcesType } from "../../utils/@types/resources-type";
+import { toast } from "react-toastify";
 
 export default function ResourcesPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,13 +29,13 @@ export default function ResourcesPage() {
   const { projectFromContext, getProject } = useContext(ProjectContext);
   const { userFromContext } = useContext(AuthContext);
 
-  const resourcesFromContext = deliveriesFromContext.find(
+  const deliveryFromContext = deliveriesFromContext.find(
     (delivery) => delivery.task.title === "Recursos de estande"
   );
 
-  const [resources, setResources] = useState<ResourcesType>(
-    resourcesFromContext?.content["resources"] as ResourcesType
-  );
+  const resourcesFromContext = deliveryFromContext?.content["resources"] as ResourcesType;
+
+  const [resources, setResources] = useState<ResourcesType>(resourcesFromContext);
 
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
@@ -48,6 +49,7 @@ export default function ResourcesPage() {
         resources: resources,
       })
     );
+    toast.success("Recursos enviados com sucesso");
   };
 
   useEffect(() => {
@@ -59,9 +61,10 @@ export default function ResourcesPage() {
     }
   }, []);
 
+  // prevents infinity loop, does not trigger new immediate updates
   useEffect(() => {
-    setResources(resourcesFromContext?.content["resources"] as ResourcesType);
-  }, [resourcesFromContext]);
+    setResources(resourcesFromContext);
+  });
 
   return (
     <main className="resources_page">
