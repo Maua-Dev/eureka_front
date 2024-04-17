@@ -37,8 +37,6 @@ export default function ResourcesPage() {
 
   const [resources, setResources] = useState<ResourcesType>(resourcesFromContext);
 
-  console.log(resources);
-
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
 
@@ -56,14 +54,6 @@ export default function ResourcesPage() {
             (resource?.hasSpecificationField &&
               (resources[key].specification == "" || resources[key].specification == undefined)))
         ) {
-          console.log(resources[key]);
-          console.log(resources[key].quantity);
-          console.log(resource);
-          console.log(resource?.hasJustificationField);
-          console.log(
-            resource?.hasSpecificationField &&
-              (resources[key].specification == "" || resources[key].specification == undefined)
-          );
           toast.error(
             `Preencha os campos de justificativa e/ou de especificação (${resource?.title})`
           );
