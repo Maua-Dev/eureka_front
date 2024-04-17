@@ -29,8 +29,6 @@ export default function ResourceCard({ resource, resources, setResources }: Reso
   const [specification, setSpecification] = useState(resourceFromContext?.specification ?? "");
 
   useEffect(() => {
-    console.log("TESTE");
-
     if (
       resourceFromContext?.justification != null &&
       justification !== resourceFromContext.justification
@@ -40,8 +38,6 @@ export default function ResourceCard({ resource, resources, setResources }: Reso
   }, [resourceFromContext?.justification != undefined]);
 
   useEffect(() => {
-    console.log("TESTE");
-
     if (
       resourceFromContext?.quantity != null &&
       quantity.quantity !== resourceFromContext.quantity
@@ -111,8 +107,8 @@ export default function ResourceCard({ resource, resources, setResources }: Reso
       <div className="resource_card__bottom">
         {resource.hasSpecificationField && (
           <DefaultTextField
-            setValue={setJustification}
-            value={justification}
+            setValue={setSpecification}
+            value={specification}
             topTitle="Especificação"
             isTextArea={true}
             inputTitleClassName="input__title"
@@ -121,8 +117,8 @@ export default function ResourceCard({ resource, resources, setResources }: Reso
         )}
         {resource.hasJustificationField && (
           <DefaultTextField
-            setValue={setSpecification}
-            value={specification}
+            setValue={setJustification}
+            value={justification}
             topTitle="Justificativa"
             isTextArea={true}
             inputTitleClassName="input__title"

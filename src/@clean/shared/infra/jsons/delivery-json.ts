@@ -60,30 +60,32 @@ export class DeliveryJson {
           },
           showcase: {
             quantity: 2,
-            specification:
+            justification:
               "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           },
           shelf: {
             quantity: 1,
-            justification:
+            specification:
               "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           },
           corner_shelf: {
             quantity: 4,
+            specification:
+              "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           },
           computer: {
             quantity: 1,
-            specification:
+            justification:
               "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           },
           television: {
             quantity: 1,
-            specification:
+            justification:
               "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           },
           refrigerator: {
             quantity: 1,
-            specification:
+            justification:
               "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           },
           water_point: {

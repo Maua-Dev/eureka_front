@@ -37,19 +37,51 @@ export default function ResourcesPage() {
 
   const [resources, setResources] = useState<ResourcesType>(resourcesFromContext);
 
+  console.log(resources);
+
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
 
   const handleSendButtonClick = () => {
-    handleFetch(
-      setIsLoading,
-      showBoundary,
-      undefined,
-      createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
-        resources: resources,
-      })
-    );
-    toast.success("Recursos enviados com sucesso");
+    if (isEqual(resources, resourcesFromContext)) {
+      toast.error("Nenhum recurso foi alterado");
+    } else {
+      let hasError = false;
+      Object.keys(resources).forEach((key) => {
+        const resource = resourcesList.find((resource) => resource.name === key);
+        if (
+          resources[key].quantity !== 0 &&
+          ((resource?.hasJustificationField &&
+            (resources[key].justification == "" || resources[key].justification == undefined)) ||
+            (resource?.hasSpecificationField &&
+              (resources[key].specification == "" || resources[key].specification == undefined)))
+        ) {
+          console.log(resources[key]);
+          console.log(resources[key].quantity);
+          console.log(resource);
+          console.log(resource?.hasJustificationField);
+          console.log(
+            resource?.hasSpecificationField &&
+              (resources[key].specification == "" || resources[key].specification == undefined)
+          );
+          toast.error(
+            `Preencha os campos de justificativa e/ou de especificação (${resource?.title})`
+          );
+          hasError = true;
+        }
+      });
+      if (!hasError) {
+        handleFetch(
+          setIsLoading,
+          showBoundary,
+          undefined,
+          createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
+            resources: resources,
+          })
+        );
+        toast.success("Recursos enviados com sucesso");
+      }
+    }
   };
 
   useEffect(() => {
