@@ -41,36 +41,44 @@ export default function ResourcesPage() {
   const { showBoundary } = useErrorBoundary();
 
   const handleSendButtonClick = () => {
+    let hasError = false;
     if (isEqual(resources, resourcesFromContext)) {
       toast.error("Nenhum recurso foi alterado");
-    } else {
-      let hasError = false;
-      Object.keys(resources).forEach((key) => {
-        const resource = resourcesList.find((resource) => resource.name === key);
-        if (
-          resources[key].quantity !== 0 &&
-          ((resource?.hasJustificationField &&
-            (resources[key].justification == "" || resources[key].justification == undefined)) ||
-            (resource?.hasSpecificationField &&
-              (resources[key].specification == "" || resources[key].specification == undefined)))
-        ) {
-          toast.error(
-            `Preencha os campos de justificativa e/ou de especificação (${resource?.title})`
-          );
-          hasError = true;
-        }
-      });
-      if (!hasError) {
-        handleFetch(
-          setIsLoading,
-          showBoundary,
-          undefined,
-          createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
-            resources: resources,
-          })
+      hasError = true;
+    }
+    Object.keys(resources).forEach((key) => {
+      const resource = resourcesList.find((resource) => resource.name === key);
+      if (
+        resources[key].quantity !== 0 &&
+        ((resource?.hasJustificationField &&
+          (resources[key].justification == "" || resources[key].justification == undefined)) ||
+          (resource?.hasSpecificationField &&
+            (resources[key].specification == "" || resources[key].specification == undefined)))
+      ) {
+        toast.error(
+          `Preencha os campos de justificativa e/ou de especificação (${resource?.title})`
         );
-        toast.success("Recursos enviados com sucesso");
+        hasError = true;
       }
+      if (
+        ((resources[key].justification !== "" && resources[key].justification !== undefined) ||
+          (resources[key].specification !== "" && resources[key].specification !== undefined)) &&
+        resources[key].quantity === 0
+      ) {
+        toast.error(`Preencha o campo de quantidade (${resource?.title})`);
+        hasError = true;
+      }
+    });
+    if (!hasError) {
+      handleFetch(
+        setIsLoading,
+        showBoundary,
+        undefined,
+        createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
+          resources: resources,
+        })
+      );
+      toast.success("Recursos enviados com sucesso");
     }
   };
 
