@@ -1,16 +1,17 @@
-import { Project } from "../../../shared/domain/entities/project";
+import { Project } from "@entities/project.ts";
 import { IProjectRepository } from "../domain/repositories/project-repository-interface";
 
 export class CreateProjectUsecase {
-  private _projectRepository: IProjectRepository;
+    private _projectRepository: IProjectRepository;
 
-  constructor(projectRepository: IProjectRepository) {
-    this._projectRepository = projectRepository;
-  }
+    constructor(projectRepository: IProjectRepository) {
+        this._projectRepository = projectRepository;
+    }
 
-  async execute(project: Project): Promise<Project> {
-    const projectCreated = await this._projectRepository.createProject(project);
+    async execute(project: Project): Promise<Project> {
+        const projectCreated =
+            await this._projectRepository.createProject(project);
 
-    return projectCreated;
-  }
+        return projectCreated;
+    }
 }

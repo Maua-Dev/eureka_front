@@ -126,7 +126,7 @@
 
 @media screen and (max-width: 400px) {
   .home_page .dropdown__text {
-    margin: 0.8rem 0rem 0.8rem 1rem;
+    margin: 0.8rem 0 0.8rem 1rem;
   }
 
   .home_page.dropdown__icon {

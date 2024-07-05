@@ -31,7 +31,6 @@
   align-items: center;
   justify-content: center;
   gap: 1.4rem;
-  flex-wrap: wrap;
 }
 
 .project_data_page .input--bigger {

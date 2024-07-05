@@ -410,7 +410,7 @@
   .tasks_page .students {
     grid-column: 1 / 4;
     grid-row: 3 / 4;
-    margin-left: 0rem;
+    margin-left: 0;
     align-items: center;
     width: 100%;
   }
@@ -421,7 +421,7 @@
   }
 
   .tasks_page .students__name {
-    margin-top: 0rem;
+    margin-top: 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -476,7 +476,7 @@
   }
 
   .tasks_page .box__footer {
-    padding: 0rem 2rem 1rem 2rem;
+    padding: 0 2rem 1rem 2rem;
   }
 
   .tasks_page .deliveries {

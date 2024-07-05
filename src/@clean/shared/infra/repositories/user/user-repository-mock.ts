@@ -1,35 +1,35 @@
 import "reflect-metadata";
-import { IUserRepository } from "../../../../modules/user/domain/user-repository-interface";
-import { User } from "../../../domain/entities/user";
-import { NoItemsFoundError } from "../../../domain/helpers/errors/domain-errors";
-import { UserJson } from "../../jsons/user-json";
+import { IUserRepository } from "@modules/user/domain/user-repository-interface.ts";
+import { User } from "@entities/user.ts";
+import { NoItemsFoundError } from "@helpers/errors/domain-errors.ts";
+import { UserJson } from "@jsons/user-json.ts";
 import { decorate, injectable } from "inversify";
-import { ROLE } from "../../../domain/enums/role-enum";
+import { ROLE } from "@enums/role-enum.ts";
 
 export class UserRepositoryMock implements IUserRepository {
-  async getAllStudents(): Promise<User[]> {
-    const jsons = UserJson.userJson;
+    async getAllStudents(): Promise<User[]> {
+        const jsons = UserJson.userJson;
 
-    if (jsons == null) {
-      throw new NoItemsFoundError("users");
+        if (jsons == null) {
+            throw new NoItemsFoundError("users");
+        }
+
+        const users = jsons.map((user) => User.fromJson(user));
+
+        return users.filter((user) => user.role === ROLE.STUDENT);
     }
 
-    const users = jsons.map((user) => User.fromJson(user));
+    async getAllProfessors(): Promise<User[]> {
+        const jsons = UserJson.userJson;
 
-    return users.filter((user) => user.role === ROLE.STUDENT);
-  }
+        if (jsons == null) {
+            throw new NoItemsFoundError("users");
+        }
 
-  async getAllProfessors(): Promise<User[]> {
-    const jsons = UserJson.userJson;
+        const users = jsons.map((user) => User.fromJson(user));
 
-    if (jsons == null) {
-      throw new NoItemsFoundError("users");
+        return users.filter((user) => user.role === ROLE.PROFESSOR);
     }
-
-    const users = jsons.map((user) => User.fromJson(user));
-
-    return users.filter((user) => user.role === ROLE.PROFESSOR);
-  }
 }
 
 decorate(injectable(), UserRepositoryMock);

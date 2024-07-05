@@ -249,7 +249,6 @@
   .header .squares {
     display: flex;
     gap: 0.8rem;
-    display: flex;
     align-items: center;
     justify-content: end;
   }

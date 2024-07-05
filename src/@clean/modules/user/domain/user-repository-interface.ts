@@ -1,6 +1,6 @@
-import { User } from "../../../shared/domain/entities/user";
+import { User } from "@entities/user.ts";
 
 export interface IUserRepository {
-  getAllStudents(): Promise<User[]>;
-  getAllProfessors(): Promise<User[]>;
+    getAllStudents(): Promise<User[]>;
+    getAllProfessors(): Promise<User[]>;
 }
