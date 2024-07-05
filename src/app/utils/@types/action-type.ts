@@ -1,6 +1,6 @@
 export type ActionType = {
-  actionId: number;
-  image: string;
-  title: string;
-  description: string;
+    actionId: number;
+    image: string;
+    title: string;
+    description: string;
 };

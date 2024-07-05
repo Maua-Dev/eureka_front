@@ -1,23 +1,23 @@
 * {
-  /* reset css */
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+    /* reset css */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
 
-  font-family: var(--font-family), serif;
+    font-family: var(--font-family), serif;
 
-  transition: var(--transititon);
+    transition: var(--transititon);
 }
 
 .app_container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* main breakpoints used in project */
