@@ -23,11 +23,28 @@
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
-  padding: 0.6rem;
+  padding: 4rem;
+  padding-top: 2rem;
+}
+
+@media screen and (max-width: 760px) {
+  .abstract_page .box__main {
+    padding: 0.6rem;
+  }
 }
 
 .abstract_page .box__span {
   font-weight: var(--medium);
   color: var(--dark-blue);
   font-size: var(--regular-text);
+}
+
+.project_data_page .box__main--flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
 }

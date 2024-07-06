@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import HeaderedBox from "../../ui/components/HeaderedBox/HeaderedBox";
 import "./AbstractPage.css";
 import { useErrorBoundary } from "react-error-boundary";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../ui/components/LoadingSpinner/LoadingSpinner";
 import { ProjectContext } from "../../context/project-context";
 import DefaultTextField from "../../ui/components/DefaultTextField/DefaultTextField";
@@ -42,52 +42,60 @@ export default function AbstractPage() {
       {isSkeletonLoading ? (
         <></>
       ) : (
-        <HeaderedBox
-          headerTitle="Resumo"
-          boxHeaderClassName="box__header--start"
-          boxContentClassName="box"
-        >
-          <div className="box__main">
-            <span className="box__span">
-              Envio do resumo corrigido. As palavras em ingês devem estar isoladas com aspas. Tudo
-              deve ser preenchido em{" "}
-              <Link
-                className="box__span"
-                target="_blank"
-                to={"https://sistema-eureka.maua.br/downloads/arquivos/ODS-agenda2030-pt-br.pdf"}
-              >
-                português.
-              </Link>
-            </span>
-            <div>
-              <DefaultTextField
-                setValue={setProjectTitle}
-                value={projectTitle}
-                type="text"
-                topTitle="Título do trabalho"
-                isSaveButtonIncluded={true}
-                onSaveClick={() => {
-                  if (projectTitle === "") {
-                    toast.error("O título do projeto não pode ser vazio");
-                  } else if (projectTitle === projectFromContext.title) {
-                    toast.error("O título do projeto não pode ser igual ao anterior");
-                  } else {
-                    handleFetch(
-                      setIsLoading,
-                      showBoundary,
-                      "Título atualizado",
-                      updateProject(projectIdFromPath, projectTitle)
-                    );
-                  }
-                }}
-              ></DefaultTextField>
+        <>
+          <HeaderedBox
+            headerTitle="Resumo"
+            boxHeaderClassName="box__header--start"
+            boxContentClassName="box"
+            boxClassName="box--margin"
+          >
+            <div className="box__main">
               <span className="box__span">
-                Título do trabalho após apresentação para banca. Lembrando que ao salvar o título
-                ele se torna definitivo.
+                Envio do resumo corrigido. As palavras em ingês devem estar isoladas com aspas. Tudo
+                deve ser preenchido em <u>português</u>.
+              </span>
+              <div>
+                <DefaultTextField
+                  setValue={setProjectTitle}
+                  value={projectTitle}
+                  type="text"
+                  topTitle="Título do trabalho"
+                  isSaveButtonIncluded={true}
+                  onSaveClick={() => {
+                    if (projectTitle === "") {
+                      toast.error("O título do projeto não pode ser vazio");
+                    } else if (projectTitle === projectFromContext.title) {
+                      toast.error("O título do projeto não pode ser igual ao anterior");
+                    } else {
+                      handleFetch(
+                        setIsLoading,
+                        showBoundary,
+                        "Título atualizado",
+                        updateProject(projectIdFromPath, projectTitle)
+                      );
+                    }
+                  }}
+                ></DefaultTextField>
+                <span className="box__span">
+                  Título do trabalho após apresentação para banca. Lembrando que ao salvar o título
+                  ele se torna definitivo.
+                </span>
+              </div>
+            </div>
+          </HeaderedBox>
+          <HeaderedBox
+            headerTitle="Abstract"
+            boxHeaderClassName="box__header--start"
+            boxContentClassName="box"
+          >
+            <div className="box__main">
+              <span className="box__span">
+                Envio do resumo corrigido. As palavras em ingês devem estar isoladas com aspas. Tudo
+                deve ser preenchido em <u>inglês</u>.
               </span>
             </div>
-          </div>
-        </HeaderedBox>
+          </HeaderedBox>
+        </>
       )}
     </main>
   );
