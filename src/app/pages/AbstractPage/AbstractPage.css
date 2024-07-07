@@ -48,3 +48,8 @@
   gap: 1.4rem;
   flex-wrap: wrap;
 }
+
+.input__field input__field--textarea box__input--description {
+  height: 2000px; /* O tamanho do box de texto não está alterando */
+  display: flex;
+}

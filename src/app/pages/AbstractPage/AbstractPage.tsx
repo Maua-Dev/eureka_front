@@ -25,6 +25,9 @@ export default function AbstractPage() {
   const { showBoundary } = useErrorBoundary();
 
   const [projectTitle, setProjectTitle] = useState<string>(projectFromContext.title);
+  const [projectDescription, setProjectDescription] = useState<string>(
+    projectFromContext.description
+  );
 
   useEffect(() => {
     if (isEqual(projectFromContext, ProjectModel.empty())) {
@@ -78,6 +81,21 @@ export default function AbstractPage() {
                 ></DefaultTextField>
                 <span className="box__span">
                   Título do trabalho após apresentação para banca. Lembrando que ao salvar o título
+                  ele se torna definitivo.
+                </span>
+              </div>
+              <div className="projectDefinition">
+                <DefaultTextField
+                  setValue={setProjectDescription}
+                  value={projectDescription}
+                  type="text"
+                  topTitle="Resumo do trabalho"
+                  isSaveButtonIncluded={false}
+                  isTextArea={true}
+                  textFieldClassName="box__input--description"
+                ></DefaultTextField>
+                <span className="box__span">
+                  Resumo do trabalho após apresentação para banca. Lembrando que ao salvar o resumo
                   ele se torna definitivo.
                 </span>
               </div>
