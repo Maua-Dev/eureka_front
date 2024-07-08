@@ -92,7 +92,7 @@ export default function AbstractPage() {
                   topTitle="Resumo do trabalho"
                   isSaveButtonIncluded={false}
                   isTextArea={true}
-                  textFieldClassName="box__input--description"
+                  textFieldClassName="input--bigger"
                 ></DefaultTextField>
                 <span className="box__span">
                   Resumo do trabalho após apresentação para banca. Lembrando que ao salvar o resumo

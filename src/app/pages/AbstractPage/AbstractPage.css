@@ -39,7 +39,7 @@
   font-size: var(--regular-text);
 }
 
-.project_data_page .box__main--flex {
+.abstract_page .box__main--flex {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -49,7 +49,6 @@
   flex-wrap: wrap;
 }
 
-.input__field input__field--textarea box__input--description {
-  height: 2000px; /* O tamanho do box de texto não está alterando */
-  display: flex;
+.abstract_page .input--bigger {
+  min-height: 140px;
 }
