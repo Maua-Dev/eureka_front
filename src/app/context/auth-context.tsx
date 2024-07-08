@@ -1,21 +1,27 @@
-import { createContext } from "react";
-import { UserModel } from "../models/user-model";
-import { UserAdapter } from "../adapters/user-adapter";
-import { UserJson } from "../../@clean/shared/infra/jsons/user-json";
-import { User } from "../../@clean/shared/domain/entities/user";
+import React, { createContext } from "react";
+import { UserModel } from "@models/user-model";
+import { UserAdapter } from "@adapters/user-adapter";
+import { UserJson } from "@jsons/user-json.ts";
+import { User } from "@entities/user.ts";
 
 type AuthContextType = {
-  userFromContext: UserModel;
+    userFromContext: UserModel;
 };
 
 const defaultContext: AuthContextType = {
-  userFromContext: UserModel.empty(),
+    userFromContext: UserModel.empty()
 };
 
 export const AuthContext = createContext(defaultContext);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const userFromContext = UserAdapter.toModel(User.fromJson(UserJson.userJson[0]));
+    const userFromContext = UserAdapter.toModel(
+        User.fromJson(UserJson.userJson[0])
+    );
 
-  return <AuthContext.Provider value={{ userFromContext }}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={{ userFromContext }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };

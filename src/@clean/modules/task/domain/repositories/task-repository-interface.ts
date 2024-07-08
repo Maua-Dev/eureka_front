@@ -1,5 +1,5 @@
-import { Task } from "../../../../shared/domain/entities/task";
+import { Task } from "@entities/task.ts";
 
 export interface ITaskRepository {
-  getAllTasks(): Promise<Task[]>;
+    getAllTasks(): Promise<Task[]>;
 }
