@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IDeliveryRepository } from "@modules/delivery/domain/delivery-repository-interface.ts";
+import { IDeliveryRepository } from "@modules/delivery/domain/repositories/delivery-repository-interface.ts";
 import { Delivery, DeliveryJsonProps } from "@entities/delivery.ts";
 import { decorate, injectable } from "inversify";
 import { AxiosInstance } from "axios";

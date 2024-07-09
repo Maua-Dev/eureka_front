@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { AxiosInstance } from "axios";
-import { IUserRepository } from "@modules/user/domain/user-repository-interface.ts";
+import { IUserRepository } from "@modules/user/domain/repositories/user-repository-interface.ts";
 import { User, UserJsonProps } from "@entities/user.ts";
 import { decorate, injectable } from "inversify";
 

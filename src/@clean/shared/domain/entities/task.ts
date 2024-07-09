@@ -1,5 +1,5 @@
 import { RESPONSIBLE, responsibleToEnum } from "../enums/responsible-enum";
-import { stringToLocaleDate } from "@helpers/errors/date-formatter";
+import { stringToLocaleDate } from "@helpers/formatters/date-formatter.ts";
 import { EntityError } from "@helpers/errors/domain-errors";
 
 type TaskProps = {

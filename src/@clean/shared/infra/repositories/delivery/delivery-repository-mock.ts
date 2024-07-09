@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IDeliveryRepository } from "@modules/delivery/domain/delivery-repository-interface.ts";
+import { IDeliveryRepository } from "@modules/delivery/domain/repositories/delivery-repository-interface.ts";
 import { Delivery } from "@entities/delivery.ts";
 import { NoItemsFoundError } from "@helpers/errors/domain-errors.ts";
 import { DeliveryJson } from "@jsons/delivery-json.ts";
