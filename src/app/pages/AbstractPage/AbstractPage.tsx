@@ -17,17 +17,20 @@ export default function AbstractPage() {
 
   const { projectFromContext, getProject, updateProject } = useContext(ProjectContext);
 
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [keywords, setKeywords] = useState<string>("");
+
+  const [titleENG, setTitleENG] = useState<string>("");
+  const [descriptionENG, setDescriptionENG] = useState<string>("");
+  const [keywordsENG, setKeywordsENG] = useState<string>("");
+
   // get the project id from the url to fetch the project data
   const { projectId } = useParams();
   const projectIdFromPath = parseInt(projectId!);
 
   // error boundary to catch errors in the components (used in handleFetch function)
   const { showBoundary } = useErrorBoundary();
-
-  const [projectTitle, setProjectTitle] = useState<string>(projectFromContext.title);
-  const [projectDescription, setProjectDescription] = useState<string>(
-    projectFromContext.description
-  );
 
   useEffect(() => {
     if (isEqual(projectFromContext, ProjectModel.empty())) {
@@ -36,7 +39,7 @@ export default function AbstractPage() {
   }, []);
 
   useEffect(() => {
-    setProjectTitle(projectFromContext.title);
+    setTitle(projectFromContext.title);
   }, [projectFromContext.title]);
 
   return (
@@ -59,22 +62,22 @@ export default function AbstractPage() {
               </span>
               <div>
                 <DefaultTextField
-                  setValue={setProjectTitle}
-                  value={projectTitle}
+                  setValue={setTitle}
+                  value={title}
                   type="text"
                   topTitle="Título do trabalho"
                   isSaveButtonIncluded={true}
                   onSaveClick={() => {
-                    if (projectTitle === "") {
+                    if (title === "") {
                       toast.error("O título do projeto não pode ser vazio");
-                    } else if (projectTitle === projectFromContext.title) {
+                    } else if (title === projectFromContext.title) {
                       toast.error("O título do projeto não pode ser igual ao anterior");
                     } else {
                       handleFetch(
                         setIsLoading,
                         showBoundary,
                         "Título atualizado",
-                        updateProject(projectIdFromPath, projectTitle)
+                        updateProject(projectIdFromPath, title)
                       );
                     }
                   }}
@@ -84,10 +87,10 @@ export default function AbstractPage() {
                   ele se torna definitivo.
                 </span>
               </div>
-              <div className="projectDefinition">
+              <div>
                 <DefaultTextField
-                  setValue={setProjectDescription}
-                  value={projectDescription}
+                  setValue={setDescription}
+                  value={description}
                   type="text"
                   topTitle="Resumo do trabalho"
                   isSaveButtonIncluded={false}
@@ -97,6 +100,19 @@ export default function AbstractPage() {
                 <span className="box__span">
                   Resumo do trabalho após apresentação para banca. Lembrando que ao salvar o resumo
                   ele se torna definitivo.
+                </span>
+              </div>
+              <div>
+                <DefaultTextField
+                  setValue={setKeywords}
+                  value={keywords}
+                  type="text"
+                  topTitle="Palavras-chave"
+                  isSaveButtonIncluded={false}
+                  isTextArea={true}
+                ></DefaultTextField>
+                <span className="box__span">
+                  Palavras-chave separadas entre si por ponto e finalizadas também por ponto.
                 </span>
               </div>
             </div>
@@ -111,6 +127,61 @@ export default function AbstractPage() {
                 Envio do resumo corrigido. As palavras em ingês devem estar isoladas com aspas. Tudo
                 deve ser preenchido em <u>inglês</u>.
               </span>
+              <div>
+                <DefaultTextField
+                  setValue={setTitleENG}
+                  value={titleENG}
+                  type="text"
+                  topTitle="Título do trabalho (em inglês)"
+                  isSaveButtonIncluded={true}
+                  onSaveClick={() => {
+                    if (title === "") {
+                      toast.error("O título do projeto não pode ser vazio");
+                    } else if (title === projectFromContext.title) {
+                      toast.error("O título do projeto não pode ser igual ao anterior");
+                    } else {
+                      handleFetch(
+                        setIsLoading,
+                        showBoundary,
+                        "Título atualizado",
+                        updateProject(projectIdFromPath, title)
+                      );
+                    }
+                  }}
+                ></DefaultTextField>
+                <span className="box__span">
+                  Título do trabalho após apresentação para banca. Lembrando que ao salvar o título
+                  ele se torna definitivo.
+                </span>
+              </div>
+              <div>
+                <DefaultTextField
+                  setValue={setDescriptionENG}
+                  value={descriptionENG}
+                  type="text"
+                  topTitle="Resumo do trabalho (em inglês)"
+                  isSaveButtonIncluded={false}
+                  isTextArea={true}
+                  textFieldClassName="input--bigger"
+                ></DefaultTextField>
+                <span className="box__span">
+                  Resumo do trabalho após apresentação para banca. Lembrando que ao salvar o resumo
+                  ele se torna definitivo.
+                </span>
+              </div>
+              <div>
+                <DefaultTextField
+                  setValue={setKeywordsENG}
+                  value={keywordsENG}
+                  type="text"
+                  topTitle="Palavras-chave (em inglês)"
+                  isSaveButtonIncluded={false}
+                  isTextArea={true}
+                ></DefaultTextField>
+                <span className="box__span">
+                  Palavras-chave separadas entre si por ponto e finalizadas também por ponto.
+                </span>
+              </div>
             </div>
           </HeaderedBox>
         </>

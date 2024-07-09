@@ -48,7 +48,3 @@
   gap: 1.4rem;
   flex-wrap: wrap;
 }
-
-.abstract_page .input--bigger {
-  min-height: 140px;
-}
