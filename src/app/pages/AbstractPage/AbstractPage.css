@@ -48,3 +48,22 @@
   gap: 1.4rem;
   flex-wrap: wrap;
 }
+
+.abstract_page .input--bigger {
+  min-height: 140px;
+}
+
+.abstract_page .btn {
+  width: 150px;
+  height: 50px;
+  background-color: var(--dark-blue);
+  border-radius: var(--input-radius);
+  position: relative;
+  float: right;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: var(--span-text);
+  font-weight: var(--semi-bold);
+}

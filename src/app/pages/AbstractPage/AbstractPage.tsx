@@ -10,6 +10,7 @@ import isEqual from "lodash.isequal";
 import { ProjectModel } from "../../models/project-model";
 import { handleFetch } from "../../utils/functions/handle-fetch";
 import { toast } from "react-toastify";
+import DefaultButton from "../../ui/components/DefaultButton/DefaultButton";
 
 export default function AbstractPage() {
   const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
@@ -115,6 +116,9 @@ export default function AbstractPage() {
                   Palavras-chave separadas entre si por ponto e finalizadas também por ponto.
                 </span>
               </div>
+              <div>
+                <DefaultButton title="Enviar" buttonClassName="btn" />
+              </div>
             </div>
           </HeaderedBox>
           <HeaderedBox
@@ -181,6 +185,9 @@ export default function AbstractPage() {
                 <span className="box__span">
                   Palavras-chave separadas entre si por ponto e finalizadas também por ponto.
                 </span>
+              </div>
+              <div>
+                <DefaultButton title="Enviar" buttonClassName="btn" />
               </div>
             </div>
           </HeaderedBox>
