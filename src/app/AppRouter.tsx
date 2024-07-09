@@ -6,6 +6,7 @@ import FileUploadPage from "@pages/FileUploadPage/FileUploadPage";
 import ReturnButton from "@components/ReturnButton/ReturnButton";
 import ResourcesPage from "@pages/ResourcesPage/ResourcesPage";
 import AbstractPage from "@pages/AbstractPage/AbstractPage";
+import QuestionnairePage from "@pages/QuestionnairePage/QuestionnairePage.tsx";
 
 export function AppRouter() {
     return (
@@ -54,6 +55,15 @@ export function AppRouter() {
                         <>
                             <ReturnButton />
                             <AbstractPage />
+                        </>
+                    }
+                />
+                <Route
+                    path={":projectId/questionnaire/:taskId"}
+                    element={
+                        <>
+                            <ReturnButton />
+                            <QuestionnairePage />
                         </>
                     }
                 />
