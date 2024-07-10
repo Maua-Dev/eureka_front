@@ -110,14 +110,14 @@ export default function AbstractPage() {
                   type="text"
                   topTitle="Palavras-chave"
                   isSaveButtonIncluded={false}
-                  isTextArea={true}
+                  isTextArea={false}
                 ></DefaultTextField>
                 <span className="box__span">
                   Palavras-chave separadas entre si por ponto e finalizadas também por ponto.
                 </span>
               </div>
               <div>
-                <DefaultButton title="Enviar" buttonClassName="btn" />
+                <DefaultButton title="Enviar" buttonClassName="box__btn--end" />
               </div>
             </div>
           </HeaderedBox>
@@ -180,14 +180,14 @@ export default function AbstractPage() {
                   type="text"
                   topTitle="Palavras-chave (em inglês)"
                   isSaveButtonIncluded={false}
-                  isTextArea={true}
+                  isTextArea={false}
                 ></DefaultTextField>
                 <span className="box__span">
                   Palavras-chave separadas entre si por ponto e finalizadas também por ponto.
                 </span>
               </div>
               <div>
-                <DefaultButton title="Enviar" buttonClassName="btn" />
+                <DefaultButton title="Enviar" buttonClassName="box__btn--end" />
               </div>
             </div>
           </HeaderedBox>
