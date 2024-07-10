@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IUserRepository } from "@modules/user/domain/user-repository-interface.ts";
+import { IUserRepository } from "@modules/user/domain/repositories/user-repository-interface.ts";
 import { User } from "@entities/user.ts";
 import { NoItemsFoundError } from "@helpers/errors/domain-errors.ts";
 import { UserJson } from "@jsons/user-json.ts";

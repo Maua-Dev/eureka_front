@@ -1,5 +1,5 @@
 import { Delivery } from "@entities/delivery.ts";
-import { IDeliveryRepository } from "../domain/delivery-repository-interface";
+import { IDeliveryRepository } from "../domain/repositories/delivery-repository-interface.ts";
 
 export class GetDeliveriesUsecase {
     _repository: IDeliveryRepository;

@@ -1,0 +1,45 @@
+.box__main {
+    background-color: var(--white);
+    margin: 5px;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding-top: 12px;
+    justify-content: space-around;
+    gap: 32px
+}
+
+.send__button {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 32px 157px 24px 0;
+}
+
+.send__button button {
+    padding: 10px 75px;
+}
+
+@media (max-width: 1200px) {
+    .box__main {
+        grid-template-columns: auto;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .send__button {
+        padding: 24px 32px 16px 0;
+    }
+
+    .send__button button {
+        padding: 8px 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .send__button {
+        padding: 16px 16px 8px 0;
+    }
+
+    .send__button button {
+        padding: 6px 30px;
+    }
+}

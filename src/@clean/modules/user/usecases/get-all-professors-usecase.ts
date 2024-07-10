@@ -1,5 +1,5 @@
 import { User } from "@entities/user.ts";
-import { IUserRepository } from "../domain/user-repository-interface";
+import { IUserRepository } from "../domain/repositories/user-repository-interface.ts";
 
 export class GetAllProfessorsUsecase {
     private _userRepository: IUserRepository;
