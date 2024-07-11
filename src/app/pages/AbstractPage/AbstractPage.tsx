@@ -56,11 +56,11 @@ export default function AbstractPage() {
 
   const abstractsFromContext = deliveryFromContext?.content["abstract"] as AbstractType;
 
+  const [abstract, setAbstract] = useState<AbstractType>(abstractsFromContext);
+
   useEffect(() => {
     setAbstract(abstractsFromContext);
   }, [abstractsFromContext]);
-
-  const [abstract, setAbstract] = useState<AbstractType>(abstractsFromContext);
 
   useEffect(() => {
     if (abstractsFromContext?.title != null && title !== abstractsFromContext.title) {
@@ -126,8 +126,6 @@ export default function AbstractPage() {
       abstract.keyWords == "" ||
       abstract.keyWords == undefined
     ) {
-      console.log(abstract);
-      console.log(abstract.title);
       toast.error("Preencha os campos de título e/ou resumo e/ou palavras chave");
       hasError = true;
     }
@@ -139,6 +137,100 @@ export default function AbstractPage() {
         undefined,
         createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
           abstract: abstract,
+        })
+      );
+      toast.success("Resumo enviado com sucesso");
+    }
+  };
+
+  // Abstract ENG
+
+  const abstractFromContextENG = deliveryFromContext?.content["abstractENG"] as AbstractType;
+
+  const [abstractENG, setAbstractENG] = useState<AbstractType>(abstractFromContextENG);
+
+  useEffect(() => {
+    setAbstractENG(abstractFromContextENG);
+  }, [abstractFromContextENG]);
+
+  useEffect(() => {
+    if (abstractFromContextENG?.title != null && titleENG !== abstractFromContextENG.title) {
+      setTitleENG(abstractFromContextENG.title);
+    }
+  }, [abstractFromContextENG?.title != undefined]);
+
+  useEffect(() => {
+    if (
+      abstractFromContextENG?.projectAbstract != null &&
+      projectAbstractENG !== abstractFromContextENG.projectAbstract
+    ) {
+      setProjectAbstractENG(abstractFromContextENG.projectAbstract);
+    }
+  }, [abstractFromContextENG?.projectAbstract != undefined]);
+
+  useEffect(() => {
+    if (
+      abstractFromContextENG?.keyWords != null &&
+      keywordsENG !== abstractFromContextENG.keyWords
+    ) {
+      setKeywordsENG(abstractFromContextENG.keyWords);
+    }
+  }, [abstractFromContextENG?.keyWords != undefined]);
+
+  useEffect(() => {
+    const updatedAbstractENG: {
+      title?: string;
+      projectAbstract?: string;
+      keyWords?: string;
+    } = {};
+
+    if (titleENG !== "") {
+      updatedAbstractENG.title = titleENG;
+    }
+
+    if (projectAbstractENG !== "") {
+      updatedAbstractENG.projectAbstract = projectAbstractENG;
+    }
+
+    if (keywordsENG !== "") {
+      updatedAbstractENG.keyWords = keywordsENG;
+    }
+
+    const newAbstractENG = {
+      title: updatedAbstractENG.title!,
+      projectAbstract: updatedAbstractENG.projectAbstract!,
+      keyWords: updatedAbstractENG.keyWords!,
+    };
+
+    setAbstractENG(newAbstractENG);
+  }, [titleENG, projectAbstractENG, keywordsENG]);
+
+  const handleSendButtonClickENG = () => {
+    let hasError = false;
+    if (isEqual(abstractENG, abstractFromContextENG)) {
+      toast.error("O resumo não foi alterado");
+      hasError = true;
+    }
+
+    if (
+      abstractENG.title == "" ||
+      abstractENG.title == undefined ||
+      abstractENG.projectAbstract == "" ||
+      abstractENG.projectAbstract == undefined ||
+      abstractENG.keyWords == "" ||
+      abstractENG.keyWords == undefined
+    ) {
+      toast.error("Preencha os campos de título e/ou resumo e/ou palavras chave");
+      hasError = true;
+    }
+
+    if (!hasError) {
+      handleFetch(
+        setIsLoading,
+        showBoundary,
+        undefined,
+        createDelivery(taskIdFromPath, projectIdFromPath, userFromContext.userId, {
+          abstractENG: abstractENG,
         })
       );
       toast.success("Resumo enviado com sucesso");
@@ -293,7 +385,11 @@ export default function AbstractPage() {
                 </span>
               </div>
               <div>
-                <DefaultButton title="Enviar" buttonClassName="box__btn--end" />
+                <DefaultButton
+                  title="Enviar"
+                  buttonClassName="box__btn--end"
+                  onClick={handleSendButtonClickENG}
+                />
               </div>
             </div>
           </HeaderedBox>
