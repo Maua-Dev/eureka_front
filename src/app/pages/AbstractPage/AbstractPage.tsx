@@ -14,6 +14,7 @@ import DefaultButton from "../../ui/components/DefaultButton/DefaultButton";
 import { DeliveryContext } from "../../context/delivery-context";
 import { AbstractType } from "../../utils/@types/abstract-type";
 import { AuthContext } from "../../context/auth-context";
+import AbstractPageSkeleton from "./AbstractPageSkeleton";
 
 export default function AbstractPage() {
     const [isSkeletonLoading, setIsSkeletonLoading] = useState<boolean>(false);
@@ -283,7 +284,7 @@ export default function AbstractPage() {
         <main className="abstract_page">
             {isLoading && <LoadingSpinner />}
             {isSkeletonLoading ? (
-                <></>
+                <AbstractPageSkeleton />
             ) : (
                 <>
                     <HeaderedBox
