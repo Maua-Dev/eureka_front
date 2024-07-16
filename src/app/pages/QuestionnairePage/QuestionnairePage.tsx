@@ -12,7 +12,7 @@ export default function QuestionnairePage() {
 
     useEffect(() => {
         // Simulate loading data
-        setTimeout(() => setIsLoading(false), 5000);
+        setTimeout(() => setIsLoading(false), 500);
     }, []);
 
     if (isLoading) {

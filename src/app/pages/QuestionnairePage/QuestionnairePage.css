@@ -5,7 +5,7 @@
     grid-template-columns: auto auto;
     padding-top: 12px;
     justify-content: space-around;
-    gap: 32px
+    gap: 32px;
 }
 
 .send__button {

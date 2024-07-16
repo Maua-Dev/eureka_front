@@ -8,7 +8,8 @@ export class UserAdapter {
             userId: model.userId,
             name: model.name,
             email: model.email,
-            role: model.role
+            role: model.role,
+            phone: model.phone
         });
     }
 
@@ -17,7 +18,8 @@ export class UserAdapter {
             userId: entity.userId,
             name: stringCapitalize(entity.name),
             email: entity.email,
-            role: entity.role
+            role: entity.role,
+            phone: entity.phone
         });
     }
 }

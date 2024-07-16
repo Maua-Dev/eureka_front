@@ -5,6 +5,7 @@ type UserModelProps = {
     name: string;
     email: string;
     role: ROLE;
+    phone: string;
 };
 
 export class UserModel {
@@ -12,12 +13,14 @@ export class UserModel {
     name: string;
     email: string;
     role: ROLE;
+    phone: string;
 
     constructor(props: UserModelProps) {
         this.userId = props.userId;
         this.name = props.name;
         this.email = props.email;
         this.role = props.role;
+        this.phone = props.phone;
     }
 
     static empty(): UserModel {
@@ -25,7 +28,8 @@ export class UserModel {
             userId: 0,
             name: "",
             email: "",
-            role: ROLE.STUDENT
+            role: ROLE.STUDENT,
+            phone: ""
         });
     }
 }

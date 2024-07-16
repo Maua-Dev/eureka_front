@@ -6,6 +6,7 @@ type UserProps = {
     name: string;
     email: string;
     role: ROLE;
+    phone: string;
 };
 
 export type UserJsonProps = {
@@ -13,6 +14,7 @@ export type UserJsonProps = {
     name: string;
     email: string;
     role: string;
+    phone: string;
 };
 
 export class User {
@@ -20,6 +22,7 @@ export class User {
     private _name: string;
     private _email: string;
     private _role: ROLE;
+    private _phone: string;
 
     constructor(props: UserProps) {
         if (!User.validateUserId(props.userId)) {
@@ -38,6 +41,10 @@ export class User {
             throw new EntityError("role");
         }
         this._role = props.role;
+        this._phone = props.phone;
+        if (!User.validatePhone(props.phone)) {
+            throw new EntityError("phone");
+        }
     }
 
     get userId(): number {
@@ -84,6 +91,17 @@ export class User {
         this._role = role;
     }
 
+    get phone(): string {
+        return this._phone;
+    }
+
+    set phone(phone: string) {
+        if (!User.validatePhone(phone)) {
+            throw new EntityError("phone");
+        }
+        this._phone = phone;
+    }
+
     static validateUserId(userId: number): boolean {
         if (userId == null) {
             return false;
@@ -99,7 +117,8 @@ export class User {
             user_id: this._userId,
             name: this._name,
             email: this._email,
-            role: ROLE[this._role].toString()
+            role: ROLE[this._role].toString(),
+            phone: this._phone
         };
     }
 
@@ -108,7 +127,8 @@ export class User {
             userId: json.user_id,
             name: json.name,
             email: json.email,
-            role: roleToEnum(json.role)
+            role: roleToEnum(json.role),
+            phone: json.phone
         });
     }
 
@@ -137,6 +157,14 @@ export class User {
         if (role == null) {
             return false;
         }
+        return true;
+    }
+
+    static validatePhone(phone: string): boolean {
+        const phoneRegex: RegExp = /^\d{11}$/;
+        if (phone == null) return false;
+        else if (phone.trim()) return false;
+        else if (!phoneRegex.test(phone)) return false;
         return true;
     }
 }
