@@ -28,7 +28,10 @@
         "react-select": "^5.8.0",
         "react-toastify": "^10.0.4",
         "reflect-metadata": "^0.1.13",
-        "ts-node": "^10.9.1"
+        "rollup-plugin-analyzer": "^4.0.0",
+        "ts-node": "^10.9.1",
+        "vite-plugin-compression": "^0.5.1",
+        "vite-plugin-imagemin": "^0.6.1"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.22.20",
